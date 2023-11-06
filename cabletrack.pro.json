@@ -1,0 +1,2724 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cable Management",
+    "description": "Cable Management for Projects",
+    "contact": {
+      "email": "it@americanelectric.com"
+    },
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://hsirest.americanelectric.com/v1"
+    }
+  ],
+  "security": [
+    {
+      "CMAPIToken": []
+    }
+  ],
+  "paths": {
+    "/Company": {
+      "get": {
+        "summary": "Companies",
+        "description": "Gets the list of Companies\n",
+        "operationId": "getCompany",
+        "responses": {
+          "200": {
+            "description": "Companies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Company/{co}": {
+      "get": {
+        "summary": "Company",
+        "description": "Gets the specific Company\n",
+        "operationId": "getCompanyCo",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Project/{co}": {
+      "get": {
+        "summary": "Projects",
+        "description": "Gets the list of Projects for the specific Company\n",
+        "operationId": "getProjectCo",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Project/{co}/{proj}": {
+      "get": {
+        "summary": "Project",
+        "description": "Gets the specific Project\n",
+        "operationId": "getProjectCoProj",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable": {
+      "put": {
+        "summary": "Cable",
+        "description": "Creates or Updates the Cable\n",
+        "operationId": "putCable",
+        "requestBody": {
+          "description": "Cable",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CableItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/{co}/{proj}": {
+      "get": {
+        "summary": "Cables",
+        "description": "Gets the list of Cables for the specific Project\n",
+        "operationId": "getCableCoProj",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cables",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CableItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "Cable",
+        "description": "Gets the specific Cable\n",
+        "operationId": "getCableCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Cable",
+        "description": "Deletes the specific Cable\n",
+        "operationId": "delCableCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/PullIn": {
+      "put": {
+        "summary": "CablePullIn",
+        "description": "Records the Cable Pull In\n",
+        "operationId": "putCablePullIn",
+        "requestBody": {
+          "description": "Cable PullIn",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CablePullInItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CablePullInItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/PullIn/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "CablePullIns",
+        "description": "Gets the Pull In records for the specific Cable\n",
+        "operationId": "getCablePullInCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CablePullInItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/PullIn/{co}/{proj}/{cable}/{seq}": {
+      "get": {
+        "summary": "CablePullIn",
+        "description": "Gets the specific Cable PullIn\n",
+        "operationId": "getCablePullInCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CablePullInItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "CablePullIn",
+        "description": "Deletes the specific Cable Pull In\n",
+        "operationId": "delCablePullInCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Terminate": {
+      "put": {
+        "summary": "CableTerminate",
+        "description": "Records the Cable Terminate\n",
+        "operationId": "putCableTerminate",
+        "requestBody": {
+          "description": "Cable Terminate",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CableTerminateItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTerminateItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Terminate/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "CableTerminates",
+        "description": "Gets the Terminate records for the specific Cable\n",
+        "operationId": "getCableTerminateCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CableTerminateItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Terminate/{co}/{proj}/{cable}/{seq}": {
+      "get": {
+        "summary": "CableTerminate",
+        "description": "Gets the specific Cable Terminate\n",
+        "operationId": "getCableTerminateCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTerminateItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "CableTerminate",
+        "description": "Deletes the specific Cable Terminate\n",
+        "operationId": "delCableTerminateCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Continuity": {
+      "put": {
+        "summary": "CableTestContinuity",
+        "description": "Records the Cable Continuity Test\n",
+        "operationId": "putCableTestContinuity",
+        "requestBody": {
+          "description": "Cable Continuity Test",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CableTestContinuityItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestContinuityItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Continuity/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "CableTestsContinuity",
+        "description": "Gets the Continuity Test records for the specific Cable\n",
+        "operationId": "getCableTestContinuityCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CableTestContinuityItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Continuity/{co}/{proj}/{cable}/{seq}": {
+      "get": {
+        "summary": "CableTestContinuity",
+        "description": "Gets the specific Cable Continuity Test\n",
+        "operationId": "getCableTestContinuityCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestContinuityItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "CableTestContinuity",
+        "description": "Deletes the specific Cable Continuity Test\n",
+        "operationId": "delCableTestContinuityCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Megger": {
+      "put": {
+        "summary": "CableTestMegger",
+        "description": "Records the Cable Megger Test\n",
+        "operationId": "putCableTestMegger",
+        "requestBody": {
+          "description": "Cable Megger Test",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CableTestMeggerItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestMeggerItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Megger/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "CableTestsMegger",
+        "description": "Gets the Megger Test records for the specific Cable\n",
+        "operationId": "getCableTestMeggerCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CableTestMeggerItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/Megger/{co}/{proj}/{cable}/{seq}": {
+      "get": {
+        "summary": "CableTestMegger",
+        "description": "Gets the specific Cable Megger Test\n",
+        "operationId": "getCableTestMeggerCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestMeggerItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "CableTestMegger",
+        "description": "Deletes the specific Cable Megger Test\n",
+        "operationId": "delCableTestMeggerCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/VLF": {
+      "put": {
+        "summary": "CableTestVLF",
+        "description": "Records the Cable VLF Test\n",
+        "operationId": "putCableTestVLF",
+        "requestBody": {
+          "description": "Cable VLF Test",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CableTestVLFItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestVLFItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/VLF/{co}/{proj}/{cable}": {
+      "get": {
+        "summary": "CableTestsVLF",
+        "description": "Gets the VLF Test records for the specific Cable\n",
+        "operationId": "getCableTestVLFCoProjCable",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CableTestVLFItem"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cable/Test/VLF/{co}/{proj}/{cable}/{seq}": {
+      "get": {
+        "summary": "CableTestVLF",
+        "description": "Gets the specific Cable VLF Test\n",
+        "operationId": "getCableTestVLFCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CableTestVLFItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "CableTestVLF",
+        "description": "Deletes the specific Cable VLF Test\n",
+        "operationId": "delCableTestVLFCoProjCableSeq",
+        "parameters": [
+          {
+            "name": "co",
+            "in": "path",
+            "description": "ID of Company",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          },
+          {
+            "name": "proj",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          {
+            "name": "cable",
+            "in": "path",
+            "description": "ID of Cable",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Cable"
+            }
+          },
+          {
+            "name": "seq",
+            "in": "path",
+            "description": "ID of Cable Detail",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Company": {
+        "title": "Company",
+        "maximum": 254,
+        "minimum": 1,
+        "type": "integer",
+        "format": "int32",
+        "example": 0
+      },
+      "Project": {
+        "title": "Project",
+        "maxLength": 20,
+        "pattern": "^(\\w([\\w\\.]{0,9}|[\\w-]{0,9}))$",
+        "type": "string",
+        "nullable": true,
+        "example": "00000-00-00"
+      },
+      "ProjectMgr": {
+        "title": "Project Manager",
+        "maximum": 65535,
+        "minimum": 1,
+        "type": "integer",
+        "format": "int32",
+        "nullable": true,
+        "example": 0
+      },
+      "Cable": {
+        "title": "Cable",
+        "maxLength": 30,
+        "type": "string",
+        "nullable": true,
+        "example": "AB.CD00.00"
+      },
+      "Sequence": {
+        "title": "Sequence",
+        "minimum": 1,
+        "type": "integer",
+        "format": "int32",
+        "nullable": true,
+        "example": 0
+      },
+      "Address": {
+        "title": "Address Line",
+        "maxLength": 60,
+        "type": "string",
+        "example": "123 Main St"
+      },
+      "City": {
+        "title": "City",
+        "maxLength": 60,
+        "type": "string",
+        "example": "Hometown"
+      },
+      "State": {
+        "title": "State",
+        "maxLength": 2,
+        "pattern": "^[A-Z]{2}$",
+        "type": "string",
+        "example": "HI"
+      },
+      "Zip": {
+        "title": "Postal Code",
+        "maxLength": 10,
+        "pattern": "^(\\d{5}(-\\d{4})?|[A-Z]\\d[A-Z] ?\\d[A-Z]\\d)$",
+        "type": "string",
+        "example": "12345-1234"
+      },
+      "Country": {
+        "title": "Country",
+        "maxLength": 2,
+        "pattern": "^[A-Z]{2}$",
+        "type": "string",
+        "example": "US"
+      },
+      "Phone": {
+        "title": "Phone",
+        "maxLength": 12,
+        "pattern": "^(\\d{3}-)?\\d{3}-\\d{4}$",
+        "type": "string",
+        "example": "123-456-7890"
+      },
+      "TerminationLocation": {
+        "title": "Termination Location",
+        "maxLength": 30,
+        "type": "string",
+        "example": "Outlet"
+      },
+      "Measurement": {
+        "title": "Measurement",
+        "type": "number",
+        "format": "double",
+        "example": 100.5
+      },
+      "MeasurementTimed": {
+        "title": "Timed Measurement",
+        "required": [
+          "Measurement",
+          "TimeIndex"
+        ],
+        "type": "object",
+        "properties": {
+          "TimeIndex": {
+            "type": "number",
+            "format": "single",
+            "example": 1
+          },
+          "Value": {
+            "$ref": "#/components/schemas/Measurement"
+          }
+        }
+      },
+      "CompanyBase": {
+        "title": "Company Base",
+        "required": [
+          "Company"
+        ],
+        "type": "object",
+        "properties": {
+          "Company": {
+            "$ref": "#/components/schemas/Company"
+          }
+        }
+      },
+      "ProjectBase": {
+        "title": "Project Base",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CompanyBase"
+          },
+          {
+            "required": [
+              "Project"
+            ],
+            "type": "object",
+            "properties": {
+              "Project": {
+                "$ref": "#/components/schemas/Project"
+              }
+            }
+          }
+        ]
+      },
+      "CableBase": {
+        "title": "Cable Base",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProjectBase"
+          },
+          {
+            "required": [
+              "Cable"
+            ],
+            "type": "object",
+            "properties": {
+              "Cable": {
+                "$ref": "#/components/schemas/Cable"
+              },
+              "Notes": {
+                "type": "string",
+                "example": "Notes"
+              }
+            }
+          }
+        ]
+      },
+      "CableDetailBase": {
+        "title": "Cable Detail Base",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableBase"
+          },
+          {
+            "required": [
+              "Seq"
+            ],
+            "type": "object",
+            "properties": {
+              "Seq": {
+                "$ref": "#/components/schemas/Sequence"
+              }
+            }
+          }
+        ]
+      },
+      "CableTestBase": {
+        "title": "Cable Test Base",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableDetailBase"
+          },
+          {
+            "required": [
+              "DateTested",
+              "Pass",
+              "PersonTested"
+            ],
+            "type": "object",
+            "properties": {
+              "PersonTested": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "John Doe"
+              },
+              "DateTested": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "Pass": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        ]
+      },
+      "CompanyItem": {
+        "title": "Company",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CompanyBase"
+          },
+          {
+            "required": [
+              "Name"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "maxLength": 60,
+                "type": "string",
+                "example": "ACME Corporation"
+              },
+              "Address": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "Address2": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "City": {
+                "$ref": "#/components/schemas/City"
+              },
+              "State": {
+                "$ref": "#/components/schemas/State"
+              },
+              "Zip": {
+                "$ref": "#/components/schemas/Zip"
+              },
+              "Country": {
+                "$ref": "#/components/schemas/Country"
+              },
+              "Phone": {
+                "$ref": "#/components/schemas/Phone"
+              },
+              "Fax": {
+                "$ref": "#/components/schemas/Phone"
+              }
+            }
+          }
+        ]
+      },
+      "ProjectItem": {
+        "title": "Project",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProjectBase"
+          },
+          {
+            "required": [
+              "Description"
+            ],
+            "type": "object",
+            "properties": {
+              "Description": {
+                "maxLength": 60,
+                "type": "string",
+                "example": "Description"
+              },
+              "ProjectName": {
+                "maxLength": 100,
+                "type": "string",
+                "example": "00000-00-00 Description"
+              },
+              "Contract": {
+                "$ref": "#/components/schemas/Project"
+              },
+              "BidNumber": {
+                "maxLength": 20,
+                "type": "string",
+                "example": "12345"
+              },
+              "ProjectMgr": {
+                "$ref": "#/components/schemas/ProjectMgr"
+              },
+              "JobPhone": {
+                "$ref": "#/components/schemas/Phone"
+              },
+              "JobFax": {
+                "$ref": "#/components/schemas/Phone"
+              },
+              "MailAddress": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "MailAddress2": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "MailCity": {
+                "$ref": "#/components/schemas/City"
+              },
+              "MailState": {
+                "$ref": "#/components/schemas/State"
+              },
+              "MailZip": {
+                "$ref": "#/components/schemas/Zip"
+              },
+              "MailCountry": {
+                "$ref": "#/components/schemas/Country"
+              },
+              "ShipAddress": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "ShipAddress2": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "ShipCity": {
+                "$ref": "#/components/schemas/City"
+              },
+              "ShipState": {
+                "$ref": "#/components/schemas/State"
+              },
+              "ShipZip": {
+                "$ref": "#/components/schemas/Zip"
+              },
+              "ShipCountry": {
+                "$ref": "#/components/schemas/Country"
+              },
+              "FormEmail": {
+                "type": "string",
+                "format": "email",
+                "readOnly": true,
+                "example": "someone@somecompany.com"
+              }
+            }
+          }
+        ]
+      },
+      "CableItem": {
+        "title": "Cable",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableBase"
+          },
+          {
+            "required": [
+              "Description"
+            ],
+            "type": "object",
+            "properties": {
+              "Description": {
+                "maxLength": 60,
+                "type": "string",
+                "example": "Description"
+              },
+              "RefDrawingNo": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "A123"
+              },
+              "RefDrawingRev": {
+                "maxLength": 20,
+                "type": "string",
+                "example": "1.0.0"
+              },
+              "System": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "System"
+              },
+              "Building": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "Building"
+              },
+              "Zone": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "Zone"
+              },
+              "Origination": {
+                "$ref": "#/components/schemas/TerminationLocation"
+              },
+              "Termination": {
+                "$ref": "#/components/schemas/TerminationLocation"
+              },
+              "LengthPlanned": {
+                "$ref": "#/components/schemas/Measurement"
+              },
+              "Classification": {
+                "type": "string",
+                "example": "Power",
+                "enum": [
+                  "Power",
+                  "Control",
+                  "Telcom",
+                  "Fiber",
+                  "Other"
+                ]
+              },
+              "CableType": {
+                "maxLength": 20,
+                "type": "string",
+                "example": "THHN"
+              },
+              "Conductors": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "2#14"
+              },
+              "VoltageCable": {
+                "maxLength": 15,
+                "type": "string",
+                "example": "120VAC"
+              },
+              "VoltageTest": {
+                "maxLength": 15,
+                "type": "string",
+                "example": "120VAC"
+              }
+            }
+          }
+        ]
+      },
+      "CablePullInItem": {
+        "title": "Cable PullIn",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableDetailBase"
+          },
+          {
+            "required": [
+              "DateInstalled",
+              "Installer",
+              "LengthInstalled",
+              "PulledHand"
+            ],
+            "type": "object",
+            "properties": {
+              "PersonInstalled": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "John Doe"
+              },
+              "DateInstalled": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "LengthInstalled": {
+                "$ref": "#/components/schemas/Measurement"
+              },
+              "PulledHand": {
+                "type": "boolean",
+                "default": false
+              },
+              "Tugger": {
+                "type": "string",
+                "example": "Tugger"
+              },
+              "TuggerCalibrationID": {
+                "type": "string",
+                "example": "Calibration"
+              },
+              "MaxPullingTension": {
+                "$ref": "#/components/schemas/Measurement"
+              }
+            }
+          }
+        ]
+      },
+      "CableTerminateItem": {
+        "title": "Cable Terminate",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableDetailBase"
+          },
+          {
+            "required": [
+              "DateTerminated",
+              "Location",
+              "Terminator"
+            ],
+            "type": "object",
+            "properties": {
+              "PersonTerminated": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "John Doe"
+              },
+              "DateTerminated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "Location": {
+                "$ref": "#/components/schemas/TerminationLocation"
+              }
+            }
+          }
+        ]
+      },
+      "CableTestContinuityItem": {
+        "title": "Cable Continuity Test",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableTestBase"
+          },
+          {
+            "required": [
+              "Resistance"
+            ],
+            "type": "object",
+            "properties": {
+              "Resistance": {
+                "$ref": "#/components/schemas/Measurement"
+              }
+            }
+          }
+        ]
+      },
+      "CableTestMeggerItem": {
+        "title": "Cable Megger Test",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableTestBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "MeggerInstrument": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "instrument"
+              },
+              "MeggerCalibrationID": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "calibration"
+              },
+              "A_B": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              },
+              "B_C": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              },
+              "C_A": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              },
+              "A_Grd": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              },
+              "B_Grd": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              },
+              "C_Grd": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeasurementTimed"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CableTestVLFItem": {
+        "title": "Cable VLF Test",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CableTestBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "VLFInstrument": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "instrument"
+              },
+              "VLFCalibrationID": {
+                "maxLength": 30,
+                "type": "string",
+                "example": "calibration"
+              },
+              "TemperatureAmbient": {
+                "type": "number",
+                "format": "single",
+                "example": 78.3
+              },
+              "HumidityAmbient": {
+                "type": "number",
+                "format": "single",
+                "example": 60.4
+              },
+              "CountSplices": {
+                "type": "integer",
+                "format": "int32",
+                "example": 2
+              },
+              "TestLocation": {
+                "$ref": "#/components/schemas/TerminationLocation"
+              },
+              "TestLocationOther": {
+                "$ref": "#/components/schemas/TerminationLocation"
+              },
+              "SystemConnection": {
+                "type": "string",
+                "example": "SomeValue",
+                "enum": [
+                  "Some",
+                  "Value"
+                ]
+              },
+              "Grounded": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        ]
+      },
+      "Result": {
+        "title": "Result",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Success": {
+        "description": "success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Result"
+            }
+          }
+        }
+      },
+      "AuthError": {
+        "description": "unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Result"
+            }
+          }
+        }
+      },
+      "Default": {
+        "description": "unexpected error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Result"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "Company": {
+        "name": "co",
+        "in": "path",
+        "description": "ID of Company",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "$ref": "#/components/schemas/Company"
+        }
+      },
+      "Project": {
+        "name": "proj",
+        "in": "path",
+        "description": "ID of Project",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "$ref": "#/components/schemas/Project"
+        }
+      },
+      "ProjectMgr": {
+        "name": "pm",
+        "in": "path",
+        "description": "ID of Project Manager",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "$ref": "#/components/schemas/ProjectMgr"
+        }
+      },
+      "Cable": {
+        "name": "cable",
+        "in": "path",
+        "description": "ID of Cable",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "$ref": "#/components/schemas/Cable"
+        }
+      },
+      "Sequence": {
+        "name": "seq",
+        "in": "path",
+        "description": "ID of Cable Detail",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "$ref": "#/components/schemas/Sequence"
+        }
+      }
+    },
+    "securitySchemes": {
+      "CMAPIToken": {
+        "type": "apiKey",
+        "name": "X-HSI-API-TOKEN",
+        "in": "header"
+      }
+    }
+  }
+}
