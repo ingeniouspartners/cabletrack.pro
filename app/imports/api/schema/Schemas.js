@@ -36,11 +36,11 @@ const projectMgrSchema = new SimpleSchema({
 });
 
 const terminationLocationSchema = new SimpleSchema({
-  terminationLocation: { type: String, max: 30 },
+  terminationLocation: { type: String, max: 30, optional: true },
 });
 
 const measurementSchema = new SimpleSchema({
-  measurement: Number,
+  measurement: { type: Number, optional: true },
 });
 
 /* Unsure exactly how to do this, code below for reference
@@ -196,17 +196,7 @@ const cableTestVLFSchema = new SimpleSchema(
     countSplices: SimpleSchema.Integer,
     testLocation: terminationLocationSchema,
     testLocationOther: terminationLocationSchema,
-    /*
-                  "SystemConnection": {
-                "type": "string",
-                "example": "SomeValue",
-                "enum": [
-                  "Some",
-                  "Value"
-                ]
-              },
-     */
-    systemConnection: { type: String, allowedValues: ['Single', 'Multi'] }, // TODO Replace temp values with actual values.
+    systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
   },
 );
