@@ -10,7 +10,7 @@ CableTrack PRO is the premier tool to enable electricians to quickly and easily 
 
 CableTrack PRO allows you to brand the application with your company logo. This allows the customer to present a professional image to their clients.
 
-#### Projects
+#### Project
 
 CableTrack PRO allows you to create projects and add cables to them. You can then report progress by project.
 

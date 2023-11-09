@@ -9,5 +9,19 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+  "defaultProjects": [{
+    "name": "Project 1", "code": "123", "associatedUsers": "James", "owner": "admin@foo.com"
+    },
+    {
+      "name": "Project 2", "code": "456", "associatedUsers": "John", "owner": "admin@foo.com"
+    },
+    {
+      "name": "Project 3", "code": "789", "associatedUsers": "Jill", "owner": "admin@foo.com"
+    },
+    {
+      "name": "Project 4", "code": "101", "associatedUsers": "Jane", "owner": "admin@foo.com"
+    }
+
   ]
 }
