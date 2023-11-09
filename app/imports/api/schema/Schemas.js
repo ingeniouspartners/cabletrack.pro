@@ -62,6 +62,7 @@ const measurementSchema = new SimpleSchema({
           }
         }
       },
+      Float/single
 
       Also assuming integer although the code says number.
  */
@@ -195,7 +196,17 @@ const cableTestVLFSchema = new SimpleSchema(
     countSplices: SimpleSchema.Integer,
     testLocation: terminationLocationSchema,
     testLocationOther: terminationLocationSchema,
-    systemConnection: { type: String, allowedValues: ['Some', 'Value'] },
+    /*
+                  "SystemConnection": {
+                "type": "string",
+                "example": "SomeValue",
+                "enum": [
+                  "Some",
+                  "Value"
+                ]
+              },
+     */
+    systemConnection: { type: String, allowedValues: ['Single', 'Multi'] }, // TODO Replace temp values with actual values.
     grounded: { type: Boolean, defaultValue: false },
   },
 );
