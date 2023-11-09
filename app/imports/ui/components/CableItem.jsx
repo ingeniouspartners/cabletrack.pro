@@ -5,9 +5,20 @@ import { Link } from 'react-router-dom';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const CableItem = ({ cable }) => (
   <tr>
-    <td>{cable.name}</td>
-    <td>{cable.quantity}</td>
-    <td>{cable.condition}</td>
+    <td>{cable.description}</td>
+    <td>{cable.refDrawingNo}</td>
+    <td>{cable.refDrawingRev}</td>
+    <td>{cable.system}</td>
+    <td>{cable.building}</td>
+    <td>{cable.zone}</td>
+    <td>{cable.origination}</td>
+    <td>{cable.termination}</td>
+    <td>{cable.lengthPlanned}</td>
+    <td>{cable.classification}</td>
+    <td>{cable.cableType}</td>
+    <td>{cable.conductors}</td>
+    <td>{cable.voltageCable}</td>
+    <td>{cable.voltageTest}</td>
     <td>
       <Link to={`/edit/${cable._id}`}>Edit</Link>
     </td>
@@ -17,7 +28,7 @@ const CableItem = ({ cable }) => (
 // Require a document to be passed to this component.
 CableItem.propTypes = {
   cable: PropTypes.shape({
-    description: String,
+    description: String.isRequired,
     refDrawingNo: String,
     refDrawingRev: String,
     system: String,
@@ -26,12 +37,13 @@ CableItem.propTypes = {
     origination: String,
     termination: String,
     lengthPlanned: Number,
-    classification: String,
+    classification: PropTypes.oneOf(['Power', 'Control', 'Telcom', 'Fiber', 'Other']),
     cableType: String,
     conductors: String,
     voltageCable: String,
     voltageTest: String,
-  }).isRequired,
+    _id: String,
+  })
 };
 
 export default CableItem;
