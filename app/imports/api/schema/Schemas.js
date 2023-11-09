@@ -70,6 +70,12 @@ const measurementTimedSchema = new SimpleSchema({
   value: measurementSchema,
 });
 
+const emailSchema = new SimpleSchema(
+  {
+    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
+  },
+);
+
 // Possible email form in here too?
 const companySchema = new SimpleSchema(
   {
@@ -82,6 +88,7 @@ const companySchema = new SimpleSchema(
     country: countrySchema,
     phone: phoneSchema,
     fax: phoneSchema,
+    email: emailSchema,
   },
   { requiredByDefault: false },
 );
@@ -107,7 +114,7 @@ const projectSchema = new SimpleSchema(
     shipState: stateSchema,
     shipZip: zipSchema,
     shipCountry: countrySchema,
-    formEmail: String, // May want to make this a regEx for email and make it read only. Not sure if can do that here.
+    formEmail: emailSchema,
   },
   { requiredByDefault: false },
 );
@@ -193,4 +200,4 @@ const cableTestVLFSchema = new SimpleSchema(
   },
 );
 
-export { companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema };
+export { emailSchema, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema };
