@@ -10,7 +10,7 @@ const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { currentUser, currentCo } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
-    currentCo: 'xyz',
+    currentCo: Meteor.user() ? 'xyz' : '',
   }), []);
 
   return (
@@ -24,10 +24,10 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? ([
               <Nav.Link id="view-company-nav" as={NavLink} to={`/company/${currentCo}`} key="viewCompany">Company</Nav.Link>,
-              <Nav.Link id="list-projects-nav" as={NavLink} to="/projects" key="list">Projects</Nav.Link>,
+              <Nav.Link id="list-projects-nav" as={NavLink} to="/projects" key="listProjects">Projects</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link id="list-stuff-admin-nav" as={NavLink} to="/admin" key="admin">Admin</Nav.Link>
+              <Nav.Link id="list-company-nav" as={NavLink} to="/companies" key="listCompany">Admin</Nav.Link>
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">

@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/company/:company_id" element={<ProtectedRoute><ViewCompany /></ProtectedRoute>} />/** Must be logged in to view company */
           <Route path="/company/edit/:company_id" element={<ProtectedRoute><EditCompany /></ProtectedRoute>} />/** Must be logged in and admin or company owner to edit company. Not On Menu, accessed from View */
-          <Route path="/projects/" element={<ProtectedRoute><ListProject /></ProtectedRoute>} />/** Must be logged in to view projects */
+          <Route path="/projects" element={<ProtectedRoute><ListProject /></ProtectedRoute>} />/** Must be logged in to view projects */
           <Route path="/project/:project_id" element={<ProtectedRoute><ViewProject /></ProtectedRoute>} />/** Must be logged in to view project. Not on Menu, accessed from List */
           <Route path="/project/add" element={<ProtectedRoute><EditProject /></ProtectedRoute>} />/** Must be logged in to add project. Not on Menu, accessed from List */
           <Route path="/project/edit/:project_id" element={<ProtectedRoute><EditProject /></ProtectedRoute>} />/** Must be logged in to edit project. Not on Menu, accessed from List or View */
