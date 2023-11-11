@@ -3,8 +3,9 @@ import { Meteor } from 'meteor/meteor';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Cables } from '../../api/cable/Cables';
-import CableListItem from './CableItem';
-import LoadingSpinner from './LoadingSpinner';
+import CableItem from '../components/CableItem';
+import LoadingSpinner from '../components/LoadingSpinner';
+import CableForm from '../components/CableForm';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const CableList = () => {
@@ -39,7 +40,7 @@ const CableList = () => {
               </tr>
             </thead>
             <tbody>
-              {cables.map((cable) => <CableListItem key={cable._id} cable={cable} />)}
+              {cables.map((cable) => <CableItem key={cable._id} cable={cable} />)}
             </tbody>
           </Table>
         </Col>

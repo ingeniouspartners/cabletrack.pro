@@ -12,6 +12,7 @@ import CableForm from '../components/CableForm';
 import CableView from '../components/CableView';
 import CableViewTemp from '../components/CableViewTemp';
 import CableEdit from '../components/CableEdit';
+import TestCablePage from '../pages/TestCablePage';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';

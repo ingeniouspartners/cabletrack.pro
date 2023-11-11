@@ -30,7 +30,7 @@ const CableView = () => {
           <Col className="text-center">
             <h2>View Cables</h2>
           </Col>
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>Description</th>
