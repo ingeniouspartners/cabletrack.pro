@@ -12,8 +12,7 @@ const Project = ({ project }) => (
     </Card.Header>
     <Card.Body>
       <Card.Text>{project.associatedUsers}</Card.Text>
-      <Button variant="primary" href="/view">View</Button>
-      <Link to={`/edit/${project._id}`}>Edit</Link>
+      <Link to={`/view/${project._id}`}><Button variant="primary">View Project</Button></Link>
     </Card.Body>
   </Card>
 );
@@ -22,7 +21,7 @@ const Project = ({ project }) => (
 Project.propTypes = {
   project: PropTypes.shape({
     code: PropTypes.string,
-    name: PropTypes.number,
+    name: PropTypes.string,
     associatedUsers: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,

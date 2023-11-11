@@ -1,11 +1,12 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Projects } from '../../api/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -55,6 +56,7 @@ const EditProject = () => {
                 <ErrorsField />
                 <HiddenField name="owner" />
               </Card.Body>
+              <Link className="p-3" to={`/view/${_id}`}>Back to Project</Link>
             </Card>
           </AutoForm>
         </Col>
