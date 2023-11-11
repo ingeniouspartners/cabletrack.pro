@@ -14,7 +14,7 @@ const bridge = new SimpleSchema2Bridge(Stuffs.schema);
 /* Renders the EditStuff page for editing a single document. */
 const EditStuff = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { _id } = useParams();
+  let { _id } = useParams();
   // console.log('EditStuff', _id);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
@@ -23,7 +23,10 @@ const EditStuff = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = Stuffs.collection.findOne(_id);
+    let document = Stuffs.collection.findOne(_id);
+    if (!document) {
+      document = { owner: Meteor.user().username, name: '', quantity: '', condition: '' };
+    }
     return {
       doc: document,
       ready: rdy,
@@ -32,10 +35,24 @@ const EditStuff = () => {
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { name, quantity, condition } = data;
-    Stuffs.collection.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+    const { owner, name, quantity, condition } = data;
+    if (_id) {
+      Stuffs.collection.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+        swal('Error', error.message, 'error') :
+        swal('Success', 'Item updated successfully', 'success')));
+    } else {
+      Stuffs.collection.insert(
+        { name, quantity, condition, owner },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Item added successfully', 'success');
+            formRef.reset();
+          }
+        },
+      );
+    }
   };
 
   return ready ? (
