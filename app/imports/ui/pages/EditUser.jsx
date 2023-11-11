@@ -1,6 +1,6 @@
 import React from 'react';
 
 /* Please replace the guts of this page with the right code. */
-const EditCablePullIn = () => (<h1>EditCablePullIn</h1>);
+const EditUser = () => (<h1>EditUser</h1>);
 
-export default EditCablePullIn;
+export default EditUser;
