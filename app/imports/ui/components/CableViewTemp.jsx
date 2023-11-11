@@ -3,11 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Cables } from '../../api/cable/Cables';
-import CableItem from './CableItem';
+import CableItemView from './CableItemView';
 import LoadingSpinner from './LoadingSpinner';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
-const CableList = () => {
+const CableView = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, cables } = useTracker(() => {
     // Note that this subscription will get cleaned up
@@ -28,18 +28,30 @@ const CableList = () => {
       <Row className="justify-content-center">
         <Col md={7}>
           <Col className="text-center">
-            <h2>List Cables</h2>
+            <h2>View Cables</h2>
           </Col>
           <Table striped bordered hover>
             <thead>
               <tr>
                 <th>Description</th>
-                <th>View</th>
+                <th>RefDrawingNo</th>
+                <th>RefDrawingRev</th>
+                <th>System</th>
+                <th>Building</th>
+                <th>Zone</th>
+                <th>Origination</th>
+                <th>Termination</th>
+                <th>Length Planned</th>
+                <th>Classification</th>
+                <th>Cable Type</th>
+                <th>Conductors</th>
+                <th>Voltage Cable</th>
+                <th>Voltage Test</th>
                 <th>Edit</th>
               </tr>
             </thead>
             <tbody>
-              {cables.map((cable) => <CableItem key={cable._id} cable={cable} />)}
+              {cables.map((cable) => <CableItemView key={cable._id} cable={cable} />)}
             </tbody>
           </Table>
         </Col>
@@ -48,4 +60,4 @@ const CableList = () => {
   ) : <LoadingSpinner />);
 };
 
-export default CableList;
+export default CableView;

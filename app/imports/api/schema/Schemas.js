@@ -131,7 +131,7 @@ const cableSchema = new SimpleSchema(
     origination: terminationLocationSchema,
     termination: terminationLocationSchema,
     lengthPlanned: measurementSchema,
-    classification: { type: String, allowedValues: ['Power', 'Control', 'Telcom', 'Fiber', 'Other'] },
+    classification: { type: String, allowedValues: ['Power', 'Control', 'Telcom', 'Fiber', 'Other'], defaultValue: 'Power' },
     cableType: { type: String, max: 20 },
     conductors: { type: String, max: 30 },
     voltageCable: { type: String, max: 30 },
