@@ -68,6 +68,8 @@ const companySchema = new SimpleSchema(
     fax: phoneSchema,
     email: emailSchema,
     owners: { type: Array, required: true },
+    'owners.$': dbIDSchema,
+
   },
   { requiredByDefault: false },
 );
@@ -95,6 +97,7 @@ const projectSchema = new SimpleSchema(
     shipCountry: countrySchema,
     formEmail: emailSchema,
     owners: { type: Array, required: true },
+    'owners.$': dbIDSchema,
   },
   { requiredByDefault: false },
 );
@@ -119,6 +122,7 @@ const cableSchema = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     owners: { type: Array, required: true },
+    'owners.$': dbIDSchema,
   },
   { requiredByDefault: false },
 );
