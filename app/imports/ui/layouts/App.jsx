@@ -65,9 +65,9 @@ const App = () => {
           /** Must be logged in to view projects, filtered by ProjectOwner or CompanyOwner or Electrician */
           <Route path="/project/:_id" element={<ProtectedRoute><ViewProject /></ProtectedRoute>} />
           /** Must be logged in to view project. Not on Menu, accessed from List */
-          <Route path="/project/add" element={<OwnerProtectedRoute owner="ProjectOwner"><AddProject /></OwnerProtectedRoute>} />
+          <Route path="/project/add" element={<OwnerProtectedRoute owner="CompanyOwner" ready={ready}><AddProject /></OwnerProtectedRoute>} />
           /** Must be logged in to add project. Not on Menu, accessed from List */
-          <Route path="/project/edit/:_id" element={<OwnerProtectedRoute owner="ProjectOwner"><EditProject /></OwnerProtectedRoute>} />
+          <Route path="/project/edit/:_id" element={<OwnerProtectedRoute owner="CompanyOwner" ready={ready}><EditProject /></OwnerProtectedRoute>} />
           /** Must be logged in to edit project. Not on Menu, accessed from List or View */
           <Route path="/cables/:project_id" element={<ProtectedRoute><ListCable /></ProtectedRoute>} />
           /** Must be logged in to view cables, Not on Menu, accessed from Projects List or Project View */
