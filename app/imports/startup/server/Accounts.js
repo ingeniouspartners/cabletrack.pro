@@ -11,9 +11,12 @@ const createUser = (email, password, role) => {
     email: email,
     password: password,
   });
-  if (role === 'admin') {
+
+  if (role) {
     Roles.createRole(role, { unlessExists: true });
-    Roles.addUsersToRoles(userID, 'admin');
+    Roles.addUsersToRoles(userID, role);
+  } else {
+    console.warn('No role specified for the user.');
   }
 };
 

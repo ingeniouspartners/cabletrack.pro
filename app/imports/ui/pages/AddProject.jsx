@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { Link } from 'react-router-dom';
 import { Projects } from '../../api/Projects';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -18,7 +19,6 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddStuff page for adding a document. */
 const AddProject = () => {
-
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { name, code, associatedUsers } = data;
@@ -54,6 +54,7 @@ const AddProject = () => {
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
+              <Link className="p-3" to="/projects">Back to Projects</Link>
             </Card>
           </AutoForm>
         </Col>
