@@ -1,7 +1,11 @@
 import SimpleSchema from 'simpl-schema';
 
-/* const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA',
-  'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']; */
+const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
+  'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
+
+const dbIDSchema = new SimpleSchema({
+  dbID: { type: String, max: 20, required: true }
+});
 
 const addressSchema = new SimpleSchema({
   address: { type: String, max: 60 },
@@ -12,27 +16,23 @@ const citySchema = new SimpleSchema({
 });
 
 const stateSchema = new SimpleSchema({
-  state: { type: String, regEx: /^[A-Z]{2}$/ },
+  state: { type: String, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true },
 });
 
 const zipSchema = new SimpleSchema({
-  zip: { type: String, max: 10, regEx: /^(\\d{5}(-\\d{4})?|[A-Z]\\d[A-Z] ?\\d[A-Z]\\d)$/ },
+  zip: { type: String, max: 10, regEx: /^(\\d{5}(-\\d{4})?|[A-Z]\\d[A-Z] ?\\d[A-Z]\\d)$/, skipRegExCheckForEmptyStrings: true },
 });
 
 const countrySchema = new SimpleSchema({
-  country: { type: String, max: 2, regEx: /^[A-Z]{2}$/ },
+  country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true },
 });
 
 const phoneSchema = new SimpleSchema({
-  phone: { type: String, max: 12, regEx: /^(\\d{3}-)?\\d{3}-\\d{4}$/ },
+  phone: { type: String, max: 12, regEx: /^(\\d{3}-)?\\d{3}-\\d{4}$/, skipRegExCheckForEmptyStrings: true },
 });
 
 const projectItemSchema = new SimpleSchema({
-  project: { type: String, max: 20, regEx: /^(\\w([\\w\\.]{0,9}|[\\w-]{0,9}))$/, skipRegExCheckForEmptyStrings: true },
-});
-
-const projectMgrSchema = new SimpleSchema({
-  projectMgr: { type: SimpleSchema.Integer, max: 65535, min: 1, optional: true },
+  project: { type: String, max: 20, regEx: /^(\\w([\\w\\.]{0,19}|[\\w-]{0,19}))$/, skipRegExCheckForEmptyStrings: true },
 });
 
 const terminationLocationSchema = new SimpleSchema({
@@ -43,37 +43,14 @@ const measurementSchema = new SimpleSchema({
   measurement: { type: Number, optional: true },
 });
 
-/* Unsure exactly how to do this, code below for reference
-      "MeasurementTimed": {
-        "title": "Timed Measurement",
-        "required": [
-          "Measurement",
-          "TimeIndex"
-        ],
-        "type": "object",
-        "properties": {
-          "TimeIndex": {
-            "type": "number",
-            "format": "single",
-            "example": 1
-          },
-          "Value": {
-            "$ref": "#/components/schemas/Measurement"
-          }
-        }
-      },
-      Float/single
-
-      Also assuming integer although the code says number.
- */
 const measurementTimedSchema = new SimpleSchema({
-  timeIndex: SimpleSchema.Integer,
+  timeIndex: Number,
   value: measurementSchema,
 });
 
 const emailSchema = new SimpleSchema(
   {
-    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
+    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
   },
 );
 
@@ -90,17 +67,18 @@ const companySchema = new SimpleSchema(
     phone: phoneSchema,
     fax: phoneSchema,
     email: emailSchema,
+    owners: { type: Array, required: true },
   },
   { requiredByDefault: false },
 );
 
 const projectSchema = new SimpleSchema(
   {
+    companyID: { type: String, max: 20, required: true },
     description: { type: String, max: 60, required: true },
     projectName: { type: String, max: 100 },
     contract: projectItemSchema,
-    bidNumber: { type: String, max: 20 }, // Probably want to add a regex here
-    projectMgr: projectMgrSchema,
+    bidNumber: { type: String, max: 20 },
     jobPhone: phoneSchema,
     jobFax: phoneSchema,
     mailAddress: addressSchema,
@@ -116,12 +94,16 @@ const projectSchema = new SimpleSchema(
     shipZip: zipSchema,
     shipCountry: countrySchema,
     formEmail: emailSchema,
+    owners: { type: Array, required: true },
   },
   { requiredByDefault: false },
 );
 
 const cableSchema = new SimpleSchema(
   {
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    costCode: { type: String, max: 10, regEx: /^(\\w([\\w\\.]{0,9}|[\\w-]{0,9}))$/, skipRegExCheckForEmptyStrings: true },
     description: { type: String, max: 60, required: true },
     refDrawingNo: { type: String, max: 30 },
     refDrawingRev: { type: String, max: 20 },
@@ -136,14 +118,18 @@ const cableSchema = new SimpleSchema(
     conductors: { type: String, max: 30 },
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
+    owners: { type: Array, required: true },
   },
   { requiredByDefault: false },
 );
 
 const cablePullInSchema = new SimpleSchema(
   {
-    personInstalled: { type: String, max: 30, required: true },
-    dateInstalled: { type: Date, required: true },
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    cableID: dbIDSchema,
+    personInstalled: dbIDSchema,
+    dateInstalled: { type: Date, required: true, defaultValue: new Date() },
     lengthInstalled: { type: measurementSchema, required: true },
     pulledHand: { type: Boolean, defaultValue: false, required: true },
     tugger: String,
@@ -156,20 +142,33 @@ const cablePullInSchema = new SimpleSchema(
 // Just in case not clear, things are required by default.
 const cableTerminateSchema = new SimpleSchema(
   {
-    personTerminated: { type: String, max: 30 },
-    dateTerminated: Date,
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    cableID: dbIDSchema,
+    personTerminated: dbIDSchema,
+    dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: terminationLocationSchema,
   },
 );
 
 const cableTestContinuitySchema = new SimpleSchema(
   {
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    cableID: dbIDSchema,
+    personTested: dbIDSchema,
+    dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: measurementSchema,
   },
 );
 
 const cableTestMeggerSchema = new SimpleSchema(
   {
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    cableID: dbIDSchema,
+    personTested: dbIDSchema,
+    dateTested: { type: Date, required: true, defaultValue: new Date() },
     meggerInstrument: { type: String, max: 30 },
     meggerCalibrationID: { type: String, max: 30 },
     A_B: Array,
@@ -189,6 +188,11 @@ const cableTestMeggerSchema = new SimpleSchema(
 
 const cableTestVLFSchema = new SimpleSchema(
   {
+    companyID: dbIDSchema,
+    projectID: dbIDSchema,
+    cableID: dbIDSchema,
+    personTested: dbIDSchema,
+    dateTested: { type: Date, required: true, defaultValue: new Date() },
     vLFInstrument: { type: String, max: 30 },
     vLFCalibrationID: { type: String, max: 30 },
     temperatureAmbient: Number,
@@ -201,4 +205,4 @@ const cableTestVLFSchema = new SimpleSchema(
   },
 );
 
-export { emailSchema, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema };
+export { stateArray, emailSchema, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema };
