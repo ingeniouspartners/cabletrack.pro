@@ -7,7 +7,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
 import { Cables } from '../../api/cable/Cables';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const bridge = new SimpleSchema2Bridge(Cables.schema);
 
@@ -31,7 +31,7 @@ const EditCable = () => {
   }, [_id]);
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
-  const submit = (data) => {
+  const submit = (data, formRef) => {
     const { description, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest } = data;
     if (_id) {
       Cables.collection.update(_id, {

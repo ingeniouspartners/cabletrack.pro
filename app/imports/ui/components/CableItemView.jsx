@@ -12,7 +12,7 @@ const CableItemView = ({ cable }) => (
     <td>{cable.building}</td>
     <td>{cable.zone}</td>
     <td>
-      <Link to={`/edit/${cable._id}`}>Edit</Link>
+      <Link to={`/${cable._id}/edit`}>Edit</Link>
     </td>
   </tr>
 );

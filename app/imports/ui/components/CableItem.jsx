@@ -7,10 +7,10 @@ const CableListItem = ({ cable }) => (
   <tr>
     <td>{cable.description}</td>
     <td>
-      <Link to={`/view/${cable._id}`}>View</Link>
+      <Link to={`/${cable._id}`}>View</Link>
     </td>
     <td>
-      <Link to={`/edit/${cable._id}`}>Edit</Link>
+      <Link to={`/${cable._id}/edit`}>Edit</Link>
     </td>
   </tr>
 
