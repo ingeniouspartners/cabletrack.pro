@@ -4,7 +4,7 @@ const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
   'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
 
 const dbIDSchema = new SimpleSchema({
-  dbID: { type: String, max: 20, required: true }
+  dbID: { type: String, max: 20, required: true },
 });
 
 const addressSchema = new SimpleSchema({
@@ -113,7 +113,7 @@ const cableSchema = new SimpleSchema(
     origination: terminationLocationSchema,
     termination: terminationLocationSchema,
     lengthPlanned: measurementSchema,
-    classification: { type: String, allowedValues: ['Power', 'Control', 'Telcom', 'Fiber', 'Other'], defaultValue: 'Power' },
+    classification: { type: String, allowedValues: ['Power', 'Control', 'Telecom', 'Fiber', 'Other'], defaultValue: 'Power' },
     cableType: { type: String, max: 20 },
     conductors: { type: String, max: 30 },
     voltageCable: { type: String, max: 30 },
