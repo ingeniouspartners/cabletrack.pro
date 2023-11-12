@@ -12,7 +12,7 @@ import LoadingSpinner from './LoadingSpinner';
 const bridge = new SimpleSchema2Bridge(Cables.schema);
 
 /* Renders the EditStuff page for editing a single document. */
-const CableEdit = () => {
+const EditCable = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
   // console.log('CableEdit', _id);
@@ -87,7 +87,7 @@ const CableEdit = () => {
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
-          <Col className="text-center"><h2>Edit Cables</h2></Col>
+          <Col className="text-center"><h1>EditCable</h1></Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
             <Card>
               <Card.Body>
@@ -117,4 +117,4 @@ const CableEdit = () => {
   ) : <LoadingSpinner />;
 };
 
-export default CableEdit;
+export default EditCable;
