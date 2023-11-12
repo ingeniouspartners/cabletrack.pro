@@ -3,6 +3,7 @@ import { Cables } from '../../api/cable/Cables.js';
 
 /* eslint-disable no-console */
 
+// Initialize the database with a default data document.
 const addCables = (cables) => {
   console.log(`  Adding: ${cables.description} (${cables.owner})`);
   Cables.collection.insert(cables);

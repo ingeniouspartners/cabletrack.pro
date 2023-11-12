@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Cables } from '../../api/cable/Cables';
 import { cableSchema } from '../../api/schema/Schemas';
-
+// TODO Keep these files around until  we confirm that the pages work.
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = cableSchema;
 

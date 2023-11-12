@@ -31,7 +31,7 @@ const EditCable = () => {
   }, [_id]);
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
-  const submit = (data) => {
+  const submit = (data, formRef) => {
     const { description, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest } = data;
     if (_id) {
       Cables.collection.update(_id, {
