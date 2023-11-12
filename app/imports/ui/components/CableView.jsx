@@ -4,7 +4,7 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Cables } from '../../api/cable/Cables';
-import CableItemView from './CableItemView';
+import CableViewItem from './CableViewItem';
 import LoadingSpinner from './LoadingSpinner';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
@@ -45,7 +45,7 @@ const CableView = () => {
               </tr>
             </thead>
             <tbody>
-              { doc ? <CableItemView key={doc._id} cable={doc} /> : ''}
+              { doc ? <CableViewItem key={doc._id} cable={doc} /> : ''}
             </tbody>
           </Table>
         </Col>

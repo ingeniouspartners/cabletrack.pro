@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
-const CableItemView = ({ cable }) => (
+const CableViewItem = ({ cable }) => (
   <tr>
     <td>{cable.description}</td>
     <td>{cable.refDrawingNo}</td>
@@ -18,7 +18,7 @@ const CableItemView = ({ cable }) => (
 );
 
 // Require a document to be passed to this component. Theoretically only description and id are required.
-CableItemView.propTypes = {
+CableViewItem.propTypes = {
   cable: PropTypes.shape({
     description: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
@@ -38,4 +38,4 @@ CableItemView.propTypes = {
   }).isRequired,
 };
 
-export default CableItemView;
+export default CableViewItem;

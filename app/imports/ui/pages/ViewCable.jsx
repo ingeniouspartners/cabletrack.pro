@@ -4,8 +4,8 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Cables } from '../../api/cable/Cables';
-import CableItemView from './CableItemView';
-import LoadingSpinner from './LoadingSpinner';
+import CableItemView from '../components/CableViewItem';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const ViewCable = () => {

@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Cables } from '../../api/cable/Cables';
-import CableListItem from './CableItem';
+import CableListItem from './CableListItem';
 import LoadingSpinner from './LoadingSpinner';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
