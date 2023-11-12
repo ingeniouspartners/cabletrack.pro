@@ -56,7 +56,7 @@ const EditProject = () => {
                 <ErrorsField />
                 <HiddenField name="owner" />
               </Card.Body>
-              <Link className="p-3" to={`/view/${_id}`}>Back to Project</Link>
+              <Link className="p-3" to={`/project/${_id}`}>Back to Project</Link>
             </Card>
           </AutoForm>
         </Col>

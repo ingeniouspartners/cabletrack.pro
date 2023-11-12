@@ -20,7 +20,8 @@ import ViewCompany from '../pages/ViewCompany';
 import ListUser from '../pages/ListUser';
 import EditUser from '../pages/EditUser';
 import ViewUser from '../pages/ViewUser';
-import ListProject from '../pages/ListProject';
+import ListProjects from '../pages/ListProjects';
+import AddProject from '../pages/AddProject';
 import EditProject from '../pages/EditProject';
 import ViewProject from '../pages/ViewProject';
 import ListCable from '../pages/ListCable';
@@ -60,13 +61,13 @@ const App = () => {
           /** Must be logged in to add user. Not on Menu, accessed from List */
           <Route path="/user/edit/:user_id" element={<OwnerProtectedRoute owner="CompanyOwner"><EditUser /></OwnerProtectedRoute>} />
           /** Must be logged in and admin or company owner to edit user */
-          <Route path="/projects" element={<ProtectedRoute><ListProject /></ProtectedRoute>} />
+          <Route path="/projects" element={<ProtectedRoute><ListProjects /></ProtectedRoute>} />
           /** Must be logged in to view projects, filtered by ProjectOwner or CompanyOwner or Electrician */
-          <Route path="/project/:project_id" element={<ProtectedRoute><ViewProject /></ProtectedRoute>} />
+          <Route path="/project/:_id" element={<ProtectedRoute><ViewProject /></ProtectedRoute>} />
           /** Must be logged in to view project. Not on Menu, accessed from List */
-          <Route path="/project/add" element={<OwnerProtectedRoute owner="CompanyOwner"><EditProject /></OwnerProtectedRoute>} />
+          <Route path="/project/add" element={<OwnerProtectedRoute owner="ProjectOwner"><AddProject /></OwnerProtectedRoute>} />
           /** Must be logged in to add project. Not on Menu, accessed from List */
-          <Route path="/project/:project_id/edit" element={<OwnerProtectedRoute owner="ProjectOwner"><EditProject /></OwnerProtectedRoute>} />
+          <Route path="/project/edit/:_id" element={<OwnerProtectedRoute owner="ProjectOwner"><EditProject /></OwnerProtectedRoute>} />
           /** Must be logged in to edit project. Not on Menu, accessed from List or View */
           <Route path="/cables/:project_id" element={<ProtectedRoute><ListCable /></ProtectedRoute>} />
           /** Must be logged in to view cables, Not on Menu, accessed from Projects List or Project View */

@@ -12,7 +12,7 @@ const Project = ({ project }) => (
     </Card.Header>
     <Card.Body>
       <Card.Text>{project.associatedUsers}</Card.Text>
-      <Link to={`/view/${project._id}`}><Button variant="primary">View Project</Button></Link>
+      <Link to={`/project/${project._id}`}><Button variant="primary">View Project</Button></Link>
     </Card.Body>
   </Card>
 );

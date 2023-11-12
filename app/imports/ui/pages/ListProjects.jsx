@@ -32,7 +32,7 @@ const ListProjects = () => {
             <Row>
               <Col> </Col>
               <Col><h2>Projects</h2></Col>
-              <Col><Button variant="primary" href="/add">Add Project</Button></Col>
+              <Col><Button variant="primary" href="/project/add">Add Project</Button></Col>
             </Row>
           </Col>
           <Row>
