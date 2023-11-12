@@ -75,7 +75,7 @@ const EditCable = () => {
             swal('Error', error.message, 'error');
           } else {
             swal('Success', 'Item added successfully', 'success');
-            formRef.reset(); // TODO fix this
+            formRef.reset();
           }
         },
       );

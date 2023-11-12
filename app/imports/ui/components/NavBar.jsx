@@ -4,7 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { PersonFill, PersonPlusFill, PersonMinusFill } from 'react-bootstrap-icons';
+import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -26,7 +26,7 @@ const NavBar = () => {
               <Nav.Link id="view-company-nav" as={NavLink} to={`/company/${currentCo}`} key="viewCompany">Company</Nav.Link>,
               <Nav.Link id="list-projects-nav" as={NavLink} to="/projects" key="listProjects">Projects</Nav.Link>,
             ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
               <Nav.Link id="list-company-nav" as={NavLink} to="/companies" key="listCompany">Admin</Nav.Link>
             ) : ''}
           </Nav>
@@ -34,19 +34,19 @@ const NavBar = () => {
             {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">
                 <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to="/signin">
-                  <PersonFill />
-                  Sign in
+                  <PersonFill /> Sign in
                 </NavDropdown.Item>
                 <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to="/signup">
-                  <PersonPlusFill />
-                  Sign up
+                  <PersonPlusFill /> Sign up
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
               <NavDropdown id="navbar-current-user" title={currentUser}>
+                <NavDropdown.Item id="navbar-profile" as={NavLink} to="/profile">
+                  <PersonFill /> Profile
+                </NavDropdown.Item>
                 <NavDropdown.Item id="navbar-sign-out" as={NavLink} to="/signout">
-                  <PersonMinusFill />
-                  Sign out
+                  <PersonDashFill /> Sign out
                 </NavDropdown.Item>
               </NavDropdown>
             )}
