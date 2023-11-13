@@ -10,9 +10,25 @@ import { Projects } from '../../api/Projects';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
+  companyID: String,
   name: String,
-  code: String,
-  associatedUsers: String,
+  contract: String,
+  bidNumber: String,
+  jobNumber: String,
+  jobFax: String,
+  mailAddress: String,
+  mailAddress2: String,
+  mailCity: String,
+  mailState: String,
+  mailZip: String,
+  mailCountry: String,
+  shipAddress: String,
+  shipAddress2: String,
+  shipCity: String,
+  shipState: String,
+  shipZip: String,
+  shipCountry: String,
+  formEmail: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -21,10 +37,10 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddProject = () => {
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { name, code, associatedUsers } = data;
+    const { companyID, name, contract, bidNumber, jobNumber, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipZip, shipCountry, formEmail } = data;
     const owner = Meteor.user().username;
     Projects.collection.insert(
-      { name, code, associatedUsers, owner },
+      { companyID, name, contract, bidNumber, jobNumber, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipZip, shipCountry, formEmail, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -47,9 +63,14 @@ const AddProject = () => {
             <Card>
               <Card.Body>
                 <Row>
+                  <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
-                  <Col><TextField name="code" /></Col>
+                  <TextField name="contract" />
+                  <TextField name="bidNumber" />
+                  <TextField name="jobNumber" />
+                  <TextField name="jobFax" />
                 </Row>
+                <TextField name="code" />
                 <LongTextField name="associatedUsers" />
                 <SubmitField value="Submit" />
                 <ErrorsField />

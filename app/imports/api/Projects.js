@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import SimpleSchema from 'simpl-schema';
+import { projectSchema } from '../schema/Schemas';
 
 /**
- * The StuffsCollection. It encapsulates state and variable values for stuff.
+ * The ProjectsCollection. It encapsulates state and variable values for cables.
  */
 class ProjectsCollection {
   constructor() {
@@ -11,12 +11,7 @@ class ProjectsCollection {
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = new SimpleSchema({
-      name: String,
-      code: String,
-      associatedUsers: String,
-      owner: String,
-    });
+    this.schema = projectSchema;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
@@ -26,7 +21,7 @@ class ProjectsCollection {
 }
 
 /**
- * The singleton instance of the StuffsCollection.
+ * The singleton instance of the ProjectCollection.
  * @type {ProjectsCollection}
  */
 export const Projects = new ProjectsCollection();

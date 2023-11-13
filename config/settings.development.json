@@ -13,28 +13,6 @@
   ],
   "defaultProjects": [
     {
-      "name": "Project 1",
-      "code": "123",
-      "associatedUsers": "James",
-      "owner": "admin@foo.com"
-    },
-    {
-      "name": "Project 2",
-      "code": "456",
-      "associatedUsers": "John",
-      "owner": "admin@foo.com"
-    },
-    {
-      "name": "Project 3",
-      "code": "789",
-      "associatedUsers": "Jill",
-      "owner": "admin@foo.com"
-    },
-    {
-      "name": "Project 4",
-      "code": "101",
-      "associatedUsers": "Jane",
-      "owner": "admin@foo.com"
     }
   ],
   "defaultCompanies": [
