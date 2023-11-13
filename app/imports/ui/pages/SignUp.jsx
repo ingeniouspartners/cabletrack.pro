@@ -16,7 +16,7 @@ const SignUp = ({ location }) => {
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
-    email: emailSchema,
+    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
     password: String,
   });
   const bridge = new SimpleSchema2Bridge(schema);
