@@ -2,7 +2,6 @@ import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
-import { companySchema, projectSchema } from '../imports/api/schema/Schemas';
 
 /* global fixture:false, test:false */
 
