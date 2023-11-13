@@ -61,12 +61,13 @@ const CableEdit = (_id, doc, ready) => {
       );
     }
   };
+  let fRef = null;
   return ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
           <Col className="text-center"><h2>Edit Cables</h2></Col>
-          <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
+          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={doc}>
             <Card>
               <Card.Body>
                 <TextField name="description" />

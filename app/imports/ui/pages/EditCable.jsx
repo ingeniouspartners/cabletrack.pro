@@ -1,4 +1,3 @@
-import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
@@ -23,15 +22,8 @@ const EditCable = () => {
       ready: rdy,
     };
   }, [_id]);
-  // console.log('EditStuff', doc, ready);
-  // On successful submit, insert the data.
-  const submit = (data, formRef) => {
-    if (_id) {
-      CableEdit(_id, doc, ready);
-    } else {
-    }
 
-  };
+  CableEdit(_id, doc, ready);
 };
 
 export default EditCable;

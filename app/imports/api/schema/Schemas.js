@@ -76,6 +76,8 @@ const cableSchema = new SimpleSchema(
     conductors: { type: String, max: 30 },
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
+    users: Array,
+    'users.$': { type: String, max: 20 },
     owners: Array,
     'owners.$': { type: String, max: 20, required: true },
   },
