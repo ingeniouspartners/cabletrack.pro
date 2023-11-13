@@ -1,20 +1,20 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "GlobalAdmin" },
-    { "email": "john@foo.com", "password": "changeme", "role": "CompanyOwner,ProjectOwner,Electrician" }
+    { "email": "john@foo.com", "password": "changeme", "role": "CompanyOwner" }
   ],
 
   "defaultCompanies": [
-    { "name": "Foo Company", "address": "123 Main St, Anytown, USA" }
+    { "name": "Foo Company", "address": "123 Main St", "city": "Anytown", "state": "HI", "country": "US", "users": ["john@foo.com"], "owners": [] }
   ],
 
   "defaultProjects": [
-    { "name": "Foo Project", "address": "123 Main St, Anytown, USA" }
+    { "company": "Foo Company", "name": "Foo Project", "address": "123 Main St", "city": "Anytown", "state": "HI", "country": "US", "users": ["john@foo.com"], "owners": [] }
   ],
 
     "defaultCables": [
-      { "description": "Cable 1", "owner": "john@foo.com" },
-      { "description": "Cable 2", "owner": "john@foo.com" },
-      { "description": "Cable 3", "owner": "admin@foo.com" }
+      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "users": ["john@foo.com"], "owners": [] },
+      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "users": ["john@foo.com"], "owners": [] },
+      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "users": ["admin@foo.com"], "owners": [] }
     ]
 }

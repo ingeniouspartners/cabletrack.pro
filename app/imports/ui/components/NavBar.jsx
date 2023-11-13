@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
 
 const NavBar = () => {
@@ -17,7 +17,7 @@ const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to="/">
-          { currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2>CableTrack PRO</h2>]) }
+          { currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
