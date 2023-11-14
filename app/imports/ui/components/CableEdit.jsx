@@ -4,15 +4,14 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Cables } from '../../api/cable/Cables';
-import LoadingSpinner from './LoadingSpinner';
 
 const bridge = new SimpleSchema2Bridge(Cables.schema);
 /* Renders the EditStuff page for editing a single document. */
-const CableEdit = (_id, doc, ready) => {
+const CableEdit = (_cableId, doc) => {
   const submit = (data, formRef) => {
     const { description, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest } = data;
-    if (_id) {
-      Cables.collection.update(_id, {
+    if (_cableId) {
+      Cables.collection.update(_cableId, {
         $set: {
           description,
           refDrawingNo,
@@ -62,7 +61,7 @@ const CableEdit = (_id, doc, ready) => {
     }
   };
   let fRef = null;
-  return ready ? (
+  return (
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
@@ -93,7 +92,7 @@ const CableEdit = (_id, doc, ready) => {
         </Col>
       </Row>
     </Container>
-  ) : <LoadingSpinner />;
+  );
 };
 
 export default CableEdit;
