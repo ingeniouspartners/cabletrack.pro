@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import * as CTPRoles from '../../api/roles/Roles';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
@@ -27,6 +28,7 @@ import ListCable from '../pages/ListCable';
 import EditCable from '../pages/EditCable';
 import ViewCable from '../pages/ViewCable';
 import ListCablePullIn from '../pages/ListCablePullIn';
+import ViewCablePullIn from '../pages/ViewCablePullIn';
 import EditCablePullIn from '../pages/EditCablePullIn';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -37,72 +39,53 @@ const App = () => {
       ready: rdy,
     };
   });
-  return (
+  return (ready ? (
     <Router>
       <div className="d-flex flex-column min-vh-100">
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
-          <Route path="/profile" element={<ProtectedRoute><ViewUser /></ProtectedRoute>} />
-          <Route path="/company/:company_id" element={<ProtectedRoute><ViewCompany /></ProtectedRoute>} />
-          /** Must be logged in to view company */
-          <Route path="/company/:company_id/edit" element={<OwnerProtectedRoute owner="CompanyOwner"><EditCompany /></OwnerProtectedRoute>} />
-          /** Must be logged in and admin or company owner to edit company. Not on Menu, accessed from View or List */
-          <Route path="/users" element={<OwnerProtectedRoute owner="CompanyOwner"><ListUser /></OwnerProtectedRoute>} />
-          /** Must be logged in to view projects, filtered by ProjectOwner or CompanyOwner or Electrician */
-          <Route path="/user/:user_id" element={<ProtectedRoute><ViewUser /></ProtectedRoute>} />
-          /** Must be logged in to view user. Not on Menu, accessed from List */
-          <Route path="/user/add" element={<OwnerProtectedRoute owner="CompanyOwner"><EditUser /></OwnerProtectedRoute>} />
-          /** Must be logged in to add user. Not on Menu, accessed from List */
-          <Route path="/user/edit/:user_id" element={<OwnerProtectedRoute owner="CompanyOwner"><EditUser /></OwnerProtectedRoute>} />
-          /** Must be logged in and admin or company owner to edit user */
-          <Route path="/projects" element={<ProtectedRoute><ListProject /></ProtectedRoute>} />
-          /** Must be logged in to view projects, filtered by ProjectOwner or CompanyOwner or Electrician */
-          <Route path="/project/:project_id" element={<ProtectedRoute><ViewProject /></ProtectedRoute>} />
-          /** Must be logged in to view project. Not on Menu, accessed from List */
-          <Route path="/project/add" element={<OwnerProtectedRoute owner="CompanyOwner"><EditProject /></OwnerProtectedRoute>} />
-          /** Must be logged in to add project. Not on Menu, accessed from List */
-          <Route path="/project/:project_id/edit" element={<OwnerProtectedRoute owner="ProjectOwner"><EditProject /></OwnerProtectedRoute>} />
-          /** Must be logged in to edit project. Not on Menu, accessed from List or View */
-          <Route path="/cables/:project_id" element={<ProtectedRoute><ListCable /></ProtectedRoute>} />
-          /** Must be logged in to view cables, Not on Menu, accessed from Projects List or Project View */
-          <Route path="/cable/:cable_id" element={<ProtectedRoute><ViewCable /></ProtectedRoute>} />
-          /** Must be logged in to view cable, Not on Menu, accessed from List */
-          <Route path="/cable/add" element={<OwnerProtectedRoute owner="ProjectOwner"><EditCable /></OwnerProtectedRoute>} />
-          /** Must be logged in to add cable. Not on Menu, accessed from List */
-          <Route path="/cable/:cable_id/edit" element={<OwnerProtectedRoute owner="ProjectOwner"><EditCable /></OwnerProtectedRoute>} />
-          /** Must be logged in to edit cable. Not on Menu, accessed from List or View */
-          <Route path="/cable/:cable_id/pullins" element={<ProtectedRoute><ListCablePullIn /></ProtectedRoute>} />
-          /** Must be logged in to pull-in cable. Not on Menu, accessed from Cables List or Cable View */
-          <Route path="/cable/:cable_id/pullin/add" element={<OwnerProtectedRoute owner="Electrician"><EditCablePullIn /></OwnerProtectedRoute>} />
-          /** Must be logged in to add pull-in. Not on Menu, accessed from Cables List */
-          <Route path="/cable/:cable_id/pullin/:pullin_id/edit" element={<OwnerProtectedRoute owner="Electrician"><EditCablePullIn /></OwnerProtectedRoute>} />
-          /** Must be logged in to edit pull-in page. Not on Menu, accessed from Cables List or Cable View */
-          <Route path="/companies" element={<AdminProtectedRoute ready={ready}><ListCompany /></AdminProtectedRoute>} />
-          /** Must be logged in and admin to view companies page */
-          <Route path="/company/add" element={<AdminProtectedRoute ready={ready}><EditCompany /></AdminProtectedRoute>} />
-          /** Must be logged in and admin to add company page. Not on Menu, accessed from List */
+
+          <Route path="/companies" element={<RoleProtectedRoute roles={[CTPRoles.RoleListCompanyAll]}><ListCompany /></RoleProtectedRoute>} />
+          <Route path="/company/:company_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCompany, CTPRoles.RoleViewCompanyAll]}><ViewCompany /></RoleProtectedRoute>} />
+          <Route path="/company/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCompany]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path="/company/:company_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCompany, CTPRoles.RoleEditCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path="/company/:company_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCompany, CTPRoles.RoleDeleteCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
+
+          <Route path="/users" element={<RoleProtectedRoute roles={[CTPRoles.RoleListUser, CTPRoles.RoleListUserAll]}><ListUser /></RoleProtectedRoute>} />
+          <Route path="/user/:user_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewUser, CTPRoles.RoleViewUserAll]}><ViewUser /></RoleProtectedRoute>} />
+          <Route path="/user/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddUser]}><EditUser /></RoleProtectedRoute>} />
+          <Route path="/user/:user_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditUser, CTPRoles.RoleEditUserAll]}><EditUser /></RoleProtectedRoute>} />
+          <Route path="/user/:user_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteUser, CTPRoles.RoleDeleteUserAll]}><EditUser /></RoleProtectedRoute>} />
+
+          <Route path="/projects" element={<RoleProtectedRoute roles={[CTPRoles.RoleListProject, CTPRoles.RoleListProjectAll]}><ListProject /></RoleProtectedRoute>} />
+          <Route path="/project/:project_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewProject, CTPRoles.RoleViewProjectAll]}><ViewProject /></RoleProtectedRoute>} />
+          <Route path="/project/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddProject]}><EditProject /></RoleProtectedRoute>} />
+          <Route path="/project/:project_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditProject, CTPRoles.RoleEditProjectAll]}><EditProject /></RoleProtectedRoute>} />
+          <Route path="/project/:project_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteProject, CTPRoles.RoleDeleteProjectAll]}><EditProject /></RoleProtectedRoute>} />
+
+          <Route path="/cables" element={<RoleProtectedRoute roles={[CTPRoles.RoleListCable, CTPRoles.RoleListCableAll]}><ListCable /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCable, CTPRoles.RoleViewCableAll]}><ViewCable /></RoleProtectedRoute>} />
+          <Route path="/cable/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCable]}><EditCable /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCable, CTPRoles.RoleEditCableAll]}><EditCable /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCable, CTPRoles.RoleDeleteCableAll]}><EditCable /></RoleProtectedRoute>} />
+
+          <Route path="/cable/:cable_id/pullins" element={<RoleProtectedRoute roles={[CTPRoles.RoleListCablePullIn, CTPRoles.RoleListCablePullInAll]}><ListCablePullIn /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/pullin/:pullin_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCablePullIn, CTPRoles.RoleViewCablePullInAll]}><ViewCablePullIn /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/pullin/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCablePullIn]}><EditCablePullIn /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/pullin/:pullin_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCablePullIn, CTPRoles.RoleEditCablePullInAll]}><EditCablePullIn /></RoleProtectedRoute>} />
+          <Route path="/cable/:cable_id/pullin/:pullin_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCablePullIn, CTPRoles.RoleDeleteCablePullInAll]}><EditCablePullIn /></RoleProtectedRoute>} />
+
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
     </Router>
-  );
-};
-
-/*
- * ProtectedRoute (see React Router v6 sample)
- * Checks for Meteor login before routing to the requested page, otherwise goes to sign in page.
- * @param {any} { component: Component, ...rest }
- */
-const ProtectedRoute = ({ children }) => {
-  const isLogged = Meteor.userId() !== null;
-  return isLogged ? children : <Navigate to="/signin" />;
+  ) : <LoadingSpinner />);
 };
 
 /**
@@ -110,7 +93,7 @@ const ProtectedRoute = ({ children }) => {
  * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to sign in page.
  * @param {any} { component: Component, ...rest }
  */
-const OwnerProtectedRoute = ({ owner, ready, children }) => {
+const RoleProtectedRoute = ({ roles, ready, children }) => {
   const isLogged = Meteor.userId() !== null;
   if (!isLogged) {
     return <Navigate to="/signin" />;
@@ -118,58 +101,17 @@ const OwnerProtectedRoute = ({ owner, ready, children }) => {
   if (!ready) {
     return <LoadingSpinner />;
   }
-  const isOwner = Roles.userIsInRole(Meteor.userId(), owner);
-  const isAdmin = Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin');
-  return (isLogged && (isOwner || isAdmin)) ? children : <Navigate to="/notauthorized" />;
+  const isInRole = Roles.userIsInRole(Meteor.userId(), roles);
+  return (isLogged && isInRole) ? children : <Navigate to="/notauthorized" />;
 };
 
-/**
- * AdminProtectedRoute (see React Router v6 sample)
- * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to sign in page.
- * @param {any} { component: Component, ...rest }
- */
-const AdminProtectedRoute = ({ ready, children }) => {
-  const isLogged = Meteor.userId() !== null;
-  if (!isLogged) {
-    return <Navigate to="/signin" />;
-  }
-  if (!ready) {
-    return <LoadingSpinner />;
-  }
-  const isAdmin = Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin');
-  return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
+// Require a component and location to be passed to each RoleProtectedRoute.
+RoleProtectedRoute.propTypes = {
+  roles: PropTypes.arrayOf(String).isRequired, ready: PropTypes.bool, children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
-// Require a component and location to be passed to each ProtectedRoute.
-ProtectedRoute.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-};
-
-ProtectedRoute.defaultProps = {
-  children: <Landing />,
-};
-
-// Require a component and location to be passed to each OwnerProtectedRoute.
-OwnerProtectedRoute.propTypes = {
-  owner: PropTypes.string.isRequired,
-  ready: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-};
-
-OwnerProtectedRoute.defaultProps = {
-  ready: false,
-  children: <Landing />,
-};
-
-// Require a component and location to be passed to each AdminProtectedRoute.
-AdminProtectedRoute.propTypes = {
-  ready: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-};
-
-AdminProtectedRoute.defaultProps = {
-  ready: false,
-  children: <Landing />,
+RoleProtectedRoute.defaultProps = {
+  ready: false, children: <Landing />,
 };
 
 export default App;

@@ -1,12 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
+import { CableTrackProRoles, GlobalAdminRoles, CompanyOwnerRoles, ProjectOwnerRoles, ElectricianRoles, RoleGlobalAdmin, RoleCompanyOwner, RoleProjectOwner, RoleElectrician } from '../../api/roles/Roles';
 
 /* eslint-disable no-console */
-Roles.createRole('GlobalAdmin', { unlessExists: true });
-Roles.createRole('CompanyOwner', { unlessExists: true });
-Roles.createRole('ProjectOwner', { unlessExists: true });
-Roles.createRole('Electrician', { unlessExists: true });
+CableTrackProRoles.forEach((role) => (Roles.createRole(role, { unlessExists: true })));
+
+Roles.addRolesToParent(GlobalAdminRoles, RoleGlobalAdmin);
+Roles.addRolesToParent(CompanyOwnerRoles, RoleCompanyOwner);
+Roles.addRolesToParent(ProjectOwnerRoles, RoleProjectOwner);
+Roles.addRolesToParent(ElectricianRoles, RoleElectrician);
 
 const createUser = (email, password, role) => {
   console.log(`  Creating user ${email}.`);
@@ -15,9 +18,7 @@ const createUser = (email, password, role) => {
     email: email,
     password: password,
   });
-  if (Roles.createRole(role, { unlessExists: true })) {
-    Roles.addUsersToRoles(userID, role);
-  }
+  Roles.addUsersToRoles(userID, role);
 };
 
 // When running app for first time, pass a settings file to set up a default user account.
