@@ -6,21 +6,31 @@ const RoleElectrician = 'Electrician';
 const RoleListCompanyAll = 'ListCompanyAll';
 const RoleListCompany = 'ListCompany';
 const RoleListProjectAll = 'ListProjectAll';
+const RoleListProjectOwned = 'ListProjectOwned';
 const RoleListProject = 'ListProject';
 const RoleListCableAll = 'ListCableAll';
+const RoleListCableOwned = 'ListCableOwned';
 const RoleListCable = 'ListCable';
+const RoleListCablePullInAll = 'ListCablePullInAll';
+const RoleListCablePullInOwned = 'ListCablePullInOwned';
 const RoleListCablePullIn = 'ListCablePullIn';
 const RoleListUserAll = 'ListUserAll';
+const RoleListUserOwned = 'ListUserOwned';
 const RoleListUser = 'ListUser';
 
 const RoleViewCompanyAll = 'ViewCompanyAll';
 const RoleViewCompany = 'ViewCompany';
 const RoleViewProjectAll = 'ViewProjectAll';
+const RoleViewProjectOwned = 'ViewProjectOwned';
 const RoleViewProject = 'ViewProject';
 const RoleViewCableAll = 'ViewCableAll';
+const RoleViewCableOwned = 'ViewCableOwned';
 const RoleViewCable = 'ViewCable';
+const RoleViewCablePullInAll = 'ViewCablePullInAll';
+const RoleViewCablePullInOwned = 'ViewCablePullInOwned';
 const RoleViewCablePullIn = 'ViewCablePullIn';
 const RoleViewUserAll = 'ViewUserAll';
+const RoleViewUserOwned = 'ViewUserOwned';
 const RoleViewUser = 'ViewUser';
 
 const RoleAddCompany = 'AddCompany';
@@ -32,21 +42,31 @@ const RoleAddUser = 'AddUser';
 const RoleEditCompanyAll = 'EditCompanyAll';
 const RoleEditCompany = 'EditCompany';
 const RoleEditProjectAll = 'EditProjectAll';
+const RoleEditProjectOwned = 'EditProjectOwned';
 const RoleEditProject = 'EditProject';
 const RoleEditCableAll = 'EditCableAll';
+const RoleEditCableOwned = 'EditCableOwned';
 const RoleEditCable = 'EditCable';
+const RoleEditCablePullInAll = 'EditCablePullInAll';
+const RoleEditCablePullInOwned = 'EditCablePullInOwned';
 const RoleEditCablePullIn = 'EditCablePullIn';
 const RoleEditUserAll = 'EditUserAll';
+const RoleEditUserOwned = 'EditUserOwned';
 const RoleEditUser = 'EditUser';
 
 const RoleDeleteCompanyAll = 'DeleteCompanyAll';
 const RoleDeleteCompany = 'DeleteCompany';
 const RoleDeleteProjectAll = 'DeleteProjectAll';
+const RoleDeleteProjectOwned = 'DeleteProjectOwned';
 const RoleDeleteProject = 'DeleteProject';
 const RoleDeleteCableAll = 'DeleteCableAll';
+const RoleDeleteCableOwned = 'DeleteCableOwned';
 const RoleDeleteCable = 'DeleteCable';
+const RoleDeleteCablePullInAll = 'DeleteCablePullInAll';
+const RoleDeleteCablePullInOwned = 'DeleteCablePullInOwned';
 const RoleDeleteCablePullIn = 'DeleteCablePullIn';
 const RoleDeleteUserAll = 'DeleteUserAll';
+const RoleDeleteUserOwned = 'DeleteUserOwned';
 const RoleDeleteUser = 'DeleteUser';
 
 const CableTrackProRoles = [
@@ -57,20 +77,30 @@ const CableTrackProRoles = [
   RoleListCompanyAll,
   RoleListCompany,
   RoleListProjectAll,
+  RoleListProjectOwned,
   RoleListProject,
   RoleListCableAll,
+  RoleListCableOwned,
   RoleListCable,
+  RoleListCablePullInAll,
+  RoleListCablePullInOwned,
   RoleListCablePullIn,
   RoleListUserAll,
+  RoleListUserOwned,
   RoleListUser,
   RoleViewCompanyAll,
   RoleViewCompany,
   RoleViewProjectAll,
+  RoleViewProjectOwned,
   RoleViewProject,
   RoleViewCableAll,
+  RoleViewCableOwned,
   RoleViewCable,
+  RoleViewCablePullInAll,
+  RoleViewCablePullInOwned,
   RoleViewCablePullIn,
   RoleViewUserAll,
+  RoleViewUserOwned,
   RoleViewUser,
   RoleAddCompany,
   RoleAddProject,
@@ -80,125 +110,117 @@ const CableTrackProRoles = [
   RoleEditCompanyAll,
   RoleEditCompany,
   RoleEditProjectAll,
+  RoleEditProjectOwned,
   RoleEditProject,
   RoleEditCableAll,
+  RoleEditCableOwned,
   RoleEditCable,
+  RoleEditCablePullInAll,
+  RoleEditCablePullInOwned,
   RoleEditCablePullIn,
   RoleEditUserAll,
+  RoleEditUserOwned,
   RoleEditUser,
   RoleDeleteCompanyAll,
   RoleDeleteCompany,
   RoleDeleteProjectAll,
+  RoleDeleteProjectOwned,
   RoleDeleteProject,
   RoleDeleteCableAll,
+  RoleDeleteCableOwned,
   RoleDeleteCable,
+  RoleDeleteCablePullInAll,
+  RoleDeleteCablePullInOwned,
   RoleDeleteCablePullIn,
   RoleDeleteUserAll,
+  RoleDeleteUserOwned,
   RoleDeleteUser,
 ];
 
 const GlobalAdminRoles = [
   RoleListCompanyAll,
-  RoleListCompany,
   RoleListProjectAll,
-  RoleListProject,
   RoleListCableAll,
-  RoleListCable,
-  RoleListCablePullIn,
+  RoleListCablePullInAll,
   RoleListUserAll,
-  RoleListUser,
   RoleViewCompanyAll,
-  RoleViewCompany,
   RoleViewProjectAll,
-  RoleViewProject,
   RoleViewCableAll,
-  RoleViewCable,
-  RoleViewCablePullIn,
+  RoleViewCablePullInAll,
   RoleViewUserAll,
-  RoleViewUser,
   RoleAddCompany,
   RoleAddProject,
   RoleAddCable,
   RoleAddCablePullIn,
   RoleAddUser,
   RoleEditCompanyAll,
-  RoleEditCompany,
   RoleEditProjectAll,
-  RoleEditProject,
   RoleEditCableAll,
-  RoleEditCable,
-  RoleEditCablePullIn,
+  RoleEditCablePullInAll,
   RoleEditUserAll,
-  RoleEditUser,
   RoleDeleteCompanyAll,
-  RoleDeleteCompany,
   RoleDeleteProjectAll,
-  RoleDeleteProject,
   RoleDeleteCableAll,
-  RoleDeleteCable,
-  RoleDeleteCablePullIn,
+  RoleDeleteCablePullInAll,
   RoleDeleteUserAll,
-  RoleDeleteUser,
 ];
 
 const CompanyOwnerRoles = [
-  RoleListProjectAll,
-  RoleListProject,
-  RoleListCableAll,
-  RoleListCable,
-  RoleListCablePullIn,
-  RoleListUser,
+  RoleListProjectOwned,
+  RoleListCableOwned,
+  RoleListCablePullInOwned,
+  RoleListUserOwned,
   RoleViewCompany,
-  RoleViewProject,
-  RoleViewCable,
-  RoleViewCablePullIn,
-  RoleViewUser,
+  RoleViewProjectOwned,
+  RoleViewCableOwned,
+  RoleViewCablePullInOwned,
+  RoleViewUserOwned,
   RoleAddProject,
   RoleAddCable,
   RoleAddUser,
   RoleEditCompany,
-  RoleEditProject,
-  RoleEditCable,
-  RoleDeleteProject,
-  RoleDeleteCable,
-  RoleDeleteUser,
+  RoleEditProjectOwned,
+  RoleEditCableOwned,
+  RoleDeleteProjectOwned,
+  RoleDeleteCableOwned,
+  RoleDeleteUserOwned,
 ];
 
 const ProjectOwnerRoles = [
-  RoleListProject,
-  RoleListCable,
-  RoleListCablePullIn,
+  RoleListProjectOwned,
+  RoleListCableOwned,
+  RoleListCablePullInOwned,
   RoleViewCompany,
-  RoleViewProject,
-  RoleViewCable,
-  RoleViewCablePullIn,
+  RoleViewProjectOwned,
+  RoleViewCableOwned,
+  RoleViewCablePullInOwned,
   RoleViewUser,
   RoleAddCable,
-  RoleEditProject,
-  RoleEditCable,
+  RoleEditProjectOwned,
+  RoleEditCableOwned,
   RoleEditUser,
-  RoleDeleteCable,
+  RoleDeleteCableOwned,
 ];
 
 const ElectricianRoles = [
-  RoleListProject,
-  RoleListCable,
-  RoleListCablePullIn,
+  RoleListProjectOwned,
+  RoleListCableOwned,
+  RoleListCablePullInOwned,
   RoleViewCompany,
-  RoleViewProject,
-  RoleViewCable,
-  RoleViewCablePullIn,
+  RoleViewProjectOwned,
+  RoleViewCableOwned,
+  RoleViewCablePullInOwned,
   RoleViewUser,
   RoleAddCablePullIn,
-  RoleEditCablePullIn,
+  RoleEditCablePullInOwned,
   RoleEditUser,
-  RoleDeleteCablePullIn,
+  RoleDeleteCablePullInOwned,
 ];
 
+export { RoleGlobalAdmin, RoleCompanyOwner, RoleProjectOwner, RoleElectrician, RoleListCompanyAll, RoleListCompany, RoleListProjectAll, RoleListProjectOwned, RoleListProject, RoleListCableAll, RoleListCableOwned, RoleListCable,
+  RoleListCablePullInAll, RoleListCablePullInOwned, RoleListCablePullIn, RoleListUserAll, RoleListUserOwned, RoleListUser, RoleViewCompanyAll, RoleViewCompany, RoleViewProjectAll, RoleViewProjectOwned, RoleViewProject, RoleViewCableAll,
+  RoleViewCableOwned, RoleViewCable, RoleViewCablePullInAll, RoleViewCablePullInOwned, RoleViewCablePullIn, RoleViewUserAll, RoleViewUserOwned, RoleViewUser, RoleAddCompany, RoleAddProject, RoleAddCable, RoleAddCablePullIn, RoleAddUser,
+  RoleEditCompanyAll, RoleEditCompany, RoleEditProjectAll, RoleEditProjectOwned, RoleEditProject, RoleEditCableAll, RoleEditCableOwned, RoleEditCable, RoleEditCablePullInAll, RoleEditCablePullInOwned, RoleEditCablePullIn, RoleEditUserAll,
+  RoleEditUserOwned, RoleEditUser, RoleDeleteCompanyAll, RoleDeleteCompany, RoleDeleteProjectAll, RoleDeleteProjectOwned, RoleDeleteProject, RoleDeleteCableAll, RoleDeleteCableOwned, RoleDeleteCable, RoleDeleteCablePullInAll,
+  RoleDeleteCablePullInOwned, RoleDeleteCablePullIn, RoleDeleteUserAll, RoleDeleteUserOwned, RoleDeleteUser };
 export { CableTrackProRoles, GlobalAdminRoles, CompanyOwnerRoles, ProjectOwnerRoles, ElectricianRoles };
-export { RoleGlobalAdmin, RoleCompanyOwner, RoleProjectOwner, RoleElectrician };
-export { RoleListCompanyAll, RoleListCompany, RoleListProjectAll, RoleListProject, RoleListCableAll, RoleListCable, RoleListCablePullIn, RoleListUserAll, RoleListUser };
-export { RoleViewCompanyAll, RoleViewCompany, RoleViewProjectAll, RoleViewProject, RoleViewCableAll, RoleViewCable, RoleViewCablePullIn, RoleViewUserAll, RoleViewUser };
-export { RoleAddCompany, RoleAddProject, RoleAddCable, RoleAddCablePullIn, RoleAddUser };
-export { RoleEditCompanyAll, RoleEditCompany, RoleEditProjectAll, RoleEditProject, RoleEditCableAll, RoleEditCable, RoleEditCablePullIn, RoleEditUserAll, RoleEditUser };
-export { RoleDeleteCompanyAll, RoleDeleteCompany, RoleDeleteProjectAll, RoleDeleteProject, RoleDeleteCableAll, RoleDeleteCable, RoleDeleteCablePullIn, RoleDeleteUserAll, RoleDeleteUser };

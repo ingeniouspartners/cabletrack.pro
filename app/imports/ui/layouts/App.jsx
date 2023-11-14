@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import * as CTPRoles from '../../api/roles/Roles';
+import * as CTPRoles from '../../api/role/Roles';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
@@ -34,6 +34,7 @@ import EditCablePullIn from '../pages/EditCablePullIn';
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
   const { ready } = useTracker(() => {
+    console.log("App.jsx: useTracker");
     const rdy = Roles.subscription.ready();
     return {
       ready: rdy,
@@ -52,7 +53,7 @@ const App = () => {
           <Route path="/companies" element={<RoleProtectedRoute roles={[CTPRoles.RoleListCompanyAll]}><ListCompany /></RoleProtectedRoute>} />
           <Route path="/company/:company_id" element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCompany, CTPRoles.RoleViewCompanyAll]}><ViewCompany /></RoleProtectedRoute>} />
           <Route path="/company/add" element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCompany]}><EditCompany /></RoleProtectedRoute>} />
-          <Route path="/company/:company_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCompany, CTPRoles.RoleEditCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path="/company/:company_id/edit" element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCompany, CTPRoles.RoleEditCompanyOwned, CTPRoles.RoleEditCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
           <Route path="/company/:company_id/delete" element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCompany, CTPRoles.RoleDeleteCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
 
           <Route path="/users" element={<RoleProtectedRoute roles={[CTPRoles.RoleListUser, CTPRoles.RoleListUserAll]}><ListUser /></RoleProtectedRoute>} />
