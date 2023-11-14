@@ -4,7 +4,7 @@ import { Companies } from '../../api/company/Companies';
 import { Projects } from '../../api/project/Projects';
 import { Cables } from '../../api/cable/Cables';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import { RoleGeneralAdmin } from '../../api/roles/Roles';
+import { RoleGlobalAdmin } from '../../api/roles/Roles';
 
 // alanning:Roles.js publication
 // Recommended code to publish Roles.js for each user.
@@ -51,7 +51,7 @@ Meteor.publish(CablePullIns.userPublicationName, function () {
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Companies.adminPublicationName, function () {
-  if (this.userId && Roles.userIsInRole(this.userId, RoleGeneralAdmin)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleGlobalAdmin)) {
     return Companies.collection.find();
   }
   return this.ready();
@@ -59,7 +59,7 @@ Meteor.publish(Companies.adminPublicationName, function () {
 
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Projects.adminPublicationName, function () {
-  if (this.userId && Roles.userIsInRole(this.userId, RoleGeneralAdmin)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleGlobalAdmin)) {
     return Projects.collection.find();
   }
   return this.ready();
@@ -67,7 +67,7 @@ Meteor.publish(Projects.adminPublicationName, function () {
 
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Cables.adminPublicationName, function () {
-  if (this.userId && Roles.userIsInRole(this.userId, RoleGeneralAdmin)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleGlobalAdmin)) {
     return Cables.collection.find();
   }
   return this.ready();
