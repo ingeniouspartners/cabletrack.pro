@@ -13,6 +13,25 @@
   ],
   "defaultProjects": [
     {
+      "companyID": "ABC123",
+      "name": "Example Project 1",
+      "description": "This is the first example project.",
+      "contract": "CONTRACT-123",
+      "bidNumber": "BID456",
+      "jobPhone": "123-456-7890",
+      "jobFax": "123-456-7891",
+      "mailAddress": "123 Main St",
+      "mailCity": "Cityville",
+      "mailState": "CA",
+      "mailZip": "12345",
+      "mailCountry": "US",
+      "shipAddress": "456 Shipping St",
+      "shipCity": "Shipcity",
+      "shipState": "NY",
+      "shipZip": "54321",
+      "shipCountry": "US",
+      "formEmail": "example1@example.com",
+      "owner": "john@foo.com"
     }
   ],
   "defaultCompanies": [
