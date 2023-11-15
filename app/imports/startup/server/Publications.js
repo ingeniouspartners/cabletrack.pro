@@ -5,8 +5,7 @@ import { Cables } from '../../api/cable/Cables';
 // import { Roles } from 'meteor/alanning:roles';
 Meteor.publish(Projects.userPublicationName, function () {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Projects.collection.find({ owner: username });
+    return Projects.collection.find({ owners: this.userId });
   }
   return this.ready();
 });

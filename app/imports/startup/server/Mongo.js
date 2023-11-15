@@ -39,7 +39,6 @@ const addProject = (project) => {
   console.log(`  Adding: ${project.name}`);
   const copy = project;
   copy.users.forEach(user => resolveOwner(copy, user));
-  copy.users = undefined;
   copy.companyID = resolveObjectId(Companies.collection, copy.company);
   Projects.collection.insert(copy);
 };

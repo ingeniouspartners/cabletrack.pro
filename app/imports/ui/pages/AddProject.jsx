@@ -39,9 +39,9 @@ const AddProject = () => {
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } = data;
-    const owner = Meteor.user().username;
+    const owner = Meteor.user()._id;
     Projects.collection.insert(
-      { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail, owner },
+      { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail, owners: owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');

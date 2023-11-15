@@ -50,7 +50,8 @@ const projectSchema = new SimpleSchema(
     shipZip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/, skipRegExCheckForEmptyStrings: true },
     shipCountry: { type: String, max: 2, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true },
     formEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
-    owner: String,
+    owners: Array,
+    'owners.$': { type: String, max: 25, required: true },
   },
   { requiredByDefault: false },
 );
@@ -61,7 +62,7 @@ const cableSchema = new SimpleSchema(
     projectID: { type: String, max: 20, required: true },
     name: { type: String, max: 60, required: true },
     description: String,
-    costCode: { type: String, max: 10, regEx: /^(\\w([\\w\\.]{0,9}|[\\w-]{0,9}))$/, skipRegExCheckForEmptyStrings: true },
+    costCode: { type: String, max: 10, regEx: /^(\\w([\\w]{0,9}|[\\w-]{0,9}))$/, skipRegExCheckForEmptyStrings: true },
     refDrawingNo: { type: String, max: 30 },
     refDrawingRev: { type: String, max: 20 },
     system: { type: String, max: 30 },

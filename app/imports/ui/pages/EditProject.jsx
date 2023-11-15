@@ -88,7 +88,7 @@ const EditProject = () => {
                 <TextField name="formEmail" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
-                <HiddenField name="owner" />
+                <HiddenField name="owners" />
               </Card.Body>
               <Link className="p-3" to={`/project/${_id}`}>Back to Project</Link>
             </Card>
