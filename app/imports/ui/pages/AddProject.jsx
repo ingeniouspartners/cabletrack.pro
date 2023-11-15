@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Link } from 'react-router-dom';
-import { Projects } from '../../api/Projects';
+import { Projects } from '../../api/Project/Projects';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -67,24 +67,40 @@ const AddProject = () => {
                   <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
                   <TextField name="description" />
-                  <TextField name="contract" />
-                  <TextField name="bidNumber" />
-                  <TextField name="jobPhone" />
-                  <TextField name="jobFax" />
-                  <TextField name="mailAddress" />
-                  <TextField name="mailAddress2" />
-                  <TextField name="mailCity" />
-                  <TextField name="mailState" />
-                  <TextField name="mailZip" />
-                  <TextField name="mailCountry" />
-                  <TextField name="shipAddress" />
-                  <TextField name="shipAddress2" />
-                  <TextField name="shipCity" />
-                  <TextField name="shipState" />
-                  <TextField name="shipZip" />
-                  <TextField name="shipCountry" />
-                  <TextField name="formEmail" />
                 </Row>
+                <Row>
+                  <Col><TextField name="bidNumber" /></Col>
+                  <Col><TextField name="contract" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="jobPhone" /></Col>
+                  <Col><TextField name="jobFax" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="mailAddress" /></Col>
+                </Row>
+                <Row>
+                  <TextField name="mailAddress2" />
+                </Row>
+                <Row>
+                  <Col><TextField name="mailCity" /></Col>
+                  <Col><TextField name="mailState" /></Col>
+                  <Col><TextField name="mailZip" /></Col>
+                  <Col><TextField name="mailCountry" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="shipAddress" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="shipAddress2" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="shipCity" /></Col>
+                  <Col><TextField name="shipState" /></Col>
+                  <Col><TextField name="shipZip" /></Col>
+                  <Col><TextField name="shipCountry" /></Col>
+                </Row>
+                <TextField name="formEmail" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>

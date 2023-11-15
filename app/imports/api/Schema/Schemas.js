@@ -50,7 +50,7 @@ const projectSchema = new SimpleSchema(
     shipZip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/, skipRegExCheckForEmptyStrings: true },
     shipCountry: { type: String, max: 2, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true },
     formEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
-    owners: String,
+    owner: String,
   },
   { requiredByDefault: false },
 );
