@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { projectSchema } from '../Schema/Schemas';
+import { projectSchema } from '../schema/Schemas';
 
 /**
  * The ProjectsCollection. It encapsulates state and variable values for cables.

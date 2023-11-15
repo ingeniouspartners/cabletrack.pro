@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Projects } from '../../api/Project/Projects';
+import { Projects } from '../../api/project/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Renders the EditStuff page for editing a single document. */

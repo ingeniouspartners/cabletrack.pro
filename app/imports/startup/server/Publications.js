@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { Projects } from '../../api/Project/Projects';
+import { Projects } from '../../api/project/Projects';
 
 // import { Roles } from 'meteor/alanning:roles';
 Meteor.publish(Projects.userPublicationName, function () {
