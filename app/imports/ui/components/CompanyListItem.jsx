@@ -19,16 +19,12 @@ const CompanyListItem = ({ company }) => (
 // Require a document to be passed to this component. Theoretically only description and id are required.
 CompanyListItem.propTypes = {
   company: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      address: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-      zip: PropTypes.string,
-      country: PropTypes.string,
-      phone: PropTypes.string,
-      fax: PropTypes.string,
-      email: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    address: PropTypes.string,
+    phone: PropTypes.string,
+    fax: PropTypes.string,
+    email: PropTypes.string,
+    logoURL: PropTypes.string,
   }).isRequired,
 };
 
