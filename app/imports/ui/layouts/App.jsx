@@ -71,7 +71,7 @@ const App = () => (
         <Route path={CTPNav.PathEditUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditUser, CTPRoles.RoleEditUserOwned, CTPRoles.RoleEditUserAll]}><EditUser /></RoleProtectedRoute>} />
         <Route path={CTPNav.PathDeleteUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteUser, CTPRoles.RoleDeleteUserOwned, CTPRoles.RoleDeleteUserAll]}><EditUser /></RoleProtectedRoute>} />
 
-        <Route path="/notauthorized" element={<NotAuthorized />} />
+        <Route path={CTPNav.PathNotAuthorized} element={<NotAuthorized />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
@@ -87,10 +87,10 @@ const App = () => (
 const RoleProtectedRoute = ({ roles, children }) => {
   const isLogged = Meteor.userId() !== null;
   if (!isLogged) {
-    return <Navigate to="/signin" />;
+    return <Navigate to={CTPNav.PathSignIn} />;
   }
   const isInRole = Roles.userIsInRole(Meteor.userId(), roles);
-  return (isLogged && isInRole) ? children : <Navigate to="/notauthorized" />;
+  return (isLogged && isInRole) ? children : <Navigate to={CTPNav.NotAuthorized} />;
 };
 
 // Require a component and location to be passed to each RoleProtectedRoute.
