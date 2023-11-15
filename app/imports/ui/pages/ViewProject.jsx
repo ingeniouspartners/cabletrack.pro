@@ -36,9 +36,9 @@ const ViewProject = () => {
               <Col><h2>{project.name}</h2></Col>
               <Col><Link to={`/project/edit/${project._id}`}><Button variant="primary">Edit</Button></Link></Col>
             </Row>
-            <h5>{project.code}</h5>
+            <h5>{project.bidNumber}</h5>
           </Col>
-          <h3>{project.associatedUsers}</h3>
+          <h3>{project.description}</h3>
         </Row>
       ) : (
         <LoadingSpinner />

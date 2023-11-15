@@ -33,8 +33,9 @@ const EditProject = () => {
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { name, code, associatedUsers } = data;
-    Projects.collection.update(_id, { $set: { name, code, associatedUsers } }, (error) => (error ?
+    const { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } = data;
+    // eslint-disable-next-line max-len
+    Projects.collection.update(_id, { $set: { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   };
@@ -48,10 +49,27 @@ const EditProject = () => {
             <Card>
               <Card.Body>
                 <Row>
+                  <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
-                  <Col><TextField name="code" /></Col>
+                  <TextField name="contract" />
+                  <TextField name="description" />
+                  <TextField name="bidNumber" />
+                  <TextField name="jobPhone" />
+                  <TextField name="jobFax" />
+                  <TextField name="mailAddress" />
+                  <TextField name="mailAddress2" />
+                  <TextField name="mailCity" />
+                  <TextField name="mailState" />
+                  <TextField name="mailZip" />
+                  <TextField name="mailCountry" />
+                  <TextField name="shipAddress" />
+                  <TextField name="shipAddress2" />
+                  <TextField name="shipCity" />
+                  <TextField name="shipState" />
+                  <TextField name="shipZip" />
+                  <TextField name="shipCountry" />
+                  <TextField name="formEmail" />
                 </Row>
-                <TextField name="associatedUsers" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
                 <HiddenField name="owner" />
