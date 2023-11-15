@@ -6,31 +6,16 @@ import { useParams } from 'react-router';
 import { Companies } from '../../api/company/Companies';
 import CompanyViewItem from './CompanyViewItem';
 import LoadingSpinner from './LoadingSpinner';
+import PropTypes from 'prop-types';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
-const CompanyView = () => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { _id } = useParams();
-  console.log('CableView', _id);
-  // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { doc, ready } = useTracker(() => {
-    // Get access to Cable documents.
-    const subscription = Meteor.subscribe(Companies.userPublicationName);
-    // Determine if the subscription is ready
-    const rdy = subscription.ready();
-    // Get the document
-    const document = Companies.collection.findOne(_id);
-    return {
-      doc: document,
-      ready: rdy,
-    };
-  }, [_id]);
-  return (ready ? (
+const CompanyView = (company) => {
+  return ( (
     <Container className="py-3" fluid>
       <Row className="justify-content-center">
         <Col md={7}>
           <Col className="text-center">
-            <h2>View Cable</h2>
+            <h2>View Company</h2>
           </Col>
           <Table striped bordered hover>
             <thead>
@@ -49,7 +34,10 @@ const CompanyView = () => {
         </Col>
       </Row>
     </Container>
-  ) : <LoadingSpinner />);
+  ) )
 };
 
+CompanyView.propTypes = {
+  company: PropTypes.arrayOf(Object),
+};
 export default CompanyView;

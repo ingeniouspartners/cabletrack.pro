@@ -4,31 +4,16 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Companies } from '../../api/company/Companies';
 import CompanyListItem from './CompanyListItem';
-import LoadingSpinner from './LoadingSpinner';
+import PropTypes from 'prop-types';
 
-/* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
-const CompanyList = () => {
-  // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { ready, companies } = useTracker(() => {
-    // Note that this subscription will get cleaned up
-    // when your component is unmounted or deps change.
-    // Get access to Cable documents.
-    const subscription = Meteor.subscribe(Companies.userPublicationName);
-    // Determine if the subscription is ready
-    const rdy = subscription.ready();
-    // Get the Cable documents
-    const companyItems = Companies.collection.find({}).fetch();
-    return {
-      companies: companyItems,
-      ready: rdy,
-    };
-  }, []);
-  return (ready ? (
+/* Renders a table containing all of the Company documents. Use <CableItem> to render each row. */
+const CompanyList = (companies) => {
+  return ( (
     <Container className="py-3" fluid>
       <Row className="justify-content-center">
         <Col md={7}>
           <Col className="text-center">
-            <h2>List Cables</h2>
+            <h2>List Company</h2>
           </Col>
           <Table striped bordered hover>
             <thead>
@@ -45,7 +30,10 @@ const CompanyList = () => {
         </Col>
       </Row>
     </Container>
-  ) : <LoadingSpinner />);
+  ) );
+};
+CompanyList.propTypes = {
+  companies: PropTypes.arrayOf(Object),
 };
 
 export default CompanyList;
