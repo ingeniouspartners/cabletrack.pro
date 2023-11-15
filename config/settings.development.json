@@ -1,7 +1,7 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "GlobalAdmin" },
-    { "email": "john@foo.com", "password": "changeme", "role": "CompanyOwner" }
+    { "email": "admin@foo.com", "password": "changeme", "roles": ["GlobalAdmin"] },
+    { "email": "john@foo.com", "password": "changeme", "roles": ["CompanyOwner"] }
   ],
 
   "defaultCompanies": [
