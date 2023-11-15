@@ -1,17 +1,17 @@
 import { Mongo } from 'meteor/mongo';
-import { projectSchema } from '../schema/Schemas';
+import { cablePullInSchema } from '../schema/Schemas';
 
 /**
- * The ProjectsCollection. It encapsulates state and variable values for projects.
+ * The CablePullInsCollection. It encapsulates state and variable values for cable pull ins.
  */
-class ProjectsCollection {
+class CablePullInsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'ProjectsCollection';
+    this.name = 'CablePullInsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = projectSchema;
+    this.schema = cablePullInSchema;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
@@ -21,7 +21,7 @@ class ProjectsCollection {
 }
 
 /**
- * The singleton instance of the ProjectCollection.
- * @type {ProjectsCollection}
+ * The singleton instance of the CableCollection.
+ * @type {CablePullInsCollection}
  */
-export const Projects = new ProjectsCollection();
+export const CablePullIns = new CablePullInsCollection();
