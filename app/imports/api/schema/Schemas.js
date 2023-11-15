@@ -3,14 +3,17 @@ import SimpleSchema from 'simpl-schema';
 const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
   'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
 
-const addressSchema = new SimpleSchema({
-  address: { type: String, max: 60, required: true },
-  address2: { type: String, max: 60, optional: true },
-  city: { type: String, max: 60, required: true },
-  state: { type: String, regEx: /^[A-Z]{2}$/, required: true },
-  zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/, required: true },
-  country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, defaultValue: 'US', required: true },
-});
+const addressSchema = new SimpleSchema(
+  {
+    address: { type: String, max: 60 },
+    address2: { type: String, max: 60 },
+    city: { type: String, max: 60 },
+    state: { type: String, regEx: /^[A-Z]{2}$/ },
+    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
+    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, defaultValue: 'US' },
+  },
+  { requiredByDefault: false },
+);
 
 const measurementTimedSchema = new SimpleSchema({
   timeIndex: Number,
@@ -21,7 +24,7 @@ const measurementTimedSchema = new SimpleSchema({
 const companySchema = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
-    address: { type: addressSchema, optional: true },
+    address: { type: addressSchema },
     phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },

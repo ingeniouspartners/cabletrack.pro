@@ -5,11 +5,12 @@
   ],
 
   "defaultCompanies": [
-    { "name": "Foo Company", "address": "123 Main St", "city": "Anytown", "state": "HI", "country": "US", "users": ["john@foo.com"], "owners": [] }
+    { "name": "Foo Company", "users": ["john@foo.com"], "owners": [] }
   ],
 
   "defaultProjects": [
-    { "company": "Foo Company", "name": "Foo Project", "address": "123 Main St", "city": "Anytown", "state": "HI", "country": "US", "users": ["john@foo.com"], "owners": [] }
+    { "company": "Foo Company",
+      "code": "TEST", "name": "Foo Project", "users": ["john@foo.com"], "owners": [] }
   ],
 
     "defaultCables": [
