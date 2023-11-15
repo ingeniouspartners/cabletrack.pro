@@ -14,7 +14,7 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
   const schema = new SimpleSchema({
-    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
+    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     password: String,
   });
   const bridge = new SimpleSchema2Bridge(schema);
