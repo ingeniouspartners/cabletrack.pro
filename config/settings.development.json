@@ -37,12 +37,11 @@
     }
   ],
   "defaultCompanies": [
-    {
-      "name": "Foo Company",
-      "address": "123 Main St, Anytown, USA"
-    }
+    { "name": "Foo Company", "address": "123 Main St", "city": "Anytown", "state": "HI", "country": "US", "users": ["john@foo.com"], "owners": [] }
   ],
-  "defaultCables": [
-    { "name": "Foo Cable", "length": 100, "color": "red", "type": "THHN", "size": "12 AWG" }
-  ]
+    "defaultCables": [
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 1", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 2", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 3", "users": ["admin@foo.com"], "owners": [] }
+    ]
 }

@@ -3,6 +3,10 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
 /* eslint-disable no-console */
+Roles.createRole('GlobalAdmin', { unlessExists: true });
+Roles.createRole('CompanyOwner', { unlessExists: true });
+Roles.createRole('ProjectOwner', { unlessExists: true });
+Roles.createRole('Electrician', { unlessExists: true });
 
 const createUser = (email, password, role) => {
   console.log(`  Creating user ${email}.`);
@@ -12,11 +16,8 @@ const createUser = (email, password, role) => {
     password: password,
   });
 
-  if (role) {
-    Roles.createRole(role, { unlessExists: true });
+  if (Roles.createRole(role, { unlessExists: true })) {
     Roles.addUsersToRoles(userID, role);
-  } else {
-    console.warn('No role specified for the user.');
   }
 };
 

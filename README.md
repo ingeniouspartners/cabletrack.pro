@@ -1,3 +1,5 @@
-[![ci-meteor-application-template-react](https://github.com/ics-software-engineering/meteor-application-template-react/actions/workflows/ci.yml/badge.svg)](https://github.com/ics-software-engineering/meteor-application-template-react/actions/workflows/ci.yml)
+# [CableTrack PRO](https://cabletrack.pro)
 
-For details, please see http://ics-software-engineering.github.io/meteor-application-template-react/
+![ci-badge](https://github.com/ingeniouspartners/cabletrack.pro/workflows/ci-meteor-application-template-react/badge.svg)
+
+## An [Ingenious Partners](https://ingenious.partners) Project
