@@ -10,7 +10,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const EditCable = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { cable_id: cableId } = useParams();
-  console.log('CableEdit', cableId);
+  // console.log('CableEdit', cableId);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
     // Get access to Cable documents.
