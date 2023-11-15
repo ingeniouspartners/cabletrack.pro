@@ -13,8 +13,8 @@
   ],
 
     "defaultCables": [
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "users": ["john@foo.com"], "owners": [] },
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "users": ["john@foo.com"], "owners": [] },
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "users": ["admin@foo.com"], "owners": [] }
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 1", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 2", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 3", "users": ["admin@foo.com"], "owners": [] }
     ]
 }
