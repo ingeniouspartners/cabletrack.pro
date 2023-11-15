@@ -6,10 +6,10 @@ import { CableTrackProRoles, GlobalAdminRoles, CompanyOwnerRoles, ProjectOwnerRo
 /* eslint-disable no-console */
 CableTrackProRoles.forEach((role) => (Roles.createRole(role, { unlessExists: true })));
 
-Roles.addRolesToParent(GlobalAdminRoles, RoleGlobalAdmin);
-Roles.addRolesToParent(CompanyOwnerRoles, RoleCompanyOwner);
-Roles.addRolesToParent(ProjectOwnerRoles, RoleProjectOwner);
-Roles.addRolesToParent(ElectricianRoles, RoleElectrician);
+Roles.addRolesToParent(RoleGlobalAdmin, GlobalAdminRoles);
+Roles.addRolesToParent(RoleCompanyOwner, CompanyOwnerRoles);
+Roles.addRolesToParent(RoleProjectOwner, ProjectOwnerRoles);
+Roles.addRolesToParent(RoleElectrician, ElectricianRoles);
 
 const createUser = (email, password, role) => {
   console.log(`  Creating user ${email}.`);
