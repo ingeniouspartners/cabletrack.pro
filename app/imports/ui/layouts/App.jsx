@@ -23,6 +23,7 @@ import ViewUser from '../pages/ViewUser';
 import ListProject from '../pages/ListProject';
 import EditProject from '../pages/EditProject';
 import ViewProject from '../pages/ViewProject';
+import AddProject from '../pages/AddProject';
 import ListCable from '../pages/ListCable';
 import EditCable from '../pages/EditCable';
 import ViewCable from '../pages/ViewCable';
@@ -49,7 +50,7 @@ const App = () => (
 
         <Route path={CTPNav.PathListProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleListProject, CTPRoles.RoleListProjectOwned, CTPRoles.RoleListProjectAll]}><ListProject /></RoleProtectedRoute>} />
         <Route path={CTPNav.PathViewProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewProject, CTPRoles.RoleViewProjectOwned, CTPRoles.RoleViewProjectAll]}><ViewProject /></RoleProtectedRoute>} />
-        <Route path={CTPNav.PathAddProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddProject]}><EditProject /></RoleProtectedRoute>} />
+        <Route path={CTPNav.PathAddProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddProject]}><AddProject /></RoleProtectedRoute>} />
         <Route path={CTPNav.PathEditProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditProject, CTPRoles.RoleEditProjectOwned, CTPRoles.RoleEditProjectAll]}><EditProject /></RoleProtectedRoute>} />
         <Route path={CTPNav.PathDeleteProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteProject, CTPRoles.RoleDeleteProjectOwned, CTPRoles.RoleDeleteProjectAll]}><EditProject /></RoleProtectedRoute>} />
 

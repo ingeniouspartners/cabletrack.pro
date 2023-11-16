@@ -9,6 +9,8 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
+import * as CTPNav from '../../api/navigation/Navigation';
+import { ParamProjectID } from '../../api/navigation/Navigation';
 
 const bridge = new SimpleSchema2Bridge(Projects.schema);
 
@@ -33,9 +35,9 @@ const EditProject = () => {
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } = data;
+    const { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
     // eslint-disable-next-line max-len
-    Projects.collection.update(_id, { $set: { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } }, (error) => (error ?
+    Projects.collection.update(_id, { $set: { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   };
@@ -51,7 +53,7 @@ const EditProject = () => {
                 <Row>
                   <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
-                  <TextField name="description" />
+                  <TextField name="code" />
                 </Row>
                 <Row>
                   <Col><TextField name="bidNumber" /></Col>
@@ -60,37 +62,40 @@ const EditProject = () => {
                 <Row>
                   <Col><TextField name="jobPhone" /></Col>
                   <Col><TextField name="jobFax" /></Col>
+                  <Col><TextField name="jobEmail" /></Col>
+                </Row>
+                <h5>Mail Address</h5>
+                <Row>
+                  <Col><TextField name="mailAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="mailAddress" /></Col>
+                  <TextField name="mailAddress.address2" />
                 </Row>
                 <Row>
-                  <TextField name="mailAddress2" />
+                  <Col><TextField name="mailAddress.city" /></Col>
+                  <Col><TextField name="mailAddress.state" /></Col>
+                  <Col><TextField name="mailAddress.zip" /></Col>
+                  <Col><TextField name="mailAddress.country" /></Col>
+                </Row>
+                <h5>Ship Address</h5>
+                <Row>
+                  <Col><TextField name="shipAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="mailCity" /></Col>
-                  <Col><TextField name="mailState" /></Col>
-                  <Col><TextField name="mailZip" /></Col>
-                  <Col><TextField name="mailCountry" /></Col>
+                  <Col><TextField name="shipAddress.address2" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress" /></Col>
+                  <Col><TextField name="shipAddress.city" /></Col>
+                  <Col><TextField name="shipAddress.state" /></Col>
+                  <Col><TextField name="shipAddress.zip" /></Col>
+                  <Col><TextField name="shipAddress.country" /></Col>
                 </Row>
-                <Row>
-                  <Col><TextField name="shipAddress2" /></Col>
-                </Row>
-                <Row>
-                  <Col><TextField name="shipCity" /></Col>
-                  <Col><TextField name="shipState" /></Col>
-                  <Col><TextField name="shipZip" /></Col>
-                  <Col><TextField name="shipCountry" /></Col>
-                </Row>
-                <TextField name="formEmail" />
+                <TextField name="notes" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
                 <HiddenField name="owners" />
               </Card.Body>
-              <Link className="p-3" to={`/project/${_id}`}>Back to Project</Link>
+              <Link to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, _id)} className="p-3">Back to Project</Link>
             </Card>
           </AutoForm>
         </Col>

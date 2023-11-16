@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import * as CTPNav from '../../api/navigation/Navigation';
+import { ParamProjectID } from '../../api/navigation/Navigation';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const Project = ({ project }) => (
@@ -11,8 +13,8 @@ const Project = ({ project }) => (
       <Card.Subtitle>{project.bidNumber}</Card.Subtitle>
     </Card.Header>
     <Card.Body>
-      <Card.Text>{project.description}</Card.Text>
-      <Link to={`/project/${project._id}`}><Button variant="primary">View Project</Button></Link>
+      <Card.Text>{project.contract}</Card.Text>
+      <Link to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">View Project</Button></Link>
     </Card.Body>
   </Card>
 );
@@ -21,25 +23,30 @@ const Project = ({ project }) => (
 Project.propTypes = {
   project: PropTypes.shape({
     companyID: PropTypes.string,
+    code: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string,
     contract: PropTypes.string,
     bidNumber: PropTypes.string,
+    mailAddress: PropTypes.shape({
+      address: PropTypes.string,
+      address2: PropTypes.string,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      zip: PropTypes.string,
+      country: PropTypes.string,
+    }),
+    shipAddress: PropTypes.shape({
+      address: PropTypes.string,
+      address2: PropTypes.string,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      zip: PropTypes.string,
+      country: PropTypes.string,
+    }),
     jobPhone: PropTypes.string,
     jobFax: PropTypes.string,
-    mailAddress: PropTypes.string,
-    mailAddress2: PropTypes.string,
-    mailCity: PropTypes.string,
-    mailState: PropTypes.string,
-    mailZip: PropTypes.string,
-    mailCountry: PropTypes.string,
-    shipAddress: PropTypes.string,
-    shipAddress2: PropTypes.string,
-    shipCity: PropTypes.string,
-    shipState: PropTypes.string,
-    shipZip: PropTypes.string,
-    shipCountry: PropTypes.string,
-    formEmail: PropTypes.string,
+    jobEmail: PropTypes.string,
+    notes: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };

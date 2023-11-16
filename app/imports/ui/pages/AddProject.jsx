@@ -7,29 +7,33 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
+import * as CTPNav from '../../api/navigation/Navigation';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   companyID: String,
+  code: String,
   name: String,
-  description: String,
   contract: String,
   bidNumber: String,
   jobPhone: String,
   jobFax: String,
-  mailAddress: String,
-  mailAddress2: String,
-  mailCity: String,
-  mailState: String,
-  mailZip: String,
-  mailCountry: String,
-  shipAddress: String,
-  shipAddress2: String,
-  shipCity: String,
-  shipState: String,
-  shipZip: String,
-  shipCountry: String,
-  formEmail: String,
+  jobEmail: String,
+  notes: String,
+  mailAddress: Object, // Combine mail address fields into a single object
+  'mailAddress.address': String,
+  'mailAddress.address2': String,
+  'mailAddress.city': String,
+  'mailAddress.state': String,
+  'mailAddress.zip': String,
+  'mailAddress.country': String,
+  shipAddress: Object, // Combine ship address fields into a single object
+  'shipAddress.address': String,
+  'shipAddress.address2': String,
+  'shipAddress.city': String,
+  'shipAddress.state': String,
+  'shipAddress.zip': String,
+  'shipAddress.country': String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -38,10 +42,10 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddProject = () => {
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail } = data;
+    const { companyID, code, name, contract, bidNumber, mailAddress, shipAddress, jobPhone, jobFax, jobEmail, notes } = data;
     const owner = Meteor.user()._id;
     Projects.collection.insert(
-      { companyID, name, description, contract, bidNumber, jobPhone, jobFax, mailAddress, mailAddress2, mailCity, mailState, mailZip, mailCountry, shipAddress, shipAddress2, shipCity, shipState, shipZip, shipCountry, formEmail, owners: owner },
+      { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, owners: owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -66,45 +70,46 @@ const AddProject = () => {
                 <Row>
                   <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
-                  <TextField name="description" />
+                  <TextField name="code" />
                 </Row>
                 <Row>
-                  <Col><TextField name="bidNumber" /></Col>
                   <Col><TextField name="contract" /></Col>
+                  <Col><TextField name="bidNumber" /></Col>
                 </Row>
                 <Row>
                   <Col><TextField name="jobPhone" /></Col>
                   <Col><TextField name="jobFax" /></Col>
+                  <Col><TextField name="jobEmail" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="mailAddress" /></Col>
+                  <Col><TextField name="mailAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <TextField name="mailAddress2" />
+                  <TextField name="mailAddress.address2" />
                 </Row>
                 <Row>
-                  <Col><TextField name="mailCity" /></Col>
-                  <Col><TextField name="mailState" /></Col>
-                  <Col><TextField name="mailZip" /></Col>
-                  <Col><TextField name="mailCountry" /></Col>
+                  <Col><TextField name="mailAddress.city" /></Col>
+                  <Col><TextField name="mailAddress.state" /></Col>
+                  <Col><TextField name="mailAddress.zip" /></Col>
+                  <Col><TextField name="mailAddress.country" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress" /></Col>
+                  <Col><TextField name="shipAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress2" /></Col>
+                  <Col><TextField name="shipAddress.address2" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipCity" /></Col>
-                  <Col><TextField name="shipState" /></Col>
-                  <Col><TextField name="shipZip" /></Col>
-                  <Col><TextField name="shipCountry" /></Col>
+                  <Col><TextField name="shipAddress.city" /></Col>
+                  <Col><TextField name="shipAddress.state" /></Col>
+                  <Col><TextField name="shipAddress.zip" /></Col>
+                  <Col><TextField name="shipAddress.country" /></Col>
                 </Row>
-                <TextField name="formEmail" />
+                <TextField name="notes" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
-              <Link className="p-3" to="/projects">Back to Projects</Link>
+              <Link className="p-3" to={CTPNav.PathListProject}>Back to Projects</Link>
             </Card>
           </AutoForm>
         </Col>

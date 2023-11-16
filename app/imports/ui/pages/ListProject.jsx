@@ -2,12 +2,14 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
 import Project from '../components/Project';
 import LoadingSpinner from '../components/LoadingSpinner';
+import * as CTPNav from '../../api/navigation/Navigation';
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-const ListProjects = () => {
+const ListProject = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, projects } = useTracker(() => {
     // Note that this subscription will get cleaned up
@@ -32,7 +34,7 @@ const ListProjects = () => {
             <Row>
               <Col> </Col>
               <Col><h2>Projects</h2></Col>
-              <Col><Button variant="primary" href="/project/add">Add Project</Button></Col>
+              <Col><Link to={CTPNav.PathAddProject}><Button variant="primary">Add Project</Button></Link></Col>
             </Row>
           </Col>
           <Row>
@@ -44,4 +46,4 @@ const ListProjects = () => {
   ) : <LoadingSpinner />);
 };
 
-export default ListProjects;
+export default ListProject;

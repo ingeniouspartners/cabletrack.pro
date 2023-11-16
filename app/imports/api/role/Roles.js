@@ -68,6 +68,8 @@ const RoleDeleteCablePullIn = 'DeleteCablePullIn';
 const RoleDeleteUserAll = 'DeleteUserAll';
 const RoleDeleteUserOwned = 'DeleteUserOwned';
 const RoleDeleteUser = 'DeleteUser';
+const RoleChangeRole = "ChangeRoe";
+const RoleChangeRoleAll = "ChangeRoleAll";
 
 const CableTrackProRoles = [
   RoleGlobalAdmin,
@@ -135,6 +137,8 @@ const CableTrackProRoles = [
   RoleDeleteUserAll,
   RoleDeleteUserOwned,
   RoleDeleteUser,
+  RoleChangeRole,
+  RoleChangeRoleAll,
 ];
 
 const GlobalAdminRoles = [
@@ -163,6 +167,7 @@ const GlobalAdminRoles = [
   RoleDeleteCableAll,
   RoleDeleteCablePullInAll,
   RoleDeleteUserAll,
+  RoleChangeRoleAll,
 ];
 
 const CompanyOwnerRoles = [
@@ -184,6 +189,7 @@ const CompanyOwnerRoles = [
   RoleDeleteProjectOwned,
   RoleDeleteCableOwned,
   RoleDeleteUserOwned,
+  RoleChangeRole,
 ];
 
 const ProjectOwnerRoles = [
