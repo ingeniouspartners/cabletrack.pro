@@ -7,14 +7,14 @@ import { Cables } from '../../api/cable/Cables.js';
 
 const resolveOwner = (ownedObject, username) => {
   console.log(`  Resolving owner: ${username}`);
-  const ownerID = Meteor.users.findOne({ username: username })._id;
-  ownedObject.owners.push(ownerID);
+  const owner = Meteor.users.findOne({ username: username });
+  if (owner) ownedObject.owners.push(owner._id);
 };
 
 const resolveNamedObjectId = (collection, name) => {
   console.log(`  Resolving Named Object: ${name}`);
-  const objectID = collection.findOne({ name: name })._id;
-  return objectID;
+  const object = collection.findOne({ name: name });
+  return (object ? object._id : undefined);
 };
 
 // Initialize the database with a default data document.
