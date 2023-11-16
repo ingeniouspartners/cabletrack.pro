@@ -11,21 +11,22 @@ Roles.addRolesToParent(CompanyOwnerRoles, RoleCompanyOwner);
 Roles.addRolesToParent(ProjectOwnerRoles, RoleProjectOwner);
 Roles.addRolesToParent(ElectricianRoles, RoleElectrician);
 
-const createUser = (email, password, role) => {
-  console.log(`  Creating user ${email}.`);
-  const userID = Accounts.createUser({
-    username: email,
+const createUser = (username, email, password, roles) => {
+  console.log(`  Creating user ${username}.`);
+  Accounts.createUser({
+    username: username,
     email: email,
     password: password,
   });
-  Roles.addUsersToRoles(userID, role);
+  const userID = Meteor.users.findOne({ username: username })._id;
+  Roles.addUsersToRoles(userID, roles);
 };
 
 // When running app for first time, pass a settings file to set up a default user account.
 if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
-    Meteor.settings.defaultAccounts.forEach(({ email, password, role }) => createUser(email, password, role));
+    Meteor.settings.defaultAccounts.forEach(({ username, email, password, roles }) => createUser(username, email, password, roles));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
