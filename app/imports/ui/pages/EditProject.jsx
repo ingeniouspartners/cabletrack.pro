@@ -17,8 +17,7 @@ const bridge = new SimpleSchema2Bridge(Projects.schema);
 /* Renders the EditStuff page for editing a single document. */
 const EditProject = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { _id } = useParams();
-  // console.log('EditStuff', _id);
+  const { project_id } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
     // Get access to Stuff documents.
@@ -26,18 +25,18 @@ const EditProject = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = Projects.collection.findOne(_id);
+    const document = Projects.collection.findOne(project_id);
     return {
       doc: document,
       ready: rdy,
     };
-  }, [_id]);
+  }, [project_id]);
   // console.log('EditStuff', doc, ready);
   // On successful submit, insert the data.
   const submit = (data) => {
     const { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
     // eslint-disable-next-line max-len
-    Projects.collection.update(_id, { $set: { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } }, (error) => (error ?
+    Projects.collection.update(project_id, { $set: { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   };
@@ -95,7 +94,7 @@ const EditProject = () => {
                 <ErrorsField />
                 <HiddenField name="owners" />
               </Card.Body>
-              <Link to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, _id)} className="p-3">Back to Project</Link>
+              <Link to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, project_id)} className="p-3">Back to Project</Link>
             </Card>
           </AutoForm>
         </Col>

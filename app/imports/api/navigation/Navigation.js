@@ -1,5 +1,5 @@
 const ParamCompanyID = 'company_id';
-const ParamProjectID = '_id';
+const ParamProjectID = 'project_id';
 const ParamCableID = 'cable_id';
 const ParamCablePullInID = 'pullin_id';
 const ParamUserID = 'user_id';
