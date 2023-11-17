@@ -5,24 +5,24 @@ import { Cables } from '../../api/cable/Cables.js';
 
 /* eslint-disable no-console */
 
-const resolveOwner = (ownedObject, user) => {
-  console.log(`  Resolving owner: ${user}`);
-  const owner = Meteor.users.findOne({ username: user });
-  ownedObject.owners.push(owner._id);
+const resolveOwner = (ownedObject, username) => {
+  console.log(`  Resolving owner: ${username}`);
+  const owner = Meteor.users.findOne({ username: username });
+  if (owner) ownedObject.owners.push(owner._id);
 };
 
-const resolveObjectId = (collection, name) => {
-  console.log(`  Resolving object id: ${name}`);
+const resolveNamedObjectId = (collection, name) => {
+  console.log(`  Resolving Named Object: ${name}`);
   const object = collection.findOne({ name: name });
-  return object._id;
+  return (object ? object._id : undefined);
 };
 
 // Initialize the database with a default data document.
 const addCompany = (company) => {
   console.log(`  Adding: ${company.name}`);
   const copy = company;
-  copy.users.forEach(user => resolveOwner(copy, user));
-  copy.users = undefined;
+  copy.ownerNames.forEach(ownerName => resolveOwner(copy, ownerName));
+  copy.ownerNames = undefined;
   Companies.collection.insert(copy);
 };
 
@@ -38,9 +38,10 @@ if (Companies.collection.find().count() === 0) {
 const addProject = (project) => {
   console.log(`  Adding: ${project.name}`);
   const copy = project;
-  copy.users.forEach(user => resolveOwner(copy, user));
-  copy.users = undefined;
-  copy.companyID = resolveObjectId(Companies.collection, copy.company);
+  copy.ownerNames.forEach(ownerName => resolveOwner(copy, ownerName));
+  copy.ownerNames = undefined;
+  copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
+  copy.company = undefined;
   Projects.collection.insert(copy);
 };
 
@@ -56,10 +57,12 @@ if (Projects.collection.find().count() === 0) {
 const addCable = (cable) => {
   console.log(`  Adding: ${cable.name}`);
   const copy = cable;
-  copy.users.forEach(user => resolveOwner(copy, user));
-  copy.users = undefined;
-  copy.companyID = resolveObjectId(Companies.collection, copy.company);
-  copy.projectID = resolveObjectId(Projects.collection, copy.project);
+  copy.ownerNames.forEach(user => resolveOwner(copy, user));
+  copy.ownerNames = undefined;
+  copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
+  copy.company = undefined;
+  copy.projectID = resolveNamedObjectId(Projects.collection, copy.project);
+  copy.project = undefined;
   Cables.collection.insert(copy);
 };
 
