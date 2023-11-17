@@ -1,12 +1,25 @@
 {
   "defaultAccounts": [
+<<<<<<< Updated upstream
     { "username": "admin@foo.com", "email": "admin@foo.com", "password": "changeme", "roles": ["GlobalAdmin"] },
     { "username": "ceo@foo.com", "email": "ceo@foo.com", "password": "changeme", "roles": ["CompanyOwner"] },
     { "username": "pm@foo.com", "email": "pm@foo.com", "password": "changeme", "roles": ["ProjectOwner"] },
     { "username": "elec@foo.com", "email": "elec@foo.com", "password": "changeme", "roles": ["Electrician"] }
+=======
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "role": "GlobalAdmin"
+    },
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "role": "CompanyOwner"
+    }
+>>>>>>> Stashed changes
   ],
-
   "defaultCompanies": [
+<<<<<<< Updated upstream
     { "name": "Foo Company", "ownerNames": ["ceo@foo.com"], "owners": [] }
   ],
 
@@ -19,4 +32,14 @@
       { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
       { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
     ]
+=======
+    {
+      "name": "Foo Company",
+      "users": [
+        "john@foo.com"
+      ],
+      "owners": []
+    }
+  ]
+>>>>>>> Stashed changes
 }

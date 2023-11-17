@@ -11,6 +11,7 @@ Roles.addRolesToParent(CompanyOwnerRoles, RoleCompanyOwner);
 Roles.addRolesToParent(ProjectOwnerRoles, RoleProjectOwner);
 Roles.addRolesToParent(ElectricianRoles, RoleElectrician);
 
+<<<<<<< Updated upstream
 const createUser = (username, email, password, roles) => {
   console.log(`  Creating user ${username}.`);
   Accounts.createUser({
@@ -19,6 +20,15 @@ const createUser = (username, email, password, roles) => {
     password: password,
   });
   const userID = Meteor.users.findOne({ username: username })._id;
+=======
+const createUser = (email, password, roles) => {
+  console.log(`  Creating user ${email}.`);
+  const userID = Accounts.createUser({
+    username: email,
+    email: email,
+    password: password,
+  });
+>>>>>>> Stashed changes
   Roles.addUsersToRoles(userID, roles);
 };
 
@@ -26,7 +36,11 @@ const createUser = (username, email, password, roles) => {
 if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
+<<<<<<< Updated upstream
     Meteor.settings.defaultAccounts.forEach(({ username, email, password, roles }) => createUser(username, email, password, roles));
+=======
+    Meteor.settings.defaultAccounts.forEach(({ email, password, roles }) => createUser(email, password, roles));
+>>>>>>> Stashed changes
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }

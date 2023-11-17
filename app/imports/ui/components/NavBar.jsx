@@ -6,7 +6,6 @@ import { Roles } from 'meteor/alanning:roles';
 import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
 import { PathHome, PathSignIn, PathSignUp, PathSignOut, PathListCompany, PathViewCompany, PathViewProject, PathViewUser } from '../../api/navigation/Navigation';
-import { RoleGlobalAdmin } from '../../api/role/Roles';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -28,9 +27,7 @@ const NavBar = () => {
               <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>,
               <Nav.Link id="list-project-nav" as={NavLink} to={PathViewProject} key="listProject">Projects</Nav.Link>,
             ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
-              <Nav.Link id="list-company-nav" as={NavLink} to={RoleGlobalAdmin} key="listCompany">Companies</Nav.Link>
-            ) : ''}
+              <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
