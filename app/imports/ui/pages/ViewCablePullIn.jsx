@@ -16,7 +16,6 @@ import CablePullInView from '../components/CablePullInView';
 const ViewCablePullIn = () => {
   // Gets the Parameters from the Path as named properties of an object.
   const params = useParams();
-  console.log(`ViewCablePullIn: Company ${params.companyID}; Project ${params.projectID}; Cable ${params.cableID}; PullIn ${params._id}`);
   // Get the Cable PullIns based on the user's permissions. https://guide.meteor.com/react.html#using-withTracker
   const { doc, cable, project, ready, authorized } = useTracker(() => {
     // Get access to Cable PullIns documents.
@@ -30,8 +29,8 @@ const ViewCablePullIn = () => {
     const rdy = subscription.ready();
     // Get the document
     const document = subscription.collection.findOne(params._id);
-    const proj = Projects.findOne(params.projectID);
-    const cbl = Cables.findOne(params.cableID);
+    const proj = Projects.collection.findOne(params.projectID);
+    const cbl = Cables.collection.findOne(params.cableID);
     return {
       doc: document,
       cable: cbl,
