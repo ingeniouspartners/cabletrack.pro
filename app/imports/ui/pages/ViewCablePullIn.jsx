@@ -1,16 +1,16 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Roles } from 'meteor/alanning:roles';
-import { useParams} from 'react-router';
+import { useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
+import { Navigate } from 'react-router-dom';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import { Cables } from '../../api/cable/Cables';
 import { Projects } from '../../api/project/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { PathNotFound, PathViewCablePullIn } from '../../api/navigation/Navigation';
+import { PathNotFound, PathNotAuthorized } from '../../api/navigation/Navigation';
 import { RoleViewCablePullInAll, RoleViewCablePullInOwned, RoleViewCablePullIn } from '../../api/role/Roles';
 import CablePullInView from '../components/CablePullInView';
-import { Navigate } from 'react-router-dom';
 
 /* Renders the View Cable PullIn Page to show a single Cable PullIn */
 const ViewCablePullIn = () => {

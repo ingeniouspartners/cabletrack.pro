@@ -1,13 +1,9 @@
-import { useParams } from 'react-router';
-
 const ParamCompanyID = 'companyID';
 const ParamProjectID = 'projectID';
 const ParamCableID = 'cableID';
 const ParamCablePullInID = 'pullinID';
 const ParamID = '_id';
 const ParamUserID = 'user_id';
-
-const RegExpParamNames = new RegExp(`(:(${ParamCompanyID}|${ParamProjectID}|${ParamCableID}|${ParamCablePullInID}|${ParamUserID}))`, 'g');
 
 const PathHome = '/';
 const PathSignIn = '/signin';
