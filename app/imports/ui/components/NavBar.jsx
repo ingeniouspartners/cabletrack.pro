@@ -3,9 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
-import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
-import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
-import { PathHome, PathSignIn, PathSignUp, PathSignOut, PathListCompany, PathViewCompany, PathViewProject, PathViewUser } from '../../api/navigation/Navigation';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
+import { PathHome, PathListCompany, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathListProject, PathViewUser } from '../../api/navigation/Navigation';
+import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleListCompanyAll, RoleListCompany } from '../../api/role/Roles';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -18,18 +19,20 @@ const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
-          { currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
+          {currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>])}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
-            {currentUser ? ([
-              <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>,
-              <Nav.Link id="list-project-nav" as={NavLink} to={PathViewProject} key="listProject">Projects</Nav.Link>,
-            ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
+            {Roles.userIsInRole(Meteor.userId(), [RoleListCompany, RoleListCompanyAll]) ? (
               <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
-            ) : ''}
+            ) : ('')}
+            {Roles.userIsInRole(Meteor.userId(), [RoleViewCompany]) ? (
+              <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>
+            ) : ('')}
+            {Roles.userIsInRole(Meteor.userId(), [RoleListProject, RoleListProjectOwned, RoleListProjectAll]) ? (
+              <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>
+            ) : ('')}
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (

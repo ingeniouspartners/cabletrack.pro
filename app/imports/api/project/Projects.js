@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { projectSchema } from '../schema/Schemas';
+import { SchemaProject } from '../schema/Schemas';
 
 /**
  * The ProjectsCollection. It encapsulates state and variable values for projects.
@@ -11,7 +11,7 @@ class ProjectsCollection {
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = projectSchema;
+    this.schema = SchemaProject;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions

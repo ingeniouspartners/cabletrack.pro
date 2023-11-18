@@ -1,18 +1,25 @@
 import { Meteor } from 'meteor/meteor';
+import { CombinePath, PathViewCompany, PathViewProject, PathViewCable, PathViewCablePullIn } from '../../api/navigation/Navigation';
 import { Companies } from '../../api/company/Companies.js';
 import { Projects } from '../../api/project/Projects.js';
 import { Cables } from '../../api/cable/Cables.js';
+import { CablePullIns } from '../../api/cable/CablePullIns';
 
 /* eslint-disable no-console */
 
+const resolveUser = (username) => {
+  const user = Meteor.users.findOne({ username: username });
+  return (user ? user._id : undefined);
+};
+
 const resolveOwner = (ownedObject, username) => {
-  console.log(`  Resolving owner: ${username}`);
+  // console.log(`  Resolving owner: ${username}`);
   const owner = Meteor.users.findOne({ username: username });
   if (owner) ownedObject.owners.push(owner._id);
 };
 
 const resolveNamedObjectId = (collection, name) => {
-  console.log(`  Resolving Named Object: ${name}`);
+  // console.log(`  Resolving Named Object: ${name}`);
   const object = collection.findOne({ name: name });
   return (object ? object._id : undefined);
 };
@@ -23,7 +30,8 @@ const addCompany = (company) => {
   const copy = company;
   copy.ownerNames.forEach(ownerName => resolveOwner(copy, ownerName));
   copy.ownerNames = undefined;
-  Companies.collection.insert(copy);
+  const newCompany = Companies.collection.findOne(Companies.collection.insert(copy));
+  console.log(CombinePath(PathViewCompany, newCompany));
 };
 
 // Initialize the CablesCollection if empty.
@@ -42,7 +50,8 @@ const addProject = (project) => {
   copy.ownerNames = undefined;
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
-  Projects.collection.insert(copy);
+  const newProject = Projects.collection.findOne(Projects.collection.insert(copy));
+  console.log(CombinePath(PathViewProject, newProject));
 };
 
 // Initialize the CablesCollection if empty.
@@ -64,6 +73,8 @@ const addCable = (cable) => {
   copy.projectID = resolveNamedObjectId(Projects.collection, copy.project);
   copy.project = undefined;
   Cables.collection.insert(copy);
+  const newCable = Cables.collection.findOne(Cables.collection.insert(copy));
+  console.log(CombinePath(PathViewCable, newCable));
 };
 
 // Initialize the CablesCollection if empty.
@@ -71,5 +82,27 @@ if (Cables.collection.find().count() === 0) {
   if (Meteor.settings.defaultCables) {
     console.log('Creating default cables.');
     Meteor.settings.defaultCables.forEach(cable => addCable(cable));
+  }
+}
+
+const addCablePullIn = (cablePullIn) => {
+  console.log(`  Adding: ${cablePullIn.installerName}`);
+  const copy = cablePullIn;
+  copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
+  copy.company = undefined;
+  copy.projectID = resolveNamedObjectId(Projects.collection, copy.project);
+  copy.project = undefined;
+  copy.cableID = resolveNamedObjectId(Cables.collection, copy.cable);
+  copy.cable = undefined;
+  copy.personInstalled = resolveUser(copy.installerName);
+  copy.installerName = undefined;
+  const newCablePullIn = CablePullIns.collection.findOne(CablePullIns.collection.insert(copy));
+  console.log(CombinePath(PathViewCablePullIn, newCablePullIn));
+};
+
+if (CablePullIns.collection.find().count() === 0) {
+  if (Meteor.settings.defaultCablePullIns) {
+    console.log('Creating default cable pullins.');
+    Meteor.settings.defaultCablePullIns.forEach(cablePullIn => addCablePullIn(cablePullIn));
   }
 }

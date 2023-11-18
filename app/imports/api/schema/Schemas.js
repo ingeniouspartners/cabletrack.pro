@@ -21,7 +21,7 @@ const measurementTimedSchema = new SimpleSchema({
 });
 
 // Possible email form in here too?
-const companySchema = new SimpleSchema(
+const SchemaCompany = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
     address: { type: addressSchema },
@@ -35,7 +35,7 @@ const companySchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const projectSchema = new SimpleSchema(
+const SchemaProject = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
@@ -54,7 +54,7 @@ const projectSchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const cableSchema = new SimpleSchema(
+const SchemaCable = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -75,15 +75,13 @@ const cableSchema = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     notes: { type: String, optional: true },
-    users: Array,
-    'users.$': { type: String, max: 20 },
     owners: Array,
     'owners.$': { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
 
-const cablePullInSchema = new SimpleSchema(
+const SchemaCablePullIn = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -181,4 +179,4 @@ const userProfileSchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-export { stateArray, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
+export { stateArray, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
