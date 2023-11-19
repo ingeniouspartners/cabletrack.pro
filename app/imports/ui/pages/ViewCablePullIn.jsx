@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import { Cables } from '../../api/cable/Cables';
 import { Projects } from '../../api/project/Projects';
+import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PathNotFound, PathNotAuthorized } from '../../api/navigation/Navigation';
 import { RoleViewCablePullInAll, RoleViewCablePullInOwned, RoleViewCablePullIn } from '../../api/role/Roles';
@@ -17,36 +18,38 @@ const ViewCablePullIn = () => {
   // Gets the Parameters from the Path as named properties of an object.
   const params = useParams();
   // Get the Cable PullIns based on the user's permissions. https://guide.meteor.com/react.html#using-withTracker
-  const { doc, cable, project, ready, authorized } = useTracker(() => {
+  const { pullin, cable, project, company, ready, authorized } = useTracker(() => {
     // Get access to Cable PullIns documents.
     let auth = true;
     let subscription;
-    if (Roles.userIsInRole(RoleViewCablePullInAll)) subscription = CablePullIns.subscribe(CablePullIns.adminPublicationName);
-    if (Roles.userIsInRole(RoleViewCablePullInOwned)) subscription = CablePullIns.subscribe(CablePullIns.ownerPublicationName);
     if (Roles.userIsInRole(RoleViewCablePullIn)) subscription = CablePullIns.subscribe(CablePullIns.userPublicationName);
+    if (Roles.userIsInRole(RoleViewCablePullInOwned)) subscription = CablePullIns.subscribe(CablePullIns.ownerPublicationName);
+    if (Roles.userIsInRole(RoleViewCablePullInAll)) subscription = CablePullIns.subscribe(CablePullIns.adminPublicationName);
     if (!subscription) { auth = false; }
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = subscription.collection.findOne(params._id);
+    const document = CablePullIns.collection.findOne(params._id);
+    const co = Companies.collection.findOne(document.companyID);
     const proj = Projects.collection.findOne(params.projectID);
     const cbl = Cables.collection.findOne(params.cableID);
     return {
-      doc: document,
+      pullin: document,
       cable: cbl,
       project: proj,
+      company: co,
       ready: rdy,
       authorized: auth,
     };
   }, [params]);
 
-  if (!doc) { return <Navigate to={PathNotFound} />; }
+  if (!pullin) { return <Navigate to={PathNotFound} />; }
   if (!authorized) { return <Navigate to={PathNotAuthorized} />; }
   return ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={10}>
-          <CablePullInView project={project} cable={cable} cablePullIn={doc} />
+          <CablePullInView company={company} project={project} cable={cable} cablePullIn={pullin} />
         </Col>
       </Row>
     </Container>

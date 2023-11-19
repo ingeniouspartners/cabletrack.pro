@@ -10,16 +10,15 @@ import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewComp
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { currentUser, currentCo } = useTracker(() => ({
+  const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
-    currentCo: Meteor.user() ? 'xyz' : '',
   }), []);
 
   return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
-          {currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>])}
+          <h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
