@@ -12,6 +12,14 @@
  */
 body {
   --bs-light-rgb: var(--matr-navbar-bg-rgb);
+  --bs-heading-color: white;
+  --bs-body-bg: #b7b9d2;
+}
+
+#landing-page {
+  padding: 40px 0 40px 0;
+  width: 60vw;
+  margin: auto;
 }
 
 /* Set the alert background on the signin and signup pages. */
@@ -25,4 +33,8 @@ body {
   color: var(--bs-dark);
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+p {
+  color: white;
 }
