@@ -14,9 +14,9 @@
     { "company": "Foo Company", "code": "TEST", "name": "Foo Project", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
   ],
 
-    "defaultCables": [
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-      { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
-    ]
+  "defaultCables": [
+    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
+    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
+    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
+  ]
 }

@@ -27,9 +27,7 @@ const NavBar = () => {
               <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>,
               <Nav.Link id="list-project-nav" as={NavLink} to={PathViewProject} key="listProject">Projects</Nav.Link>,
             ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
               <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
-            ) : ''}
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
