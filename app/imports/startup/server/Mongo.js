@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { CombinePath, PathViewCompany, PathViewProject, PathViewCable, PathViewCablePullIn } from '../../api/navigation/Navigation';
+import { Owners } from '../../api/owner/Owners.js';
 import { Companies } from '../../api/company/Companies.js';
 import { Projects } from '../../api/project/Projects.js';
 import { Cables } from '../../api/cable/Cables.js';
@@ -12,10 +13,16 @@ const resolveUser = (username) => {
   return (user ? user._id : undefined);
 };
 
-const resolveOwner = (ownedObject, username) => {
+const addOwner = (ownedObj, username) => {
   // console.log(`  Resolving owner: ${username}`);
   const owner = Meteor.users.findOne({ username: username });
-  if (owner) ownedObject.owners.push(owner._id);
+  if (owner && ownedObj) {
+    const owners = {
+      ownedID: ownedObj._id,
+      ownerID: owner._id,
+    };
+    Owners.collection.insert(owners);
+  }
 };
 
 const resolveNamedObjectId = (collection, name) => {
@@ -28,10 +35,11 @@ const resolveNamedObjectId = (collection, name) => {
 const addCompany = (company) => {
   console.log(`  Adding: ${company.name}`);
   const copy = company;
-  copy.ownerNames.forEach(ownerName => resolveOwner(copy, ownerName));
+  const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
   const newCompany = Companies.collection.findOne(Companies.collection.insert(copy));
   console.log(CombinePath(PathViewCompany, newCompany));
+  ownerNames.forEach(ownerName => addOwner(newCompany, ownerName));
 };
 
 // Initialize the CablesCollection if empty.
@@ -46,12 +54,13 @@ if (Companies.collection.find().count() === 0) {
 const addProject = (project) => {
   console.log(`  Adding: ${project.name}`);
   const copy = project;
-  copy.ownerNames.forEach(ownerName => resolveOwner(copy, ownerName));
+  const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
   const newProject = Projects.collection.findOne(Projects.collection.insert(copy));
   console.log(CombinePath(PathViewProject, newProject));
+  ownerNames.forEach(ownerName => addOwner(newProject, ownerName));
 };
 
 // Initialize the CablesCollection if empty.
@@ -66,7 +75,7 @@ if (Projects.collection.find().count() === 0) {
 const addCable = (cable) => {
   console.log(`  Adding: ${cable.name}`);
   const copy = cable;
-  copy.ownerNames.forEach(user => resolveOwner(copy, user));
+  const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
@@ -75,6 +84,7 @@ const addCable = (cable) => {
   Cables.collection.insert(copy);
   const newCable = Cables.collection.findOne(Cables.collection.insert(copy));
   console.log(CombinePath(PathViewCable, newCable));
+  ownerNames.forEach(ownerName => addOwner(newCable, ownerName));
 };
 
 // Initialize the CablesCollection if empty.

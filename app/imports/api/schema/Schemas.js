@@ -20,6 +20,13 @@ const measurementTimedSchema = new SimpleSchema({
   value: { type: Number, optional: true },
 });
 
+const SchemaOwner = new SimpleSchema(
+  {
+    ownedID: { type: String, max: 20, required: true },
+    ownerID: { type: String, max: 20, required: true },
+  },
+);
+
 // Possible email form in here too?
 const SchemaCompany = new SimpleSchema(
   {
@@ -29,8 +36,6 @@ const SchemaCompany = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     logoURL: { type: String, regEx: /^https?:\/\//, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
@@ -48,8 +53,6 @@ const SchemaProject = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
@@ -75,8 +78,6 @@ const SchemaCable = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     notes: { type: String, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
@@ -179,4 +180,4 @@ const userProfileSchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-export { stateArray, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
+export { stateArray, SchemaOwner, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
