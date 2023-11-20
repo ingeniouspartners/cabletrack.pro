@@ -5,8 +5,3 @@ node_modules
 settings.production.json
 app/.deploy/mup.js
 app/.deploy/settings.json
-
-#These files should be fixed first.
-app/imports/ui/pages/ListCompany.jsx
-app/imports/ui/pages/ViewCompany.jsx
-app/imports/ui/components/CompanyEdit.jsx
