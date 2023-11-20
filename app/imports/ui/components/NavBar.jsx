@@ -15,10 +15,10 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar id="navbar" className="text-white" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
-          { currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
+          { currentCo ? ([<h2 className="company-logo">{currentCo}</h2>]) : ([<h2><Image className="app-logo" src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
