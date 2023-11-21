@@ -1,19 +1,15 @@
 {
   "defaultAccounts": [
-    { "username": "admin@foo.com", "email": "admin@foo.com", "password": "changeme", "roles": ["GlobalAdmin"] },
-    { "username": "ceo@foo.com", "email": "ceo@foo.com", "password": "changeme", "roles": ["CompanyOwner"] },
-    { "username": "pm@foo.com", "email": "pm@foo.com", "password": "changeme", "roles": ["ProjectOwner"] },
-    { "username": "elec@foo.com", "email": "elec@foo.com", "password": "changeme", "roles": ["Electrician"] }
+    { "email": "admin@foo.com", "password": "changeme", "role": "GlobalAdmin" },
+    { "email": "john@foo.com", "password": "changeme", "role": "CompanyOwner" }
   ],
 
   "defaultCompanies": [
-    { "name": "Foo Company", "ownerNames": ["ceo@foo.com"], "owners": [] }
+    { "name": "Foo Company", "users": ["john@foo.com"], "owners": [] }
   ],
 
   "defaultProjects": [
-    {
-      "company": "Foo Company",
-      "companyID": "Foo Company",
+    { "companyID": "ABC123",
       "code": "project123",
       "name": "Example Project",
       "contract": "ABC-123",
@@ -38,13 +34,14 @@
       "jobFax": "123-456-7891",
       "jobEmail": "example@example.com",
       "notes": "This is an example project.",
-      "ownerNames": ["ceo@foo.com", "admin@foo.com"],
-      "owners": [] }
+      "users": ["john@foo.com", "admin@foo.com"],
+      "owners": []
+    }
   ],
 
-  "defaultCables": [
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
-  ]
+    "defaultCables": [
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 1", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 2", "users": ["john@foo.com"], "owners": [] },
+      { "companyID": "Foo Company", "projectID": "Foo Project", "name": "Cable 3", "users": ["admin@foo.com"], "owners": [] }
+    ]
 }

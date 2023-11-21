@@ -1,12 +1,8 @@
-import { useParams } from 'react-router';
-
 const ParamCompanyID = 'company_id';
 const ParamProjectID = 'project_id';
 const ParamCableID = 'cable_id';
 const ParamCablePullInID = 'pullin_id';
 const ParamUserID = 'user_id';
-
-const RegExpParamNames = new RegExp(`(:(${ParamCompanyID}|${ParamProjectID}|${ParamCableID}|${ParamCablePullInID}|${ParamUserID}))`, 'g');
 
 const PathHome = '/';
 const PathSignIn = '/signin';
@@ -40,22 +36,7 @@ const PathDeleteUser = `${PathViewUser}/delete`;
 const PathNotAuthorized = '/notauthorized';
 const PathNotFound = '/notfound';
 
-const ParsePath = (path) => {
-  const pathParams = {};
-  const params = useParams();
-  const results = RegExpParamNames.exec(path);
-  if (results && params) results.forEach(result => { pathParams[result.groups[1]] = params[result.groups[1]]; });
-  return pathParams;
-};
-
-const CombinePath = (path, pathParams) => {
-  let combinedPath = path;
-  Object.keys(pathParams).forEach((key) => { combinedPath = combinedPath.replace(`:${key}`, pathParams[key]); });
-  return combinedPath;
-};
-
 export { ParamCompanyID, ParamProjectID, ParamCableID, ParamCablePullInID, ParamUserID };
-export { ParsePath, CombinePath };
 export { PathHome, PathSignIn, PathSignUp, PathSignOut, PathNotAuthorized, PathNotFound };
 export { PathListCompany, PathViewCompany, PathAddCompany, PathEditCompany, PathDeleteCompany };
 export { PathListProject, PathViewProject, PathAddProject, PathEditProject, PathDeleteProject };
