@@ -15,10 +15,10 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar id="navbar" className="text-white" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
-          { currentCo ? ([<h2>{currentCo}</h2>]) : ([<h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
+          { currentCo ? ([<h2 className="company-logo">{currentCo}</h2>]) : ([<h2><Image className="app-logo" src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -27,9 +27,7 @@ const NavBar = () => {
               <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>,
               <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>,
             ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
               <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
-            ) : ''}
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
