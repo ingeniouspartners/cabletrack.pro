@@ -15,7 +15,7 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar id="navbar" className="text-white" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
           <h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>
