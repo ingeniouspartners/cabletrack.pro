@@ -19,6 +19,7 @@ const createUser = (username, email, password, roles) => {
     password: password,
   });
   const userID = Meteor.users.findOne({ username: username })._id;
+  console.log(`  Adding roles ${roles} to user ${username}.`);
   Roles.addUsersToRoles(userID, roles);
 };
 

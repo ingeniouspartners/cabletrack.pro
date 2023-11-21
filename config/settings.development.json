@@ -11,7 +11,30 @@
   ],
 
   "defaultProjects": [
-    { "company": "Foo Company", "code": "TEST", "name": "Foo Project", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
+    { "company": "Foo Company", "code": "TEST", "name": "Foo Project", "contract": "ABC-123",
+      "bidNumber": "BID456",
+      "mailAddress": {
+        "address": "123 Main St",
+        "address2": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "address2": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "123-456-7890",
+      "jobFax": "123-456-7891",
+      "jobEmail": "example@example.com",
+      "notes": "This is an example project.",
+      "ownerNames": ["ceo@foo.com", "pm@foo.com", "admin@foo.com"],
+      "owners": [] }
   ],
 
   "defaultCables": [

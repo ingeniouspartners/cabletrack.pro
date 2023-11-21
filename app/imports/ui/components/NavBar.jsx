@@ -2,10 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
-import { Roles } from 'meteor/alanning:roles';
 import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
-import { PathHome, PathSignIn, PathSignUp, PathSignOut, PathListCompany, PathViewCompany, PathViewProject, PathViewUser } from '../../api/navigation/Navigation';
+import { PathHome, PathSignIn, PathSignUp, PathSignOut, PathListCompany, PathViewCompany, PathListProject, PathViewUser } from '../../api/navigation/Navigation';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -25,9 +24,9 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? ([
               <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>,
-              <Nav.Link id="list-project-nav" as={NavLink} to={PathViewProject} key="listProject">Projects</Nav.Link>,
+              <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>,
             ]) : ''}
-              <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
+            <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
