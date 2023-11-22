@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
@@ -34,9 +33,10 @@ import EditCablePullIn from '../pages/EditCablePullIn';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
-  const { ready } = useTracker(() => {
-    const rdy = Roles.subscription.ready();
-    return { ready: rdy };
+  const { ready, currentUser } = useTracker(() => {
+    const sub = Meteor.subscribe('roles');
+    const rdy = sub.ready();
+    return { ready: rdy, currentUser: Meteor.user() };
   });
   return (ready ? (
     <Router>
@@ -48,35 +48,63 @@ const App = () => {
           <Route path={CTPNav.PathSignUp} element={<SignUp />} />
           <Route path={CTPNav.PathSignOut} element={<SignOut />} />
 
-          <Route path={CTPNav.PathListCompany} element={<RoleProtectedRoute roles={[CTPRoles.RoleListCompanyAll]}><ListCompany /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathViewCompany} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCompany, CTPRoles.RoleViewCompanyAll]}><ViewCompany /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathAddCompany} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCompany]}><EditCompany /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathEditCompany} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCompany, CTPRoles.RoleEditCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathDeleteCompany} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCompany, CTPRoles.RoleDeleteCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathListCompany} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleListCompanyAll]}><ListCompany /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathViewCompany} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleViewCompany, CTPRoles.RoleViewCompanyAll]}><ViewCompany /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathAddCompany} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleAddCompany]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathEditCompany} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleEditCompany, CTPRoles.RoleEditCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathDeleteCompany} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleDeleteCompany, CTPRoles.RoleDeleteCompanyAll]}><EditCompany /></RoleProtectedRoute>} />
 
-          <Route path={CTPNav.PathListProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleListProject, CTPRoles.RoleListProjectOwned, CTPRoles.RoleListProjectAll]}><ListProject /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathViewProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewProject, CTPRoles.RoleViewProjectOwned, CTPRoles.RoleViewProjectAll]}><ViewProject /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathAddProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddProject]}><EditProject /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathEditProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditProject, CTPRoles.RoleEditProjectOwned, CTPRoles.RoleEditProjectAll]}><EditProject /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathDeleteProject} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteProject, CTPRoles.RoleDeleteProjectOwned, CTPRoles.RoleDeleteProjectAll]}><EditProject /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathListProject} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleListProject, CTPRoles.RoleListProjectOwned, CTPRoles.RoleListProjectAll]}><ListProject /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathViewProject} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleViewProject, CTPRoles.RoleViewProjectOwned, CTPRoles.RoleViewProjectAll]}><ViewProject /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathAddProject} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleAddProject]}><EditProject /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathEditProject} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleEditProject, CTPRoles.RoleEditProjectOwned, CTPRoles.RoleEditProjectAll]}><EditProject /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathDeleteProject} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleDeleteProject, CTPRoles.RoleDeleteProjectOwned, CTPRoles.RoleDeleteProjectAll]}><EditProject /></RoleProtectedRoute>} />
 
-          <Route path={CTPNav.PathListCable} element={<RoleProtectedRoute roles={[CTPRoles.RoleListCable, CTPRoles.RoleListCableOwned, CTPRoles.RoleListCableAll]}><ListCable /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathViewCable} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCable, CTPRoles.RoleViewCableOwned, CTPRoles.RoleViewCableAll]}><ViewCable /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathAddCable} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCable]}><EditCable /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathEditCable} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCable, CTPRoles.RoleEditCableOwned, CTPRoles.RoleEditCableAll]}><EditCable /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathDeleteCable} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCable, CTPRoles.RoleDeleteCableOwned, CTPRoles.RoleDeleteCableAll]}><EditCable /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathListCable} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleListCable, CTPRoles.RoleListCableOwned, CTPRoles.RoleListCableAll]}><ListCable /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathViewCable} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleViewCable, CTPRoles.RoleViewCableOwned, CTPRoles.RoleViewCableAll]}><ViewCable /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathAddCable} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleAddCable]}><EditCable /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathEditCable} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleEditCable, CTPRoles.RoleEditCableOwned, CTPRoles.RoleEditCableAll]}><EditCable /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathDeleteCable} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleDeleteCable, CTPRoles.RoleDeleteCableOwned, CTPRoles.RoleDeleteCableAll]}><EditCable /></RoleProtectedRoute>} />
 
-          <Route path={CTPNav.PathListCablePullIn} element={<RoleProtectedRoute roles={[CTPRoles.RoleListCablePullIn, CTPRoles.RoleListCablePullInOwned, CTPRoles.RoleListCablePullInAll]}><ListCablePullIn /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathViewCablePullIn} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewCablePullIn, CTPRoles.RoleViewCablePullInOwned, CTPRoles.RoleViewCablePullInAll]}><ViewCablePullIn /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathAddCablePullIn} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddCablePullIn]}><EditCablePullIn /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathEditCablePullIn} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditCablePullIn, CTPRoles.RoleEditCablePullInOwned, CTPRoles.RoleEditCablePullInAll]}><EditCablePullIn /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathDeleteCablePullIn} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteCablePullIn, CTPRoles.RoleDeleteCablePullInOwned, CTPRoles.RoleDeleteCablePullInAll]}><EditCablePullIn /></RoleProtectedRoute>} />
+          <Route
+            path={CTPNav.PathListCablePullIn}
+            element={(
+              <RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleListCablePullIn, CTPRoles.RoleListCablePullInOwned, CTPRoles.RoleListCablePullInAll]}>
+                <ListCablePullIn />
+              </RoleProtectedRoute>
+            )}
+          />
+          <Route
+            path={CTPNav.PathViewCablePullIn}
+            element={(
+              <RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleViewCablePullIn, CTPRoles.RoleViewCablePullInOwned, CTPRoles.RoleViewCablePullInAll]}>
+                <ViewCablePullIn />
+              </RoleProtectedRoute>
+            )}
+          />
+          <Route path={CTPNav.PathAddCablePullIn} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleAddCablePullIn]}><EditCablePullIn /></RoleProtectedRoute>} />
+          <Route
+            path={CTPNav.PathEditCablePullIn}
+            element={(
+              <RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleEditCablePullIn, CTPRoles.RoleEditCablePullInOwned, CTPRoles.RoleEditCablePullInAll]}>
+                <EditCablePullIn />
+              </RoleProtectedRoute>
+            )}
+          />
+          <Route
+            path={CTPNav.PathDeleteCablePullIn}
+            element={(
+              <RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleDeleteCablePullIn, CTPRoles.RoleDeleteCablePullInOwned, CTPRoles.RoleDeleteCablePullInAll]}>
+                <EditCablePullIn />
+              </RoleProtectedRoute>
+            )}
+          />
 
-          <Route path={CTPNav.PathListUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleListUser, CTPRoles.RoleListUserOwned, CTPRoles.RoleListUserAll]}><ListUser /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathViewUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleViewUser, CTPRoles.RoleViewUserOwned, CTPRoles.RoleViewUserAll]}><ViewUser /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathAddUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleAddUser]}><EditUser /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathEditUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleEditUser, CTPRoles.RoleEditUserOwned, CTPRoles.RoleEditUserAll]}><EditUser /></RoleProtectedRoute>} />
-          <Route path={CTPNav.PathDeleteUser} element={<RoleProtectedRoute roles={[CTPRoles.RoleDeleteUser, CTPRoles.RoleDeleteUserOwned, CTPRoles.RoleDeleteUserAll]}><EditUser /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathListUser} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleListUser, CTPRoles.RoleListUserOwned, CTPRoles.RoleListUserAll]}><ListUser /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathViewUser} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleViewUser, CTPRoles.RoleViewUserOwned, CTPRoles.RoleViewUserAll]}><ViewUser /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathAddUser} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleAddUser]}><EditUser /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathEditUser} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleEditUser, CTPRoles.RoleEditUserOwned, CTPRoles.RoleEditUserAll]}><EditUser /></RoleProtectedRoute>} />
+          <Route path={CTPNav.PathDeleteUser} element={<RoleProtectedRoute user={currentUser} roles={[CTPRoles.RoleDeleteUser, CTPRoles.RoleDeleteUserOwned, CTPRoles.RoleDeleteUserAll]}><EditUser /></RoleProtectedRoute>} />
 
           <Route path={CTPNav.PathNotAuthorized} element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
@@ -92,10 +120,10 @@ const App = () => {
  * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to sign in page.
  * @param {any} { component: Component, ...rest }
  */
-const RoleProtectedRoute = ({ roles, children }) => {
-  const isLogged = Meteor.userId() !== null;
+const RoleProtectedRoute = ({ user, roles, children }) => {
+  const isLogged = user !== null && user !== undefined && user._id !== null && user._id !== undefined;
   if (isLogged) {
-    const isInRole = Roles.userIsInRole(Meteor.userId(), roles);
+    const isInRole = Roles.userIsInRole(user, roles);
     return (isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
   }
   return <Navigate to={CTPNav.PathSignIn} />;
@@ -103,6 +131,7 @@ const RoleProtectedRoute = ({ roles, children }) => {
 
 // Require a component and location to be passed to each RoleProtectedRoute.
 RoleProtectedRoute.propTypes = {
+  user: PropTypes.shape.isRequired,
   roles: PropTypes.arrayOf(String).isRequired,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };

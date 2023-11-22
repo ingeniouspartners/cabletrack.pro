@@ -11,7 +11,7 @@ import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewComp
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { currentUser } = useTracker(() => ({
-    currentUser: Meteor.user() ? Meteor.user().username : '',
+    currentUser: Meteor.user() ? Meteor.user() : '',
   }), []);
 
   return (
@@ -34,22 +34,22 @@ const NavBar = () => {
             ) : ('')}
           </Nav>
           <Nav className="justify-content-end">
-            {currentUser === '' ? (
+            {!currentUser ? (
               <NavDropdown id="login-dropdown" title="Login">
                 <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to={PathSignIn}>
-                  <PersonFill /> Sign in
+                  <PersonFill />&nbsp;Sign&nbsp;in
                 </NavDropdown.Item>
                 <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to={PathSignUp}>
-                  <PersonPlusFill /> Sign up
+                  <PersonPlusFill />&nbsp;Sign&nbsp;up
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <NavDropdown id="navbar-current-user" title={currentUser}>
+              <NavDropdown id="navbar-current-user" title={currentUser.username}>
                 <NavDropdown.Item id="navbar-profile" as={NavLink} to={PathViewUser}>
                   <PersonFill /> Profile
                 </NavDropdown.Item>
                 <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>
-                  <PersonDashFill /> Sign out
+                  <PersonDashFill />&nbsp;Sign&nbsp;out
                 </NavDropdown.Item>
               </NavDropdown>
             )}

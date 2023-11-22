@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="CableTrack.PRO" type="meteor-app-runner" factoryName="Meteor" programParameters="--inspect" workingDirectory="$PROJECT_DIR$/app">
+  <configuration default="false" name="CableTrack.PRO" type="meteor-app-runner" factoryName="Meteor" programParameters="--inspect --no-release-check --exclude-archs web.browser.legacy,web.cordova --settings ../config/settings.development.json" workingDirectory="$PROJECT_DIR$/app">
     <option name="exePath" value="$USER_HOME$/AppData/Local/.meteor/meteor.bat" />
     <option name="startBrowserSettings">
       <browser start="true" with-js-debugger="true" url="http://localhost:3000" />

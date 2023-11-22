@@ -9,8 +9,8 @@ import { UserProfiles } from '../../api/user/UserProfiles';
 
 // alanning:Roles.js publication
 // Recommended code to publish Roles.js for each user.
-Meteor.publish(null, function () {
-    return Meteor.roles.find({});
+Meteor.publish('roles', function () {
+  return Meteor.roles.find({});
 });
 
 // User-level publication.

@@ -22,7 +22,7 @@ const ListCompany = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? <CompanyList companies={companies} /> :  <LoadingSpinner />);
+  return (ready ? <CompanyList companies={companies} /> : <LoadingSpinner />);
 };
 
 export default ListCompany;

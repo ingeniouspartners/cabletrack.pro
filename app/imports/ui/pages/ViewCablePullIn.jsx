@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Roles } from 'meteor/alanning:roles';
 import { useParams } from 'react-router';
@@ -22,19 +23,25 @@ const ViewCablePullIn = () => {
     // Get access to Cable PullIns documents.
     let auth = true;
     let subscription;
-    if (Roles.userIsInRole(RoleViewCablePullIn)) subscription = CablePullIns.subscribe(CablePullIns.userPublicationName);
-    if (Roles.userIsInRole(RoleViewCablePullInOwned)) subscription = CablePullIns.subscribe(CablePullIns.ownerPublicationName);
-    if (Roles.userIsInRole(RoleViewCablePullInAll)) subscription = CablePullIns.subscribe(CablePullIns.adminPublicationName);
-    if (!subscription) { auth = false; }
-    // Determine if the subscription is ready
-    const rdy = subscription.ready();
+    let rdy = false;
+    let pin;
+    let co;
+    let proj;
+    let cbl;
+    if (Roles.userIsInRole(Meteor.userId(), RoleViewCablePullIn)) subscription = Meteor.subscribe(CablePullIns.userPublicationName);
+    if (Roles.userIsInRole(Meteor.userId(), RoleViewCablePullInOwned)) subscription = Meteor.subscribe(CablePullIns.ownerPublicationName);
+    if (Roles.userIsInRole(Meteor.userId(), RoleViewCablePullInAll)) subscription = Meteor.subscribe(CablePullIns.adminPublicationName);
+    if (subscription) {
+      // Determine if the subscription is ready
+      rdy = subscription.ready();
+      pin = CablePullIns.collection.findOne(params._id);
+      co = Companies.collection.findOne(params.companyID);
+      proj = Projects.collection.findOne(params.projectID);
+      cbl = Cables.collection.findOne(params.cableID);
+    } else { auth = false; }
     // Get the document
-    const document = CablePullIns.collection.findOne(params._id);
-    const co = Companies.collection.findOne(document.companyID);
-    const proj = Projects.collection.findOne(params.projectID);
-    const cbl = Cables.collection.findOne(params.cableID);
     return {
-      pullin: document,
+      pullin: pin,
       cable: cbl,
       project: proj,
       company: co,
@@ -43,8 +50,8 @@ const ViewCablePullIn = () => {
     };
   }, [params]);
 
-  if (!pullin) { return <Navigate to={PathNotFound} />; }
-  if (!authorized) { return <Navigate to={PathNotAuthorized} />; }
+  if (ready && !authorized) { return <Navigate to={PathNotAuthorized} />; }
+  if (ready && !pullin) { return <Navigate to={PathNotFound} />; }
   return ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
