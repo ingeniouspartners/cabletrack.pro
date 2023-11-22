@@ -11,7 +11,7 @@ const bridge = new SimpleSchema2Bridge(Companies.schema);
 /* Renders the EditStuff page for editing a single document. */
 const CompanyEdit = (_companyId, doc) => {
   const submit = (data) => {
-    const { name, code, associatedUsers } = data;
+    const { name, code, associatedUsers } = data; // TODO - add proper data
     Companies.collection.update(_companyId, { $set: { name, associatedUsers } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
@@ -39,7 +39,7 @@ const CompanyEdit = (_companyId, doc) => {
     </Container>
   );
 };
-CompanyEdit.propTypes = {
-  company: PropTypes.arrayOf(Object),
+CompanyEdit.propTypes =
+  company: PropTypes.arrayOf(Object), // TODO - add proper proptypes
 };
 export default CompanyEdit;
