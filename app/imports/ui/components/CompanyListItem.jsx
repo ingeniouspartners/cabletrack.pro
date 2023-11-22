@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CompanyListItem = ({ company }) => (
   <tr>
-    <td>{company.description}</td>
+    <td>{company.name}</td>
     <td>
       <Link to={`/${company._id}`}>View</Link>
     </td>
@@ -18,14 +19,7 @@ const CompanyListItem = ({ company }) => (
 
 // Require a document to be passed to this component. Theoretically only description and id are required.
 CompanyListItem.propTypes = {
-  company: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    address: PropTypes.string,
-    phone: PropTypes.string,
-    fax: PropTypes.string,
-    email: PropTypes.string,
-    logoURL: PropTypes.string,
-  }).isRequired,
+  company: PropTypes.instanceOf(PropTypeCompany).isRequired,
 };
 
 export default CompanyListItem;

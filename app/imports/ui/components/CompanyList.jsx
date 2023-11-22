@@ -21,7 +21,7 @@ const CompanyList = ({ companies }) => (
             </tr>
           </thead>
           <tbody>
-            {companies.map((company) => (<CompanyListItem company={company} key={company.id} />))}
+            { companies ? (companies.map((company) => (<CompanyListItem company={company} key={company.id} />))) : '' }
           </tbody>
         </Table>
       </Col>
