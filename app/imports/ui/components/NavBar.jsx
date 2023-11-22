@@ -46,7 +46,7 @@ const NavBar = () => {
             ) : (
               <NavDropdown id="navbar-current-user" title={currentUser.username}>
                 <NavDropdown.Item id="navbar-profile" as={NavLink} to={PathViewUser}>
-                  <PersonFill /> Profile
+                  <PersonFill />&nbsp;Profile
                 </NavDropdown.Item>
                 <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>
                   <PersonDashFill />&nbsp;Sign&nbsp;out
