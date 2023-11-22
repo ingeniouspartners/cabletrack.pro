@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import { useTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import { Companies } from '../../api/company/Companies';
-import swal from 'sweetalert';
 import CompanyEdit from '../components/CompanyEdit';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -17,9 +18,9 @@ const EditCompany = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = Companies.collection.findOne(_id);
+    const company = Companies.collection.findOne(_id);
     return {
-      doc: document,
+      doc: company,
       ready: rdy,
     };
   }, [_id]);
