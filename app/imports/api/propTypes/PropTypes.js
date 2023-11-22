@@ -46,8 +46,6 @@ const PropTypeCable = PropTypes.shape({
   voltageCable: PropTypes.string.isRequired,
   voltageTest: PropTypes.string.isRequired,
   notes: PropTypes.string,
-  users: PropTypes.arrayOf(PropTypes.string).isRequired,
-  owners: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
 const PropTypeAddress = PropTypes.shape({
@@ -72,7 +70,6 @@ const PropTypeProject = PropTypes.shape({
   jobFax: PropTypes.string,
   jobEmail: PropTypes.string,
   notes: PropTypes.string,
-  owners: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
 const PropTypeCompany = PropTypes.shape({
@@ -83,7 +80,6 @@ const PropTypeCompany = PropTypes.shape({
   fax: PropTypes.string,
   email: PropTypes.string,
   logoURL: PropTypes.string,
-  owners: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
 export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity };

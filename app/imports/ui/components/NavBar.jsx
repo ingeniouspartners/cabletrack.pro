@@ -6,15 +6,17 @@ import { Roles } from 'meteor/alanning:roles';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
 import { PathHome, PathListCompany, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathListProject, PathViewUser } from '../../api/navigation/Navigation';
-import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleListCompanyAll, RoleListCompany } from '../../api/role/Roles';
+// import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleListCompanyAll, RoleListCompany } from '../../api/role/Roles';
+import LoadingSpinner from './LoadingSpinner';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { currentUser } = useTracker(() => ({
-    currentUser: Meteor.user() ? Meteor.user() : '',
-  }), []);
-
-  return (
+  const { ready, currentUser } = useTracker(() => {
+    const sub = Roles.subscription;
+    const rdy = sub.ready();
+    return { ready: rdy, currentUser: Meteor.user() };
+  });
+  return (ready ? (
     <Navbar id="navbar" className="text-white" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
@@ -23,15 +25,9 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
-            {Roles.userIsInRole(Meteor.userId(), [RoleListCompany, RoleListCompanyAll]) ? (
-              <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
-            ) : ('')}
-            {Roles.userIsInRole(Meteor.userId(), [RoleViewCompany]) ? (
-              <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>
-            ) : ('')}
-            {Roles.userIsInRole(Meteor.userId(), [RoleListProject, RoleListProjectOwned, RoleListProjectAll]) ? (
-              <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>
-            ) : ('')}
+            <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
+            <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>
+            <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             {!currentUser ? (
@@ -57,7 +53,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
+  ) : <LoadingSpinner />);
 };
 
 export default NavBar;
