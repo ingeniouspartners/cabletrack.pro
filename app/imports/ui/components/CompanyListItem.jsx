@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { CombinePath, PathViewCompany, PathEditCompany, ParamCompanyID } from '../../api/navigation/Navigation';
+import { formatAddress } from '../../api/schema/Schemas';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CompanyListItem = ({ company }) => (
   <tr>
     <td><Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>{company.name}</Link></td>
-    <td>{company.description}</td>
+    <td>{formatAddress(company.address)}</td>
     <td>
       <Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}><FileEarmarkFill /></Link>
     </td>

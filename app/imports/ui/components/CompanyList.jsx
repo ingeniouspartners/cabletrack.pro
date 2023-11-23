@@ -17,7 +17,7 @@ const CompanyList = ({ companies }) => (
       </tr>
       <tr>
         <th>Name</th>
-        <th>Description</th>
+        <th>Address</th>
         <th>View</th>
         <th>Edit</th>
       </tr>

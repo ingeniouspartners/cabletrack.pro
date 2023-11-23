@@ -5,15 +5,24 @@ const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
 
 const addressSchema = new SimpleSchema(
   {
-    address: { type: String, max: 60 },
+    address: { type: String, max: 60, required: true },
     address2: { type: String, max: 60 },
-    city: { type: String, max: 60 },
-    state: { type: String, regEx: /^[A-Z]{2}$/ },
-    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
-    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, defaultValue: 'US' },
+    city: { type: String, max: 60, required: true },
+    state: { type: String, regEx: /^[A-Z]{2}$/, required: true },
+    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/, required: true },
+    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, required: true, defaultValue: 'US' },
   },
   { requiredByDefault: false },
 );
+
+const formatAddress = (address) => {
+  let formattedAddress = `${address.address}\n`;
+  if (address.address2) {
+    formattedAddress += `${address.address2}\n`;
+  }
+  formattedAddress += `${address.city}, ${address.state} ${address.zip}\n${address.country}`;
+  return formattedAddress;
+};
 
 const measurementTimedSchema = new SimpleSchema({
   timeIndex: Number,
@@ -188,3 +197,4 @@ const userProfileSchema = new SimpleSchema(
 );
 
 export { stateArray, SchemaOwner, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
+export { formatAddress };
