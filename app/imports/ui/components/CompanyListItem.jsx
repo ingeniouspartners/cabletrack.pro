@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
+import { PropTypeCompany } from '../../api/propTypes/PropTypes';
+import { CombinePath, PathViewCompany, PathEditCompany, ParamCompanyID } from '../../api/navigation/Navigation';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CompanyListItem = ({ company }) => (
   <tr>
+    <td><Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>{company.name}</Link></td>
     <td>{company.description}</td>
     <td>
-      <Link to={`/${company._id}`}>View</Link>
+      <Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}><FileEarmarkFill /></Link>
     </td>
     <td>
-      <Link to={`/${company._id}/edit`}>Edit</Link>
+      <Link aria-label="edit" to={CombinePath(PathEditCompany, { [ParamCompanyID]: company._id })}><PencilFill /></Link>
     </td>
   </tr>
 
@@ -18,14 +22,7 @@ const CompanyListItem = ({ company }) => (
 
 // Require a document to be passed to this component. Theoretically only description and id are required.
 CompanyListItem.propTypes = {
-  company: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    address: PropTypes.string,
-    phone: PropTypes.string,
-    fax: PropTypes.string,
-    email: PropTypes.string,
-    logoURL: PropTypes.string,
-  }).isRequired,
+  company: PropTypes.instanceOf(PropTypeCompany).isRequired,
 };
 
 export default CompanyListItem;

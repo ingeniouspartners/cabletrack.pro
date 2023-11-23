@@ -20,8 +20,15 @@ const measurementTimedSchema = new SimpleSchema({
   value: { type: Number, optional: true },
 });
 
+const SchemaOwner = new SimpleSchema(
+  {
+    ownedID: { type: String, max: 20, required: true },
+    ownerID: { type: String, max: 20, required: true },
+  },
+);
+
 // Possible email form in here too?
-const companySchema = new SimpleSchema(
+const SchemaCompany = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
     address: { type: addressSchema },
@@ -29,13 +36,12 @@ const companySchema = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     logoURL: { type: String, regEx: /^https?:\/\//, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const projectSchema = new SimpleSchema(
+const SchemaProject = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
@@ -48,13 +54,12 @@ const projectSchema = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const cableSchema = new SimpleSchema(
+const SchemaCable = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -75,15 +80,12 @@ const cableSchema = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     notes: { type: String, optional: true },
-    users: Array,
-    'users.$': { type: String, max: 20 },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const cablePullInSchema = new SimpleSchema(
+const SchemaCablePullIn = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -96,6 +98,7 @@ const cablePullInSchema = new SimpleSchema(
     tuggerCalibrationID: String,
     maxPullingTension: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
@@ -110,6 +113,7 @@ const cableTerminateSchema = new SimpleSchema(
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -122,6 +126,7 @@ const cableTestContinuitySchema = new SimpleSchema(
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -141,6 +146,7 @@ const cableTestMeggerSchema = new SimpleSchema(
     B_Grd: measurementTimedSchema,
     C_Grd: measurementTimedSchema,
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -161,12 +167,12 @@ const cableTestVLFSchema = new SimpleSchema(
     systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
 const userProfileSchema = new SimpleSchema(
   {
-    userID: { type: String, max: 20, required: true },
     name: { type: String, max: 60, required: true },
     address: { type: String, max: 60 },
     address2: { type: String, max: 60 },
@@ -181,4 +187,4 @@ const userProfileSchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-export { stateArray, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
+export { stateArray, SchemaOwner, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };

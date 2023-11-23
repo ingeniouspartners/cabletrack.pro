@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CompanyList from '../components/CompanyList';
@@ -22,7 +23,15 @@ const ListCompany = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? <CompanyList companies={companies} /> :  <LoadingSpinner />);
+  return (ready ? (
+    <Container className="py-3" fluid>
+      <Row className="justify-content-center">
+        <Col md={7}>
+          <CompanyList companies={companies} />
+        </Col>
+      </Row>
+    </Container>
+  ) : <LoadingSpinner />);
 };
 
 export default ListCompany;

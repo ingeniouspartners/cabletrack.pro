@@ -1,43 +1,29 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { Col, Container, Row, Table } from 'react-bootstrap';
-import { useTracker } from 'meteor/react-meteor-data';
-import { useParams } from 'react-router';
-import { Companies } from '../../api/company/Companies';
-import CompanyViewItem from './CompanyViewItem';
-import LoadingSpinner from './LoadingSpinner';
-import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { PencilFill } from 'react-bootstrap-icons';
+import { PropTypeCompany } from '../../api/propTypes/PropTypes';
+import { CombinePath, PathEditCompany } from '../../api/navigation/Navigation';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
-const CompanyView = (company) => {
-  return ( (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <Col className="text-center">
-            <h2>View Company</h2>
-          </Col>
-          <Table striped bordered hover>
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Zip</th>
-              <th>Phone</th>
-              <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            { doc ? <CompanyViewItem key={doc._id} company={doc} /> : ''}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-    </Container>
-  ) )
+const CompanyView = ({ company }) => {
+  const editPath = CombinePath(PathEditCompany, { companyID: company._id });
+  return (
+    <Card>
+      <Card.Header as="h5">Cable Pull In</Card.Header>
+      <Card.Body>
+        <Card.Title>{company.name}</Card.Title>
+        <Card.Subtitle>{company.description}</Card.Subtitle>
+        <Card.Text>{company.notes}</Card.Text>
+        <Card.Footer>
+          <Link to={editPath}><PencilFill /></Link>
+        </Card.Footer>
+      </Card.Body>
+    </Card>
+  );
 };
 
 CompanyView.propTypes = {
-  company: PropTypes.arrayOf(Object),
+  company: PropTypeCompany.isRequired,
 };
 export default CompanyView;

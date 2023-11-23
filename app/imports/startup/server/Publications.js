@@ -10,7 +10,10 @@ import { UserProfiles } from '../../api/user/UserProfiles';
 // alanning:Roles.js publication
 // Recommended code to publish Roles.js for each user.
 Meteor.publish(null, function () {
-  return Meteor.roles.find({});
+  if (Meteor.userId()) {
+    return Meteor.roleAssignment.find({ 'user._id': Meteor.userId() });
+  }
+  return this.ready();
 });
 
 // User-level publication.

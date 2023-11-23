@@ -1,17 +1,17 @@
 import { Mongo } from 'meteor/mongo';
-import { SchemaCable } from '../schema/Schemas';
+import { SchemaOwner } from '../schema/Schemas';
 
 /**
- * The CablesCollection. It encapsulates state and variable values for cables.
+ * The OwnersCollection. It encapsulates state and variable values for projects.
  */
-class CablesCollection {
+class OwnersCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'CablesCollection';
+    this.name = 'OwnersCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = SchemaCable;
+    this.schema = SchemaOwner;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
@@ -21,7 +21,7 @@ class CablesCollection {
 }
 
 /**
- * The singleton instance of the CableCollection.
- * @type {CablesCollection}
+ * The singleton instance of the OwnerCollection.
+ * @type {OwnersCollection}
  */
-export const Cables = new CablesCollection();
+export const Owners = new OwnersCollection();
