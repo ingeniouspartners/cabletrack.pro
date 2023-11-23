@@ -3,49 +3,51 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
-import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { PathHome, PathListCompany, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathListProject, PathViewUser } from '../../api/navigation/Navigation';
-// import { RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleListCompanyAll, RoleListCompany } from '../../api/role/Roles';
-import LoadingSpinner from './LoadingSpinner';
+import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
+import { PersonFill, PersonPlusFill, PersonDashFill } from 'react-bootstrap-icons';
+import { PathHome, PathSignIn, PathSignUp, PathSignOut, PathListCompany, PathViewCompany, PathViewProject, PathViewUser } from '../../api/navigation/Navigation';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { ready, currentUser } = useTracker(() => {
-    const sub = Roles.subscription;
-    const rdy = sub.ready();
-    return { ready: rdy, currentUser: Meteor.user() };
-  });
-  return (ready ? (
+  const { currentUser, currentCo } = useTracker(() => ({
+    currentUser: Meteor.user() ? Meteor.user().username : '',
+    currentCo: Meteor.user() ? 'xyz' : '',
+  }), []);
+
+  return (
     <Navbar id="navbar" className="text-white" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to={PathHome}>
-          <h2><Image src="/images/logo.png" alt="CableTrack PRO" /></h2>
+          { currentCo ? ([<h2 className="company-logo">{currentCo}</h2>]) : ([<h2><Image className="app-logo" src="/images/logo.png" alt="CableTrack PRO" /></h2>]) }
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
-            <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany} key="listCompany">Companies</Nav.Link>
-            <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany} key="viewCompany">Company</Nav.Link>
-            <Nav.Link id="list-project-nav" as={NavLink} to={PathListProject} key="listProject">Projects</Nav.Link>
+            {currentUser ? ([
+              <Nav.Link id="view-company-nav" as={NavLink} to={PathViewCompany}>Company</Nav.Link>,
+              <Nav.Link id="list-project-nav" as={NavLink} to={PathViewProject}>Projects</Nav.Link>,
+            ]) : ''}
+            {Roles.userIsInRole(Meteor.userId(), 'GlobalAdmin') ? (
+              <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany}>Companies</Nav.Link>
+            ) : ''}
           </Nav>
           <Nav className="justify-content-end">
-            {!currentUser ? (
+            {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">
                 <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to={PathSignIn}>
-                  <PersonFill />&nbsp;Sign&nbsp;in
+                  <PersonFill /> Sign in
                 </NavDropdown.Item>
                 <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to={PathSignUp}>
-                  <PersonPlusFill />&nbsp;Sign&nbsp;up
+                  <PersonPlusFill /> Sign up
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <NavDropdown id="navbar-current-user" title={currentUser.username}>
+              <NavDropdown id="navbar-current-user" title={currentUser}>
                 <NavDropdown.Item id="navbar-profile" as={NavLink} to={PathViewUser}>
-                  <PersonFill />&nbsp;Profile
+                  <PersonFill /> Profile
                 </NavDropdown.Item>
                 <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>
-                  <PersonDashFill />&nbsp;Sign&nbsp;out
+                  <PersonDashFill /> Sign out
                 </NavDropdown.Item>
               </NavDropdown>
             )}
@@ -53,7 +55,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  ) : <LoadingSpinner />);
+  );
 };
 
 export default NavBar;
