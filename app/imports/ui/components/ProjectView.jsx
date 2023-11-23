@@ -1,43 +1,57 @@
 import React from 'react';
-import { Button, Col, Row, Container } from 'react-bootstrap';
+import { Button, Col, Row, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as CTPNav from '../../api/navigation/Navigation';
+
 import { ParamProjectID } from '../../api/navigation/Navigation';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const ProjectView = ({ project }) => (
   <Container className="py-3">
-    <Row className="justify-content-center">
-      <Col className="text-center">
-        <Row>
-          <Col> </Col>
-          <Col><h2>{project.name}</h2></Col>
-          <Col><Link to={CTPNav.PathEditProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">Edit</Button></Link></Col>
-        </Row>
-        <h5>{project.code}</h5>
-      </Col>
-      <h5>{project.contract}</h5>
-      <h5>{project.bidNumber}</h5>
-      <h5>{project.jobPhone}</h5>
-      <h5>{project.jobFax}</h5>
-      <h5>{project.jobEmail}</h5>
-      <h5>{project.notes}</h5>
-      <h1> Mail Address </h1>
-      <h5>{project.mailAddress.address}</h5>
-      <h5>{project.mailAddress.address2}</h5>
-      <h5>{project.mailAddress.city}</h5>
-      <h5>{project.mailAddress.state}</h5>
-      <h5>{project.mailAddress.zip}</h5>
-      <h5>{project.mailAddress.country}</h5>
-      <h1> Ship Address </h1>
-      <h5>{project.shipAddress.address}</h5>
-      <h5>{project.shipAddress.address2}</h5>
-      <h5>{project.shipAddress.city}</h5>
-      <h5>{project.shipAddress.state}</h5>
-      <h5>{project.shipAddress.zip}</h5>
-      <h5>{project.shipAddress.country}</h5>
-    </Row>
+    <Card>
+      <Row className="justify-content-center">
+        <Col className="text-center">
+          <Row>
+            <Col> </Col>
+            <Col><h1>{project.name}</h1></Col>
+            <Col><Link to={CTPNav.PathEditProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">Edit</Button></Link></Col>
+          </Row>
+          <h3>{project.code}</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mt-3 mb-3">
+          <h5>Contract: {project.contract}</h5>
+          <h5>Bid Number: {project.bidNumber}</h5>
+          <h5>Phone: {project.jobPhone}</h5>
+          <h5>Fax: {project.jobFax}</h5>
+          <h5>Email: {project.jobEmail}</h5>
+          <h5>Notes: {project.notes}</h5>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mt-3 mb-3">
+          <h3> Mail Address </h3>
+          <h5>{project.mailAddress.address}</h5>
+          <h5>{project.mailAddress.address2}</h5>
+          <h5>{project.mailAddress.city}</h5>
+          <h5>{project.mailAddress.state}</h5>
+          <h5>{project.mailAddress.zip}</h5>
+          <h5>{project.mailAddress.country}</h5>
+        </Col>
+        <Col className="mt-3 mb-3">
+          <h3> Ship Address </h3>
+          <h5>{project.shipAddress.address}</h5>
+          <h5>{project.shipAddress.address2}</h5>
+          <h5>{project.shipAddress.city}</h5>
+          <h5>{project.shipAddress.state}</h5>
+          <h5>{project.shipAddress.zip}</h5>
+          <h5>{project.shipAddress.country}</h5>
+        </Col>
+      </Row>
+    </Card>
+
   </Container>
 );
 

@@ -33,7 +33,7 @@
       "jobFax": "123-456-7891",
       "jobEmail": "example@example.com",
       "notes": "This is an example project.",
-      "ownerNames": ["ceo@foo.com", "pm@foo.com", "admin@foo.com"],
+      "ownerNames": ["ceo@foo.com", "pm@foo.com", "admin@foo.com", "elec@foo.com"],
       "owners": [] }
   ],
 

@@ -14,7 +14,6 @@ const ListProject = () => {
     // Get access to Stuff documents.
     const subscription = Meteor.subscribe(Projects.userPublicationName);
     // Determine if the subscription is ready
-    console.log('something');
     const rdy = subscription.ready();
     // Get the Stuff documents
     const projectItems = Projects.collection.find({}).fetch();

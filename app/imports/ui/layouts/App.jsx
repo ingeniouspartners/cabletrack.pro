@@ -90,7 +90,7 @@ const RoleProtectedRoute = ({ roles, children }) => {
     return <Navigate to={CTPNav.PathSignIn} />;
   }
   const isInRole = Roles.userIsInRole(Meteor.userId(), roles);
-  return (isLogged && isInRole) ? children : <Navigate to={CTPNav.NotAuthorized} />;
+  return (isLogged && isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
 };
 
 // Require a component and location to be passed to each RoleProtectedRoute.
