@@ -128,8 +128,7 @@ const App = () => {
  */
 const RoleProtectedRoute = ({ user, roles, children }) => {
   if (user) {
-    const isInRole = Roles.userIsInRole(user, roles);
-    console.log(`RoleProtectedRoute: ${user.username} is in role ${roles} = ${isInRole}`);
+    // const isInRole = Roles.userIsInRole(user, roles);
     // return (isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
     return children;
   }
