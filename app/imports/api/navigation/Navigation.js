@@ -42,11 +42,11 @@ const PathNotFound = '/notfound';
 
 const CombinePath = (path, pathParams) => {
   let combinedPath = path;
-  Object.keys(pathParams).forEach((key) => {
-    // console.log(`key=${key}, value=${pathParams[key]}`);
-    combinedPath = combinedPath.replace(`:${key}`, pathParams[key]);
-    // console.log(`combinedPath=${combinedPath}`);
-  });
+  if (combinedPath && pathParams) {
+    Object.keys(pathParams).forEach((key) => {
+      combinedPath = combinedPath.replace(`:${key}`, pathParams[key]);
+    });
+  }
   return combinedPath;
 };
 
