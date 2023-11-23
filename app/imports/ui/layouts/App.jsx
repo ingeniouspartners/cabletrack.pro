@@ -10,28 +10,27 @@ import * as CTPNav from '../../api/navigation/Navigation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-
-const Landing = lazy(() => import('../pages/Landing'));
-const NotFound = lazy(() => import('../pages/NotFound'));
-const SignUp = lazy(() => import('../pages/SignUp'));
-const SignOut = lazy(() => import('../pages/SignOut'));
-const SignIn = lazy(() => import('../pages/SignIn'));
-const NotAuthorized = lazy(() => import('../pages/NotAuthorized'));
-const ListCompany = lazy(() => import('../pages/ListCompany'));
-const EditCompany = lazy(() => import('../pages/EditCompany'));
-const ViewCompany = lazy(() => import('../pages/ViewCompany'));
-const ListUser = lazy(() => import('../pages/ListUser'));
-const EditUser = lazy(() => import('../pages/EditUser'));
-const ViewUser = lazy(() => import('../pages/ViewUser'));
-const ListProject = lazy(() => import('../pages/ListProject'));
-const EditProject = lazy(() => import('../pages/EditProject'));
-const ViewProject = lazy(() => import('../pages/ViewProject'));
-const ListCable = lazy(() => import('../pages/ListCable'));
-const EditCable = lazy(() => import('../pages/EditCable'));
-const ViewCable = lazy(() => import('../pages/ViewCable'));
-const ListCablePullIn = lazy(() => import('../pages/ListCablePullIn'));
-const ViewCablePullIn = lazy(() => import('../pages/ViewCablePullIn'));
-const EditCablePullIn = lazy(() => import('../pages/EditCablePullIn'));
+import Landing from '../pages/Landing';
+import NotFound from '../pages/NotFound';
+import SignUp from '../pages/SignUp';
+import SignOut from '../pages/SignOut';
+import SignIn from '../pages/SignIn';
+import NotAuthorized from '../pages/NotAuthorized';
+import ListCompany from '../pages/ListCompany';
+import EditCompany from '../pages/EditCompany';
+import ViewCompany from '../pages/ViewCompany';
+import ListUser from '../pages/ListUser';
+import EditUser from '../pages/EditUser';
+import ViewUser from '../pages/ViewUser';
+import ListProject from '../pages/ListProject';
+import EditProject from '../pages/EditProject';
+import ViewProject from '../pages/ViewProject';
+import ListCable from '../pages/ListCable';
+import EditCable from '../pages/EditCable';
+import ViewCable from '../pages/ViewCable';
+import ListCablePullIn from '../pages/ListCablePullIn';
+import ViewCablePullIn from '../pages/ViewCablePullIn';
+import EditCablePullIn from '../pages/EditCablePullIn';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -129,6 +128,8 @@ const App = () => {
 const RoleProtectedRoute = ({ user, roles, children }) => {
   if (user) {
     // const isInRole = Roles.userIsInRole(user, roles);
+    // eslint-disable-next-line no-console
+    console.log('RoleProtectedRoute', user, roles);
     // return (isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
     return children;
   }
