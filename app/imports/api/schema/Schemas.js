@@ -36,6 +36,7 @@ const SchemaCompany = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     logoURL: { type: String, regEx: /^https?:\/\//, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
@@ -53,6 +54,7 @@ const SchemaProject = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
@@ -78,6 +80,7 @@ const SchemaCable = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
@@ -95,6 +98,7 @@ const SchemaCablePullIn = new SimpleSchema(
     tuggerCalibrationID: String,
     maxPullingTension: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
@@ -109,6 +113,7 @@ const cableTerminateSchema = new SimpleSchema(
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -121,6 +126,7 @@ const cableTestContinuitySchema = new SimpleSchema(
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -140,6 +146,7 @@ const cableTestMeggerSchema = new SimpleSchema(
     B_Grd: measurementTimedSchema,
     C_Grd: measurementTimedSchema,
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
@@ -160,12 +167,12 @@ const cableTestVLFSchema = new SimpleSchema(
     systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
 );
 
 const userProfileSchema = new SimpleSchema(
   {
-    userID: { type: String, max: 20, required: true },
     name: { type: String, max: 60, required: true },
     address: { type: String, max: 60 },
     address2: { type: String, max: 60 },

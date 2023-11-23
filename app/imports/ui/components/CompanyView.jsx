@@ -7,7 +7,7 @@ import { CombinePath, PathEditCompany } from '../../api/navigation/Navigation';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const CompanyView = ({ company }) => {
-  const editPath = CombinePath(PathEditCompany, company);
+  const editPath = CombinePath(PathEditCompany, { companyID: company._id });
   return (
     <Card>
       <Card.Header as="h5">Cable Pull In</Card.Header>

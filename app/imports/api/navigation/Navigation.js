@@ -2,7 +2,6 @@ const ParamCompanyID = 'companyID';
 const ParamProjectID = 'projectID';
 const ParamCableID = 'cableID';
 const ParamCablePullInID = 'pullinID';
-const ParamID = '_id';
 const ParamUserID = 'user_id';
 
 const PathHome = '/';
@@ -10,47 +9,55 @@ const PathSignIn = '/signin';
 const PathSignUp = '/signup';
 const PathSignOut = '/signout';
 const PathListCompany = '/companies';
-const PathViewCompany = `/company/:${ParamID}`;
+const PathViewCompany = `/company/:${ParamCompanyID}`;
 const PathAddCompany = '/company/add';
 const PathEditCompany = `${PathViewCompany}/edit`;
 const PathDeleteCompany = `${PathViewCompany}/delete`;
-const PathSubCompany = `/company/:${ParamCompanyID}`;
-const PathListProject = `${PathSubCompany}/projects`;
-const PathViewProject = `${PathSubCompany}/project/:${ParamID}`;
-const PathAddProject = `${PathSubCompany}/project/add`;
+
+const PathListProject = `${PathViewCompany}/projects`;
+const PathViewProject = `${PathViewCompany}/project/:${ParamProjectID}`;
+const PathAddProject = `${PathViewCompany}/project/add`;
 const PathEditProject = `${PathViewProject}/edit`;
 const PathDeleteProject = `${PathViewProject}/delete`;
-const PathSubProject = `${PathSubCompany}/project/:${ParamProjectID}`;
-const PathListCable = `${PathSubProject}/cables`;
-const PathViewCable = `${PathSubProject}/cable/:${ParamID}`;
-const PathAddCable = `${PathSubProject}/cable/add`;
+
+const PathListCable = `${PathViewProject}/cables`;
+const PathViewCable = `${PathViewProject}/cable/:${ParamCableID}`;
+const PathAddCable = `${PathViewProject}/cable/add`;
 const PathEditCable = `${PathViewCable}/edit`;
 const PathDeleteCable = `${PathViewCable}/delete`;
-const PathSubCable = `${PathSubProject}/cable/:${ParamCableID}`;
-const PathListCablePullIn = `${PathSubCable}/pullins`;
-const PathViewCablePullIn = `${PathSubCable}/pullin/:${ParamID}`;
-const PathAddCablePullIn = `${PathSubCable}/pullin/add`;
+
+const PathListCablePullIn = `${PathViewCable}/pullins`;
+const PathViewCablePullIn = `${PathViewCable}/pullin/:${ParamCablePullInID}`;
+const PathAddCablePullIn = `${PathViewCable}/pullin/add`;
 const PathEditCablePullIn = `${PathViewCablePullIn}/edit`;
 const PathDeleteCablePullIn = `${PathViewCablePullIn}/delete`;
-const PathListUser = `${PathSubCompany}/users`;
-const PathViewUser = `${PathSubCompany}/user/:${ParamID}`;
-const PathAddUser = `${PathSubCompany}/user/add`;
+
+const PathListUser = '/users';
+const PathViewUser = `/user/:${ParamUserID}`;
+const PathAddUser = '/user/add';
 const PathEditUser = `${PathViewUser}/edit`;
 const PathDeleteUser = `${PathViewUser}/delete`;
+
 const PathNotAuthorized = '/notauthorized';
 const PathNotFound = '/notfound';
 
-const CombinePath = (path, pathParams) => {
+/**
+ * Combines the path with the given parameters to result in a navigable path.
+ * @param path - A path with parameters to be replaced
+ * @param obj - An object containing the parameters to be replaced in the path
+ * @returns the combined path with with the parameters replaced
+ */
+const CombinePath = (path, obj) => {
   let combinedPath = path;
-  if (combinedPath && pathParams) {
-    Object.keys(pathParams).forEach((key) => {
-      combinedPath = combinedPath.replace(`:${key}`, pathParams[key]);
+  if (combinedPath && obj) {
+    Object.keys(obj).forEach((key) => {
+      combinedPath = combinedPath.replace(`:${key}`, obj[key]);
     });
   }
   return combinedPath;
 };
 
-export { ParamCompanyID, ParamProjectID, ParamCableID, ParamCablePullInID, ParamUserID, ParamID };
+export { ParamCompanyID, ParamProjectID, ParamCableID, ParamCablePullInID, ParamUserID };
 export { CombinePath };
 export { PathHome, PathSignIn, PathSignUp, PathSignOut, PathNotAuthorized, PathNotFound };
 export { PathListCompany, PathViewCompany, PathAddCompany, PathEditCompany, PathDeleteCompany };
