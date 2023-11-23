@@ -12,10 +12,11 @@ const CompanyList = ({ companies }) => (
   <Table striped bordered hover>
     <thead>
       <tr>
-        <th colSpan="2"><h2>List Company</h2></th>
-        <th><Link to={CombinePath(PathAddCompany, {})}><FileEarmarkPlusFill /></Link></th>
+        <th colSpan="3"><h2>List Company</h2></th>
+        <th><Link aria-label="add" to={CombinePath(PathAddCompany, {})}><FileEarmarkPlusFill /></Link></th>
       </tr>
       <tr>
+        <th>Name</th>
         <th>Description</th>
         <th>View</th>
         <th>Edit</th>

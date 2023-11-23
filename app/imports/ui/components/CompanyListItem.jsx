@@ -8,12 +8,13 @@ import { CombinePath, PathViewCompany, PathEditCompany } from '../../api/navigat
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CompanyListItem = ({ company }) => (
   <tr>
-    <td>{company.name}</td>
+    <td><Link aria-label="view" to={CombinePath(PathViewCompany, company)}>{company.name}</Link></td>
+    <td>{company.description}</td>
     <td>
-      <Link to={CombinePath(PathViewCompany, company)}><FileEarmarkFill /></Link>
+      <Link aria-label="view" to={CombinePath(PathViewCompany, company)}><FileEarmarkFill /></Link>
     </td>
     <td>
-      <Link to={CombinePath(PathEditCompany, company)}><PencilFill /></Link>
+      <Link aria-label="edit" to={CombinePath(PathEditCompany, company)}><PencilFill /></Link>
     </td>
   </tr>
 
