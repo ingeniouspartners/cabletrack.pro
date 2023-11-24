@@ -16,6 +16,9 @@ const addressSchema = new SimpleSchema(
 );
 
 const formatAddress = (address) => {
+  if (!address) {
+    return '';
+  }
   let formattedAddress = `${address.address}\n`;
   if (address.address2) {
     formattedAddress += `${address.address2}\n`;
