@@ -38,7 +38,7 @@ const addCompany = (company) => {
   const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
   const newCompany = Companies.collection.findOne(Companies.collection.insert(copy));
-  console.log(CombinePath(PathViewCompany, newCompany));
+  console.log(CombinePath(PathViewCompany, { companyID: newCompany._id }));
   ownerNames.forEach(ownerName => addOwner(newCompany, ownerName));
 };
 
@@ -59,7 +59,7 @@ const addProject = (project) => {
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
   const newProject = Projects.collection.findOne(Projects.collection.insert(copy));
-  console.log(CombinePath(PathViewProject, newProject));
+  console.log(CombinePath(PathViewProject, { companyID: newProject.companyID, projectID: newProject._id }));
   ownerNames.forEach(ownerName => addOwner(newProject, ownerName));
 };
 
@@ -81,9 +81,9 @@ const addCable = (cable) => {
   copy.company = undefined;
   copy.projectID = resolveNamedObjectId(Projects.collection, copy.project);
   copy.project = undefined;
-  Cables.collection.insert(copy);
-  const newCable = Cables.collection.findOne(Cables.collection.insert(copy));
-  console.log(CombinePath(PathViewCable, newCable));
+  const cableID = Cables.collection.insert(copy);
+  const newCable = Cables.collection.findOne(cableID);
+  console.log(CombinePath(PathViewCable, { companyID: newCable.companyID, projectID: newCable.projectID, cableID: newCable._id }));
   ownerNames.forEach(ownerName => addOwner(newCable, ownerName));
 };
 
@@ -106,8 +106,9 @@ const addCablePullIn = (cablePullIn) => {
   copy.cable = undefined;
   copy.personInstalled = resolveUser(copy.installerName);
   copy.installerName = undefined;
-  const newCablePullIn = CablePullIns.collection.findOne(CablePullIns.collection.insert(copy));
-  console.log(CombinePath(PathViewCablePullIn, newCablePullIn));
+  const pullinID = CablePullIns.collection.insert(copy);
+  const newCablePullIn = CablePullIns.collection.findOne(pullinID);
+  console.log(CombinePath(PathViewCablePullIn, { companyID: newCablePullIn.companyID, projectID: newCablePullIn.projectID, cableID: newCablePullIn.cableID, cablePullInID: newCablePullIn._id }));
 };
 
 if (CablePullIns.collection.find().count() === 0) {

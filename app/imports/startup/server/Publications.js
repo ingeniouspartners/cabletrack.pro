@@ -5,7 +5,6 @@ import { Projects } from '../../api/project/Projects';
 import { Cables } from '../../api/cable/Cables';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 // import { RoleListCompanyAll, RoleListProjectAll, RoleListCableAll, RoleListCablePullInAll, RoleListUserAll } from '../../api/role/Roles';
-import { UserProfiles } from '../../api/user/UserProfiles';
 
 // alanning:Roles.js publication
 // Recommended code to publish Roles.js for each user.
@@ -49,14 +48,6 @@ Meteor.publish(CablePullIns.userPublicationName, function () {
   return this.ready();
 });
 
-// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
-Meteor.publish(UserProfiles.userPublicationName, function () {
-  if (this.userId) {
-    return UserProfiles.collection.find({});
-  }
-  return this.ready();
-});
-
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Companies.adminPublicationName, function () {
@@ -86,14 +77,6 @@ Meteor.publish(Cables.adminPublicationName, function () {
 Meteor.publish(CablePullIns.adminPublicationName, function () {
   if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListCablePullInAll)) {
     return CablePullIns.collection.find();
-  }
-  return this.ready();
-});
-
-// If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
-Meteor.publish(UserProfiles.adminPublicationName, function () {
-  if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListUserAll)) {
-    return UserProfiles.collection.find();
   }
   return this.ready();
 });
