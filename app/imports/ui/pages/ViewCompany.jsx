@@ -2,11 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import CompanyView from '../components/CompanyView';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { Col, Container, Row } from 'react-bootstrap';
-import CompanyEdit from '../components/CompanyEdit';
 
 /* Please replace the guts of this page with the right code. */
 const ViewCompany = () => {
