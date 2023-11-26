@@ -17,39 +17,48 @@ const ProjectView = ({ project }) => (
             <Col><h1>{project.name}</h1></Col>
             <Col><Link to={CTPNav.PathEditProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">Edit</Button></Link></Col>
           </Row>
-          <h3>{project.code}</h3>
         </Col>
       </Row>
       <Row>
         <Col className="mt-3 mb-3">
+          <h5>Code: {project.code}</h5>
           <h5>Contract: {project.contract}</h5>
           <h5>Bid Number: {project.bidNumber}</h5>
-          <h5>Phone: {project.jobPhone}</h5>
-          <h5>Fax: {project.jobFax}</h5>
+        </Col>
+        <Col className="mt-3 mb-3">
+          <h5>Phone #: {project.jobPhone}</h5>
+          <h5>Fax #: {project.jobFax}</h5>
           <h5>Email: {project.jobEmail}</h5>
-          <h5>Notes: {project.notes}</h5>
         </Col>
       </Row>
       <Row>
-        <Col className="mt-3 mb-3">
-          <h3> Mail Address </h3>
-          <h5>{project.mailAddress.address}</h5>
-          <h5>{project.mailAddress.address2}</h5>
-          <h5>{project.mailAddress.city}</h5>
-          <h5>{project.mailAddress.state}</h5>
-          <h5>{project.mailAddress.zip}</h5>
-          <h5>{project.mailAddress.country}</h5>
+        <Col><h4>Mail Address</h4></Col>
+        <Col><h4>Ship Address</h4></Col>
+      </Row>
+      <Row>
+        <Col className="mt-2 mb-3">
+          <h5>Address: {project.mailAddress.address}</h5>
+          <h5>Address 2: {project.mailAddress.address2}</h5>
+          <h5>City: {project.mailAddress.city}</h5>
         </Col>
-        <Col className="mt-3 mb-3">
-          <h3> Ship Address </h3>
-          <h5>{project.shipAddress.address}</h5>
-          <h5>{project.shipAddress.address2}</h5>
-          <h5>{project.shipAddress.city}</h5>
-          <h5>{project.shipAddress.state}</h5>
-          <h5>{project.shipAddress.zip}</h5>
-          <h5>{project.shipAddress.country}</h5>
+        <Col className="mt-1 mb-3">
+          <h5>State: {project.mailAddress.state}</h5>
+          <h5>Zip: {project.mailAddress.zip}</h5>
+          <h5>Country: {project.mailAddress.country}</h5>
+        </Col>
+        <Col className="mt-2 mb-3">
+          <h5>Address: {project.shipAddress.address}</h5>
+          <h5>Address 2: {project.shipAddress.address2}</h5>
+          <h5>City: {project.shipAddress.city}</h5>
+        </Col>
+        <Col className="mt-1 mb-3">
+          <h5>State: {project.shipAddress.state}</h5>
+          <h5>Zip: {project.shipAddress.zip}</h5>
+          <h5>Country: {project.shipAddress.country}</h5>
         </Col>
       </Row>
+      <h4>Notes:</h4>
+      <h5>{project.notes}</h5>
     </Card>
 
   </Container>
