@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { SchemaCompany } from '../schema/Schemas';
+import { DBSchemaCompany } from '../schema/DBSchemas';
+import { FormSchemaCompany } from '../schema/FormSchemas';
 
 /**
  * The CompaniesCollection. It encapsulates state and variable values for Companies.
@@ -11,9 +12,10 @@ class CompaniesCollection {
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = SchemaCompany;
+    this.formSchema = FormSchemaCompany;
+    this.dbSchema = DBSchemaCompany;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
-    this.collection.attachSchema(this.schema);
+    this.collection.attachSchema(this.dbSchema);
     // Define names for publications and subscriptions
     this.userPublicationName = `${this.name}.publication.user`;
     this.adminPublicationName = `${this.name}.publication.admin`;

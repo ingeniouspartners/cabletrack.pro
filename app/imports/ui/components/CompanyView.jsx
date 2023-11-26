@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { CombinePath, PathEditCompany } from '../../api/navigation/Navigation';
-import { formatAddress } from '../../api/schema/Schemas';
+import { formatAddress } from '../../api/schema/FormSchemas';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const CompanyView = ({ company }) => {

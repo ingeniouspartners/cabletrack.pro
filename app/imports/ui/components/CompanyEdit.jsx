@@ -5,9 +5,9 @@ import { AutoForm, ErrorsField, HiddenField, SelectField, SubmitField, TextField
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { Companies } from '../../api/company/Companies';
-import { stateArray } from '../../api/schema/Schemas';
+import { stateArray } from '../../api/schema/FormSchemas';
 
-const bridge = new SimpleSchema2Bridge(Companies.schema);
+const bridge = new SimpleSchema2Bridge(Companies.formSchema);
 
 /* Renders the EditStuff page for editing a single document. */
 const CompanyEdit = ({ company }) => {

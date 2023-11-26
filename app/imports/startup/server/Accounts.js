@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { CableTrackProRoles, GlobalAdminRoles, CompanyOwnerRoles, ProjectOwnerRoles, ElectricianRoles, RoleGlobalAdmin, RoleCompanyOwner, RoleProjectOwner, RoleElectrician } from '../../api/role/Roles';
-import { SchemaUserProfile } from '../../api/schema/Schemas';
+import { DBSchemaUserProfile } from '../../api/schema/DBSchemas';
 
 // Support for playing D&D: Roll 3d6 for dexterity.
 Accounts.onCreateUser((options, user) => {
@@ -35,7 +35,7 @@ Accounts.onCreateUser((options, user) => {
 
 // Ensuring every user has an email address, should be in server-side code
 Accounts.validateNewUser((user) => {
-  SchemaUserProfile.validate(user);
+  DBSchemaUserProfile.validate(user);
 
   // Return true to allow user creation to proceed
   return true;
