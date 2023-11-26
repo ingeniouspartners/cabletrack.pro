@@ -1,88 +1,80 @@
 import SimpleSchema from 'simpl-schema';
 
-const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
-  'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
-
 const addressSchema = new SimpleSchema(
   {
     address: { type: String, max: 60 },
     address2: { type: String, max: 60 },
     city: { type: String, max: 60 },
-    state: { type: String, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true },
-    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/, skipRegExCheckForEmptyStrings: true },
-    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, skipRegExCheckForEmptyStrings: true, defaultValue: 'US' },
+    state: { type: String, regEx: /^[A-Z]{2}$/ },
+    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
+    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/ },
   },
   { requiredByDefault: false },
 );
 
-const formatAddress = (address) => {
-  if (!address) {
-    return '';
-  }
-  let formattedAddress = `${address.address}\n`;
-  if (address.address2) {
-    formattedAddress += `${address.address2}\n`;
-  }
-  formattedAddress += `${address.city}, ${address.state} ${address.zip}\n${address.country}`;
-  return formattedAddress;
-};
-
-formatAddress.propTypes = {
-  address: addressSchema,
-};
-
-const measurementTimedSchema = new SimpleSchema({
-  timeIndex: Number,
-  value: { type: Number, optional: true },
-});
-
-const SchemaOwner = new SimpleSchema(
+const measurementTimedSchema = new SimpleSchema(
   {
-    ownedID: { type: String, max: 20, required: true },
+    timeIndex: { type: Number },
+    value: { type: Number },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaOwnedBy = new SimpleSchema(
+  {
     ownerID: { type: String, max: 20, required: true },
+    ownedID: { type: String, max: 20, required: true },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaUsedBy = new SimpleSchema(
+  {
+    userID: { type: String, max: 20, required: true },
+    usedID: { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
 
 // Possible email form in here too?
-const SchemaCompany = new SimpleSchema(
+const DBSchemaCompany = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
     address: { type: addressSchema },
-    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
-    logoURL: { type: String, max: 256, regEx: /^https?:\/\//, skipRegExCheckForEmptyStrings: true, optional: true },
+    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
+    logoURL: { type: String, max: 256, regEx: /^https?:\/\//, optional: true },
     _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const SchemaProject = new SimpleSchema(
+const DBSchemaProject = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
     name: { type: String, max: 60, required: true },
-    contract: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, skipRegExCheckForEmptyStrings: true },
+    contract: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/ },
     bidNumber: { type: String, max: 20 },
     mailAddress: { type: addressSchema, optional: true },
     shipAddress: { type: addressSchema, optional: true },
-    jobPhone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, skipRegExCheckForEmptyStrings: true },
+    jobPhone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
     _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const SchemaCable = new SimpleSchema(
+const DBSchemaCable = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
     name: { type: String, max: 60, required: true },
     description: { type: String, max: 1000, optional: true },
-    costCode: { type: String, max: 10, regEx: /^(\w([\w\\.]{0,9}|[\w-]{0,9}))$/, skipRegExCheckForEmptyStrings: true },
+    costCode: { type: String, max: 10, regEx: /^(\w([\w\\.]{0,9}|[\w-]{0,9}))$/ },
     refDrawingNo: { type: String, max: 30 },
     refDrawingRev: { type: String, max: 20 },
     system: { type: String, max: 30 },
@@ -102,7 +94,7 @@ const SchemaCable = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCablePullIn = new SimpleSchema(
+const DBSchemaCablePullIn = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -121,7 +113,7 @@ const SchemaCablePullIn = new SimpleSchema(
 );
 
 // Just in case not clear, things are required by default.
-const SchemaCableTerminate = new SimpleSchema(
+const DBSchemaCableTerminate = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -135,7 +127,7 @@ const SchemaCableTerminate = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestContinuity = new SimpleSchema(
+const DBSchemaCableTestContinuity = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -149,7 +141,7 @@ const SchemaCableTestContinuity = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestMegger = new SimpleSchema(
+const DBSchemaCableTestMegger = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -170,7 +162,7 @@ const SchemaCableTestMegger = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestVLF = new SimpleSchema(
+const DBSchemaCableTestVLF = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -192,7 +184,7 @@ const SchemaCableTestVLF = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaUserProfile = new SimpleSchema(
+const DBSchemaUserProfile = new SimpleSchema(
   {
     // Ensuring every user has an email address, should be in server-side code
     username: { type: String, max: 20, required: true },
@@ -200,19 +192,17 @@ const SchemaUserProfile = new SimpleSchema(
     'emails.$': { type: Object },
     'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     'emails.$.verified': { type: Boolean, defaultValue: false },
-    password: { type: String, required: true, max: 30 },
     createdAt: { type: Date },
     services: { type: Object, blackbox: true },
     firstName: { type: String, max: 30 },
     lastName: { type: String, max: 30 },
     address: { type: addressSchema },
-    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-    picture: { type: String, max: 256, regEx: /^https?:\/\//, skipRegExCheckForEmptyStrings: true },
+    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    picture: { type: String, max: 256, regEx: /^https?:\/\// },
     _id: { type: String, max: 20 },
   },
   { requiredByDefault: false },
 );
 
-export { stateArray, SchemaOwner, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, SchemaCableTerminate, SchemaCableTestContinuity, SchemaCableTestMegger, SchemaCableTestVLF, SchemaUserProfile };
-export { formatAddress };
+export { DBSchemaOwnedBy, DBSchemaUsedBy, DBSchemaCompany, DBSchemaProject, DBSchemaCable, DBSchemaCablePullIn, DBSchemaCableTerminate, DBSchemaCableTestContinuity, DBSchemaCableTestMegger, DBSchemaCableTestVLF, DBSchemaUserProfile };

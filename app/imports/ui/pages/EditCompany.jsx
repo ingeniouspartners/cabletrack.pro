@@ -12,7 +12,7 @@ const EditCompany = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { companyID } = useParams();
   const location = useLocation();
-  // console.log('EditStuff', _id);
+  // console.log('EditCompany', companyID);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { company, ready } = useTracker(() => {
     // Get access to Stuff documents.

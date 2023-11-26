@@ -23,7 +23,7 @@ const ListCable = () => {
     };
   }, []);
   return (ready ? (
-    CableList(cables)
+    <CableList cables={cables} />
   ) : <LoadingSpinner />);
 };
 

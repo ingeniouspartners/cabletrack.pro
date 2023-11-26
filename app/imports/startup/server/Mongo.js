@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { CombinePath, PathViewCompany, PathViewProject, PathViewCable, PathViewCablePullIn } from '../../api/navigation/Navigation';
-import { Owners } from '../../api/owner/Owners.js';
+import { OwnedBys } from '../../api/owner/OwnedBys.js';
 import { Companies } from '../../api/company/Companies.js';
 import { Projects } from '../../api/project/Projects.js';
 import { Cables } from '../../api/cable/Cables.js';
@@ -21,7 +21,7 @@ const addOwner = (ownedObj, username) => {
       ownedID: ownedObj._id,
       ownerID: owner._id,
     };
-    Owners.collection.insert(owners);
+    OwnedBys.collection.insert(owners);
   }
 };
 

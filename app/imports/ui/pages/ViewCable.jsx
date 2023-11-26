@@ -12,20 +12,20 @@ const ViewCable = () => {
   const { cable_id } = useParams();
   // console.log('CableView', _id);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { doc, ready } = useTracker(() => {
+  const { cable, ready } = useTracker(() => {
     // Get access to Cable documents.
     const subscription = Meteor.subscribe(Cables.userPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = Cables.collection.findOne(cable_id);
+    const cableItem = Cables.collection.findOne(cable_id);
     return {
-      doc: document,
+      cable: cableItem,
       ready: rdy,
     };
   }, [cable_id]);
   return (ready ? (
-    CableView(doc, cable_id)
+    <CableView cable={cable} />
   ) : <LoadingSpinner />);
 };
 
