@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import CompanyView from '../components/CompanyView';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -22,7 +23,15 @@ const ViewCompany = () => {
       ready: rdy,
     };
   }, [companyID]);
-  return (ready ? <CompanyView key={doc._id} company={doc} /> : <LoadingSpinner />);
+  return (ready ? (
+    <Container className="py-3">
+      <Row className="justify-content-center">
+        <Col xs={10}>
+          <CompanyView company={doc} />
+        </Col>
+      </Row>
+    </Container>
+  ) : <LoadingSpinner />);
 };
 
 export default ViewCompany;
