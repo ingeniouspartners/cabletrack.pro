@@ -82,4 +82,21 @@ const PropTypeCompany = PropTypes.shape({
   logoURL: PropTypes.string,
 });
 
-export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity };
+const PropTypeUser = PropTypes.shape({
+  username: { type: String, max: 20, required: true },
+  emails: { type: Array },
+  'emails.$': { type: Object },
+  'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
+  'emails.$.verified': { type: Boolean, defaultValue: false },
+  createdAt: { type: Date },
+  services: { type: Object, blackbox: true },
+  firstName: { type: String, max: 30 },
+  lastName: { type: String, max: 30 },
+  address: { type: PropTypeAddress },
+  phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
+  fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
+  picture: { type: String, max: 256, regEx: /^https?:\/\//, skipRegExCheckForEmptyStrings: true },
+  _id: { type: String, max: 20 },
+});
+
+export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity, PropTypeUser };
