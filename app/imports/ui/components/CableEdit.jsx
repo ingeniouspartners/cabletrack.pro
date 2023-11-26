@@ -5,7 +5,7 @@ import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } 
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Cables } from '../../api/cable/Cables';
 
-const bridge = new SimpleSchema2Bridge(Cables.schema);
+const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const CableEdit = (_cableId, doc) => {
   const submit = (data, formRef) => {

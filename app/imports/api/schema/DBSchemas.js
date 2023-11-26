@@ -1,8 +1,5 @@
 import SimpleSchema from 'simpl-schema';
 
-const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
-  'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
-
 const addressSchema = new SimpleSchema(
   {
     address: { type: String, max: 60 },
@@ -10,42 +7,37 @@ const addressSchema = new SimpleSchema(
     city: { type: String, max: 60 },
     state: { type: String, regEx: /^[A-Z]{2}$/ },
     zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
-    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, defaultValue: 'US' },
+    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/ },
   },
   { requiredByDefault: false },
 );
 
-const formatAddress = (address) => {
-  if (!address) {
-    return '';
-  }
-  let formattedAddress = `${address.address}\n`;
-  if (address.address2) {
-    formattedAddress += `${address.address2}\n`;
-  }
-  formattedAddress += `${address.city}, ${address.state} ${address.zip}\n${address.country}`;
-  return formattedAddress;
-};
-
-formatAddress.propTypes = {
-  address: addressSchema,
-};
-
-const measurementTimedSchema = new SimpleSchema({
-  timeIndex: Number,
-  value: { type: Number, optional: true },
-});
-
-const SchemaOwner = new SimpleSchema(
+const measurementTimedSchema = new SimpleSchema(
   {
-    ownedID: { type: String, max: 20, required: true },
+    timeIndex: { type: Number },
+    value: { type: Number },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaOwnedBy = new SimpleSchema(
+  {
     ownerID: { type: String, max: 20, required: true },
+    ownedID: { type: String, max: 20, required: true },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaUsedBy = new SimpleSchema(
+  {
+    userID: { type: String, max: 20, required: true },
+    usedID: { type: String, max: 20, required: true },
   },
   { requiredByDefault: false },
 );
 
 // Possible email form in here too?
-const SchemaCompany = new SimpleSchema(
+const DBSchemaCompany = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
     address: { type: addressSchema },
@@ -58,7 +50,7 @@ const SchemaCompany = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaProject = new SimpleSchema(
+const DBSchemaProject = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
@@ -76,7 +68,7 @@ const SchemaProject = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCable = new SimpleSchema(
+const DBSchemaCable = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -102,7 +94,7 @@ const SchemaCable = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCablePullIn = new SimpleSchema(
+const DBSchemaCablePullIn = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -121,7 +113,7 @@ const SchemaCablePullIn = new SimpleSchema(
 );
 
 // Just in case not clear, things are required by default.
-const SchemaCableTerminate = new SimpleSchema(
+const DBSchemaCableTerminate = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -135,7 +127,7 @@ const SchemaCableTerminate = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestContinuity = new SimpleSchema(
+const DBSchemaCableTestContinuity = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -149,7 +141,7 @@ const SchemaCableTestContinuity = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestMegger = new SimpleSchema(
+const DBSchemaCableTestMegger = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -170,7 +162,7 @@ const SchemaCableTestMegger = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaCableTestVLF = new SimpleSchema(
+const DBSchemaCableTestVLF = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -192,7 +184,7 @@ const SchemaCableTestVLF = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-const SchemaUserProfile = new SimpleSchema(
+const DBSchemaUserProfile = new SimpleSchema(
   {
     // Ensuring every user has an email address, should be in server-side code
     username: { type: String, max: 20, required: true },
@@ -213,5 +205,4 @@ const SchemaUserProfile = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-export { stateArray, SchemaOwner, SchemaCompany, SchemaProject, SchemaCable, SchemaCablePullIn, SchemaCableTerminate, SchemaCableTestContinuity, SchemaCableTestMegger, SchemaCableTestVLF, SchemaUserProfile };
-export { formatAddress };
+export { DBSchemaOwnedBy, DBSchemaUsedBy, DBSchemaCompany, DBSchemaProject, DBSchemaCable, DBSchemaCablePullIn, DBSchemaCableTerminate, DBSchemaCableTestContinuity, DBSchemaCableTestMegger, DBSchemaCableTestVLF, DBSchemaUserProfile };

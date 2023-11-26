@@ -1,19 +1,17 @@
 import { Mongo } from 'meteor/mongo';
-import { DBSchemaProject } from '../schema/DBSchemas';
-import { FormSchemaProject } from '../schema/FormSchemas';
+import { DBSchemaUsedBy } from '../schema/DBSchemas';
 
 /**
- * The ProjectsCollection. It encapsulates state and variable values for projects.
+ * The OwnersCollection. It encapsulates state and variable values for projects.
  */
-class ProjectsCollection {
+class UsedBysCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'ProjectsCollection';
+    this.name = 'UsedBysCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.formSchema = FormSchemaProject;
-    this.dbSchema = DBSchemaProject;
+    this.dbSchema = DBSchemaUsedBy;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.dbSchema);
     // Define names for publications and subscriptions
@@ -23,7 +21,7 @@ class ProjectsCollection {
 }
 
 /**
- * The singleton instance of the ProjectCollection.
- * @type {ProjectsCollection}
+ * The singleton instance of the UsedBysCollection.
+ * @type {UsedBysCollection}
  */
-export const Projects = new ProjectsCollection();
+export const UsedBys = new UsedBysCollection();

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { CombinePath, PathViewCompany, PathEditCompany, ParamCompanyID } from '../../api/navigation/Navigation';
-import { formatAddress } from '../../api/schema/Schemas';
+import { formatAddress } from '../../api/schema/FormSchemas';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CompanyListItem = ({ company }) => (
