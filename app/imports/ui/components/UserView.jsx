@@ -1,38 +1,34 @@
 import React from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Card, Container, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { PencilFill } from 'react-bootstrap-icons';
+import { CombinePath, PathEditUser } from '../../api/navigation/Navigation';
 import { PropTypeUser } from '../../api/propTypes/PropTypes';
 
-const UserView = ({ user }) => (
-  <Container className="p-5">
-    <Row>
-      <Col>
-        <Image src={user.picture} />
-      </Col>
-      <Col>
-        <Row>
-          <Col>Name: {user.name}</Col>
-          <Col>UserID: {user.userID}</Col>
-        </Row>
-        <Row>
-          <Col>Address: {user.address}</Col>
-          <Col>Secondary Address: {user.address2}</Col>
-        </Row>
-        <Row>
-          <Col>City: {user.city}</Col>
-          <Col>State: {user.state}</Col>
-        </Row>
-        <Row>
-          <Col>Zip: {user.zip}</Col>
-          <Col>Country: {user.country}</Col>
-        </Row>
-        <Row>
-          <Col>Phone: {user.phone}</Col>
-          <Col>Fax: {user.fax}</Col>
-        </Row>
-      </Col>
-    </Row>
-  </Container>
-);
+const UserView = ({ user }) => {
+  const editPath = CombinePath(PathEditUser, { userID: user._id });
+  return (
+    <Container className="p-5">
+      <Card style={{ width: '18rem', margin: 'auto' }} className="">
+        <Card.Img variant="top" src={user.picture} />
+        <Card.Body>
+          <Card.Title>{user.firstName} {user.lastName}</Card.Title>
+          <Card.Subtitle>{user.username}</Card.Subtitle>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Emails: {user.emails}</ListGroup.Item>
+          <ListGroup.Item>Address: {user.address}</ListGroup.Item>
+          <ListGroup.Item>Services: {user.services}</ListGroup.Item>
+          <ListGroup.Item>Phone: {user.phone}</ListGroup.Item>
+          <ListGroup.Item>Fax: {user.fax}</ListGroup.Item>
+        </ListGroup>
+        <Card.Footer>
+          <Link to={editPath}><PencilFill /></Link>
+        </Card.Footer>
+      </Card>
+    </Container>
+  );
+};
 
 // Require a document to be passed to this component.
 UserView.propTypes = {
