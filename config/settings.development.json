@@ -31,6 +31,27 @@
       "roles": [
         "Electrician"
       ]
+    },
+    {
+      "username": "misha",
+      "email": "mikhail@gmail.com",
+      "password": "password",
+      "firstName": "Mikhail",
+      "lastName": "Shkaralevich",
+      "address": {
+        "address": "Fake Street 123",
+        "address2": "N/A",
+        "city": "Honolulu",
+        "state": "HI",
+        "zip": "96782",
+        "country": "US"
+      },
+      "phone": "808-808-8080",
+      "fax": "",
+      "picture": "https://avatars.githubusercontent.com/u/76892413?v=4",
+      "roles": [
+        "GlobalAdmin"
+      ]
     }
   ],
   "defaultCompanies": [

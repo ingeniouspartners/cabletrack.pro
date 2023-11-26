@@ -210,6 +210,7 @@ const FormSchemaUserProfile = new SimpleSchema(
     'emails.$': { type: Object },
     'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     'emails.$.verified': { type: Boolean, defaultValue: false },
+    password: { type: String, required: true, max: 30 },
     createdAt: { type: Date },
     services: { type: Object, blackbox: true },
     firstName: { type: String, max: 30 },
