@@ -82,21 +82,17 @@ const PropTypeCompany = PropTypes.shape({
   logoURL: PropTypes.string,
 });
 
-const PropTypeUser = PropTypes.shape({
-  username: { type: String, max: 20, required: true },
-  emails: { type: Array },
-  'emails.$': { type: Object },
-  'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
-  'emails.$.verified': { type: Boolean, defaultValue: false },
-  createdAt: { type: Date },
-  services: { type: Object, blackbox: true },
-  firstName: { type: String, max: 30 },
-  lastName: { type: String, max: 30 },
-  address: { type: PropTypeAddress },
-  phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-  fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/, skipRegExCheckForEmptyStrings: true },
-  picture: { type: String, max: 256, regEx: /^https?:\/\//, skipRegExCheckForEmptyStrings: true },
-  _id: { type: String, max: 20 },
+const PropTypeUserProfile = PropTypes.shape({
+  _id: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  emails: PropTypes.arrayOf(PropTypes.shape({ address: PropTypes.string, verified: PropTypes.bool })),
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  address: PropTypeAddress,
+  phone: PropTypes.string,
+  fax: PropTypes.string,
+  picture: PropTypes.string,
+  createdAt: PropTypes.instanceOf(Date),
 });
 
-export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity, PropTypeUser };
+export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity, PropTypeUserProfile };
