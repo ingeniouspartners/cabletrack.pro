@@ -23,7 +23,8 @@ const EditCable = () => {
     let cableItem;
     if (location.pathname.endsWith('/add')) {
       // eslint-disable-next-line max-len
-      cableItem = { _id: '', name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '', conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
+      cableItem = { _id: '', name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '',
+        conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
     } else {
       cableItem = Companies.collection.findOne(cableId);
     }
