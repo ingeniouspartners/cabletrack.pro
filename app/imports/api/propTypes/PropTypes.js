@@ -82,4 +82,17 @@ const PropTypeCompany = PropTypes.shape({
   logoURL: PropTypes.string,
 });
 
-export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity };
+const PropTypeUserProfile = PropTypes.shape({
+  _id: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  emails: PropTypes.arrayOf(PropTypes.shape({ address: PropTypes.string, verified: PropTypes.bool })),
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  address: PropTypeAddress,
+  phone: PropTypes.string,
+  fax: PropTypes.string,
+  picture: PropTypes.string,
+  createdAt: PropTypes.instanceOf(Date),
+});
+
+export { PropTypeAddress, PropTypeCompany, PropTypeProject, PropTypeCable, PropTypeCablePullIn, PropTypeCableTerminate, PropTypeCableTestContinuity, PropTypeUserProfile };

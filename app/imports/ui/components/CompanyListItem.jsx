@@ -23,7 +23,7 @@ const CompanyListItem = ({ company }) => (
 
 // Require a document to be passed to this component. Theoretically only description and id are required.
 CompanyListItem.propTypes = {
-  company: PropTypes.instanceOf(PropTypeCompany).isRequired,
+  company: PropTypeCompany.isRequired,
 };
 
 export default CompanyListItem;

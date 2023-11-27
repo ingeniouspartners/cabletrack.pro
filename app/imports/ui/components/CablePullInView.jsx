@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
 import { CombinePath, PathEditCablePullIn } from '../../api/navigation/Navigation';
-import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
+import { PropTypeCable, PropTypeCablePullIn, PropTypeProject } from '../../api/propTypes/PropTypes';
 
 const CablePullInViewTugger = ({ cablePullIn }) => {
   if (cablePullIn.pulledHand) {
@@ -53,12 +52,8 @@ const CablePullInView = ({ cablePullIn, cable, project }) => {
 
 CablePullInView.propTypes = {
   cablePullIn: PropTypeCablePullIn.isRequired,
-  cable: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  project: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  cable: PropTypeCable.isRequired,
+  project: PropTypeProject.isRequired,
 };
 
 export default CablePullInView;

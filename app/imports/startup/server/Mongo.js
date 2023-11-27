@@ -108,7 +108,7 @@ const addCablePullIn = (cablePullIn) => {
   copy.installerName = undefined;
   const pullinID = CablePullIns.collection.insert(copy);
   const newCablePullIn = CablePullIns.collection.findOne(pullinID);
-  console.log(CombinePath(PathViewCablePullIn, { companyID: newCablePullIn.companyID, projectID: newCablePullIn.projectID, cableID: newCablePullIn.cableID, cablePullInID: newCablePullIn._id }));
+  console.log(CombinePath(PathViewCablePullIn, { companyID: newCablePullIn.companyID, projectID: newCablePullIn.projectID, cableID: newCablePullIn.cableID, pullinID: newCablePullIn._id }));
 };
 
 if (CablePullIns.collection.find().count() === 0) {
