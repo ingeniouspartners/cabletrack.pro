@@ -36,7 +36,7 @@ const NavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {user ? (
               <Nav className="me-auto justify-content-start">
-                {user ? (
+                {company ? (
                   <>
                     <Nav.Link id="view-company-nav" as={NavLink} to={CombinePath(PathViewCompany, company)}>Company</Nav.Link>
                     <Nav.Link id="list-project-nav" as={NavLink} to={CombinePath(PathListProject, company)}>Projects</Nav.Link>
