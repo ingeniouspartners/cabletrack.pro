@@ -7,7 +7,11 @@ import { CombinePath, PathViewCablePullIn, PathEditCablePullIn, ParamCablePullIn
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CablePullInListItem = ({ pullin }) => (
   <tr>
-    <td><Link aria-label="view" to={CombinePath(PathViewCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}>{pullin.personInstalled}</Link></td>
+    <td>
+      <Link aria-label="view" to={CombinePath(PathViewCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}>
+        {pullin.personInstalled}
+      </Link>
+    </td>
     <td>{pullin.dateInstalled.toISOString().substring(0, 10)}</td>
     <td>{pullin.lengthInstalled}</td>
     <td>{pullin.pulledHand}</td>

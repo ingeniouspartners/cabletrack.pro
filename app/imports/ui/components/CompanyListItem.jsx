@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';

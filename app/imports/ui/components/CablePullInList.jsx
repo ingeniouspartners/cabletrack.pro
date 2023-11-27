@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CablePullInListItem from './CablePullInListItem';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
-import { CombinePath, ParamCableID, ParamCablePullInID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
+import { CombinePath, ParamCableID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
 
 /* Renders a table containing all of the CablePullIn documents. Use <CableItem> to render each row. */
 const CablePullInList = ({ pullins, companyID, projectID, cableID }) => (
@@ -35,6 +35,9 @@ const CablePullInList = ({ pullins, companyID, projectID, cableID }) => (
 
 CablePullInList.propTypes = {
   pullins: PropTypes.arrayOf(PropTypeCablePullIn).isRequired,
+  companyID: PropTypes.string.isRequired,
+  projectID: PropTypes.string.isRequired,
+  cableID: PropTypes.string.isRequired,
 };
 
 export default CablePullInList;
