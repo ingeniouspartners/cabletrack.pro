@@ -6,7 +6,7 @@ import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CompanyList from '../components/CompanyList';
 
-/* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
+/* Renders a table containing all of the Company documents. Use <CompanyItem> to render each row. */
 const ListCompany = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, companies } = useTracker(() => {

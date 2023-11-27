@@ -12,6 +12,14 @@ const addressSchema = new SimpleSchema(
   { requiredByDefault: false },
 );
 
+const emailSchema = new SimpleSchema(
+  {
+    address: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/, required: true },
+    verified: { type: Boolean, defaultValue: false },
+  },
+  { requiredByDefault: false },
+);
+
 const measurementTimedSchema = new SimpleSchema(
   {
     timeIndex: { type: Number },
@@ -189,9 +197,7 @@ const DBSchemaUserProfile = new SimpleSchema(
     // Ensuring every user has an email address, should be in server-side code
     username: { type: String, max: 20, required: true },
     emails: { type: Array },
-    'emails.$': { type: Object },
-    'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
-    'emails.$.verified': { type: Boolean, defaultValue: false },
+    'emails.$': { type: emailSchema },
     createdAt: { type: Date },
     services: { type: Object, blackbox: true },
     firstName: { type: String, max: 30 },

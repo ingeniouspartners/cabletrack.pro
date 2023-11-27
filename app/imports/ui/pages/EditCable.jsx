@@ -5,7 +5,6 @@ import React from 'react';
 import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
 import LoadingSpinner from '../components/LoadingSpinner';
-import CompanyEdit from '../components/CompanyEdit';
 import { Companies } from '../../api/company/Companies';
 
 /* Renders the EditStuff page for editing a single document. */
@@ -24,7 +23,8 @@ const EditCable = () => {
     let cableItem;
     if (location.pathname.endsWith('/add')) {
       // eslint-disable-next-line max-len
-      cableItem = { _id: '', name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '', conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
+      cableItem = { _id: '', name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '',
+        conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
     } else {
       cableItem = Companies.collection.findOne(cableId);
     }
