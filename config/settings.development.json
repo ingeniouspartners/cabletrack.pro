@@ -1,17 +1,73 @@
 {
   "defaultAccounts": [
-    { "username": "admin@foo.com", "email": "admin@foo.com", "password": "changeme", "roles": ["GlobalAdmin"] },
-    { "username": "ceo@foo.com", "email": "ceo@foo.com", "password": "changeme", "roles": ["CompanyOwner"] },
-    { "username": "pm@foo.com", "email": "pm@foo.com", "password": "changeme", "roles": ["ProjectOwner"] },
-    { "username": "elec@foo.com", "email": "elec@foo.com", "password": "changeme", "roles": ["Electrician"] }
+    {
+      "username": "admin@foo.com",
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "roles": [
+        "GlobalAdmin"
+      ]
+    },
+    {
+      "username": "ceo@foo.com",
+      "email": "ceo@foo.com",
+      "password": "changeme",
+      "roles": [
+        "CompanyOwner"
+      ]
+    },
+    {
+      "username": "pm@foo.com",
+      "email": "pm@foo.com",
+      "password": "changeme",
+      "roles": [
+        "ProjectOwner"
+      ]
+    },
+    {
+      "username": "elec@foo.com",
+      "email": "elec@foo.com",
+      "password": "changeme",
+      "roles": [
+        "Electrician"
+      ]
+    },
+    {
+      "username": "misha",
+      "email": "mikhail@gmail.com",
+      "password": "password",
+      "firstName": "Mikhail",
+      "lastName": "Shkaralevich",
+      "address": {
+        "address": "Fake Street 123",
+        "address2": "N/A",
+        "city": "Honolulu",
+        "state": "HI",
+        "zip": "96782",
+        "country": "US"
+      },
+      "phone": "808-808-8080",
+      "fax": "",
+      "picture": "https://avatars.githubusercontent.com/u/76892413?v=4",
+      "roles": [
+        "GlobalAdmin"
+      ]
+    }
   ],
-
   "defaultCompanies": [
-    { "name": "Foo Company", "ownerNames": ["ceo@foo.com"], "owners": [] }
+    {
+      "name": "Foo Company",
+      "ownerNames": [
+        "ceo@foo.com"
+      ]
+    }
   ],
-
   "defaultProjects": [
-    { "company": "Foo Company", "code": "TEST", "name": "Foo Project", "contract": "ABC-123",
+    {
+      "company": "Foo Company",
+      "code": "TEST",
+      "name": "Foo Project",
+      "contract": "ABC-123",
       "bidNumber": "BID456",
       "mailAddress": {
         "address": "123 Main St",
@@ -33,13 +89,62 @@
       "jobFax": "123-456-7891",
       "jobEmail": "example@example.com",
       "notes": "This is an example project.",
-      "ownerNames": ["ceo@foo.com", "pm@foo.com", "admin@foo.com", "elec@foo.com"],
-      "owners": [] }
-  ],
-
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "admin@foo.com",
+        "elec@foo.com"
+      ]
+    }
+    ],
   "defaultCables": [
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 1", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 2", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] },
-    { "company": "Foo Company", "project": "Foo Project", "name": "Cable 3", "ownerNames": ["ceo@foo.com", "pm@foo.com"], "owners": [] }
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 1",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 2",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 3",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ]
+    }
+  ],
+  "defaultCablePullIns": [
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "cable": "Cable 1",
+      "installerName": "elec@foo.com",
+      "lengthInstalled": 120,
+      "pulledHand": true
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "cable": "Cable 2",
+      "installerName": "elec@foo.com",
+      "lengthInstalled": 100,
+      "pulledHand": false,
+      "tugger": "Tugger 1",
+      "calibrationId": "XYZ3425",
+      "maxPullingTension": 10.5
+    }
   ]
 }

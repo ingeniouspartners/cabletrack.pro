@@ -1,8 +1,5 @@
 import SimpleSchema from 'simpl-schema';
 
-const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
-  'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
-
 const addressSchema = new SimpleSchema(
   {
     address: { type: String, max: 60 },
@@ -10,32 +7,50 @@ const addressSchema = new SimpleSchema(
     city: { type: String, max: 60 },
     state: { type: String, regEx: /^[A-Z]{2}$/ },
     zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
-    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/, defaultValue: 'US' },
+    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/ },
   },
   { requiredByDefault: false },
 );
 
-const measurementTimedSchema = new SimpleSchema({
-  timeIndex: Number,
-  value: { type: Number, optional: true },
-});
+const measurementTimedSchema = new SimpleSchema(
+  {
+    timeIndex: { type: Number },
+    value: { type: Number },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaOwnedBy = new SimpleSchema(
+  {
+    ownerID: { type: String, max: 20, required: true },
+    ownedID: { type: String, max: 20, required: true },
+  },
+  { requiredByDefault: false },
+);
+
+const DBSchemaUsedBy = new SimpleSchema(
+  {
+    userID: { type: String, max: 20, required: true },
+    usedID: { type: String, max: 20, required: true },
+  },
+  { requiredByDefault: false },
+);
 
 // Possible email form in here too?
-const companySchema = new SimpleSchema(
+const DBSchemaCompany = new SimpleSchema(
   {
     name: { type: String, max: 60, required: true },
     address: { type: addressSchema },
     phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
-    logoURL: { type: String, regEx: /^https?:\/\//, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    logoURL: { type: String, max: 256, regEx: /^https?:\/\//, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const projectSchema = new SimpleSchema(
+const DBSchemaProject = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
@@ -48,13 +63,12 @@ const projectSchema = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const cableSchema = new SimpleSchema(
+const DBSchemaCable = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -75,15 +89,12 @@ const cableSchema = new SimpleSchema(
     voltageCable: { type: String, max: 30 },
     voltageTest: { type: String, max: 15 },
     notes: { type: String, optional: true },
-    users: Array,
-    'users.$': { type: String, max: 20 },
-    owners: Array,
-    'owners.$': { type: String, max: 20, required: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-const cablePullInSchema = new SimpleSchema(
+const DBSchemaCablePullIn = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -96,12 +107,13 @@ const cablePullInSchema = new SimpleSchema(
     tuggerCalibrationID: String,
     maxPullingTension: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
 // Just in case not clear, things are required by default.
-const cableTerminateSchema = new SimpleSchema(
+const DBSchemaCableTerminate = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -110,10 +122,12 @@ const cableTerminateSchema = new SimpleSchema(
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
+  { requiredByDefault: false },
 );
 
-const cableTestContinuitySchema = new SimpleSchema(
+const DBSchemaCableTestContinuity = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -122,10 +136,12 @@ const cableTestContinuitySchema = new SimpleSchema(
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
+  { requiredByDefault: false },
 );
 
-const cableTestMeggerSchema = new SimpleSchema(
+const DBSchemaCableTestMegger = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -141,10 +157,12 @@ const cableTestMeggerSchema = new SimpleSchema(
     B_Grd: measurementTimedSchema,
     C_Grd: measurementTimedSchema,
     notes: { type: String, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
+  { requiredByDefault: false },
 );
 
-const cableTestVLFSchema = new SimpleSchema(
+const DBSchemaCableTestVLF = new SimpleSchema(
   {
     companyID: { type: String, max: 20, required: true },
     projectID: { type: String, max: 20, required: true },
@@ -161,24 +179,30 @@ const cableTestVLFSchema = new SimpleSchema(
     systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
     notes: { type: String, optional: true },
-  },
-);
-
-const userProfileSchema = new SimpleSchema(
-  {
-    userID: { type: String, max: 20, required: true },
-    name: { type: String, max: 60, required: true },
-    address: { type: String, max: 60 },
-    address2: { type: String, max: 60 },
-    city: { type: String, max: 60 },
-    state: { type: String, regEx: /^[A-Z]{2}$/ },
-    zip: { type: String, max: 10, regEx: /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] ?\d[A-Z]\d)$/ },
-    country: { type: String, max: 2, regEx: /^[A-Z]{2}$/ },
-    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
-    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
-    picture: { type: Object, optional: true },
+    _id: { type: String, max: 20, optional: true },
   },
   { requiredByDefault: false },
 );
 
-export { stateArray, companySchema, projectSchema, cableSchema, cablePullInSchema, cableTerminateSchema, cableTestContinuitySchema, cableTestMeggerSchema, cableTestVLFSchema, userProfileSchema };
+const DBSchemaUserProfile = new SimpleSchema(
+  {
+    // Ensuring every user has an email address, should be in server-side code
+    username: { type: String, max: 20, required: true },
+    emails: { type: Array },
+    'emails.$': { type: Object },
+    'emails.$.address': { type: String, required: true, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
+    'emails.$.verified': { type: Boolean, defaultValue: false },
+    createdAt: { type: Date },
+    services: { type: Object, blackbox: true },
+    firstName: { type: String, max: 30 },
+    lastName: { type: String, max: 30 },
+    address: { type: addressSchema },
+    phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
+    picture: { type: String, max: 256, regEx: /^https?:\/\// },
+    _id: { type: String, max: 20 },
+  },
+  { requiredByDefault: false },
+);
+
+export { DBSchemaOwnedBy, DBSchemaUsedBy, DBSchemaCompany, DBSchemaProject, DBSchemaCable, DBSchemaCablePullIn, DBSchemaCableTerminate, DBSchemaCableTestContinuity, DBSchemaCableTestMegger, DBSchemaCableTestVLF, DBSchemaUserProfile };

@@ -1,19 +1,21 @@
 import { Mongo } from 'meteor/mongo';
-import { userProfileSchema } from '../schema/Schemas';
+import { DBSchemaOwnedBy } from '../schema/DBSchemas';
+import { FormSchemaOwnedBy } from '../schema/FormSchemas';
 
 /**
- * The UserProfilesCollection. It encapsulates state and variable values for user profiles.
+ * The OwnedBysCollection. It encapsulates state and variable values for projects.
  */
-class UserProfilesCollection {
+class OwnedBysCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'UserProfilesCollection';
+    this.name = 'OwnedBysCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.schema = userProfileSchema;
+    this.formSchema = FormSchemaOwnedBy;
+    this.dbSchema = DBSchemaOwnedBy;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
-    this.collection.attachSchema(this.schema);
+    this.collection.attachSchema(this.dbSchema);
     // Define names for publications and subscriptions
     this.userPublicationName = `${this.name}.publication.user`;
     this.adminPublicationName = `${this.name}.publication.admin`;
@@ -21,7 +23,7 @@ class UserProfilesCollection {
 }
 
 /**
- * The singleton instance of the UserProfileCollection.
- * @type {UserProfilesCollection}
+ * The singleton instance of the OwnerCollection.
+ * @type {OwnedBysCollection}
  */
-export const UserProfiles = new UserProfilesCollection();
+export const OwnedBys = new OwnedBysCollection();

@@ -1,19 +1,25 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField, HiddenField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
 
-const bridge = new SimpleSchema2Bridge(Cables.schema);
+const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 /* Renders the EditStuff page for editing a single document. */
-const CableEdit = (_cableId, doc) => {
-  const submit = (data, formRef) => {
-    const { description, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest } = data;
-    if (_cableId) {
-      Cables.collection.update(_cableId, {
+const CableEdit = ({ cable }) => {
+  const submit = (data) => {
+    // eslint-disable-next-line max-len
+    const { _id, companyID, projectID, name, description, costCode, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest, notes } = data;
+    if (_id) {
+      Cables.collection.update(_id, {
         $set: {
+          companyID,
+          projectID,
+          name,
           description,
+          costCode,
           refDrawingNo,
           refDrawingRev,
           system,
@@ -27,6 +33,7 @@ const CableEdit = (_cableId, doc) => {
           conductors,
           voltageCable,
           voltageTest,
+          notes,
         },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
@@ -34,7 +41,11 @@ const CableEdit = (_cableId, doc) => {
     } else {
       Cables.collection.insert(
         {
+          companyID,
+          projectID,
+          name,
           description,
+          costCode,
           refDrawingNo,
           refDrawingRev,
           system,
@@ -48,28 +59,28 @@ const CableEdit = (_cableId, doc) => {
           conductors,
           voltageCable,
           voltageTest,
+          notes,
         },
-        (error) => {
-          if (error) {
-            swal('Error', error.message, 'error');
-          } else {
-            swal('Success', 'Item added successfully', 'success');
-            formRef.reset();
-          }
-        },
+        (error) => (error ?
+          swal('Error', error.message, 'error') :
+          swal('Success', 'Item added successfully', 'success')),
       );
     }
   };
-  let fRef = null;
   return (
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
           <Col className="text-center"><h2>Edit Cables</h2></Col>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={doc}>
+          <AutoForm schema={bridge} onSubmit={data => submit(data)} model={cable}>
             <Card>
+              <Card.Header>
+                <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
+              </Card.Header>
               <Card.Body>
+                <TextField name="name" />
                 <TextField name="description" />
+                <TextField name="costCode" />
                 <TextField name="refDrawingNo" />
                 <TextField name="refDrawingRev" />
                 <TextField name="system" />
@@ -83,9 +94,12 @@ const CableEdit = (_cableId, doc) => {
                 <TextField name="conductors" />
                 <TextField name="voltageCable" />
                 <TextField name="voltageTest" />
+                <TextField name="notes" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
-                <HiddenField name="owner" />
+                <HiddenField name="companyID" />
+                <HiddenField name="projectID" />
+                <HiddenField name="_id" />
               </Card.Body>
             </Card>
           </AutoForm>
@@ -93,6 +107,10 @@ const CableEdit = (_cableId, doc) => {
       </Row>
     </Container>
   );
+};
+
+CableEdit.propTypes = {
+  cable: PropTypeCable.isRequired,
 };
 
 export default CableEdit;
