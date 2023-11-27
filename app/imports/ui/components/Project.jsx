@@ -14,7 +14,7 @@ const Project = ({ project }) => (
     </Card.Header>
     <Card.Body>
       <Card.Text>{project.contract}</Card.Text>
-      <Link to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">View Project</Button></Link>
+      <Link id="view-project-page" to={CTPNav.PathViewProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">View Project</Button></Link>
     </Card.Body>
   </Card>
 );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
@@ -7,24 +6,27 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
+import { Companies } from '../../api/company/Companies';
 import * as CTPNav from '../../api/navigation/Navigation';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ projectID, doc }) => {
+  const company = Companies.collection.findOne({ name: 'Foo Company' });
+  const project = Projects.collection.findOne({ _id: projectID });
   const submit = (data, formRef) => {
-    const { companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
+    const { name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
     if (projectID) {
       Projects.collection.update(projectID, {
         $set: {
-          companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes },
+          companyID: project.companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Item updated successfully', 'success')));
     } else {
       Projects.collection.insert(
         {
-          companyID, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes },
+          companyID: company._id, name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -46,7 +48,6 @@ const ProjectEdit = ({ projectID, doc }) => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col><TextField name="companyID" /></Col>
                   <Col><TextField name="name" /></Col>
                   <TextField name="code" />
                 </Row>

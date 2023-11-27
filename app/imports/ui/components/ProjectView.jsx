@@ -15,7 +15,7 @@ const ProjectView = ({ project }) => (
           <Row>
             <Col> </Col>
             <Col><h1>{project.name}</h1></Col>
-            <Col><Link to={CTPNav.PathEditProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">Edit</Button></Link></Col>
+            <Col><Link id="edit-project-page" to={CTPNav.PathEditProject.replace(`:${ParamProjectID}`, project._id)}><Button variant="primary">Edit</Button></Link></Col>
           </Row>
         </Col>
       </Row>

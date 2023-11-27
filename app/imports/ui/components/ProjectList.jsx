@@ -13,7 +13,7 @@ const ProjectList = ({ projects }) => (
           <Row>
             <Col> </Col>
             <Col><h2>Projects</h2></Col>
-            <Col><Link to={CTPNav.PathAddProject}><Button variant="primary">Add Project</Button></Link></Col>
+            <Col><Link id="add-project-page" to={CTPNav.PathAddProject}><Button variant="primary">Add Project</Button></Link></Col>
           </Row>
         </Col>
         <Row>

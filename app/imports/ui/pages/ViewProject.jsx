@@ -26,7 +26,9 @@ const ViewProject = () => {
   }, [projectID]);
 
   return ready ? (
-    <ProjectView project={project} />
+    <div id="view-project-page">
+      <ProjectView project={project} />
+    </div>
   ) : (
     <LoadingSpinner />
   );

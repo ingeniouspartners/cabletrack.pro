@@ -70,7 +70,7 @@ const FormSchemaCompany = new SimpleSchema(
 
 const FormSchemaProject = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
+    companyID: { type: String, max: 20, required: false },
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
     name: { type: String, max: 60, required: true },
     contract: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/ },

@@ -25,7 +25,9 @@ const EditProject = () => {
   }, [projectID]);
 
   return ready ? (
-    <ProjectEdit projectID={projectID} doc={doc} />
+    <div id="edit-project-page">
+      <ProjectEdit projectID={projectID} doc={doc} />
+    </div>
   ) : <LoadingSpinner />;
 };
 
