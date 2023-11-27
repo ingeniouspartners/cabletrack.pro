@@ -58,7 +58,8 @@
     {
       "name": "Foo Company",
       "ownerNames": [
-        "ceo@foo.com"
+        "ceo@foo.com",
+        "admin@foo.com"
       ]
     }
   ],

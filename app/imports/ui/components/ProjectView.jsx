@@ -65,6 +65,7 @@ const ProjectView = ({ project }) => (
 );
 
 ProjectView.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   project: PropTypes.shape({
     companyID: PropTypes.string,
     code: PropTypes.string,
@@ -92,7 +93,7 @@ ProjectView.propTypes = {
     jobEmail: PropTypes.string,
     notes: PropTypes.string,
     _id: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 export default ProjectView;

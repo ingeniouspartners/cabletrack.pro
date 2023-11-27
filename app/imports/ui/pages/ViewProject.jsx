@@ -9,7 +9,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 /* Renders the EditStuff page for editing a single document. */
 const ViewProject = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { project_id } = useParams();
+  const { projectID } = useParams();
   // console.log('EditStuff', _id);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, project } = useTracker(() => {
@@ -18,12 +18,12 @@ const ViewProject = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const projectItem = Projects.collection.findOne(project_id);
+    const projectItem = Projects.collection.findOne(projectID);
     return {
       project: projectItem,
       ready: rdy,
     };
-  }, [project_id]);
+  }, [projectID]);
 
   return ready ? (
     <ProjectView project={project} />
