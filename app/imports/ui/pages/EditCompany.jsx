@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { Companies } from '../../api/company/Companies';
-import swal from 'sweetalert';
 import CompanyEdit from '../components/CompanyEdit';
 import LoadingSpinner from '../components/LoadingSpinner';
 
