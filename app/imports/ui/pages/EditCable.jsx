@@ -5,7 +5,6 @@ import React from 'react';
 import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
 import LoadingSpinner from '../components/LoadingSpinner';
-import CompanyEdit from '../components/CompanyEdit';
 import { Companies } from '../../api/company/Companies';
 
 /* Renders the EditStuff page for editing a single document. */

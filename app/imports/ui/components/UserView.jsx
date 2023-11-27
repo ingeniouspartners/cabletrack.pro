@@ -3,7 +3,7 @@ import { Card, Container, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { PencilFill } from 'react-bootstrap-icons';
 import { CombinePath, PathEditUser } from '../../api/navigation/Navigation';
-import { PropTypeUser } from '../../api/propTypes/PropTypes';
+import { PropTypeUserProfile } from '../../api/propTypes/PropTypes';
 
 const UserView = ({ user }) => {
   const editPath = CombinePath(PathEditUser, { userID: user._id });
@@ -32,7 +32,7 @@ const UserView = ({ user }) => {
 
 // Require a document to be passed to this component.
 UserView.propTypes = {
-  user: PropTypeUser.isRequired,
+  user: PropTypeUserProfile.isRequired,
 };
 
 export default UserView;
