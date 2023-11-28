@@ -57,7 +57,7 @@ test('Test that User, View, Edit work', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
 });
 
-test.only('Test that Company View, Edit and add work', async (testController) => {
+test('Test that Company View, Edit and add work', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoCompaniesPage(testController);
