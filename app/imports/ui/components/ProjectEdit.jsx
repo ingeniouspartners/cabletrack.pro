@@ -7,13 +7,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
-import * as CTPNav from '../../api/navigation/Navigation';
+import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ projectID, doc }) => {
   const company = Companies.collection.findOne({ name: 'Foo Company' });
   const project = Projects.collection.findOne({ _id: projectID });
+  const listProject = CombinePath(PathListProject, { [ParamCompanyID]: company._id });
   const submit = (data, formRef) => {
     const { name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
     if (projectID) {
@@ -88,7 +89,7 @@ const ProjectEdit = ({ projectID, doc }) => {
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
-              <Link className="p-3" to={CTPNav.PathListProject}>Back to Projects</Link>
+              <Link className="p-3" to={listProject}>Back to Projects</Link>
             </Card>
           </AutoForm>
         </Col>
