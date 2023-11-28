@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Table, Container } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
+import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Project from './Project';
@@ -9,12 +10,13 @@ import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes'
 const ProjectList = ({ projects, company }) => {
   const add = CombinePath(PathAddProject, { [ParamCompanyID]: company._id });
   return (
-    <Container>
+    <Container id="list-project-page">
       <Table striped bordered hover>
         <thead>
           <tr>
             <th colSpan="4"><h2>List Projects</h2></th>
-            <th><Link id="add-project-page" to={add}><Button variant="primary">Add Project</Button></Link></th>
+            <th><Link id="add-project-page" to={add}><FileEarmarkPlusFill /></Link>
+            </th>
           </tr>
           <tr>
             <th>Name</th>

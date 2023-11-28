@@ -24,10 +24,10 @@ const CompanyView = ({ company }) => {
         <Card.Text>{company.email}</Card.Text>
       </Card.Body>
       <Card.Footer>
-        <Link to={projPath}>
+        <Link id="list-project-page" to={projPath}>
           Projects
         </Link>&nbsp;
-        <Link to={userPath}>
+        <Link id="list-user-page" to={userPath}>
           Users
         </Link>
       </Card.Footer>

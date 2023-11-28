@@ -8,7 +8,7 @@ import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes'
 const ProjectView = ({ project, company }) => {
   const editPath = CombinePath(PathEditProject, { [ParamCompanyID]: company._id, [ParamProjectID]: project._id });
   return (
-    <Container className="py-3">
+    <Container id="view-project-page" className="py-3">
       <Card>
         <Row className="justify-content-center">
           <Col className="text-center">

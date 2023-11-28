@@ -11,10 +11,10 @@ const CompanyListItem = ({ company }) => (
     <td><Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>{company.name}</Link></td>
     <td>{formatAddress(company.address)}</td>
     <td>
-      <Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}><FileEarmarkFill /></Link>
+      <Link id="view-company-page" aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}><FileEarmarkFill /></Link>
     </td>
     <td>
-      <Link aria-label="edit" to={CombinePath(PathEditCompany, { [ParamCompanyID]: company._id })}><PencilFill /></Link>
+      <Link id="edit-company-page" aria-label="edit" to={CombinePath(PathEditCompany, { [ParamCompanyID]: company._id })}><PencilFill /></Link>
     </td>
   </tr>
 

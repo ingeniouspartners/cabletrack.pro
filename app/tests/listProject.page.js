@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 class ListProjectPage {
   constructor() {
-    this.pageId = '#list-project-nav';
+    this.pageId = '#list-project-page';
     this.pageSelector = Selector(this.pageId);
   }
 

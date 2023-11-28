@@ -15,10 +15,10 @@ const Project = ({ project, company }) => {
       <td>{project.bidNumber}</td>
       <td>{project.code}</td>
       <td>
-        <Link aria-label="view" to={view}><FileEarmarkFill /></Link>
+        <Link id="view-project-page" aria-label="view" to={view}><FileEarmarkFill /></Link>
       </td>
       <td>
-        <Link aria-label="edit" to={edit}><PencilFill /></Link>
+        <Link id="edit-project-page" aria-label="edit" to={edit}><PencilFill /></Link>
       </td>
     </tr>
   );
