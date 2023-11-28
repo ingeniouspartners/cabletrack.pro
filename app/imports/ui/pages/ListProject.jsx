@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Container, Col, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import { Container, Col, Row } from 'react-bootstrap';
 import { Projects } from '../../api/project/Projects';
 import ProjectList from '../components/ProjectList';
 import LoadingSpinner from '../components/LoadingSpinner';
