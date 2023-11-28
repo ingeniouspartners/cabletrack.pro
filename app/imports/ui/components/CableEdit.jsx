@@ -68,44 +68,37 @@ const CableEdit = ({ cable }) => {
     }
   };
   return (
-    <Container className="py-3">
-      <Row className="justify-content-center">
-        <Col xs={5}>
-          <Col className="text-center"><h2>Edit Cables</h2></Col>
-          <AutoForm schema={bridge} onSubmit={data => submit(data)} model={cable}>
-            <Card>
-              <Card.Header>
-                <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <TextField name="name" />
-                <TextField name="description" />
-                <TextField name="costCode" />
-                <TextField name="refDrawingNo" />
-                <TextField name="refDrawingRev" />
-                <TextField name="system" />
-                <TextField name="building" />
-                <TextField name="zone" />
-                <TextField name="origination" />
-                <TextField name="termination" />
-                <NumField name="lengthPlanned" />
-                <SelectField name="classification" />
-                <TextField name="cableType" />
-                <TextField name="conductors" />
-                <TextField name="voltageCable" />
-                <TextField name="voltageTest" />
-                <TextField name="notes" />
-                <SubmitField value="Submit" />
-                <ErrorsField />
-                <HiddenField name="companyID" />
-                <HiddenField name="projectID" />
-                <HiddenField name="_id" />
-              </Card.Body>
-            </Card>
-          </AutoForm>
-        </Col>
-      </Row>
-    </Container>
+    <AutoForm schema={bridge} onSubmit={data => submit(data)} model={cable}>
+      <Card>
+        <Card.Header>
+          <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <TextField name="name" />
+          <TextField name="description" />
+          <TextField name="costCode" />
+          <TextField name="refDrawingNo" />
+          <TextField name="refDrawingRev" />
+          <TextField name="system" />
+          <TextField name="building" />
+          <TextField name="zone" />
+          <TextField name="origination" />
+          <TextField name="termination" />
+          <NumField name="lengthPlanned" />
+          <SelectField name="classification" />
+          <TextField name="cableType" />
+          <TextField name="conductors" />
+          <TextField name="voltageCable" />
+          <TextField name="voltageTest" />
+          <TextField name="notes" />
+          <SubmitField value="Submit" />
+          <ErrorsField />
+          <HiddenField name="companyID" />
+          <HiddenField name="projectID" />
+          <HiddenField name="_id" />
+        </Card.Body>
+      </Card>
+    </AutoForm>
   );
 };
 

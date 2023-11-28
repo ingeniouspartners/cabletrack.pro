@@ -12,7 +12,7 @@ const ViewCompany = () => {
   const { companyID } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
-    // Get access to Cable documents.
+    // Get access to Company documents.
     const subscription = Meteor.subscribe(Companies.adminPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
