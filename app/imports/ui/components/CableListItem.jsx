@@ -1,16 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
+import { PropTypeCable } from '../../api/propTypes/PropTypes';
+import { CombinePath, PathViewCable, PathEditCable } from '../../api/navigation/Navigation';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CableListItem = ({ cable }) => (
   <tr>
-    <td>{cable.description}</td>
+    <td>{cable.name}</td>
     <td>
-      <Link to={`/${cable._id}`}>View</Link>
+      <Link aria-label="view" to={CombinePath(PathViewCable, { companyID: cable.companyID, projectID: cable.projectID, cableID: cable._id })}><FileEarmarkFill /></Link>
     </td>
     <td>
-      <Link to={`/${cable._id}/edit`}>Edit</Link>
+      <Link aria-label="edit" to={CombinePath(PathEditCable, { companyID: cable.companyID, projectID: cable.projectID, cableID: cable._id })}><PencilFill /></Link>
     </td>
   </tr>
 
@@ -18,28 +20,7 @@ const CableListItem = ({ cable }) => (
 
 // Require a document to be passed to this component. Theoretically only description and id are required.
 CableListItem.propTypes = {
-  cable: PropTypes.shape({
-    companyID: PropTypes.string.isRequired,
-    projectID: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    costCode: PropTypes.string,
-    refDrawingNo: PropTypes.string,
-    refDrawingRev: PropTypes.string,
-    system: PropTypes.string,
-    building: PropTypes.string,
-    zone: PropTypes.string,
-    origination: PropTypes.string,
-    termination: PropTypes.string,
-    lengthPlanned: PropTypes.number,
-    classification: PropTypes.string,
-    cableType: PropTypes.string,
-    conductors: PropTypes.string,
-    voltageCable: PropTypes.string,
-    voltageTest: PropTypes.string,
-    notes: PropTypes.string,
-    _id: PropTypes.string.isRequired,
-  }).isRequired,
+  cable: PropTypeCable.isRequired,
 };
 
 export default CableListItem;

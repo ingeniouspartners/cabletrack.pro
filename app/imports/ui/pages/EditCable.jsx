@@ -1,16 +1,16 @@
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useLocation, useParams } from 'react-router';
-import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { Companies } from '../../api/company/Companies';
 
 /* Renders the EditStuff page for editing a single document. */
 const EditCable = () => {
   // Get the cableID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { cable_id: cableId } = useParams();
+  const { cableID, companyID, projectID } = useParams();
   const location = useLocation();
   // console.log('CableEdit', cableId);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -23,18 +23,23 @@ const EditCable = () => {
     let cableItem;
     if (location.pathname.endsWith('/add')) {
       // eslint-disable-next-line max-len
-      cableItem = { _id: '', name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '',
-        conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
+      cableItem = { _id: '', companyID: companyID, projectID: projectID, name: '', description: '', costCode: '', refDrawingNo: '', refDrawingRev: '', system: '', building: '', zone: '', origination: '', termination: '', lengthPlanned: 0, classification: 'Power', cableType: '', conductors: '', voltageCable: '', voltageTest: '', notes: '', users: '' };
     } else {
-      cableItem = Companies.collection.findOne(cableId);
+      cableItem = Cables.collection.findOne(cableID);
     }
     return {
       cable: cableItem,
       ready: rdy,
     };
-  }, [cableId, location]);
+  }, [cableID, location]);
   return ready ? (
-    <CableEdit cable={cable} />
+    <Container className="py-3">
+      <Row className="justify-content-center">
+        <Col xs={5}>
+          <CableEdit cable={cable} />
+        </Col>
+      </Row>
+    </Container>
   ) : <LoadingSpinner />;
 
 };
