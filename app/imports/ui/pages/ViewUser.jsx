@@ -9,7 +9,6 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const ViewUser = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { userID } = useParams();
-  console.log(userID);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
     // Get access to user's profile.
@@ -17,7 +16,6 @@ const ViewUser = () => {
     // Determine is the subscription is ready.
     const rdy = subscription.ready();
     const document = Meteor.users.findOne({ _id: userID }, {});
-    console.log(document);
     return {
       doc: document,
       ready: rdy,

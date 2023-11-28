@@ -11,7 +11,8 @@ const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 const CableEdit = ({ cable }) => {
   const submit = (data) => {
     // eslint-disable-next-line max-len
-    const { _id, companyID, projectID, name, description, costCode, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest, notes } = data;
+    const { _id, companyID, projectID, name, description, costCode, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest, notes }
+      = data;
     if (_id) {
       Cables.collection.update(_id, {
         $set: {
