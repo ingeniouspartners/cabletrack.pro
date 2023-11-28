@@ -4,7 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Cables } from '../../api/cable/Cables';
-import { Projects } from '../../api/project/Projects'
+import { Projects } from '../../api/project/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CableView from '../components/CableView';
 

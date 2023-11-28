@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser } from '../../api/navigation/Navigation';
+import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamCompanyID, ParamUserID } from '../../api/navigation/Navigation';
 import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -57,7 +57,7 @@ const NavBar = () => {
                 </NavDropdown>
               ) : (
                 <NavDropdown id="navbar-current-user" title={user.username}>
-                  <NavDropdown.Item id="navbar-profile" as={NavLink} to={PathViewUser}>
+                  <NavDropdown.Item id="navbar-profile" as={NavLink} to={CombinePath(PathViewUser, { [ParamCompanyID]: company._id, [ParamUserID]: user._id })}>
                     <PersonFill /> Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>

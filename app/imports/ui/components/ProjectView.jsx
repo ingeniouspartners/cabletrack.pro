@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button, Col, Row, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import * as CTPNav from '../../api/navigation/Navigation';
-import { CombinePath, PathListCable, PathEditProject } from '../../api/navigation/Navigation';
+import { PropTypeProject } from '../../api/propTypes/PropTypes';
+import { CombinePath, PathListCable, PathEditProject, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const ProjectView = ({ project }) => {
-  const cablePath = CombinePath(PathListCable, { companyID: project.companyID, projectID: project._id });
+  const cablesPath = CombinePath(PathListCable, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
   return (
     <Container className="py-3">
       <Card>
@@ -17,7 +16,7 @@ const ProjectView = ({ project }) => {
               <Col> </Col>
               <Col><h1>{project.name}</h1></Col>
               <Col><Link id="edit-project-page" to={CombinePath(PathEditProject, { companyID: project.companyID, projectID: project._id })}><Button variant="primary">Edit</Button></Link></Col>
-              <Col><Link id="cable-project-page" to={cablePath}><Button variant="primary">Cables</Button></Link></Col>
+              <Col><Link id="cable-project-page" to={cablesPath}>Cables</Link></Col>
             </Row>
           </Col>
         </Row>
@@ -68,34 +67,7 @@ const ProjectView = ({ project }) => {
 
 ProjectView.propTypes = {
   // eslint-disable-next-line react/require-default-props
-  project: PropTypes.shape({
-    companyID: PropTypes.string,
-    code: PropTypes.string,
-    name: PropTypes.string,
-    contract: PropTypes.string,
-    bidNumber: PropTypes.string,
-    mailAddress: PropTypes.shape({
-      address: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-      zip: PropTypes.string,
-      country: PropTypes.string,
-    }),
-    shipAddress: PropTypes.shape({
-      address: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-      zip: PropTypes.string,
-      country: PropTypes.string,
-    }),
-    jobPhone: PropTypes.string,
-    jobFax: PropTypes.string,
-    jobEmail: PropTypes.string,
-    notes: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+  project: PropTypeProject.isRequired,
 };
 
 export default ProjectView;

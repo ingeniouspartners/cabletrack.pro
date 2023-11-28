@@ -1,6 +1,6 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField, HiddenField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
