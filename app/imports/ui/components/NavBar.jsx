@@ -14,8 +14,8 @@ const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { user, company, ready } = useTracker(() => {
     const currUser = Meteor.user();
-    const companyId = currUser && currUser.profile ? currUser.profile.companyId : '';
-    const companySub = Meteor.subscribe(Companies.userPublicationName);
+    const companyId = currUser ? currUser.companyID : '';
+    const companySub = Meteor.subscribe(Companies.adminPublicationName);
     const rdy = companySub.ready() && Roles.subscription.ready();
     const currCompany = Companies.collection.findOne(companyId);
     return {
@@ -57,9 +57,11 @@ const NavBar = () => {
                 </NavDropdown>
               ) : (
                 <NavDropdown id="navbar-current-user" title={user.username}>
-                  <NavDropdown.Item id="navbar-profile" as={NavLink} to={CombinePath(PathViewUser, { [ParamCompanyID]: company._id, [ParamUserID]: user._id })}>
-                    <PersonFill /> Profile
-                  </NavDropdown.Item>
+                  {!company || !user ? '' : (
+                    <NavDropdown.Item id="navbar-profile" as={NavLink} to={CombinePath(PathViewUser, { [ParamCompanyID]: company._id, [ParamUserID]: user._id })}>
+                      <PersonFill /> Profile
+                    </NavDropdown.Item>
+                  )}
                   <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>
                     <PersonDashFill /> Sign out
                   </NavDropdown.Item>

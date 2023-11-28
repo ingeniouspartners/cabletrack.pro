@@ -11,11 +11,20 @@ Accounts.onCreateUser((options, user) => {
   if (options.profile) {
     customizedUser.profile = options.profile;
   }
+  if (options.companyID) {
+    customizedUser.companyID = options.companyID;
+  } else {
+    customizedUser.companyID = '';
+  }
   if (options.firstName) {
     customizedUser.firstName = options.firstName;
+  } else {
+    customizedUser.firstName = '';
   }
   if (options.lastName) {
     customizedUser.lastName = options.lastName;
+  } else {
+    customizedUser.lastName = '';
   }
   if (options.address) {
     customizedUser.address = options.address;
