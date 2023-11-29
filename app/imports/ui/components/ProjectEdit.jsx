@@ -45,7 +45,7 @@ const ProjectEdit = ({ projectID, doc }) => {
     <Container id="add-project-page" className="py-3">
       <Row id="edit-project-page" className="justify-content-center">
         <Col xs={10}>
-          <Col className="text-center"><h2>Add / Edit Project</h2></Col>
+          <Col className="text-center"><h2>{projectID ? 'Edit' : 'Add'} Project</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={doc}>
             <Card>
               <Card.Body>
