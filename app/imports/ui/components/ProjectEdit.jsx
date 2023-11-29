@@ -50,44 +50,44 @@ const ProjectEdit = ({ projectID, doc }) => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col><TextField name="name" /></Col>
-                  <TextField name="code" />
+                  <Col><TextField id="project-form-name" name="name" /></Col>
+                  <TextField id="project-form-code" name="code" />
                 </Row>
                 <Row>
-                  <Col><TextField name="contract" /></Col>
-                  <Col><TextField name="bidNumber" /></Col>
+                  <Col><TextField id="project-form-contract" name="contract" /></Col>
+                  <Col><TextField id="project-form-bidNumber" name="bidNumber" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="jobPhone" /></Col>
-                  <Col><TextField name="jobFax" /></Col>
-                  <Col><TextField name="jobEmail" /></Col>
+                  <Col><TextField id="project-form-jobPhone" name="jobPhone" /></Col>
+                  <Col><TextField id="project-form-jobFax" name="jobFax" /></Col>
+                  <Col><TextField id="project-form-jobEmail" name="jobEmail" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="mailAddress.address" /></Col>
+                  <Col><TextField id="project-form-mail-address" name="mailAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <TextField name="mailAddress.address2" />
+                  <TextField id="project-form-mail-address2" name="mailAddress.address2" />
                 </Row>
                 <Row>
-                  <Col><TextField name="mailAddress.city" /></Col>
-                  <Col><TextField name="mailAddress.state" /></Col>
-                  <Col><TextField name="mailAddress.zip" /></Col>
-                  <Col><TextField name="mailAddress.country" /></Col>
+                  <Col><TextField id="project-form-mail-city" name="mailAddress.city" /></Col>
+                  <Col><TextField id="project-form-mail-state" name="mailAddress.state" /></Col>
+                  <Col><TextField id="project-form-mail-zip" name="mailAddress.zip" /></Col>
+                  <Col><TextField id="project-form-mail-country" name="mailAddress.country" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress.address" /></Col>
+                  <Col><TextField id="project-form-ship-address" name="shipAddress.address" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress.address2" /></Col>
+                  <Col><TextField id="project-form-ship-address2" name="shipAddress.address2" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="shipAddress.city" /></Col>
-                  <Col><TextField name="shipAddress.state" /></Col>
-                  <Col><TextField name="shipAddress.zip" /></Col>
-                  <Col><TextField name="shipAddress.country" /></Col>
+                  <Col><TextField id="project-form-ship-city" name="shipAddress.city" /></Col>
+                  <Col><TextField id="project-form-ship-state" name="shipAddress.state" /></Col>
+                  <Col><TextField id="project-form-ship-zip" name="shipAddress.zip" /></Col>
+                  <Col><TextField id="project-form-ship-country" name="shipAddress.country" /></Col>
                 </Row>
-                <TextField name="notes" />
-                <SubmitField value="Submit" />
+                <TextField id="project-form-notes" name="notes" />
+                <SubmitField id="project-form-submit" value="Submit" />
                 <ErrorsField />
               </Card.Body>
               <Link id="list-project-page" className="p-3" to={listProject}>Back to Projects</Link>

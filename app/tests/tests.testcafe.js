@@ -31,7 +31,30 @@ test('Test that signin and signout work', async (testController) => {
   await signoutPage.isDisplayed(testController);
 });
 
-// const project = { };
+const project =
+  {
+    name: 'A Test Project',
+    code: 'IDK-456',
+    contract: 'SMT-123',
+    bidNumber: 'BID789',
+    jobPhone: '123-456-7890',
+    jobFax: '123-456-7890',
+    jobEmail: 'something@something.com',
+    notes: 'This is a secret note.',
+    mailAddress: {
+      address: 'Address 123',
+      address2: 'Address 456',
+      city: 'The City',
+      state: 'NY',
+      zip: '12345',
+      country: 'US' },
+    shipAddress:
+      { address: 'Ship Address 123',
+        address2: 'Ship Address 456',
+        city: 'Ship City',
+        state: 'CA',
+        zip: '54321',
+        country: 'US' } };
 
 test('Test that Projects list, view, add and edit work', async (testController) => {
   await navBar.gotoSignInPage(testController);
@@ -44,7 +67,7 @@ test('Test that Projects list, view, add and edit work', async (testController) 
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
-  // await addProjectPage.addProject(testController, project);
+  await addProjectPage.addProject(testController, project);
   await addProjectPage.gotoListProjectPage(testController);
   await listProjectPage.gotoViewProjectPage(testController);
   await viewProjectPage.isDisplayed(testController);
