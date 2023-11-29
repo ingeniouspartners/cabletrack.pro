@@ -1,8 +1,8 @@
 import { Selector } from 'testcafe';
 
-class AddProjectPage {
+class EditCompanyPage {
   constructor() {
-    this.pageId = '#add-project-page';
+    this.pageId = '#edit-company-page';
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -11,9 +11,9 @@ class AddProjectPage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
-  async gotoListProjectPage(testController) {
-    await testController.click('#list-project-page');
+  async gotoProjectPage(testController) {
+    await testController.click('#list-project-nav');
   }
 }
 
-export const addProjectPage = new AddProjectPage();
+export const editCompanyPage = new EditCompanyPage();

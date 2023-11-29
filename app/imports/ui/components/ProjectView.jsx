@@ -1,22 +1,21 @@
 import React from 'react';
 import { Button, Col, Row, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PropTypeProject } from '../../api/propTypes/PropTypes';
-import { CombinePath, PathListCable, PathEditProject, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
+import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
+import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
-const ProjectView = ({ project }) => {
-  const cablesPath = CombinePath(PathListCable, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
+const ProjectView = ({ project, company }) => {
+  const editPath = CombinePath(PathEditProject, { [ParamCompanyID]: company._id, [ParamProjectID]: project._id });
   return (
-    <Container className="py-3">
+    <Container id="view-project-page" className="py-3">
       <Card>
         <Row className="justify-content-center">
           <Col className="text-center">
             <Row>
               <Col> </Col>
               <Col><h1>{project.name}</h1></Col>
-              <Col><Link id="edit-project-page" to={CombinePath(PathEditProject, { companyID: project.companyID, projectID: project._id })}><Button variant="primary">Edit</Button></Link></Col>
-              <Col><Link id="cable-project-page" to={cablesPath}>Cables</Link></Col>
+              <Col><Link id="edit-project-page" to={editPath}><Button variant="primary">Edit</Button></Link></Col>
             </Row>
           </Col>
         </Row>
@@ -61,6 +60,7 @@ const ProjectView = ({ project }) => {
         <h4>Notes:</h4>
         <h5>{project.notes}</h5>
       </Card>
+
     </Container>
   );
 };
@@ -68,6 +68,7 @@ const ProjectView = ({ project }) => {
 ProjectView.propTypes = {
   // eslint-disable-next-line react/require-default-props
   project: PropTypeProject.isRequired,
+  company: PropTypeCompany.isRequired,
 };
 
 export default ProjectView;

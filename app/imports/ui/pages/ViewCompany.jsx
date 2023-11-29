@@ -24,7 +24,7 @@ const ViewCompany = () => {
     };
   }, [companyID]);
   return (ready ? (
-    <Container className="py-3">
+    <Container id="view-company-page" className="py-3">
       <Row className="justify-content-center">
         <Col xs={10}>
           <CompanyView company={doc} />

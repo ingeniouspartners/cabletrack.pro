@@ -7,13 +7,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
-import * as CTPNav from '../../api/navigation/Navigation';
+import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
+import { PropTypeProject } from '../../api/propTypes/PropTypes';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ projectID, doc }) => {
   const company = Companies.collection.findOne({ name: 'Foo Company' });
   const project = Projects.collection.findOne({ _id: projectID });
+  const listProject = CombinePath(PathListProject, { [ParamCompanyID]: company._id });
   const submit = (data, formRef) => {
     const { name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes } = data;
     if (projectID) {
@@ -40,10 +42,10 @@ const ProjectEdit = ({ projectID, doc }) => {
   };
   let fRef = null;
   return (
-    <Container className="py-3">
-      <Row className="justify-content-center">
+    <Container id="add-project-page" className="py-3">
+      <Row id="edit-project-page" className="justify-content-center">
         <Col xs={10}>
-          <Col className="text-center"><h2>Add / Edit Project</h2></Col>
+          <Col className="text-center"><h2>{projectID ? 'Edit' : 'Add'} Project</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={doc}>
             <Card>
               <Card.Body>
@@ -88,7 +90,7 @@ const ProjectEdit = ({ projectID, doc }) => {
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
-              <Link className="p-3" to={CTPNav.PathListProject}>Back to Projects</Link>
+              <Link id="list-project-page" className="p-3" to={listProject}>Back to Projects</Link>
             </Card>
           </AutoForm>
         </Col>
@@ -99,38 +101,10 @@ const ProjectEdit = ({ projectID, doc }) => {
 
 ProjectEdit.propTypes = {
   projectID: PropTypes.string,
-  doc: PropTypes.shape({
-    companyID: PropTypes.string,
-    code: PropTypes.string,
-    name: PropTypes.string,
-    contract: PropTypes.string,
-    bidNumber: PropTypes.string,
-    mailAddress: PropTypes.shape({
-      address: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-      zip: PropTypes.string,
-      country: PropTypes.string,
-    }),
-    shipAddress: PropTypes.shape({
-      address: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-      zip: PropTypes.string,
-      country: PropTypes.string,
-    }),
-    jobPhone: PropTypes.string,
-    jobFax: PropTypes.string,
-    jobEmail: PropTypes.string,
-    notes: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+  doc: PropTypeProject.isRequired,
 };
 
 ProjectEdit.defaultProps = {
-  doc: {}, // Provide a default value (empty object in this case)
   projectID: '',
 };
 

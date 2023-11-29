@@ -24,13 +24,15 @@ const ListCompany = () => {
     };
   }, []);
   return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CompanyList companies={companies} />
-        </Col>
-      </Row>
-    </Container>
+    <div id="list-company-nav">
+      <Container className="py-3" fluid>
+        <Row className="justify-content-center">
+          <Col md={7}>
+            <CompanyList companies={companies} />
+          </Col>
+        </Row>
+      </Container>
+    </div>
   ) : <LoadingSpinner />);
 };
 

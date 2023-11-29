@@ -1,26 +1,33 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
-import { PropTypeProject } from '../../api/propTypes/PropTypes';
-import { CombinePath, PathViewProject } from '../../api/navigation/Navigation';
+import { CombinePath, ParamCompanyID, ParamProjectID, PathViewProject, PathEditProject } from '../../api/navigation/Navigation';
+import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-const Project = ({ project }) => (
-  <Card>
-    <Card.Header>
-      <Card.Title>{project.name}</Card.Title>
-      <Card.Subtitle>{project.bidNumber}</Card.Subtitle>
-    </Card.Header>
-    <Card.Body>
-      <Card.Text>{project.contract}</Card.Text>
-      <Link id="view-project-page" to={CombinePath(PathViewProject, { companyID: project.companyID, projectID: project._id })}><Button variant="primary">View Project</Button></Link>
-    </Card.Body>
-  </Card>
-);
+const Project = ({ project, company }) => {
+  const view = CombinePath(PathViewProject, { [ParamCompanyID]: company._id, [ParamProjectID]: project._id });
+  const edit = CombinePath(PathEditProject, { [ParamCompanyID]: company._id, [ParamProjectID]: project._id });
+
+  return (
+    <tr>
+      <td>{project.name}</td>
+      <td>{project.bidNumber}</td>
+      <td>{project.code}</td>
+      <td>
+        <Link id="view-project-page" aria-label="view" to={view}><FileEarmarkFill /></Link>
+      </td>
+      <td>
+        <Link id="edit-project-page" aria-label="edit" to={edit}><PencilFill /></Link>
+      </td>
+    </tr>
+  );
+};
 
 // Require a document to be passed to this component.
 Project.propTypes = {
   project: PropTypeProject.isRequired,
+  company: PropTypeCompany.isRequired,
 };
 
 export default Project;

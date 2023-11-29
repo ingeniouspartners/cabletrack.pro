@@ -13,7 +13,7 @@ const CompanyList = ({ companies }) => (
     <thead>
       <tr>
         <th colSpan="3"><h2>List Company</h2></th>
-        <th><Link aria-label="add" to={CombinePath(PathAddCompany, {})}><FileEarmarkPlusFill /></Link></th>
+        <th><Link id="add-company-page" aria-label="add" to={CombinePath(PathAddCompany, {})}><FileEarmarkPlusFill /></Link></th>
       </tr>
       <tr>
         <th>Name</th>

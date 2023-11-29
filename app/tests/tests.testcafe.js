@@ -1,10 +1,14 @@
 import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
+import { listCompanyPage } from './listCompany.page';
+import { viewCompanyPage } from './viewCompany.page';
+import { editCompanyPage } from './editCompany.page';
 import { listProjectPage } from './listProject.page';
 import { viewProjectPage } from './viewProject.page';
 import { addProjectPage } from './addProject.page';
 import { editProjectPage } from './editProject.page';
+import { addCompanyPage } from './addCompany.page';
 import { navBar } from './navbar.component';
 
 /* global fixture:false, test:false */
@@ -29,18 +33,41 @@ test('Test that signin and signout work', async (testController) => {
 
 // const project = { };
 
-test.only('Test that Projects list, view, add and edit work', async (testController) => {
+test('Test that Projects list, view, add and edit work', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  // await navBar.gotoListProjectPage(testController);
-  // await listProjectPage.isDisplayed(testController);
-  // await listProjectPage.gotoAddProjectPage(testController);
-  // await addProjectPage.isDisplayed(testController);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.gotoViewCompanyPage(testController);
+  await viewCompanyPage.isDisplayed(testController);
+  await viewCompanyPage.gotoListProjectPage(testController);
+  await listProjectPage.isDisplayed(testController);
+  await listProjectPage.gotoAddProjectPage(testController);
+  await addProjectPage.isDisplayed(testController);
   // await addProjectPage.addProject(testController, project);
-  // await addProjectPage.gotoProjectPage(testController);
-  // await addProjectPage.isDisplayed(testController);
-  // await listProjectPage.gotoViewProjectPage(testController);
-  // await viewProjectPage.isDisplayed(testController);
-  // await viewProjectPage.gotoEditProjectPage(testController);
-  // await editProjectPage.isDisplayed(testController);
+  await addProjectPage.gotoListProjectPage(testController);
+  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.isDisplayed(testController);
+  await viewProjectPage.gotoEditProjectPage(testController);
+  await editProjectPage.isDisplayed(testController);
+});
+
+test('Test that User, View, Edit work', async (testController) => {
+  await navBar.gotoSignInPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+});
+
+test('Test that Company View, Edit and add work', async (testController) => {
+  await navBar.gotoSignInPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.gotoViewCompanyPage(testController);
+  await viewCompanyPage.isDisplayed(testController);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.gotoAddCompanyPage(testController);
+  await addCompanyPage.isDisplayed(testController);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.gotoEditCompanyPage(testController);
+  await editCompanyPage.isDisplayed(testController);
 });
