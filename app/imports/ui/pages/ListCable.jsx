@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Cables } from '../../api/cable/Cables';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CableList from '../components/CableList';
@@ -25,7 +26,13 @@ const ListCable = () => {
     };
   }, [companyID, projectID]);
   return (ready ? (
-    <CableList cables={cables} companyID={companyID} projectID={projectID} />
+    <Container className="py-3">
+      <Row className="justify-content-center">
+        <Col xs={5}>
+          <CableList cables={cables} companyID={companyID} projectID={projectID} />
+        </Col>
+      </Row>
+    </Container>
   ) : <LoadingSpinner />);
 };
 
