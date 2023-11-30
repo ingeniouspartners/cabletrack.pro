@@ -2,14 +2,11 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Container, Row, Col } from 'react-bootstrap';
 import { Projects } from '../../api/project/Projects';
 import { Cables } from '../../api/cable/Cables';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInView from '../components/CablePullInView';
 import PageWrapper from '../components/PageWrapper';
-import ProjectList from '../components/ProjectList';
 
 /* Renders a form containing the Cable PullIn. */
 const ViewCablePullIn = () => {

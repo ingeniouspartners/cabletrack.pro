@@ -2,12 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams, useLocation } from 'react-router';
-import { Container, Row, Col } from 'react-bootstrap';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInEdit from '../components/CablePullInEdit';
 import PageWrapper from '../components/PageWrapper';
-import CablePullInList from '../components/CablePullInList';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const EditCablePullIn = () => {
