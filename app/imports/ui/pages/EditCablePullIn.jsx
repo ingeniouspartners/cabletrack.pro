@@ -6,6 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInEdit from '../components/CablePullInEdit';
+import PageWrapper from '../components/PageWrapper';
+import CablePullInList from '../components/CablePullInList';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const EditCablePullIn = () => {
@@ -31,15 +33,12 @@ const EditCablePullIn = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CablePullInEdit pullin={pullin} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+
+  return (
+    <PageWrapper ready={ready}>
+      <CablePullInEdit pullin={pullin} />
+    </PageWrapper>
+  );
 };
 
 export default EditCablePullIn;

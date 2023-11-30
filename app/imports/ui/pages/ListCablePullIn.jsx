@@ -6,6 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInList from '../components/CablePullInList';
+import PageWrapper from '../components/PageWrapper';
+import CablePullInView from '../components/CablePullInView';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const ListCablePullIn = () => {
@@ -25,15 +27,12 @@ const ListCablePullIn = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CablePullInList pullins={pullins} companyID={companyID} projectID={projectID} cableID={cableID} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+
+  return (
+    <PageWrapper ready={ready}>
+      <CablePullInList pullins={pullins} companyID={companyID} projectID={projectID} cableID={cableID} />
+    </PageWrapper>
+  );
 };
 
 export default ListCablePullIn;

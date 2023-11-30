@@ -8,6 +8,8 @@ import { Cables } from '../../api/cable/Cables';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInView from '../components/CablePullInView';
+import PageWrapper from '../components/PageWrapper';
+import ProjectList from '../components/ProjectList';
 
 /* Renders a form containing the Cable PullIn. */
 const ViewCablePullIn = () => {
@@ -33,15 +35,12 @@ const ViewCablePullIn = () => {
       ready: rdy,
     };
   }, [projectID, cableID, pullinID]);
-  return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CablePullInView cablePullIn={pullin} cable={cable} project={project} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+
+  return (
+    <PageWrapper ready={ready}>
+      <CablePullInView cablePullIn={pullin} cable={cable} project={project} />
+    </PageWrapper>
+  );
 };
 
 export default ViewCablePullIn;
