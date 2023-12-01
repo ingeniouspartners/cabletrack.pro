@@ -19,7 +19,7 @@ const ListProject = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Stuff documents
-    const projectItems = Projects.collection.find({}).fetch();
+    const projectItems = Projects.collection.find({ companyID: companyID }).fetch();
     const companyItem = Companies.collection.findOne(companyID);
     return {
       projects: projectItems,

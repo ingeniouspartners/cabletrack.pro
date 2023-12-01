@@ -12,8 +12,8 @@ import { PropTypeProject } from '../../api/propTypes/PropTypes';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
-const ProjectEdit = ({ projectID, doc }) => {
-  const company = Companies.collection.findOne({ name: 'Foo Company' });
+const ProjectEdit = ({ projectID, doc, companyID }) => {
+  const company = Companies.collection.findOne({ _id: companyID });
   const project = Projects.collection.findOne({ _id: projectID });
   const listProject = CombinePath(PathListProject, { [ParamCompanyID]: company._id });
   const submit = (data, formRef) => {
@@ -102,6 +102,7 @@ const ProjectEdit = ({ projectID, doc }) => {
 ProjectEdit.propTypes = {
   projectID: PropTypes.string,
   doc: PropTypeProject.isRequired,
+  companyID: PropTypes.string.isRequired,
 };
 
 ProjectEdit.defaultProps = {
