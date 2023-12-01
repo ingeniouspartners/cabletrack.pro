@@ -36,7 +36,10 @@ class AddProjectPage {
     await testController.typeText('#project-form-ship-state', project.shipAddress.state);
     await testController.typeText('#project-form-ship-zip', project.shipAddress.zip);
     // await testController.typeText('project-form-shipAddress-country', project.shipAddress.country);
-    await testController.click('#project-form-submit');
+    await testController.click('#project-form-submit input.btn.btn-primary');
+    const successSweetAlert = await Selector('#swal-overlay swal-overlay--show-modal');
+    const okButton = await successSweetAlert.find('#swal-button swal-button--confirm');
+    await testController.click(okButton);
   }
 }
 

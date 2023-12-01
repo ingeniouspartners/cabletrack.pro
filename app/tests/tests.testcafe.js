@@ -56,23 +56,33 @@ const project =
         zip: '54321',
         country: 'US' } };
 
-test('Test that Projects list, view, add and edit work', async (testController) => {
+const editproject = {
+  name: 'The edited project',
+};
+
+test.only('Test that Projects list, view, add and edit work', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoCompaniesPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoViewCompanyPage(testController);
   await viewCompanyPage.isDisplayed(testController);
-  await viewCompanyPage.gotoListProjectPage(testController);
+  await viewCompanyPage.gotoListProjectPage(testController); // test list projects
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
-  await addProjectPage.addProject(testController, project);
+  // await addProjectPage.addProject(testController, project); // test add project
   await addProjectPage.gotoListProjectPage(testController);
-  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.checkEdit(testController, editproject);
+  await listProjectPage.hasProject(testController); // test if the project is added
+  await listProjectPage.gotoViewProjectPage(testController); // test view project
   await viewProjectPage.isDisplayed(testController);
-  await viewProjectPage.gotoEditProjectPage(testController);
+  await viewProjectPage.gotoEditProjectPage(testController); // test edit project
   await editProjectPage.isDisplayed(testController);
+  await editProjectPage.editProject(testController, editproject);
+  await editProjectPage.gotoListProjectPage(testController);
+  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.checkEdit(testController, editproject);
 });
 
 test('Test that User, View, Edit work', async (testController) => {

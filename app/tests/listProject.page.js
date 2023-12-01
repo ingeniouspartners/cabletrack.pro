@@ -18,6 +18,11 @@ class ListProjectPage {
   async gotoAddProjectPage(testController) {
     await testController.click('#add-project-page');
   }
+
+  async hasProject(testController) {
+    const projectCount = Selector('tr').count;
+    await testController.expect(projectCount).gte(2);
+  }
 }
 
 export const listProjectPage = new ListProjectPage();
