@@ -2,10 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Container, Row, Col } from 'react-bootstrap';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInList from '../components/CablePullInList';
+import PageWrapper from '../components/PageWrapper';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const ListCablePullIn = () => {
@@ -25,15 +24,12 @@ const ListCablePullIn = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CablePullInList pullins={pullins} companyID={companyID} projectID={projectID} cableID={cableID} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+
+  return (
+    <PageWrapper ready={ready}>
+      <CablePullInList pullins={pullins} companyID={companyID} projectID={projectID} cableID={cableID} />
+    </PageWrapper>
+  );
 };
 
 export default ListCablePullIn;

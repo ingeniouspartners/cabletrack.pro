@@ -31,15 +31,25 @@ const resolveNamedObjectId = (collection, name) => {
   return (object ? object._id : undefined);
 };
 
+const updateUser = (company, username) => {
+  const user = Meteor.users.findOne({ username: username });
+  if (user && company) {
+    Meteor.users.update(user._id, { $set: { companyID: company._id } });
+  }
+};
+
 // Initialize the database with a default data document.
 const addCompany = (company) => {
   console.log(`  Adding: ${company.name}`);
   const copy = company;
   const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
+  const userNames = copy.userNames;
+  copy.userNames = undefined;
   const newCompany = Companies.collection.findOne(Companies.collection.insert(copy));
   console.log(CombinePath(PathViewCompany, { companyID: newCompany._id }));
   ownerNames.forEach(ownerName => addOwner(newCompany, ownerName));
+  userNames.forEach(userName => updateUser(newCompany, userName));
 };
 
 // Initialize the CablesCollection if empty.

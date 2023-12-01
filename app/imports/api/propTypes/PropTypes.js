@@ -41,10 +41,10 @@ const PropTypeCable = PropTypes.shape({
   companyID: PropTypes.string.isRequired,
   projectID: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
-  cableType: PropTypes.string.isRequired,
-  conductors: PropTypes.string.isRequired,
-  voltageCable: PropTypes.string.isRequired,
-  voltageTest: PropTypes.string.isRequired,
+  cableType: PropTypes.string,
+  conductors: PropTypes.string,
+  voltageCable: PropTypes.string,
+  voltageTest: PropTypes.string,
   notes: PropTypes.string,
 });
 

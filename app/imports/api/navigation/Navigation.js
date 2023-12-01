@@ -2,7 +2,7 @@ const ParamCompanyID = 'companyID';
 const ParamProjectID = 'projectID';
 const ParamCableID = 'cableID';
 const ParamCablePullInID = 'pullinID';
-const ParamUserID = 'user_id';
+const ParamUserID = 'userID';
 
 const PathHome = '/';
 const PathSignIn = '/signin';

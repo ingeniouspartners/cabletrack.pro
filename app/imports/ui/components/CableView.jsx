@@ -1,34 +1,51 @@
 import React from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap';
-import CableViewItem from './CableViewItem';
+import { Card, Table } from 'react-bootstrap';
+import { PencilFill } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
+import { CombinePath, PathEditCable } from '../../api/navigation/Navigation';
+import { PropTypeCable, PropTypeProject } from '../../api/propTypes/PropTypes';
 
-/* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
-const CableView = (cable_id, doc) => {
-  <Container className="py-3" fluid>
-    <Row className="justify-content-center">
-      <Col md={7}>
-        <Col className="text-center">
-          <h2>View Cable</h2>
-        </Col>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>RefDrawingNo</th>
-              <th>RefDrawingRev</th>
-              <th>System</th>
-              <th>Building</th>
-              <th>Zone</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
+/* Renders the Cable document. */
+const CableView = ({ cable, project }) => {
+  const editPath = CombinePath(PathEditCable, cable);
+  return (
+    <Card>
+      <Card.Header as="h5">Cable</Card.Header>
+      <Card.Body>
+        <Card.Title>{cable.name}</Card.Title>
+        <Card.Subtitle>{project.name}</Card.Subtitle>
+        <Table>
           <tbody>
-            { doc ? <CableViewItem key={doc._id} cable={doc} /> : ''}
+            <tr><td className="strong">Description: </td><td>{cable.description}</td></tr>
+            <tr><td className="strong">Cost Code: </td><td>{cable.costCode}</td></tr>
+            <tr><td className="strong">Ref Drawing No: </td><td>{cable.refDrawingNo}</td></tr>
+            <tr><td className="strong">Ref Drawing Rev: </td><td>{cable.refDrawingRev}</td></tr>
+            <tr><td className="strong">System: </td><td>{cable.system}</td></tr>
+            <tr><td className="strong">Building: </td><td>{cable.building}</td></tr>
+            <tr><td className="strong">Zone: </td><td>{cable.zone}</td></tr>
+            <tr><td className="strong">Origination: </td><td>{cable.origination}</td></tr>
+            <tr><td className="strong">Termination: </td><td>{cable.termination}</td></tr>
+            <tr><td className="strong">Length Planned: </td><td>{cable.lengthPlanned}</td></tr>
+            <tr><td className="strong">Classification: </td><td>{cable.classification}</td></tr>
+            <tr><td className="strong">Cable Type: </td><td>{cable.cableType}</td></tr>
+            <tr><td className="strong">Conductors: </td><td>{cable.conductors}</td></tr>
+            <tr><td className="strong">Voltage Cable: </td><td>{cable.voltageCable}</td></tr>
+            <tr><td className="strong">Voltage Test: </td><td>{cable.voltageTest}</td></tr>
           </tbody>
         </Table>
-      </Col>
-    </Row>
-  </Container>;
+        <Card.Text>{cable.notes}</Card.Text>
+        <Card.Footer>
+          <Link to={editPath}><PencilFill /></Link>
+        </Card.Footer>
+      </Card.Body>
+    </Card>
+  );
+};
+
+// Require a document to be passed to this component. Theoretically only description and id are required.
+CableView.propTypes = {
+  cable: PropTypeCable.isRequired,
+  project: PropTypeProject.isRequired,
 };
 
 export default CableView;

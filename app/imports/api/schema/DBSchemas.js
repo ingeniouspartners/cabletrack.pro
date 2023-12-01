@@ -206,6 +206,7 @@ const DBSchemaUserProfile = new SimpleSchema(
     phone: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     picture: { type: String, max: 256, regEx: /^https?:\/\// },
+    companyID: { type: String, max: 20 },
     _id: { type: String, max: 20 },
   },
   { requiredByDefault: false },
