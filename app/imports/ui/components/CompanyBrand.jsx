@@ -16,4 +16,8 @@ CompanyBrand.propTypes = {
   company: PropTypeCompany,
 };
 
+CompanyBrand.defaultProps = {
+  company: {},
+};
+
 export default CompanyBrand;
