@@ -3,6 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { PencilFill } from 'react-bootstrap-icons';
 import { CombinePath, PathEditUser } from '../../api/navigation/Navigation';
+import { formatAddress, formatEmails } from '../../api/schema/FormSchemas';
 import { PropTypeUserProfile } from '../../api/propTypes/PropTypes';
 import { PageEditUser } from '../../api/testcafe/TestCafe';
 
@@ -16,8 +17,8 @@ const UserView = ({ user }) => {
         <Card.Subtitle>{user.username}</Card.Subtitle>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>Emails: {user.emails}</ListGroup.Item>
-        <ListGroup.Item>Address: {user.address}</ListGroup.Item>
+        <ListGroup.Item>Email: {formatEmails(user.emails)}</ListGroup.Item>
+        <ListGroup.Item>Address: {formatAddress(user.address)}</ListGroup.Item>
         <ListGroup.Item>Services: {user.services}</ListGroup.Item>
         <ListGroup.Item>Phone: {user.phone}</ListGroup.Item>
         <ListGroup.Item>Fax: {user.fax}</ListGroup.Item>

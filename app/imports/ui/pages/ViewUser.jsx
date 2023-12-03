@@ -11,10 +11,8 @@ const ViewUser = () => {
   const { userID } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { user, ready } = useTracker(() => {
-    // Get access to user's profile.
-    const subscription = Meteor.subscribe('user.profile');
     // Determine is the subscription is ready.
-    const rdy = subscription.ready();
+    const rdy = true;
     const userItem = Meteor.users.findOne({ _id: userID }, {});
     return {
       user: userItem,

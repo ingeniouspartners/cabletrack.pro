@@ -17,7 +17,7 @@ CompanyBrand.propTypes = {
 };
 
 CompanyBrand.defaultProps = {
-  company: {},
+  company: { _id: '', name: 'CableTrack PRO', logoURL: '/images/logo.png' },
 };
 
 export default CompanyBrand;
