@@ -82,7 +82,7 @@ const NavBar = () => {
 
 const GuardedNavLink = ({ id, user, roles, to, children }) => {
   const allowed = user && roles.some((role) => Roles.userIsInRole(user, role));
-  return allowed ? <Nav.Link id={id} as={NavLink} to={to}>{children}</Nav.Link> : <></>;
+  return allowed ? <Nav.Link id={id} as={NavLink} to={to}>{children}</Nav.Link> : '';
 };
 
 GuardedNavLink.propTypes = {

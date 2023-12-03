@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 // import { Roles } from 'meteor/alanning:roles';
 import { Companies } from '../../api/company/Companies';
-import { CompaniesOwnedBy} from '../../api/company/CompaniesOwnedBys';
+import { CompaniesOwnedBy } from '../../api/company/CompaniesOwnedBys';
 import { CompaniesUsedBy } from '../../api/company/CompaniesUsedBys';
 import { Projects } from '../../api/project/Projects';
 import { ProjectsOwnedBy } from '../../api/project/ProjectsOwnedBys';
