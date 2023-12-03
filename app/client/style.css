@@ -167,3 +167,8 @@ footer #copyright {
   /*Footer end*/
 
 }
+
+.vertical-line {
+  border-right: 1px solid #9798AD;
+  padding-right: 15px;
+}
