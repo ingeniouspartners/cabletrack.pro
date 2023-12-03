@@ -1,7 +1,7 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, SubmitField, SelectField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
 import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
+import { stateArray } from '../../api/schema/FormSchemas';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
@@ -70,7 +71,7 @@ const ProjectEdit = ({ projectID, doc, companyID }) => {
                 </Row>
                 <Row>
                   <Col><TextField id="project-form-mail-city" name="mailAddress.city" /></Col>
-                  <Col><TextField id="project-form-mail-state" name="mailAddress.state" /></Col>
+                  <Col><SelectField id="project-form-mail-state" name="mailAddress.state" allowedValues={stateArray} /></Col>
                   <Col><TextField id="project-form-mail-zip" name="mailAddress.zip" /></Col>
                   <Col><TextField id="project-form-mail-country" name="mailAddress.country" /></Col>
                 </Row>
@@ -82,7 +83,7 @@ const ProjectEdit = ({ projectID, doc, companyID }) => {
                 </Row>
                 <Row>
                   <Col><TextField id="project-form-ship-city" name="shipAddress.city" /></Col>
-                  <Col><TextField id="project-form-ship-state" name="shipAddress.state" /></Col>
+                  <Col><SelectField id="project-form-ship-state" name="shipAddress.state" allowedValues={stateArray} /></Col>
                   <Col><TextField id="project-form-ship-zip" name="shipAddress.zip" /></Col>
                   <Col><TextField id="project-form-ship-country" name="shipAddress.country" /></Col>
                 </Row>
