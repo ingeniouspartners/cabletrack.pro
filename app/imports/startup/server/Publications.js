@@ -1,8 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 // import { Roles } from 'meteor/alanning:roles';
 import { Companies } from '../../api/company/Companies';
+import { CompaniesOwnedBy} from '../../api/company/CompaniesOwnedBys';
+import { CompaniesUsedBy } from '../../api/company/CompaniesUsedBys';
 import { Projects } from '../../api/project/Projects';
+import { ProjectsOwnedBy } from '../../api/project/ProjectsOwnedBys';
+import { ProjectsUsedBy } from '../../api/project/ProjectsUsedBys';
 import { Cables } from '../../api/cable/Cables';
+import { CablesOwnedBy } from '../../api/cable/CablesOwnedBys';
+import { CablesUsedBy } from '../../api/cable/CablesUsedBys';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 // import { RoleListCompanyAll, RoleListProjectAll, RoleListCableAll, RoleListCablePullInAll, RoleListUserAll } from '../../api/role/Roles';
 
@@ -24,6 +30,24 @@ Meteor.publish(Companies.userPublicationName, function () {
   return this.ready();
 });
 
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(CompaniesOwnedBy.userPublicationName, function () {
+  if (this.userId) {
+    return CompaniesOwnedBy.collection.find({ ownedID: this.userId });
+  }
+  return this.ready();
+});
+
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(CompaniesUsedBy.userPublicationName, function () {
+  if (this.userId) {
+    return CompaniesUsedBy.collection.find({});
+  }
+  return this.ready();
+});
+
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(Projects.userPublicationName, function () {
   if (this.userId) {
@@ -32,10 +56,46 @@ Meteor.publish(Projects.userPublicationName, function () {
   return this.ready();
 });
 
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(ProjectsOwnedBy.userPublicationName, function () {
+  if (this.userId) {
+    return ProjectsOwnedBy.collection.find({ ownedID: this.userId });
+  }
+  return this.ready();
+});
+
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(ProjectsUsedBy.userPublicationName, function () {
+  if (this.userId) {
+    return ProjectsUsedBy.collection.find({ userID: this.userID });
+  }
+  return this.ready();
+});
+
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(Cables.userPublicationName, function () {
   if (this.userId) {
     return Cables.collection.find({});
+  }
+  return this.ready();
+});
+
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(CablesOwnedBy.userPublicationName, function () {
+  if (this.userId) {
+    return CablesOwnedBy.collection.find({ ownedID: this.userId });
+  }
+  return this.ready();
+});
+
+// User-level publication.
+// If logged in, then publish documents owned by this user. Otherwise, publish nothing.
+Meteor.publish(CablesUsedBy.userPublicationName, function () {
+  if (this.userId) {
+    return CablesUsedBy.collection.find({ userID: this.userID });
   }
   return this.ready();
 });

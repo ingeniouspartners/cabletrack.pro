@@ -162,7 +162,7 @@ db.createCollection('CompaniesOwnedByView', {
     {
       $project:
         {
-          _id: 0,
+          _id: 1,
           name: 1,
           ownerID: '$OwnedBy.ownerID',
         },
@@ -191,7 +191,7 @@ db.createCollection('ProjectsOwnedByView', {
     {
       $project:
         {
-          _id: 0,
+          _id: 1,
           name: 1,
           ownerID: '$OwnedBy.ownerID',
         },
@@ -220,12 +220,99 @@ db.createCollection('CablesOwnedByView', {
     {
       $project:
         {
-          _id: 0,
+          _id: 1,
           name: 1,
           ownerID: '$OwnedBy.ownerID',
         },
     },
     { $unwind: '$ownerID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('CompaniesUsedByView', {
+  viewOn: 'CompaniesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('ProjectsUsedByView', {
+  viewOn: 'ProjectsCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('CablesUsedByView', {
+  viewOn: 'CablesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
   ] }, (err, result) => {
   if (err) {
     console.log(`Error: ${err}`);

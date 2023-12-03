@@ -36,10 +36,6 @@
   "defaultCompanies": [
     {
       "name": "Foo Company",
-      "ownerNames": [
-        "ceo@foo.com",
-        "admin@foo.com"
-      ],
       "address": {
         "address": "123 Main St",
         "city": "Cityville",
@@ -47,6 +43,10 @@
         "zip": "12345",
         "country": "US"
       },
+      "ownerNames": [
+        "ceo@foo.com",
+        "admin@foo.com"
+      ],
       "userNames": [
         "ceo@foo.com",
         "pm@foo.com",
@@ -84,6 +84,11 @@
         "pm@foo.com",
         "admin@foo.com",
         "elec@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
       ]
     }
     ],
@@ -95,6 +100,11 @@
       "ownerNames": [
         "ceo@foo.com",
         "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
       ]
     },
     {
@@ -104,6 +114,11 @@
       "ownerNames": [
         "ceo@foo.com",
         "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
       ]
     },
     {
@@ -113,6 +128,11 @@
       "ownerNames": [
         "ceo@foo.com",
         "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
       ]
     }
   ],
