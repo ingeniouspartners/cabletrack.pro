@@ -6,9 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamCompanyID, ParamUserID } from '../../api/navigation/Navigation';
+import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamUserID } from '../../api/navigation/Navigation';
 import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from './LoadingSpinner';
+import { NavListCompany, NavViewCompany, NavListProject, NavViewUser } from '../../api/testcafe/TestCafe';
+import CompanyBrand from './CompanyBrand';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -30,7 +32,7 @@ const NavBar = () => {
       <Navbar id="navbar" className="text-white" expand="lg">
         <Container>
           <Navbar.Brand as={NavLink} to={PathHome}>
-            {company ? (<h2 className="company-logo">{company.name}</h2>) : (<h2><Image className="app-logo" src="/images/logo.png" alt="CableTrack PRO" /></h2>)}
+            <CompanyBrand company={company} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -38,11 +40,11 @@ const NavBar = () => {
               <Nav className="me-auto justify-content-start">
                 {company ? (
                   <>
-                    <Nav.Link id="view-company-nav" as={NavLink} to={CombinePath(PathViewCompany, company)}>Company</Nav.Link>
-                    <Nav.Link id="list-project-nav" as={NavLink} to={CombinePath(PathListProject, company)}>Projects</Nav.Link>
+                    <Nav.Link id={NavViewCompany} as={NavLink} to={CombinePath(PathViewCompany, company)}>Company</Nav.Link>
+                    <Nav.Link id={NavListProject} as={NavLink} to={CombinePath(PathListProject, company)}>Projects</Nav.Link>
                   </>
                 ) : ''}
-                <Nav.Link id="list-company-nav" as={NavLink} to={PathListCompany}>Companies</Nav.Link>
+                <Nav.Link id={NavListCompany} as={NavLink} to={PathListCompany}>Companies</Nav.Link>
               </Nav>
             ) : ''}
             <Nav className="justify-content-end">
@@ -57,8 +59,8 @@ const NavBar = () => {
                 </NavDropdown>
               ) : (
                 <NavDropdown id="navbar-current-user" title={user.username}>
-                  {!company || !user ? '' : (
-                    <NavDropdown.Item id="navbar-profile" as={NavLink} to={CombinePath(PathViewUser, { [ParamCompanyID]: company._id, [ParamUserID]: user._id })}>
+                  { !user ? '' : (
+                    <NavDropdown.Item id={NavViewUser} as={NavLink} to={CombinePath(PathViewUser, { [ParamUserID]: user._id })}>
                       <PersonFill /> Profile
                     </NavDropdown.Item>
                   )}

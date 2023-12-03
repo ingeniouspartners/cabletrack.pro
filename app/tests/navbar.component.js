@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { NavViewUser } from '../imports/api/testcafe/TestCafe';
 
 class NavBar {
 
@@ -55,6 +56,14 @@ class NavBar {
 
   async gotoCompaniesPage(testController) {
     await testController.click('#list-company-nav');
+  }
+
+  async gotoProjectsPage(testController) {
+    await testController.click('#list-project-nav');
+  }
+
+  async gotoProfilePage(testController) {
+    await testController.click(`#${NavViewUser}`);
   }
 }
 
