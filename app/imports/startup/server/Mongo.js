@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { CombinePath, PathViewCompany, PathViewProject, PathViewCable, PathViewCablePullIn } from '../../api/navigation/Navigation';
 import { OwnedBys } from '../../api/owner/OwnedBys.js';
+import { UsedBys } from '../../api/owner/UsedBys.js';
 import { Companies } from '../../api/company/Companies.js';
 import { Projects } from '../../api/project/Projects.js';
 import { Cables } from '../../api/cable/Cables.js';
@@ -14,7 +15,7 @@ const resolveUser = (username) => {
 };
 
 const addOwner = (ownedObj, username) => {
-  // console.log(`  Resolving owner: ${username}`);
+  console.log(`  Resolving owner: ${username}`);
   const owner = Meteor.users.findOne({ username: username });
   if (owner && ownedObj) {
     const owners = {
@@ -31,10 +32,15 @@ const resolveNamedObjectId = (collection, name) => {
   return (object ? object._id : undefined);
 };
 
-const updateUser = (company, username) => {
+const addUser = (usedObj, username) => {
+  console.log(`  Resolving user: ${username}`);
   const user = Meteor.users.findOne({ username: username });
-  if (user && company) {
-    Meteor.users.update(user._id, { $set: { companyID: company._id } });
+  if (user && usedObj) {
+    const users = {
+      usedID: usedObj._id,
+      userID: user._id,
+    };
+    UsedBys.collection.insert(users);
   }
 };
 
@@ -49,7 +55,7 @@ const addCompany = (company) => {
   const newCompany = Companies.collection.findOne(Companies.collection.insert(copy));
   console.log(CombinePath(PathViewCompany, { companyID: newCompany._id }));
   ownerNames.forEach(ownerName => addOwner(newCompany, ownerName));
-  userNames.forEach(userName => updateUser(newCompany, userName));
+  userNames.forEach(userName => addUser(newCompany, userName));
 };
 
 // Initialize the CablesCollection if empty.
@@ -66,11 +72,14 @@ const addProject = (project) => {
   const copy = project;
   const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
+  const userNames = copy.userNames;
+  copy.userNames = undefined;
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
   const newProject = Projects.collection.findOne(Projects.collection.insert(copy));
   console.log(CombinePath(PathViewProject, { companyID: newProject.companyID, projectID: newProject._id }));
   ownerNames.forEach(ownerName => addOwner(newProject, ownerName));
+  userNames.forEach(userName => addUser(newProject, userName));
 };
 
 // Initialize the CablesCollection if empty.
@@ -87,6 +96,8 @@ const addCable = (cable) => {
   const copy = cable;
   const ownerNames = copy.ownerNames;
   copy.ownerNames = undefined;
+  const userNames = copy.userNames;
+  copy.userNames = undefined;
   copy.companyID = resolveNamedObjectId(Companies.collection, copy.company);
   copy.company = undefined;
   copy.projectID = resolveNamedObjectId(Projects.collection, copy.project);
@@ -95,6 +106,7 @@ const addCable = (cable) => {
   const newCable = Cables.collection.findOne(cableID);
   console.log(CombinePath(PathViewCable, { companyID: newCable.companyID, projectID: newCable.projectID, cableID: newCable._id }));
   ownerNames.forEach(ownerName => addOwner(newCable, ownerName));
+  userNames.forEach(userName => addUser(newCable, userName));
 };
 
 // Initialize the CablesCollection if empty.
@@ -127,3 +139,184 @@ if (CablePullIns.collection.find().count() === 0) {
     Meteor.settings.defaultCablePullIns.forEach(cablePullIn => addCablePullIn(cablePullIn));
   }
 }
+
+// Then grab the raw db handler
+// @link http://mongodb.github.io/node-mongodb-native/2.2/api/Db.html
+const db = Companies.collection.rawDatabase();
+
+// Unfortunately, this driver doesn't support the `db.createView` method
+// So let's use `db.createCollection` instead
+// @link https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection
+db.createCollection('CompaniesOwnedByView', {
+  viewOn: 'CompaniesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'OwnedBysCollection',
+          localField: '_id',
+          foreignField: 'ownedID',
+          as: 'OwnedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          ownerID: '$OwnedBy.ownerID',
+        },
+    },
+    { $unwind: '$ownerID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('ProjectsOwnedByView', {
+  viewOn: 'ProjectsCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'OwnedBysCollection',
+          localField: '_id',
+          foreignField: 'ownedID',
+          as: 'OwnedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          ownerID: '$OwnedBy.ownerID',
+        },
+    },
+    { $unwind: '$ownerID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('CablesOwnedByView', {
+  viewOn: 'CablesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'OwnedBysCollection',
+          localField: '_id',
+          foreignField: 'ownedID',
+          as: 'OwnedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          ownerID: '$OwnedBy.ownerID',
+        },
+    },
+    { $unwind: '$ownerID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('CompaniesUsedByView', {
+  viewOn: 'CompaniesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('ProjectsUsedByView', {
+  viewOn: 'ProjectsCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});
+
+db.createCollection('CablesUsedByView', {
+  viewOn: 'CablesCollection',
+  pipeline: [
+    {
+      $lookup:
+        {
+          from: 'UsedBysCollection',
+          localField: '_id',
+          foreignField: 'usedID',
+          as: 'UsedBy',
+        },
+    },
+    {
+      $project:
+        {
+          _id: 1,
+          name: 1,
+          userID: '$UsedBy.userID',
+        },
+    },
+    { $unwind: '$userID' },
+  ] }, (err, result) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  } else {
+    console.log(result);
+  }
+});

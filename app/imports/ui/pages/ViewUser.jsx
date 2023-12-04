@@ -3,27 +3,27 @@ import { Meteor } from 'meteor/meteor';
 import { useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
 import UserView from '../components/UserView';
-import LoadingSpinner from '../components/LoadingSpinner';
+import PageWrapper from '../components/PageWrapper';
+import { PageViewUser } from '../../api/testcafe/TestCafe';
 
-/* Please replace the guts of this page with the right code. */
 const ViewUser = () => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  // Get the userID from the URL field. See imports/ui/layouts/App.jsx for the route containing :userID.
   const { userID } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { doc, ready } = useTracker(() => {
-    // Get access to user's profile.
-    const subscription = Meteor.subscribe('user.profile');
+  const { user, ready } = useTracker(() => {
     // Determine is the subscription is ready.
-    const rdy = subscription.ready();
-    const document = Meteor.users.findOne({ _id: userID }, {});
+    const rdy = true;
+    const userItem = Meteor.users.findOne({ _id: userID }, {});
     return {
-      doc: document,
+      user: userItem,
       ready: rdy,
     };
   }, [userID]);
-  return (ready ? (
-    <UserView user={doc} />
-  ) : <LoadingSpinner />);
+  return (
+    <PageWrapper id={PageViewUser} ready={ready}>
+      <UserView user={user} />
+    </PageWrapper>
+  );
 };
 
 export default ViewUser;
