@@ -1,6 +1,4 @@
 import { signinPage } from './signin.page';
-import { listCompanyPage } from './listCompany.page';
-import { viewCompanyPage } from './viewCompany.page';
 import { listProjectPage } from './listProject.page';
 import { viewProjectPage } from './viewProject.page';
 import { addProjectPage } from './addProject.page';
@@ -76,11 +74,7 @@ test('Test that ProjectListItem Edit works', async (testController) => {
 test('Test that ProjectListItem Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoCompaniesPage(testController);
-  await listCompanyPage.isDisplayed(testController);
-  await listCompanyPage.gotoViewCompanyPage(testController);
-  await viewCompanyPage.isDisplayed(testController);
-  await viewCompanyPage.gotoListProjectPage(testController); // test list projects
+  await navBar.gotoProjectsPage(testController); // test list projects
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
