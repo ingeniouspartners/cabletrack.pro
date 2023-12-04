@@ -16,8 +16,8 @@ fixture('cabletrack.pro localhost test with default db')
 const project =
   {
     name: 'A Test Project',
-    code: 'IDK-456',
-    contract: 'SMT-123',
+    code: 'IDK456',
+    contract: 'SMT123',
     bidNumber: 'BID789',
     jobPhone: '123-456-7890',
     jobFax: '123-456-7890',
@@ -69,9 +69,12 @@ test('Test that ProjectListItem Edit works', async (testController) => {
   await listProjectPage.gotoEditProjectPage(testController); // test edit project
   await editProjectPage.isDisplayed(testController);
   await editProjectPage.editProject(testController, editproject);
+  await navBar.gotoProjectsPage(testController);
+  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.checkView(testController, editproject);
 });
 
-test('Test that ProjectListItem Add works', async (testController) => {
+test.only('Test that ProjectListItem Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController); // test list projects
@@ -79,4 +82,6 @@ test('Test that ProjectListItem Add works', async (testController) => {
   await listProjectPage.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
   await addProjectPage.addProject(testController, project); // test add project
+  await navBar.gotoProjectsPage(testController);
+  await listProjectPage.hasProject(testController); // test if the project is added
 });
