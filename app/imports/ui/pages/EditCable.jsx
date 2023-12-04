@@ -36,7 +36,9 @@ const EditCable = () => {
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
-          <CableEdit cable={cable} />
+          <div className="edit-cable-page">
+            <CableEdit cable={cable} />
+          </div>
         </Col>
       </Row>
     </Container>

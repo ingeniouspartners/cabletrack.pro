@@ -71,3 +71,11 @@ test('Test that Company View, Edit and add work', async (testController) => {
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);
 });
+
+test('Test that SIgnUp page works', async (testController) => {
+  await navBar.gotoSignUpPage(testController);
+  await signupPage.signupUser(testController, credentials.username, credentials.password);
+  await navBar.isLoggedIn(testController, credentials.username);
+  await navBar.logout(testController);
+  await signoutPage.isDisplayed(testController);
+});
