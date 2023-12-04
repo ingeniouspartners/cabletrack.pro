@@ -8,6 +8,7 @@ import { Projects } from '../../api/project/Projects';
 import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
+import { NavListProject } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
@@ -42,7 +43,7 @@ const ProjectEdit = ({ project }) => {
     <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
       <Card>
         <Card.Header>
-          <Card.Title>{project && project._id ? 'Edit' : 'Add'} CablePullIn</Card.Title>
+          <Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title>
         </Card.Header>
         <Card.Body>
           <Row>
@@ -86,7 +87,7 @@ const ProjectEdit = ({ project }) => {
           <SubmitField id="project-form-submit" value="Submit" />
           <ErrorsField />
         </Card.Body>
-        <Link id="list-project-page" className="p-3" to={listPath}>Back to Projects</Link>
+        <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>
       </Card>
     </AutoForm>
   );

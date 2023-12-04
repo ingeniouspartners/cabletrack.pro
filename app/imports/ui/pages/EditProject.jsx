@@ -5,7 +5,6 @@ import { useLocation, useParams } from 'react-router';
 import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
 import ProjectEdit from '../components/ProjectEdit';
-import { CablePullIns } from '../../api/cable/CablePullIns';
 import PageWrapper from '../components/PageWrapper';
 import { NavEditProject } from '../../api/testcafe/TestCafe';
 
@@ -27,7 +26,7 @@ const EditProject = () => {
     if (location.pathname.endsWith('/add')) {
       projectItem = { companyID: companyID, name: '', code: '', contract: '', bidNumber: '', jobPhone: '', jobFax: '', mailAddress: {}, shipAddress: {}, jobEmail: '', notes: '', _id: '' };
     } else {
-      projectItem = CablePullIns.collection.findOne(projectID);
+      projectItem = Projects.collection.findOne(projectID);
     }
     return {
       project: projectItem,
