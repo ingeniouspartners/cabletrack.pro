@@ -2,17 +2,16 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams, useLocation } from 'react-router';
-import { Container, Row, Col } from 'react-bootstrap';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import LoadingSpinner from '../components/LoadingSpinner';
 import CablePullInEdit from '../components/CablePullInEdit';
+import PageWrapper from '../components/PageWrapper';
+import { NavEditCablePullIn } from '../../api/testcafe/TestCafe';
 
-/* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const EditCablePullIn = () => {
-  const { pullinID } = useParams();
+  const { pullinID, cableID, projectID, companyID } = useParams();
   const location = useLocation();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { ready, pullin } = useTracker(() => {
+  const { ready, pullIn } = useTracker(() => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Cable documents.
@@ -22,24 +21,22 @@ const EditCablePullIn = () => {
     // Get the Cable documents
     let pullInItem;
     if (location.pathname.endsWith('/add')) {
-      pullInItem = { companyID: '', projectID: '', cableID: '', personInstalled: '', dateInstalled: '', lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '', maxPullingTension: '', notes: '', _id: '' };
+      pullInItem = { companyID: companyID, projectID: projectID, cableID: cableID, personInstalled: Meteor.userId(), dateInstalled: Date.now(), lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '', maxPullingTension: '',
+        notes: '', _id: '' };
     } else {
       pullInItem = CablePullIns.collection.findOne(pullinID);
     }
     return {
-      pullin: pullInItem,
+      pullIn: pullInItem,
       ready: rdy,
     };
-  }, []);
-  return (ready ? (
-    <Container className="py-3" fluid>
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <CablePullInEdit pullin={pullin} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+  }, [pullinID, cableID, projectID, companyID]);
+
+  return (
+    <PageWrapper id={NavEditCablePullIn} ready={ready}>
+      <CablePullInEdit pullin={pullIn} />
+    </PageWrapper>
+  );
 };
 
 export default EditCablePullIn;

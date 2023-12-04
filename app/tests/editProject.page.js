@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavListProject, PageEditProject } from '../imports/api/testcafe/TestCafe';
 
 class EditProjectPage {
   constructor() {
-    this.pageId = '#edit-project-page';
+    this.pageId = `#${PageEditProject}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -11,8 +12,14 @@ class EditProjectPage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
-  async gotoProjectPage(testController) {
-    await testController.click('#list-project-nav');
+  async gotoListProjectPage(testController) {
+    await testController.click(`#${NavListProject}`);
+  }
+
+  async editProject(testController, project) {
+    await testController.typeText('#project-form-name', project.name, { replace: true });
+    await testController.click('#project-form-submit input.btn.btn-primary');
+    await testController.click('button.swal-button--confirm');
   }
 }
 

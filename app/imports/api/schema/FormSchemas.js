@@ -1,4 +1,5 @@
 import SimpleSchema from 'simpl-schema';
+import PropTypes from 'prop-types';
 
 const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
   'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
@@ -39,6 +40,21 @@ const formatAddress = (address) => {
 
 formatAddress.propTypes = {
   address: addressSchema,
+};
+
+const formatEmails = (emails) => {
+  if (!emails) {
+    return '';
+  }
+  let formattedEmails = '';
+  emails.forEach((email) => {
+    formattedEmails += `${email.address}\n`;
+  });
+  return formattedEmails;
+};
+
+formatEmails.propTypes = {
+  emails: PropTypes.arrayOf(emailSchema),
 };
 
 const measurementTimedSchema = new SimpleSchema({
@@ -231,4 +247,4 @@ const FormSchemaUserProfile = new SimpleSchema(
 
 export { stateArray, countryArray, FormSchemaOwnedBy, FormSchemaUsedBy, FormSchemaCompany, FormSchemaProject, FormSchemaCable, FormSchemaCablePullIn, FormSchemaCableTerminate, FormSchemaCableTestContinuity, FormSchemaCableTestMegger,
   FormSchemaCableTestVLF, FormSchemaUserProfile };
-export { formatAddress };
+export { formatAddress, formatEmails };

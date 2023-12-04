@@ -1,14 +1,6 @@
 import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
-import { listCompanyPage } from './listCompany.page';
-import { viewCompanyPage } from './viewCompany.page';
-import { editCompanyPage } from './editCompany.page';
-import { listProjectPage } from './listProject.page';
-import { viewProjectPage } from './viewProject.page';
-import { addProjectPage } from './addProject.page';
-import { editProjectPage } from './editProject.page';
-import { addCompanyPage } from './addCompany.page';
 import { navBar } from './navbar.component';
 
 /* global fixture:false, test:false */
@@ -16,7 +8,7 @@ import { navBar } from './navbar.component';
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'ceo@foo.com', password: 'changeme' };
 
-fixture('cabletrack.pro localhost test with default db')
+fixture('tests: cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
 test('Test that landing page shows up', async (testController) => {

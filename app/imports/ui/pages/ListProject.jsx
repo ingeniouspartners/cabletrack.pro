@@ -2,10 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Container, Col, Row } from 'react-bootstrap';
 import { Projects } from '../../api/project/Projects';
 import ProjectList from '../components/ProjectList';
-import LoadingSpinner from '../components/LoadingSpinner';
+import PageWrapper from '../components/PageWrapper';
 import { Companies } from '../../api/company/Companies';
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -20,7 +19,7 @@ const ListProject = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Stuff documents
-    const projectItems = Projects.collection.find({}).fetch();
+    const projectItems = Projects.collection.find({ companyID: companyID }).fetch();
     const companyItem = Companies.collection.findOne(companyID);
     return {
       projects: projectItems,
@@ -29,15 +28,11 @@ const ListProject = () => {
     };
   }, []);
 
-  return (ready ? (
-    <Container className="py-3">
-      <Row className="justify-content-center">
-        <Col md={8}>
-          <ProjectList projects={projects} company={company} />
-        </Col>
-      </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+  return (
+    <PageWrapper ready={ready}>
+      <ProjectList projects={projects} company={company} />
+    </PageWrapper>
+  );
 };
 
 export default ListProject;

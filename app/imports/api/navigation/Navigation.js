@@ -32,9 +32,9 @@ const PathAddCablePullIn = `${PathViewCable}/pullin/add`;
 const PathEditCablePullIn = `${PathViewCablePullIn}/edit`;
 const PathDeleteCablePullIn = `${PathViewCablePullIn}/delete`;
 
-const PathListUser = `${PathViewCompany}/users`;
-const PathViewUser = `${PathViewCompany}/user/:${ParamUserID}`;
-const PathAddUser = `${PathViewCompany}/user/add`;
+const PathListUser = '/users';
+const PathViewUser = `/user/:${ParamUserID}`;
+const PathAddUser = '/user/add';
 const PathEditUser = `${PathViewUser}/edit`;
 const PathDeleteUser = `${PathViewUser}/delete`;
 

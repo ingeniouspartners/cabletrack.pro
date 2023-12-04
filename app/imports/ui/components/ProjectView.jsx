@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Col, Row, Container, Card } from 'react-bootstrap';
+import { Col, Row, Container, Card } from 'react-bootstrap';
+import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
+import { NavEditProject } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const ProjectView = ({ project, company }) => {
@@ -15,7 +17,7 @@ const ProjectView = ({ project, company }) => {
             <Row>
               <Col> </Col>
               <Col><h1>{project.name}</h1></Col>
-              <Col><Link id="edit-project-page" to={editPath}><Button variant="primary">Edit</Button></Link></Col>
+              <Col><Link id={NavEditProject} to={editPath}><PencilFill /></Link></Col>
             </Row>
           </Col>
         </Row>
