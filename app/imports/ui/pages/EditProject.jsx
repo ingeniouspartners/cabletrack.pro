@@ -6,7 +6,6 @@ import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
 import ProjectEdit from '../components/ProjectEdit';
 import PageWrapper from '../components/PageWrapper';
-import { NavEditProject } from '../../api/testcafe/TestCafe';
 
 /* Renders the EditProject page for editing or adding a single project. */
 const EditProject = () => {
@@ -16,7 +15,7 @@ const EditProject = () => {
   const { ready, project } = useTracker(() => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
-    // Get access to Project documents.
+    // Get access to ProjectListItem documents.
     const projectSub = Meteor.subscribe(Projects.adminPublicationName);
     const companySub = Meteor.subscribe(Companies.adminPublicationName);
     // Determine if the subscription is ready
@@ -35,7 +34,7 @@ const EditProject = () => {
   }, [projectID, companyID]);
 
   return (
-    <PageWrapper id={NavEditProject} ready={ready}>
+    <PageWrapper ready={ready}>
       <ProjectEdit project={project} />
     </PageWrapper>
   );

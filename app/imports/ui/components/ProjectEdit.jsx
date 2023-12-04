@@ -8,7 +8,7 @@ import { Projects } from '../../api/project/Projects';
 import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
-import { NavListProject } from '../../api/testcafe/TestCafe';
+import { NavListProject, PageEditProject } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
@@ -22,7 +22,7 @@ const ProjectEdit = ({ project }) => {
           name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, companyID },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Project updated successfully', 'success')));
+        swal('Success', 'ProjectListItem updated successfully', 'success')));
     } else {
       Projects.collection.insert(
         {
@@ -31,7 +31,7 @@ const ProjectEdit = ({ project }) => {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'Project added successfully', 'success');
+            swal('Success', 'ProjectListItem added successfully', 'success');
             formRef.reset();
           }
         },
@@ -40,7 +40,7 @@ const ProjectEdit = ({ project }) => {
   };
   let fRef = null;
   return (
-    <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
+    <AutoForm id={PageEditProject} ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
       <Card>
         <Card.Header>
           <Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title>

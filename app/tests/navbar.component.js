@@ -63,6 +63,14 @@ class NavBar {
   }
 
   async gotoProfilePage(testController) {
+    const visible = await Selector('#basic-navbar-nav').visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    const visible2 = await Selector(`#${NavViewUser}`).visible;
+    if (!visible2) {
+      await testController.click('#navbar-current-user');
+    }
     await testController.click(`#${NavViewUser}`);
   }
 }

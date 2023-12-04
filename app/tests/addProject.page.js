@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavListProject, PageEditProject } from '../imports/api/testcafe/TestCafe';
 
 class AddProjectPage {
   constructor() {
-    this.pageId = '#add-project-page';
+    this.pageId = `#${PageEditProject}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -12,7 +13,7 @@ class AddProjectPage {
   }
 
   async gotoListProjectPage(testController) {
-    await testController.click('#list-project-page');
+    await testController.click(`#${NavListProject}`);
   }
 
   async addProject(testController, project) {
@@ -37,9 +38,7 @@ class AddProjectPage {
     await testController.typeText('#project-form-ship-zip', project.shipAddress.zip);
     // await testController.typeText('project-form-shipAddress-country', project.shipAddress.country);
     await testController.click('#project-form-submit input.btn.btn-primary');
-    const successSweetAlert = await Selector('#swal-overlay swal-overlay--show-modal');
-    const okButton = await successSweetAlert.find('#swal-button swal-button--confirm');
-    await testController.click(okButton);
+    await testController.click('button.swal-button--confirm');
   }
 }
 

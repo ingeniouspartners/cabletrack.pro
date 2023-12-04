@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { NavEditProject } from '../imports/api/testcafe/TestCafe';
 
 class ViewProjectPage {
   constructor() {
@@ -12,10 +13,10 @@ class ViewProjectPage {
   }
 
   async gotoEditProjectPage(testController) {
-    await testController.click('#edit-project-page');
+    await testController.click(`#${NavEditProject}`);
   }
 
-  async checkEdit(testController, project) {
+  async checkView(testController, project) {
     const edit = Selector('h1').innerText;
     await testController.expect(edit).eql(project.name);
   }
