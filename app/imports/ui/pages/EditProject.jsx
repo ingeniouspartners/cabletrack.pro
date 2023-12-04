@@ -1,37 +1,45 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
 import ProjectEdit from '../components/ProjectEdit';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { CablePullIns } from '../../api/cable/CablePullIns';
+import PageWrapper from '../components/PageWrapper';
+import { NavEditProject } from '../../api/testcafe/TestCafe';
 
-/* Renders the EditStuff page for editing a single document. */
+/* Renders the EditProject page for editing or adding a single project. */
 const EditProject = () => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { projectID, companyID } = useParams();
+  const location = useLocation();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { doc, ready, company } = useTracker(() => {
-    // Get access to Stuff documents.
-    const subscription = Meteor.subscribe(Projects.userPublicationName);
+  const { ready, project } = useTracker(() => {
+    // Note that this subscription will get cleaned up
+    // when your component is unmounted or deps change.
+    // Get access to Project documents.
+    const projectSub = Meteor.subscribe(Projects.adminPublicationName);
+    const companySub = Meteor.subscribe(Companies.adminPublicationName);
     // Determine if the subscription is ready
-    const rdy = subscription.ready();
-    // Get the document
-    const document = Projects.collection.findOne(projectID);
-    const com = Companies.collection.findOne({ _id: companyID });
+    const rdy = projectSub.ready() && companySub.ready();
+    // Get the Cable documents
+    let projectItem;
+    if (location.pathname.endsWith('/add')) {
+      projectItem = { companyID: companyID, name: '', code: '', contract: '', bidNumber: '', jobPhone: '', jobFax: '', mailAddress: {}, shipAddress: {}, jobEmail: '', notes: '', _id: '' };
+    } else {
+      projectItem = CablePullIns.collection.findOne(projectID);
+    }
     return {
-      doc: document,
+      project: projectItem,
       ready: rdy,
-      company: com,
     };
-  }, [projectID]);
+  }, [projectID, companyID]);
 
-  return ready ? (
-    <div id="edit-project-page">
-      <ProjectEdit projectID={projectID} doc={doc} companyID={company._id} />
-    </div>
-  ) : <LoadingSpinner />;
+  return (
+    <PageWrapper id={NavEditProject} ready={ready}>
+      <ProjectEdit project={project} />
+    </PageWrapper>
+  );
 };
 
 export default EditProject;
