@@ -4,6 +4,7 @@ import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
+import { NavEditProject } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const ProjectView = ({ project, company }) => {
@@ -17,7 +18,7 @@ const ProjectView = ({ project, company }) => {
               <Row>
                 <Col> </Col>
                 <Col><h1>{project.name}</h1></Col>
-                <Col className="py-2"><Link id="edit-project-page" to={editPath}><PencilFill /></Link></Col>
+                <Col className="py-2"><Link id={NavEditProject} to={editPath}><PencilFill /></Link></Col>
               </Row>
             </Col>
           </Row>

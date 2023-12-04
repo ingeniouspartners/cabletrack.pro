@@ -5,12 +5,12 @@ import { PencilFill } from 'react-bootstrap-icons';
 import { CombinePath, PathEditUser } from '../../api/navigation/Navigation';
 import { formatAddress, formatEmails } from '../../api/schema/FormSchemas';
 import { PropTypeUserProfile } from '../../api/propTypes/PropTypes';
-import { PageEditUser } from '../../api/testcafe/TestCafe';
+import { PageEditUser, PageViewUser } from '../../api/testcafe/TestCafe';
 
 const UserView = ({ user }) => {
   const editPath = CombinePath(PathEditUser, { userID: user._id });
   return (
-    <Card>
+    <Card id={PageViewUser}>
       <Card.Img variant="top" src={user.picture} />
       <Card.Body>
         <Card.Title>{user.firstName} {user.lastName}</Card.Title>

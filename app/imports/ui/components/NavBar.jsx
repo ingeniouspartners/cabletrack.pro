@@ -90,7 +90,7 @@ GuardedNavLink.propTypes = {
   user: PropTypes.objectOf(Object),
   roles: PropTypes.arrayOf(String).isRequired,
   to: PropTypes.string.isRequired,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
 
 GuardedNavLink.defaultProps = {

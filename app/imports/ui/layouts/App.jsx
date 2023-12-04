@@ -127,11 +127,9 @@ const App = () => {
  */
 const RoleProtectedRoute = ({ user, roles, children }) => {
   if (user) {
-    // const isInRole = Roles.userIsInRole(user, roles);
+    const isInRole = roles.some((role) => Roles.userIsInRole(user, role));
     // eslint-disable-next-line no-console
-    console.log('RoleProtectedRoute', user, roles);
-    // return (isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
-    return children;
+    return (isInRole) ? children : <Navigate to={CTPNav.PathNotAuthorized} />;
   }
   return <Navigate to={CTPNav.PathSignIn} />;
 };

@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavListProject, PageEditProject } from '../imports/api/testcafe/TestCafe';
 
 class EditProjectPage {
   constructor() {
-    this.pageId = '#edit-project-page';
+    this.pageId = `#${PageEditProject}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -12,7 +13,7 @@ class EditProjectPage {
   }
 
   async gotoListProjectPage(testController) {
-    await testController.click('#list-project-page');
+    await testController.click(`#${NavListProject}`);
   }
 
   async editProject(testController, project) {
