@@ -1,4 +1,6 @@
 import { signinPage } from './signin.page';
+import { listCompanyPage } from './listCompany.page';
+import { viewCompanyPage } from './viewCompany.page';
 import { listProjectPage } from './listProject.page';
 import { viewProjectPage } from './viewProject.page';
 import { addProjectPage } from './addProject.page';
@@ -10,10 +12,9 @@ import { navBar } from './navbar.component';
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'ceo@foo.com', password: 'changeme' };
 
-fixture('project: cabletrack.pro localhost test with default db')
+fixture('cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
-/*
 const project =
   {
     name: 'A Test Project',
@@ -38,22 +39,24 @@ const project =
         state: 'CA',
         zip: '54321',
         country: 'US' } };
-*/
 
 const editproject = {
   name: 'The edited project',
 };
 
-test.only('Test that Project List, View, Add and Edit work', async (testController) => {
+test.only('Test that Projects list, view, add and edit work', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoProjectsPage(testController);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.gotoViewCompanyPage(testController);
+  await viewCompanyPage.isDisplayed(testController);
+  await viewCompanyPage.gotoListProjectPage(testController); // test list projects
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
-  // await addProjectPage.addProject(testController, project); // test add project
+  await addProjectPage.addProject(testController, project); // test add project
   await addProjectPage.gotoListProjectPage(testController);
-  await viewProjectPage.checkEdit(testController, editproject);
   await listProjectPage.hasProject(testController); // test if the project is added
   await listProjectPage.gotoViewProjectPage(testController); // test view project
   await viewProjectPage.isDisplayed(testController);

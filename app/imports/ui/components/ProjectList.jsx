@@ -15,7 +15,7 @@ const ProjectList = ({ projects, company }) => {
         <thead>
           <tr>
             <th colSpan="4"><h2>List Projects</h2></th>
-            <th><Link id="add-project-page" to={add}><FileEarmarkPlusFill /></Link>
+            <th><Link id="add-project-page" aria-label="add" to={add}><FileEarmarkPlusFill /></Link>
             </th>
           </tr>
           <tr>

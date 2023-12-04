@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Col, Row, Container, Card, CardHeader, ListGroup } from 'react-bootstrap';
+import { Col, Row, Container, Card, CardHeader, ListGroup } from 'react-bootstrap';
+import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
@@ -16,7 +17,7 @@ const ProjectView = ({ project, company }) => {
               <Row>
                 <Col> </Col>
                 <Col><h1>{project.name}</h1></Col>
-                <Col><Link id="edit-project-page" to={editPath}><Button variant="primary" className="my-2">Edit</Button></Link></Col>
+                <Col className="py-2"><Link id="edit-project-page" to={editPath}><PencilFill /></Link></Col>
               </Row>
             </Col>
           </Row>
