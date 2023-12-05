@@ -7,13 +7,13 @@ import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamUserID } from '../../api/navigation/Navigation';
+import { CombinePath, PathHome, PathListCompany, PathListProject, PathListCable, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamUserID } from '../../api/navigation/Navigation';
 import { Companies } from '../../api/company/Companies';
 import { CompaniesUsedBy } from '../../api/company/CompaniesUsedBys';
 import LoadingSpinner from './LoadingSpinner';
-import { NavListCompany, NavViewCompany, NavListProject, NavViewUser } from '../../api/testcafe/TestCafe';
+import { NavListCompany, NavViewCompany, NavListProject, NavListCable, NavViewUser } from '../../api/testcafe/TestCafe';
 import CompanyBrand from './CompanyBrand';
-import { RoleListCompany, RoleListCompanyAll, RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleViewCompanyAll } from '../../api/role/Roles';
+import { RoleListCompany, RoleListCompanyAll, RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleListCable, RoleListCableAll, RoleListCableOwned, RoleViewCompany, RoleViewCompanyAll } from '../../api/role/Roles';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -46,6 +46,7 @@ const NavBar = () => {
                 <>
                   <GuardedNavLink id={NavViewCompany} user={user} roles={[RoleViewCompanyAll, RoleViewCompany]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>Company</GuardedNavLink>
                   <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProject]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>Projects</GuardedNavLink>
+                  <GuardedNavLink id={NavListCable} user={user} roles={[RoleListCableAll, RoleListCableOwned, RoleListCable]} to={CombinePath(PathListCable, {companyID: (company ? company._id : '')})}>Cables</GuardedNavLink>
                 </>
               ) : ''}
               <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompany]} to={PathListCompany}>Companies</GuardedNavLink>
