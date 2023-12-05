@@ -19,7 +19,7 @@ class EditProjectPage {
   async editProject(testController, project) {
     await testController.typeText('#project-form-name', project.name, { replace: true });
     await testController.click('#project-form-submit input.btn.btn-primary');
-    await testController.click('button.swal-button--confirm');
+    await testController.pressKey('space');
   }
 }
 

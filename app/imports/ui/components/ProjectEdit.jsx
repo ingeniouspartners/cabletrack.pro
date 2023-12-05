@@ -79,9 +79,9 @@ const ProjectEdit = ({ project }) => {
           </Row>
           <Row>
             <Col><TextField id="project-form-ship-city" name="shipAddress.city" /></Col>
-            <Col><TextField id="project-form-ship-state" name="shipAddress.state" /></Col>
+            <Col><SelectField id="project-form-ship-state" name="shipAddress.state" allowedValues={stateArray} /></Col>
             <Col><TextField id="project-form-ship-zip" name="shipAddress.zip" /></Col>
-            <Col><TextField id="project-form-ship-country" name="shipAddress.country" /></Col>
+            <Col><SelectField id="project-form-ship-country" name="shipAddress.country" allowedValues={countryArray} /></Col>
           </Row>
           <TextField id="project-form-notes" name="notes" />
           <SubmitField id="project-form-submit" value="Submit" />
