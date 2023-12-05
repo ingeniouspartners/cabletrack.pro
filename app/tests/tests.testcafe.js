@@ -34,11 +34,11 @@ function randomString(length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
     counter += 1;
   }
-  return `${result}@foo.com`;
+  return result;
 }
 
 // Create a random username and password for testing.
-const username = randomString(8);
+const username = `${randomString(8)}@foo.com`;
 const password = randomString(8);
 
 test('Test that the signup works - user can create an account', async (testController) => {
