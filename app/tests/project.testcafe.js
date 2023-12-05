@@ -74,7 +74,7 @@ test('Test that ProjectListItem Edit works', async (testController) => {
   await viewProjectPage.checkView(testController, editproject);
 });
 
-test.only('Test that ProjectListItem Add works', async (testController) => {
+test('Test that ProjectListItem Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController); // test list projects
