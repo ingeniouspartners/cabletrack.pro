@@ -34,7 +34,7 @@ const SignUp = ({ location }) => {
   };
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
-  const { from } = location?.state || { from: { pathname: '/add' } };
+  const { from } = location?.state || { from: { pathname: '/' } };
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
     return <Navigate to={from} />;
@@ -49,10 +49,10 @@ const SignUp = ({ location }) => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField name="email" placeholder="E-mail address" />
-                <TextField name="password" placeholder="Password" type="password" />
+                <TextField id="signup-form-email" name="email" placeholder="E-mail address" />
+                <TextField id="signup-form-password" name="password" placeholder="Password" type="password" />
                 <ErrorsField />
-                <SubmitField />
+                <SubmitField id="signup-form-submit" />
               </Card.Body>
             </Card>
           </AutoForm>
@@ -64,7 +64,7 @@ const SignUp = ({ location }) => {
           {error === '' ? (
             ''
           ) : (
-            <Alert variant="danger">
+            <Alert id="failed-registration" variant="danger">
               <Alert.Heading>Registration was not successful</Alert.Heading>
               {error}
             </Alert>
