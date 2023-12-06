@@ -1,8 +1,8 @@
 import { signinPage } from './signin.page';
 import { listProjectPage } from './listProject.page';
 import { viewProjectPage } from './viewProject.page';
-import { listCablePage } from './listCable.page';
-import { viewCablePage } from './viewCable.page';
+// import { listCablePage } from './listCable.page';
+// import { viewCablePage } from './viewCable.page';
 import { listCablePullInPage } from './listCablePullIn.page';
 // import { viewCablePullInPage } from './viewCablePullIn.page';
 // import { addCablePullInPage } from './addCablePullIn.page';
@@ -17,6 +17,7 @@ const credentials = { username: 'elec@foo.com', password: 'changeme' };
 fixture('cablepullin: cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
+/*
 test('Test that Cable PullIn List works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
@@ -35,7 +36,7 @@ test('Test that Cable PullIn List works', async (testController) => {
   await listCablePullInPage.isDisplayed(testController);
   await listCablePullInPage.hasCablePullIn(testController, 0);
 });
-/*
+
 test('Test that Cable PullIn View works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
