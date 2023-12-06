@@ -1,19 +1,19 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import PropTypes from 'prop-types';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 // import { ErrorBoundary } from 'react-error-boundary';
-import { Roles } from 'meteor/alanning:roles';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PersonDashFill, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { CombinePath, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamUserID } from '../../api/navigation/Navigation';
+import { CombinePath, PathListUser, PathHome, PathListCompany, PathListProject, PathSignIn, PathSignOut, PathSignUp, PathViewCompany, PathViewUser, ParamUserID } from '../../api/navigation/Navigation';
 import { Companies } from '../../api/company/Companies';
 import { CompaniesUsedBy } from '../../api/company/CompaniesUsedBys';
 import LoadingSpinner from './LoadingSpinner';
-import { NavListCompany, NavViewCompany, NavListProject, NavViewUser } from '../../api/testcafe/TestCafe';
+import { NavListCompany, NavViewCompany, NavListProject, NavViewUser, NavListUser } from '../../api/testcafe/TestCafe';
 import CompanyBrand from './CompanyBrand';
-import { RoleListCompany, RoleListCompanyAll, RoleListProject, RoleListProjectAll, RoleListProjectOwned, RoleViewCompany, RoleViewCompanyAll } from '../../api/role/Roles';
+import { RoleListUserAll, RoleListUserOwned, RoleListCompanyAll, RoleListCompanyOwned, RoleListProjectAll, RoleListProjectOwned,
+  RoleListProjectUsed, RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed } from '../../api/role/Roles';
+import GuardedNavLink from './GuardedNavLink';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -44,11 +44,16 @@ const NavBar = () => {
             <Nav className="me-auto justify-content-start">
               {company ? (
                 <>
-                  <GuardedNavLink id={NavViewCompany} user={user} roles={[RoleViewCompanyAll, RoleViewCompany]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>Company</GuardedNavLink>
-                  <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProject]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>Projects</GuardedNavLink>
+                  <GuardedNavLink id={NavViewCompany} user={user} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
+                    Company
+                  </GuardedNavLink>
+                  <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>
+                    Projects
+                  </GuardedNavLink>
                 </>
               ) : ''}
-              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompany]} to={PathListCompany}>Companies</GuardedNavLink>
+              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}>Companies</GuardedNavLink>
+              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}>Users</GuardedNavLink>
             </Nav>
             <Nav className="justify-content-end">
               {!user ? (
@@ -78,23 +83,6 @@ const NavBar = () => {
       </Navbar>
     ) : <LoadingSpinner />
   );
-};
-
-const GuardedNavLink = ({ id, user, roles, to, children }) => {
-  const allowed = user && roles.some((role) => Roles.userIsInRole(user, role));
-  return allowed ? <Nav.Link id={id} as={NavLink} to={to}>{children}</Nav.Link> : '';
-};
-
-GuardedNavLink.propTypes = {
-  id: PropTypes.string.isRequired,
-  user: PropTypes.objectOf(Object),
-  roles: PropTypes.arrayOf(String).isRequired,
-  to: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-};
-
-GuardedNavLink.defaultProps = {
-  user: undefined,
 };
 
 export default NavBar;
