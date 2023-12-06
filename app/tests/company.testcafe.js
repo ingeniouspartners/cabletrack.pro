@@ -4,6 +4,7 @@ import { viewCompanyPage } from './viewCompany.page';
 import { addCompanyPage } from './addCompany.page';
 import { editCompanyPage } from './editCompany.page';
 import { navBar } from './navbar.component';
+import { addProjectPage } from './addProject.page';
 
 /* global fixture:false, test:false */
 
@@ -14,6 +15,27 @@ const credentials2 = { username: 'ceo@foo.com', password: 'changeme' };
 fixture('company: cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
+const company =
+  {
+    name: 'A Test Company',
+    address: {
+      address: 'Address 123',
+      address2: 'Address 456',
+      city: 'The City',
+      state: 'NY',
+      zip: '12345',
+      country: 'US'
+    },
+    phone: '123-456-7890',
+    fax: '123-456-7890',
+    email: 'something@something.com',
+    logoURL: 'something.com',
+    _id: 'IDK123',
+  }
+
+const editcompany = {
+  name: 'Edit Company',
+};
 test('Test that Company List works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials1.username, credentials1.password);
@@ -32,11 +54,13 @@ test('Test that Company View works', async (testController) => {
 
 test('Test that Company Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials2.username, credentials2.password);
+  await signinPage.signin(testController, credentials1.username, credentials1.password);
   await navBar.gotoCompaniesPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoAddCompanyPage(testController);
   await addCompanyPage.isDisplayed(testController);
+  await addCompanyPage.addCompany(testController, company); // test add project
+
 });
 
 test('Test that Company Edit works', async (testController) => {
@@ -46,4 +70,6 @@ test('Test that Company Edit works', async (testController) => {
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);
+  await editCompanyPage.editCompany(testController, editcompany);
+
 });

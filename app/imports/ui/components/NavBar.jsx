@@ -88,7 +88,7 @@ const GuardedNavLink = ({ id, user, roles, to, children }) => {
 GuardedNavLink.propTypes = {
   id: PropTypes.string.isRequired,
   user: PropTypes.objectOf(Object),
-  roles: PropTypes.arrayOf(String).isRequired,
+  roles: PropTypes.arrayOf(Object).isRequired,
   to: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
