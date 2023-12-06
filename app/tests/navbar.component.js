@@ -55,7 +55,7 @@ class NavBar {
   }
 
   async gotoCompaniesPage(testController) {
-    await testController.click('#list-company-nav');
+    await testController.click('#list-company-page');
   }
 
   async gotoCompanyPage(testController) {

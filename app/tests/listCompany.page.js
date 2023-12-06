@@ -3,7 +3,7 @@ import { NavAddCompany, NavEditCompany, NavViewCompany } from '../imports/api/te
 
 class ListCompanyPage {
   constructor() {
-    this.pageId = '#list-company-nav';
+    this.pageId = '#list-company-page';
     this.pageSelector = Selector(this.pageId);
   }
 
