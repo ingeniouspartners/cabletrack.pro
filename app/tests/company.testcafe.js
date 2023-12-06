@@ -5,6 +5,8 @@ import { addCompanyPage } from './addCompany.page';
 import { editCompanyPage } from './editCompany.page';
 import { navBar } from './navbar.component';
 import { addProjectPage } from './addProject.page';
+import { listProjectPage } from './listProject.page';
+import { viewProjectPage } from './viewProject.page';
 
 /* global fixture:false, test:false */
 
@@ -41,6 +43,8 @@ test('Test that Company List works', async (testController) => {
   await signinPage.signin(testController, credentials1.username, credentials1.password);
   await navBar.gotoCompaniesPage(testController);
   await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.hasCompany(testController); // test if the company is added
+
 });
 
 test('Test that Company View works', async (testController) => {
@@ -48,6 +52,7 @@ test('Test that Company View works', async (testController) => {
   await signinPage.signin(testController, credentials2.username, credentials2.password);
   await navBar.gotoCompaniesPage(testController);
   await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.hasCompany(testController); // test if the company is added
   await listCompanyPage.gotoViewCompanyPage(testController);
   await viewCompanyPage.isDisplayed(testController);
 });
@@ -59,7 +64,9 @@ test('Test that Company Add works', async (testController) => {
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoAddCompanyPage(testController);
   await addCompanyPage.isDisplayed(testController);
-  await addCompanyPage.addCompany(testController, company); // test add project
+  await addCompanyPage.addCompany(testController, company); // test add company
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.hasCompany(testController); // test if the company is added
 
 });
 
@@ -68,8 +75,12 @@ test('Test that Company Edit works', async (testController) => {
   await signinPage.signin(testController, credentials2.username, credentials2.password);
   await navBar.gotoCompaniesPage(testController);
   await listCompanyPage.isDisplayed(testController);
+  await listCompanyPage.hasCompany(testController); // test if the company is added
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);
   await editCompanyPage.editCompany(testController, editcompany);
+  await navBar.gotoCompaniesPage(testController);
+  await listCompanyPage.gotoViewCompanyPage(testController);
+  await viewCompanyPage.checkView(testController, editcompany);
 
 });

@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { NavAddCompany, NavEditCompany, NavViewCompany } from '../imports/api/testcafe/TestCafe';
 
 class ListCompanyPage {
   constructor() {
@@ -12,15 +13,20 @@ class ListCompanyPage {
   }
 
   async gotoViewCompanyPage(testController) {
-    await testController.click('#view-company-page');
+    await testController.click(`#${NavViewCompany}`);
   }
 
   async gotoAddCompanyPage(testController) {
-    await testController.click('#add-company-page');
+    await testController.click(`#${NavAddCompany}`);
   }
 
   async gotoEditCompanyPage(testController) {
-    await testController.click('#edit-company-page');
+    await testController.click(`#${NavEditCompany}`);
+  }
+
+  async hasCompany(testController) {
+    const companyCount = Selector('tr').count;
+    await testController.expect(companyCount).gte(3);
   }
 }
 
