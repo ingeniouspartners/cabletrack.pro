@@ -20,7 +20,9 @@ const ViewProject = () => {
     const rdy = subscription.ready();
     // Get the document
     const projectItem = Projects.collection.findOne(projectID);
+    console.log('projectItem', projectItem);
     const companyItem = Companies.collection.findOne(companyID);
+    console.log('companyItem', companyItem);
     return {
       project: projectItem,
       company: companyItem,
