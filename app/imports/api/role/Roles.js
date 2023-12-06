@@ -190,6 +190,7 @@ const ProjectOwnerRoles = [
   RoleListProjectOwned,
   RoleListCableOwned,
   RoleListCablePullInOwned,
+  RoleListUserOwned,
   RoleViewCompany,
   RoleViewProjectOwned,
   RoleViewCableOwned,
