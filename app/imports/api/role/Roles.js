@@ -181,6 +181,7 @@ const CompanyOwnerRoles = [
   RoleEditCompany,
   RoleEditProjectOwned,
   RoleEditCableOwned,
+  RoleEditUserOwned,
   RoleDeleteProjectOwned,
   RoleDeleteCableOwned,
   RoleDeleteUserOwned,
