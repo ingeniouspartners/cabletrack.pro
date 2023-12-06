@@ -16,21 +16,21 @@ const CableView = ({ cable, project }) => {
         <Card.Subtitle>{project.name}</Card.Subtitle>
         <Table>
           <tbody>
-            <tr><td className="strong">Description: </td><td>{cable.description}</td></tr>
-            <tr><td className="strong">Cost Code: </td><td>{cable.costCode}</td></tr>
-            <tr><td className="strong">Ref Drawing No: </td><td>{cable.refDrawingNo}</td></tr>
-            <tr><td className="strong">Ref Drawing Rev: </td><td>{cable.refDrawingRev}</td></tr>
-            <tr><td className="strong">System: </td><td>{cable.system}</td></tr>
-            <tr><td className="strong">Building: </td><td>{cable.building}</td></tr>
-            <tr><td className="strong">Zone: </td><td>{cable.zone}</td></tr>
-            <tr><td className="strong">Origination: </td><td>{cable.origination}</td></tr>
-            <tr><td className="strong">Termination: </td><td>{cable.termination}</td></tr>
-            <tr><td className="strong">Length Planned: </td><td>{cable.lengthPlanned}</td></tr>
-            <tr><td className="strong">Classification: </td><td>{cable.classification}</td></tr>
-            <tr><td className="strong">Cable Type: </td><td>{cable.cableType}</td></tr>
-            <tr><td className="strong">Conductors: </td><td>{cable.conductors}</td></tr>
-            <tr><td className="strong">Voltage Cable: </td><td>{cable.voltageCable}</td></tr>
-            <tr><td className="strong">Voltage Test: </td><td>{cable.voltageTest}</td></tr>
+            <tr><td className="strong">Description:</td><td>{cable.description}</td></tr>
+            <tr><td className="strong">Cost Code:</td><td>{cable.costCode}</td></tr>
+            <tr><td className="strong">Ref Drawing No:</td><td>{cable.refDrawingNo}</td></tr>
+            <tr><td className="strong">Ref Drawing Rev:</td><td>{cable.refDrawingRev}</td></tr>
+            <tr><td className="strong">System:</td><td>{cable.system}</td></tr>
+            <tr><td className="strong">Building:</td><td>{cable.building}</td></tr>
+            <tr><td className="strong">Zone:</td><td>{cable.zone}</td></tr>
+            <tr><td className="strong">Origination:</td><td>{cable.origination}</td></tr>
+            <tr><td className="strong">Termination:</td><td>{cable.termination}</td></tr>
+            <tr><td className="strong">Length Planned:</td><td>{cable.lengthPlanned}</td></tr>
+            <tr><td className="strong">Classification:</td><td>{cable.classification}</td></tr>
+            <tr><td className="strong">Cable Type:</td><td>{cable.cableType}</td></tr>
+            <tr><td className="strong">Conductors:</td><td>{cable.conductors}</td></tr>
+            <tr><td className="strong">Voltage Cable:</td><td>{cable.voltageCable}</td></tr>
+            <tr><td className="strong">Voltage Test:</td><td>{cable.voltageTest}</td></tr>
           </tbody>
         </Table>
         <Card.Text>{cable.notes}</Card.Text>

@@ -19,10 +19,10 @@ const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { user, company, ready } = useTracker(() => {
     const currUser = Meteor.user();
-    const companySub = Meteor.subscribe(Companies.adminPublicationName);
+    const companySub = Meteor.subscribe(Companies.userPublicationName);
     const usedBySub = Meteor.subscribe(CompaniesUsedBy.userPublicationName);
-    const rdy = companySub.ready() && usedBySub.ready() && Roles.subscription.ready();
-    const usedCompany = CompaniesUsedBy.collection.findOne({ userID: currUser ? currUser._id : '' });
+    const rdy = companySub.ready() && usedBySub.ready();
+    const usedCompany = CompaniesUsedBy.collection.findOne();
     let currCompany;
     if (usedCompany) currCompany = Companies.collection.findOne(usedCompany._id);
     return {

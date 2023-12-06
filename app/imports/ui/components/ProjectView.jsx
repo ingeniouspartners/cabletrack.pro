@@ -1,28 +1,29 @@
 import React from 'react';
-import { Col, Row, Container, Card, CardHeader, ListGroup } from 'react-bootstrap';
+import { Col, Row, Container, Card, ListGroup } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
-import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
-import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
-import { NavEditProject } from '../../api/testcafe/TestCafe';
+import { PathEditProject, PathListCable, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
+import { PropTypeProject } from '../../api/propTypes/PropTypes';
+import { PageViewProject, NavEditProject, NavListCable } from '../../api/testcafe/TestCafe';
+import { formatAddress } from '../../api/schema/FormSchemas';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
-const ProjectView = ({ project, company }) => {
-  const editPath = CombinePath(PathEditProject, { [ParamCompanyID]: company._id, [ParamProjectID]: project._id });
+const ProjectView = ({ project }) => {
+  const editPath = CombinePath(PathEditProject, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
+  const cablesPath = CombinePath(PathListCable, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
   return (
-    <Container id="view-project-page" className="py-3">
+    <Container id={PageViewProject} className="py-3">
       <Card>
-        <CardHeader>
+        <Card.Header>
           <Row className="justify-content-center">
             <Col className="text-center">
               <Row>
-                <Col> </Col>
                 <Col><h1>{project.name}</h1></Col>
                 <Col className="py-2"><Link id={NavEditProject} to={editPath}><PencilFill /></Link></Col>
               </Row>
             </Col>
           </Row>
-        </CardHeader>
+        </Card.Header>
         <ListGroup>
           <Container>
             <Row className="mt-2">
@@ -49,34 +50,8 @@ const ProjectView = ({ project, company }) => {
               <Col><h4><strong>Ship Address</strong></h4></Col>
             </Row>
             <Row>
-              <Col className="vertical-line">
-                <p>Address: {project.mailAddress.address}</p>
-                <p>Address 2: {project.mailAddress.address2}</p>
-                <p>City: {project.mailAddress.city}</p>
-              </Col>
-
-              <Col className="mt-2">
-                <p>Address: {project.shipAddress.address}</p>
-                <p>Address 2: {project.shipAddress.address2}</p>
-                <p>City: {project.shipAddress.city}</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="vertical-line">
-                <Row>
-                  <Col><p>State: {project.mailAddress.state}</p></Col>
-                  <Col><p>Zip: {project.mailAddress.zip}</p></Col>
-                  <Col><p>Country: {project.mailAddress.country}</p></Col>
-                </Row>
-              </Col>
-
-              <Col>
-                <Row>
-                  <Col><p>State: {project.shipAddress.state}</p></Col>
-                  <Col><p>Zip: {project.shipAddress.zip}</p></Col>
-                  <Col><p>Country: {project.shipAddress.country}</p></Col>
-                </Row>
-              </Col>
+              <Col className="vertical-line">{formatAddress(project.mailAddress)}</Col>
+              <Col>{formatAddress(project.shipAddress)}</Col>
             </Row>
           </Container>
         </ListGroup>
@@ -86,6 +61,13 @@ const ProjectView = ({ project, company }) => {
             <p>{project.notes}</p>
           </Row>
         </Container>
+        <Card.Footer>
+          <Row className="justify-content-center">
+            <Col className="text-center">
+              <Link id={NavListCable} to={cablesPath}>Cables</Link>
+            </Col>
+          </Row>
+        </Card.Footer>
       </Card>
 
     </Container>
@@ -93,9 +75,7 @@ const ProjectView = ({ project, company }) => {
 };
 
 ProjectView.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   project: PropTypeProject.isRequired,
-  company: PropTypeCompany.isRequired,
 };
 
 export default ProjectView;
