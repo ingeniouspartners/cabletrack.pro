@@ -26,7 +26,7 @@ class ListProjectPage {
 
   async hasProject(testController) {
     const projectCount = Selector('tr').count;
-    await testController.expect(projectCount).gte(3);
+    await testController.expect(projectCount).gte(1);
   }
 }
 

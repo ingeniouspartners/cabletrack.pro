@@ -4,6 +4,8 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Roles } from 'meteor/alanning:roles';
 import { CableTrackProRoles, GlobalAdminRoles, CompanyOwnerRoles, ProjectOwnerRoles, ElectricianRoles, RoleGlobalAdmin, RoleCompanyOwner, RoleProjectOwner, RoleElectrician } from '../../api/role/Roles';
 
+Accounts._options.forbidClientAccountCreation = false;
+
 AccountsTemplates.addField({
   _id: 'firstName',
   type: 'text',

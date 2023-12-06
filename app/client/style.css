@@ -114,6 +114,10 @@ footer #copyright {
     width: 25vw;
   }
 
+  #navbar .company-logo {
+    width: 25vw;
+  }
+
   /*End Navbar*/
 
   /*Footer*/
@@ -166,4 +170,9 @@ footer #copyright {
 
   /*Footer end*/
 
+}
+
+.vertical-line {
+  border-right: 1px solid #9798AD;
+  padding-right: 15px;
 }
