@@ -42,7 +42,7 @@ class AddProjectPage {
     await testController.typeText('#project-form-ship-zip', project.shipAddress.zip);
     // await testController.typeText('project-form-shipAddress-country', project.shipAddress.country);
     await testController.click('#project-form-submit input.btn.btn-primary');
-    await testController.pressKey('space');
+    await testController.click('button.swal-button--confirm');
   }
 }
 

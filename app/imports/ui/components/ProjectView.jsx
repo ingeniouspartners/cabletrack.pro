@@ -1,5 +1,6 @@
 import React from 'react';
-import { Col, Row, Container, Card, CardHeader, ListGroup } from 'react-bootstrap';
+import { Col, Row, Container, Card, ListGroup } from 'react-bootstrap';
+import CardHeader from 'react-bootstrap/CardHeader';
 import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PathEditProject, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
