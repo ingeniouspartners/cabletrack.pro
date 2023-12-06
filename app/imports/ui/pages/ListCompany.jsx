@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CompanyList from '../components/CompanyList';
+import { PageListCompany } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the Company documents. Use <CompanyItem> to render each row. */
 const ListCompany = () => {
@@ -24,7 +25,7 @@ const ListCompany = () => {
     };
   }, []);
   return (ready ? (
-    <div id="list-company-nav">
+    <div id={PageListCompany}>
       <Container className="py-3" fluid>
         <Row className="justify-content-center">
           <Col md={7}>

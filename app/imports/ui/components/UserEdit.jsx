@@ -11,8 +11,8 @@ const bridge = new SimpleSchema2Bridge(FormSchemaUserProfile);
 /* Renders the EditStuff page for editing a single document. */
 const UserEdit = ({ user }) => {
   const submit = (data) => {
-    const { username, services, firstName, lastName, address, phone, fax, picture } = data;
-    Meteor.users.update(user._id, { $set: { username, services, firstName, lastName, address, phone, fax, picture },
+    const { username, firstName, lastName, address, phone, fax, picture } = data;
+    Meteor.users.update(user._id, { $set: { username, firstName, lastName, address, phone, fax, picture },
     }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));

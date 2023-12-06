@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-// import { Roles } from 'meteor/alanning:roles';
+import { Roles } from 'meteor/alanning:roles';
 import { Companies } from '../../api/company/Companies';
 import { CompaniesOwnedBy } from '../../api/company/CompaniesOwnedBys';
 import { CompaniesUsedBy } from '../../api/company/CompaniesUsedBys';
@@ -10,7 +10,7 @@ import { Cables } from '../../api/cable/Cables';
 import { CablesOwnedBy } from '../../api/cable/CablesOwnedBys';
 import { CablesUsedBy } from '../../api/cable/CablesUsedBys';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-// import { RoleListCompanyAll, RoleListProjectAll, RoleListCableAll, RoleListCablePullInAll, RoleListUserAll } from '../../api/role/Roles';
+import { RoleListCompanyAll, RoleListProjectAll, RoleListCableAll, RoleListCablePullInAll } from '../../api/role/Roles';
 
 // alanning:Roles.js publication
 // Recommended code to publish Roles.js for each user.
@@ -34,7 +34,7 @@ Meteor.publish(Companies.userPublicationName, function () {
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(CompaniesOwnedBy.userPublicationName, function () {
   if (this.userId) {
-    return CompaniesOwnedBy.collection.find({ ownedID: this.userId });
+    return CompaniesOwnedBy.collection.find({ ownerID: this.userId });
   }
   return this.ready();
 });
@@ -43,7 +43,7 @@ Meteor.publish(CompaniesOwnedBy.userPublicationName, function () {
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(CompaniesUsedBy.userPublicationName, function () {
   if (this.userId) {
-    return CompaniesUsedBy.collection.find({});
+    return CompaniesUsedBy.collection.find({ userID: this.userId });
   }
   return this.ready();
 });
@@ -60,7 +60,7 @@ Meteor.publish(Projects.userPublicationName, function () {
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(ProjectsOwnedBy.userPublicationName, function () {
   if (this.userId) {
-    return ProjectsOwnedBy.collection.find({ ownedID: this.userId });
+    return ProjectsOwnedBy.collection.find({ ownerID: this.userId });
   }
   return this.ready();
 });
@@ -86,7 +86,7 @@ Meteor.publish(Cables.userPublicationName, function () {
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
 Meteor.publish(CablesOwnedBy.userPublicationName, function () {
   if (this.userId) {
-    return CablesOwnedBy.collection.find({ ownedID: this.userId });
+    return CablesOwnedBy.collection.find({ ownerID: this.userId });
   }
   return this.ready();
 });
@@ -111,7 +111,7 @@ Meteor.publish(CablePullIns.userPublicationName, function () {
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Companies.adminPublicationName, function () {
-  if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListCompanyAll)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleListCompanyAll)) {
     return Companies.collection.find();
   }
   return this.ready();
@@ -119,7 +119,7 @@ Meteor.publish(Companies.adminPublicationName, function () {
 
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Projects.adminPublicationName, function () {
-  if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListProjectAll)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleListProjectAll)) {
     return Projects.collection.find();
   }
   return this.ready();
@@ -127,7 +127,7 @@ Meteor.publish(Projects.adminPublicationName, function () {
 
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(Cables.adminPublicationName, function () {
-  if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListCableAll)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleListCableAll)) {
     return Cables.collection.find();
   }
   return this.ready();
@@ -135,7 +135,7 @@ Meteor.publish(Cables.adminPublicationName, function () {
 
 // If logged in and with admin role, then publish all documents from all users. Otherwise, publish nothing.
 Meteor.publish(CablePullIns.adminPublicationName, function () {
-  if (this.userId) { // && Roles.userIsInRole(this.userId, RoleListCablePullInAll)) {
+  if (this.userId && Roles.userIsInRole(this.userId, RoleListCablePullInAll)) {
     return CablePullIns.collection.find();
   }
   return this.ready();
