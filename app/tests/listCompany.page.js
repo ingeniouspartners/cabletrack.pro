@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavAddCompany, NavEditCompany, NavViewCompany, PageListCompany } from '../imports/api/testcafe/TestCafe';
 
 class ListCompanyPage {
   constructor() {
-    this.pageId = '#list-company-nav';
+    this.pageId = `#${PageListCompany}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -12,15 +13,15 @@ class ListCompanyPage {
   }
 
   async gotoViewCompanyPage(testController) {
-    await testController.click('#view-company-page');
+    await testController.click(`#${NavViewCompany}`);
   }
 
   async gotoAddCompanyPage(testController) {
-    await testController.click('#add-company-page');
+    await testController.click(`#${NavAddCompany}`);
   }
 
   async gotoEditCompanyPage(testController) {
-    await testController.click('#edit-company-page');
+    await testController.click(`#${NavEditCompany}`);
   }
 }
 

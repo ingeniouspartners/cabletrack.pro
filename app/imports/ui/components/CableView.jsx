@@ -3,14 +3,14 @@ import { Card, Table } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { CombinePath, PathEditCable, ParamCompanyID, ParamProjectID, ParamCableID } from '../../api/navigation/Navigation';
-import { PropTypeCable, PropTypeProject } from '../../api/propTypes/PropTypes';
+import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { NavEditCable, PageViewCable } from '../../api/testcafe/TestCafe';
 
 /* Renders the Cable document. */
-const CableView = ({ cable, project }) => {
+const CableView = ({ cable }) => {
   const editPath = CombinePath(PathEditCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID, [ParamCableID]: cable._id });
   return (
-    <div id="view-cable-page">
+    <div id={PageViewCable}>
       <Card>
         <Card.Header as="h5">Cable</Card.Header>
         <Card.Body>
@@ -36,7 +36,7 @@ const CableView = ({ cable, project }) => {
           </Table>
           <Card.Text>{cable.notes}</Card.Text>
           <Card.Footer>
-            <Link to={editPath}><PencilFill /></Link>
+            <Link id={NavEditCable} to={editPath}><PencilFill /></Link>
           </Card.Footer>
         </Card.Body>
       </Card>

@@ -40,7 +40,7 @@
     "start": "meteor --no-release-check --exclude-archs web.browser.legacy,web.cordova --settings ../config/settings.development.json",
     "lint": "eslint --quiet --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
     "lint-fix": "eslint --quiet --fix --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
-    "testcafe": "testcafe chrome tests/*.testcafe.js",
+    "testcafe": "testcafe --stop-on-first-fail chrome tests/*.testcafe.js",
     "testcafe-companies": "testcafe chrome tests/company.testcafe.js",
     "testcafe-projects": "testcafe chrome tests/project.testcafe.js",
     "testcafe-cables": "testcafe chrome tests/cable.testcafe.js",

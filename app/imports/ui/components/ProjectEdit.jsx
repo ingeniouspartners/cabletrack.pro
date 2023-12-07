@@ -11,6 +11,7 @@ import { countryArray, stateArray } from '../../api/schema/FormSchemas';
 import { NavListProject, PageEditProject } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
+
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ project }) => {
   const listPath = CombinePath(PathListProject, { [ParamCompanyID]: project.companyID });
@@ -38,12 +39,37 @@ const ProjectEdit = ({ project }) => {
       );
     }
   };
+
+  const handleDelete = () => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this project!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        Projects.collection.remove(project._id, (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'ProjectListItem deleted successfully', 'success');
+            // Optionally, you can redirect the user to the project list page or perform any other action
+          }
+        });
+      }
+    });
+  };
   let fRef = null;
   return (
     <AutoForm id={PageEditProject} ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
       <Card>
         <Card.Header>
-          <Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title>
+          <Row>
+            <Col><Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title></Col>
+            { project && project._id && (
+              <Col md={2}><button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button></Col>)}
+          </Row>
         </Card.Header>
         <Card.Body>
           <Row>
@@ -85,6 +111,7 @@ const ProjectEdit = ({ project }) => {
           </Row>
           <TextField id="project-form-notes" name="notes" />
           <SubmitField id="project-form-submit" value="Submit" />
+
           <ErrorsField />
         </Card.Body>
         <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>

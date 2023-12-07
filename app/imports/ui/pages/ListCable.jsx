@@ -15,7 +15,7 @@ const ListCable = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Cable documents.
-    const subscription = Meteor.subscribe(Cables.adminPublicationName);
+    const subscription = Meteor.subscribe(Cables.userPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Cable documents

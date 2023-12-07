@@ -12,6 +12,7 @@
       "username": "ceo@foo.com",
       "email": "ceo@foo.com",
       "password": "changeme",
+
       "roles": [
         "CompanyOwner"
       ]
