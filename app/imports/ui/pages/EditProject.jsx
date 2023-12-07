@@ -16,8 +16,8 @@ const EditProject = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to ProjectListItem documents.
-    const projectSub = Meteor.subscribe(Projects.adminPublicationName);
-    const companySub = Meteor.subscribe(Companies.adminPublicationName);
+    const projectSub = Meteor.subscribe(Projects.userPublicationName);
+    const companySub = Meteor.subscribe(Companies.userPublicationName);
     // Determine if the subscription is ready
     const rdy = projectSub.ready() && companySub.ready();
     // Get the Cable documents
