@@ -5,7 +5,7 @@ import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'unif
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
-import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
+import { ParamCompanyID, PathListProject, CombinePath, PathViewProject, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
 import { NavListProject, PageEditProject } from '../../api/testcafe/TestCafe';
@@ -15,7 +15,8 @@ const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ project }) => {
   const listPath = CombinePath(PathListProject, { [ParamCompanyID]: project.companyID });
-  const submit = (data, formRef) => {
+  const viewPath = CombinePath(PathViewProject, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
+  const submit = (data) => {
     const { name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, companyID } = data;
     if (project._id) {
       Projects.collection.update(project._id, {
@@ -33,7 +34,6 @@ const ProjectEdit = ({ project }) => {
             swal('Error', error.message, 'error');
           } else {
             swal('Success', 'ProjectListItem added successfully', 'success');
-            formRef.reset();
           }
         },
       );
@@ -55,6 +55,7 @@ const ProjectEdit = ({ project }) => {
           } else {
             swal('Success', 'ProjectListItem deleted successfully', 'success');
             // Optionally, you can redirect the user to the project list page or perform any other action
+            window.location.href = listPath;
           }
         });
       }
@@ -114,7 +115,8 @@ const ProjectEdit = ({ project }) => {
 
           <ErrorsField />
         </Card.Body>
-        <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>
+        { project && project._id ? (<Link to={viewPath} className="p-3">Back to Project</Link>) : <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>}
+
       </Card>
     </AutoForm>
   );

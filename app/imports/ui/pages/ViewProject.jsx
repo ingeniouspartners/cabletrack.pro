@@ -14,9 +14,9 @@ const ViewProject = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, project } = useTracker(() => {
     // Get access to Stuff documents.
-    const subscription = Meteor.subscribe(Projects.userPublicationName);
+    const projectSub = Meteor.subscribe(Projects.userPublicationName);
     // Determine if the subscription is ready
-    const rdy = subscription.ready();
+    const rdy = projectSub.ready();
     // Get the document
     const projectItem = Projects.collection.findOne(projectID);
     return {
