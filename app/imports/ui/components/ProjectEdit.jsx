@@ -24,7 +24,7 @@ const ProjectEdit = ({ project }) => {
           name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, companyID },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'ProjectListItem updated successfully', 'success')));
+        swal('Success', 'Project updated successfully', 'success')));
     } else {
       Projects.collection.insert(
         {
@@ -33,7 +33,7 @@ const ProjectEdit = ({ project }) => {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'ProjectListItem added successfully', 'success');
+            swal('Success', 'Project added successfully', 'success');
           }
         },
       );
@@ -53,7 +53,6 @@ const ProjectEdit = ({ project }) => {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'ProjectListItem deleted successfully', 'success');
             // Optionally, you can redirect the user to the project list page or perform any other action
             window.location.href = listPath;
           }
