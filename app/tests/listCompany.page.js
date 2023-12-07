@@ -23,6 +23,10 @@ class ListCompanyPage {
   async gotoEditCompanyPage(testController) {
     await testController.click(`#${NavEditCompany}`);
   }
+  async hasCompany(testController) {
+    const companyCount = Selector('tr').count;
+    await testController.expect(companyCount).gte(3);
+  }
 }
 
 export const listCompanyPage = new ListCompanyPage();
