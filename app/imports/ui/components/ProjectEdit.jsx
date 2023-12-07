@@ -1,11 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
-import { ParamCompanyID, PathListProject, CombinePath } from '../../api/navigation/Navigation';
+import { ParamCompanyID, PathListProject, CombinePath, PathViewProject, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
 import { NavListProject, PageEditProject } from '../../api/testcafe/TestCafe';
@@ -15,7 +15,8 @@ const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const ProjectEdit = ({ project }) => {
   const listPath = CombinePath(PathListProject, { [ParamCompanyID]: project.companyID });
-  const submit = (data, formRef) => {
+  const viewPath = CombinePath(PathViewProject, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
+  const submit = (data) => {
     const { name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, companyID } = data;
     if (project._id) {
       Projects.collection.update(project._id, {
@@ -23,7 +24,7 @@ const ProjectEdit = ({ project }) => {
           name, code, contract, bidNumber, jobPhone, jobFax, mailAddress, shipAddress, jobEmail, notes, companyID },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'ProjectListItem updated successfully', 'success')));
+        swal('Success', 'Project updated successfully', 'success')));
     } else {
       Projects.collection.insert(
         {
@@ -32,8 +33,7 @@ const ProjectEdit = ({ project }) => {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'ProjectListItem added successfully', 'success');
-            formRef.reset();
+            swal('Success', 'Project added successfully', 'success');
           }
         },
       );
@@ -53,8 +53,8 @@ const ProjectEdit = ({ project }) => {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'ProjectListItem deleted successfully', 'success');
             // Optionally, you can redirect the user to the project list page or perform any other action
+            window.location.href = listPath;
           }
         });
       }
@@ -67,6 +67,7 @@ const ProjectEdit = ({ project }) => {
         <Card.Header>
           <Row>
             <Col><Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title></Col>
+            { project && project._id && (<Col md={3}><Link to={viewPath} className="p-3"><Button type="button">View Project</Button></Link></Col>)}
             { project && project._id && (
               <Col md={2}><button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button></Col>)}
           </Row>
@@ -111,10 +112,9 @@ const ProjectEdit = ({ project }) => {
           </Row>
           <TextField id="project-form-notes" name="notes" />
           <SubmitField id="project-form-submit" value="Submit" />
-
           <ErrorsField />
         </Card.Body>
-        <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>
+        <Link className="p-3" id={NavListProject} to={listPath}>Back to Projects</Link>
       </Card>
     </AutoForm>
   );

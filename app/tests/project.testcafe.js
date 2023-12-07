@@ -42,7 +42,7 @@ const editproject = {
   name: 'Edit Project',
 };
 
-test('Test that Project List works', async (testController) => {
+test('Test that ProjectList works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController);
@@ -50,7 +50,7 @@ test('Test that Project List works', async (testController) => {
   await listProjectPage.hasProject(testController); // test if the project is added
 });
 
-test('Test that View works', async (testController) => {
+test('Test that ProjectView works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController);
@@ -60,7 +60,7 @@ test('Test that View works', async (testController) => {
   await viewProjectPage.isDisplayed(testController);
 });
 
-test('Test that Project Edit works', async (testController) => {
+test('Test that ProjectEdit works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController);
@@ -74,7 +74,7 @@ test('Test that Project Edit works', async (testController) => {
   await viewProjectPage.checkView(testController, editproject);
 });
 
-test('Test that Project Add works', async (testController) => {
+test('Test that ProjectAdd works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController); // test list projects

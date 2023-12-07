@@ -12,14 +12,14 @@ const ProjectView = ({ project }) => {
   const editPath = CombinePath(PathEditProject, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
   const cablesPath = CombinePath(PathListCable, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
   return (
-    <Container id={PageViewProject} className="py-3">
-      <Card>
+    <Container className="py-3">
+      <Card id={PageViewProject}>
         <Card.Header>
           <Row className="justify-content-center">
-            <Col className="text-center">
+            <Col>
               <Row>
-                <Col><h1>{project.name}</h1></Col>
-                <Col className="py-2"><Link id={NavEditProject} to={editPath}><PencilFill /></Link></Col>
+                <Col className="py-1"><h1>{project.name}</h1></Col>
+                <Col md={1} className="py-3"><Link id={NavEditProject} to={editPath}><PencilFill /></Link></Col>
               </Row>
             </Col>
           </Row>
