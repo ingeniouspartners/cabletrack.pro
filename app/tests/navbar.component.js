@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavViewUser, NavListCable } from '../imports/api/testcafe/TestCafe';
+import { NavViewUser } from '../imports/api/testcafe/TestCafe';
 
 class NavBar {
 
@@ -67,7 +67,11 @@ class NavBar {
   }
 
   async gotoCablesPage(testController) {
-    await testController.click(`#${NavListCable}`);
+    await testController.click('#list-cable-nav');
+  }
+
+  async gotoCablePage(testController) {
+    await testController.click('#view-cable-nav');
   }
 
   async gotoProfilePage(testController) {

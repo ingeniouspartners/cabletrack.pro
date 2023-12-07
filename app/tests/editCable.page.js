@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavListCable, PageEditCable } from '../imports/api/testcafe/TestCafe';
 
 class EditCablePage {
   constructor() {
-    this.pageId = '#edit-cable-page';
+    this.pageId = `#${PageEditCable}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -11,9 +12,15 @@ class EditCablePage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
-  async gotoProjectPage(testController) {
-    await testController.click('#list-project-nav');
+  async gotoCablePage(testController) {
+    await testController.click(`#${NavListCable}`);
+  }
+
+  async editCable(testController, cable) {
+    await testController.typeText('#cable-form-name', cable.name, { replace: true });
+    await testController.click('#cable-form-submit input.btn.btn-primary');
+    await testController.click('button.swal-button--confirm');
   }
 }
 
-export const editProjectPage = new EditCablePage();
+export const editCablePage = new EditCablePage();

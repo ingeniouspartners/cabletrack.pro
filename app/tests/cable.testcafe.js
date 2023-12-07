@@ -37,41 +37,46 @@ const editcable = {
   name: 'Edit Cable',
 };
 
-test('Test that CableListItem List works', async (testController) => {
+test('Test that Cable List works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoProjectsPage(testController);
   await listCablePage.isDisplayed(testController);
-  await listCablePage.hasProject(testController); // test if the project is added
+  await listCablePage.hasCable(testController); // test if the project is added
 });
 
-test('Test that ProjectListItem View works', async (testController) => {
+test('Test that Cable View works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoCablesPage(testController);
   await listCablePage.isDisplayed(testController);
-  await listCablePage.hasProject(testController); // test if the project is added
-  await listCablePage.gotoViewProjectPage(testController); // test view project
+  await listCablePage.hasCable(testController); // test if the project is added
+  await listCablePage.gotoViewCablePage(testController); // test view project
   await viewCablePage.isDisplayed(testController);
 });
 
-test('Test that ProjectListItem Edit works', async (testController) => {
+test('Test that Cable Edit works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoProjectsPage(testController);
+  await navBar.gotoCablePage(testController);
   await listCablePage.isDisplayed(testController);
-  await listCablePage.hasProject(testController); // test if the project is added
-  await listCablePage.gotoEditProjectPage(testController); // test edit project
+  await listCablePage.hasCable(testController); // test if the cable is added
+  await listCablePage.gotoEditCablePage(testController); // test edit cable
   await editCablePage.isDisplayed(testController);
-  await editCablePage.editProject(testController, editproject);
+  await editCablePage.editCable(testController, editcable);
+  await navBar.gotoProjectsPage(testController);
+  await listCablePage.gotoViewCablePage(testController);
+  await viewCablePage.checkView(testController, editcable);
 });
 
-test('Test that ProjectListItem Add works', async (testController) => {
+test('Test that Cable Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoProjectsPage(testController);
+  await navBar.gotoCablePage(testController); // test list cables
   await listCablePage.isDisplayed(testController);
-  await listCablePage.gotoAddProjectPage(testController);
+  await listCablePage.gotoAddCablePage(testController);
   await addCablePage.isDisplayed(testController);
-  await addCablePage.addProject(testController, cable); // test add project
+  await addCablePage.addCable(testController, cable); // test add cable
+  await navBar.gotoCablesPage(testController);
+  await listCablePage.hasProject(testController); // test if the cable is added
 });
