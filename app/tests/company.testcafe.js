@@ -17,14 +17,14 @@ fixture('company: cabletrack.pro localhost test with default db')
 test('Test that Company List works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials1.username, credentials1.password);
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
 });
 
 test('Test that Company View works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials2.username, credentials2.password);
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoViewCompanyPage(testController);
   await viewCompanyPage.isDisplayed(testController);
@@ -33,7 +33,7 @@ test('Test that Company View works', async (testController) => {
 test('Test that Company Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials2.username, credentials2.password);
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoAddCompanyPage(testController);
   await addCompanyPage.isDisplayed(testController);
@@ -42,7 +42,7 @@ test('Test that Company Add works', async (testController) => {
 test('Test that Company Edit works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials2.username, credentials2.password);
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);

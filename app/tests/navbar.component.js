@@ -54,24 +54,16 @@ class NavBar {
     await testController.click('#login-dropdown-sign-up');
   }
 
-  async gotoCompaniesPage(testController) {
+  async gotoListCompanyPage(testController) {
     await testController.click('#list-company-nav');
   }
 
-  async gotoCompanyPage(testController) {
+  async gotoViewCompanyPage(testController) {
     await testController.click('#view-company-nav');
   }
 
-  async gotoProjectsPage(testController) {
+  async gotoListProjectPage(testController) {
     await testController.click('#list-project-nav');
-  }
-
-  async gotoCablesPage(testController) {
-    await testController.click('#list-cable-nav');
-  }
-
-  async gotoCablePage(testController) {
-    await testController.click('#view-cable-nav');
   }
 
   async gotoProfilePage(testController) {
