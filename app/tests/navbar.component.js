@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavViewUser } from '../imports/api/testcafe/TestCafe';
+import { NavListCompany, NavViewUser } from '../imports/api/testcafe/TestCafe';
 
 class NavBar {
 
@@ -55,7 +55,7 @@ class NavBar {
   }
 
   async gotoCompaniesPage(testController) {
-    await testController.click('#list-company-page');
+    await testController.click(`#${NavListCompany}`);
   }
 
   async gotoCompanyPage(testController) {
