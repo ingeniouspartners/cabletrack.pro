@@ -1,6 +1,6 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Link } from 'react-router-dom';
@@ -67,6 +67,7 @@ const ProjectEdit = ({ project }) => {
         <Card.Header>
           <Row>
             <Col><Card.Title>{project && project._id ? 'Edit' : 'Add'} Project</Card.Title></Col>
+            { project && project._id && (<Col md={3}><Link to={viewPath} className="p-3"><Button type="button">View Project</Button></Link></Col>)}
             { project && project._id && (
               <Col md={2}><button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button></Col>)}
           </Row>
@@ -111,11 +112,9 @@ const ProjectEdit = ({ project }) => {
           </Row>
           <TextField id="project-form-notes" name="notes" />
           <SubmitField id="project-form-submit" value="Submit" />
-
           <ErrorsField />
         </Card.Body>
-        { project && project._id ? (<Link to={viewPath} className="p-3">Back to Project</Link>) : <Link id={NavListProject} className="p-3" to={listPath}>Back to Projects</Link>}
-
+        <Link className="p-3" id={NavListProject} to={listPath}>Back to Projects</Link>
       </Card>
     </AutoForm>
   );
