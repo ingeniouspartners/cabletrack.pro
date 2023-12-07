@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { NavListCompany, PageEditCompany } from '../imports/api/testcafe/TestCafe';
 
 class EditCompanyPage {
   constructor() {
-    this.pageId = '#edit-company-page';
+    this.pageId = `#${PageEditCompany}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -12,7 +13,12 @@ class EditCompanyPage {
   }
 
   async gotoProjectPage(testController) {
-    await testController.click('#list-project-nav');
+    await testController.click(`#${NavListCompany}`);
+  }
+  async editCompany(testController, company) {
+    await testController.typeText('#company-form-name', company.name, { replace: true });
+    await testController.click('#company-form-submit input.btn.btn-primary');
+    await testController.pressKey('space');
   }
 }
 
