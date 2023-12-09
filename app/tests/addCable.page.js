@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
-import { ButtonSubmit, ElementName, NavListProject, PageEditCable, ElementDescription, ElementCostCode, ElementRefDrawingNo, ElementRefDrawingRev, ElementSystem, ElementBuilding, ElementZone, ElementOrigination, ElementTermination,
-  ElementClassification, ElementCableType, ElementConductors, ElementVoltageCable, ElementVoltageTest, ElementNotes, // ElementLengthPlanned,
+import { ButtonSubmit, FieldName, NavListProject, PageEditCable, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
+  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, // FieldLengthPlanned,
 } from '../imports/api/testcafe/TestCafe';
 
 class AddCablePage {
@@ -19,44 +19,44 @@ class AddCablePage {
   }
 
   async addCable(testController, cable) {
-    const nameElement = `#${ElementName}`;
-    const descriptionElement = `#${ElementDescription}`;
-    const costCodeElement = `#${ElementCostCode}`;
-    const refDrawingNoElement = `#${ElementRefDrawingNo}`;
-    const refDrawingRevElement = `#${ElementRefDrawingRev}`;
-    const systemElement = `#${ElementSystem}`;
-    const buildingElement = `#${ElementBuilding}`;
-    const zoneElement = `#${ElementZone}`;
-    const originationElement = `#${ElementOrigination}`;
-    const terminationElement = `#${ElementTermination}`;
-    // const lengthPlannedElement = `#${ElementLengthPlanned}`;
-    const classificationElement = `#${ElementClassification}`;
-    const cableTypeElement = `#${ElementCableType}`;
-    const conductorsElement = `#${ElementConductors}`;
-    const voltageCableElement = `#${ElementVoltageCable}`;
-    const voltageTestElement = `#${ElementVoltageTest}`;
-    const notesElement = `#${ElementNotes}`;
+    const nameField = `#${FieldName}`;
+    const descriptionField = `#${FieldDescription}`;
+    const costCodeField = `#${FieldCostCode}`;
+    const refDrawingNoField = `#${FieldRefDrawingNo}`;
+    const refDrawingRevField = `#${FieldRefDrawingRev}`;
+    const systemField = `#${FieldSystem}`;
+    const buildingField = `#${FieldBuilding}`;
+    const zoneField = `#${FieldZone}`;
+    const originationField = `#${FieldOrigination}`;
+    const terminationField = `#${FieldTermination}`;
+    // const lengthPlannedField = `#${FieldLengthPlanned}`;
+    const classificationField = `#${FieldClassification}`;
+    const cableTypeField = `#${FieldCableType}`;
+    const conductorsField = `#${FieldConductors}`;
+    const voltageCableField = `#${FieldVoltageCable}`;
+    const voltageTestField = `#${FieldVoltageTest}`;
+    const notesField = `#${FieldNotes}`;
     const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
 
-    await testController.typeText(nameElement, cable.name);
-    await testController.typeText(descriptionElement, cable.description);
-    await testController.typeText(costCodeElement, cable.costCode);
-    await testController.typeText(refDrawingNoElement, cable.refDrawingNo);
-    await testController.typeText(refDrawingRevElement, cable.refDrawingRev);
-    await testController.typeText(systemElement, cable.system);
-    await testController.typeText(buildingElement, cable.building);
-    await testController.typeText(zoneElement, cable.zone);
-    await testController.typeText(originationElement, cable.origination);
-    await testController.typeText(terminationElement, cable.termination);
-    // await testController.typeText(lengthPlannedElement, cable.lengthPlanned, { replace: true });
-    const selectClassification = Selector(classificationElement);
+    await testController.typeText(nameField, cable.name);
+    await testController.typeText(descriptionField, cable.description);
+    await testController.typeText(costCodeField, cable.costCode);
+    await testController.typeText(refDrawingNoField, cable.refDrawingNo);
+    await testController.typeText(refDrawingRevField, cable.refDrawingRev);
+    await testController.typeText(systemField, cable.system);
+    await testController.typeText(buildingField, cable.building);
+    await testController.typeText(zoneField, cable.zone);
+    await testController.typeText(originationField, cable.origination);
+    await testController.typeText(terminationField, cable.termination);
+    // await testController.typeText(lengthPlannedField, cable.lengthPlanned, { replace: true });
+    const selectClassification = Selector(classificationField);
     await testController.click(selectClassification);
     await testController.click(selectClassification.find(`option[value="${cable.classification}"]`));
-    await testController.typeText(cableTypeElement, cable.cableType);
-    await testController.typeText(conductorsElement, cable.conductors);
-    await testController.typeText(voltageCableElement, cable.voltageCable);
-    await testController.typeText(voltageTestElement, cable.voltageTest);
-    await testController.typeText(notesElement, cable.notes);
+    await testController.typeText(cableTypeField, cable.cableType);
+    await testController.typeText(conductorsField, cable.conductors);
+    await testController.typeText(voltageCableField, cable.voltageCable);
+    await testController.typeText(voltageTestField, cable.voltageTest);
+    await testController.typeText(notesField, cable.notes);
     await testController.click(submitButton);
     await testController.click('button.swal-button--confirm');
   }

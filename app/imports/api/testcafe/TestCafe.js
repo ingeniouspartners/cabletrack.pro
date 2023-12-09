@@ -63,39 +63,39 @@ const NavDeleteCablePullIn = 'delete-pullIn-nav';
 export { PageListCablePullIn, PageViewCablePullIn, PageEditCablePullIn, PageDeleteCablePullIn };
 export { NavListCablePullIn, NavViewCablePullIn, NavEditCablePullIn, NavAddCablePullIn, NavDeleteCablePullIn };
 
-const ElementName = 'name';
-const ElementCompanyID = 'companyID';
-const ElementProjectID = 'projectID';
-const ElementDescription = 'description';
-const ElementCostCode = 'costCode';
-const ElementRefDrawingNo = 'refDrawingNo';
-const ElementRefDrawingRev = 'refDrawingRev';
-const ElementSystem = 'system';
-const ElementBuilding = 'building';
-const ElementZone = 'zone';
-const ElementOrigination = 'origination';
-const ElementTermination = 'termination';
-const ElementLengthPlanned = 'lengthPlanned';
-const ElementClassification = 'classification';
-const ElementCableType = 'cableType';
-const ElementConductors = 'conductors';
-const ElementVoltageCable = 'voltageCable';
-const ElementVoltageTest = 'voltageTest';
-const ElementNotes = 'notes';
-const ElementAddress = 'address';
-const ElementAddress2 = 'address2';
-const ElementCity = 'city';
-const ElementState = 'state';
-const ElementZip = 'zip';
-const ElementCountry = 'country';
-const ElementPhone = 'phone';
-const ElementFax = 'fax';
-const ElementEmail = 'email';
-const ElementLogoURL = 'logoURL';
+const FieldName = 'name';
+const FieldCompanyID = 'companyID';
+const FieldProjectID = 'projectID';
+const FieldDescription = 'description';
+const FieldCostCode = 'costCode';
+const FieldRefDrawingNo = 'refDrawingNo';
+const FieldRefDrawingRev = 'refDrawingRev';
+const FieldSystem = 'system';
+const FieldBuilding = 'building';
+const FieldZone = 'zone';
+const FieldOrigination = 'origination';
+const FieldTermination = 'termination';
+const FieldLengthPlanned = 'lengthPlanned';
+const FieldClassification = 'classification';
+const FieldCableType = 'cableType';
+const FieldConductors = 'conductors';
+const FieldVoltageCable = 'voltageCable';
+const FieldVoltageTest = 'voltageTest';
+const FieldNotes = 'notes';
+const FieldAddress = 'address';
+const FieldAddress2 = 'address2';
+const FieldCity = 'city';
+const FieldState = 'state';
+const FieldZip = 'zip';
+const FieldCountry = 'country';
+const FieldPhone = 'phone';
+const FieldFax = 'fax';
+const FieldEmail = 'email';
+const FieldLogoURL = 'logoURL';
 
-export { ElementName, ElementCompanyID, ElementProjectID, ElementDescription, ElementCostCode, ElementRefDrawingNo, ElementRefDrawingRev, ElementSystem, ElementBuilding, ElementZone, ElementOrigination, ElementTermination,
-  ElementLengthPlanned, ElementClassification, ElementCableType, ElementConductors, ElementVoltageCable, ElementVoltageTest, ElementNotes, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone,
-  ElementFax, ElementEmail, ElementLogoURL };
+export { FieldName, FieldCompanyID, FieldProjectID, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
+  FieldLengthPlanned, FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldAddress, FieldAddress2, FieldCity, FieldState, FieldZip, FieldCountry, FieldPhone,
+  FieldFax, FieldEmail, FieldLogoURL };
 
 const ButtonSubmit = 'submit';
 

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
 import { ParamCompanyID, ParamProjectID, PathListCable, CombinePath } from '../../api/navigation/Navigation';
-import { NavListCable, PageEditCable, ElementName, ElementProjectID, ElementCompanyID, ElementBuilding, ElementCableType, ElementClassification, ElementConductors, ElementCostCode, ElementDescription, ElementLengthPlanned, ElementNotes,
-  ElementOrigination, ElementRefDrawingNo, ElementRefDrawingRev, ElementSystem, ElementTermination, ElementVoltageCable, ElementVoltageTest, ElementZone, ButtonSubmit } from '../../api/testcafe/TestCafe';
+import { NavListCable, PageEditCable, FieldName, FieldProjectID, FieldCompanyID, FieldBuilding, FieldCableType, FieldClassification, FieldConductors, FieldCostCode, FieldDescription, FieldLengthPlanned, FieldNotes,
+  FieldOrigination, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldTermination, FieldVoltageCable, FieldVoltageTest, FieldZone, ButtonSubmit } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 /* Renders the EditStuff page for editing a single document. */
@@ -80,27 +80,27 @@ const CableEdit = ({ cable }) => {
           <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField id={ElementName} name="name" />
-          <TextField id={ElementDescription} name="description" />
-          <TextField id={ElementCostCode} name="costCode" />
-          <TextField id={ElementRefDrawingNo} name="refDrawingNo" />
-          <TextField id={ElementRefDrawingRev} name="refDrawingRev" />
-          <TextField id={ElementSystem} name="system" />
-          <TextField id={ElementBuilding} name="building" />
-          <TextField id={ElementZone} name="zone" />
-          <TextField id={ElementOrigination} name="origination" />
-          <TextField id={ElementTermination} name="termination" />
-          <NumField id={ElementLengthPlanned} name="lengthPlanned" />
-          <SelectField id={ElementClassification} name="classification" />
-          <TextField id={ElementCableType} name="cableType" />
-          <TextField id={ElementConductors} name="conductors" />
-          <TextField id={ElementVoltageCable} name="voltageCable" />
-          <TextField id={ElementVoltageTest} name="voltageTest" />
-          <TextField id={ElementNotes} name="notes" />
+          <TextField id={FieldName} name="name" />
+          <TextField id={FieldDescription} name="description" />
+          <TextField id={FieldCostCode} name="costCode" />
+          <TextField id={FieldRefDrawingNo} name="refDrawingNo" />
+          <TextField id={FieldRefDrawingRev} name="refDrawingRev" />
+          <TextField id={FieldSystem} name="system" />
+          <TextField id={FieldBuilding} name="building" />
+          <TextField id={FieldZone} name="zone" />
+          <TextField id={FieldOrigination} name="origination" />
+          <TextField id={FieldTermination} name="termination" />
+          <NumField id={FieldLengthPlanned} name="lengthPlanned" />
+          <SelectField id={FieldClassification} name="classification" />
+          <TextField id={FieldCableType} name="cableType" />
+          <TextField id={FieldConductors} name="conductors" />
+          <TextField id={FieldVoltageCable} name="voltageCable" />
+          <TextField id={FieldVoltageTest} name="voltageTest" />
+          <TextField id={FieldNotes} name="notes" />
           <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
-          <HiddenField id={ElementCompanyID} name="companyID" />
-          <HiddenField id={ElementProjectID} name="projectID" />
+          <HiddenField id={FieldCompanyID} name="companyID" />
+          <HiddenField id={FieldProjectID} name="projectID" />
           <HiddenField name="_id" />
         </Card.Body>
         <Link id={NavListCable} className="p-3" to={listPath}>Back to Cables</Link>
