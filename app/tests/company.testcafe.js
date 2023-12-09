@@ -28,7 +28,7 @@ const company =
     phone: '123-456-7890',
     fax: '123-456-7890',
     email: 'something@something.com',
-    logoURL: 'something.com',
+    logoURL: 'https://something.com',
     _id: 'IDK123',
   };
 
@@ -57,7 +57,7 @@ test('Test that Company View works', async (testController) => {
 
 test('Test that Company Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials2.username, credentials2.password);
+  await signinPage.signin(testController, credentials1.username, credentials1.password);
   await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoAddCompanyPage(testController);

@@ -1,5 +1,6 @@
 import { Selector } from 'testcafe';
-import { NavListCompany, PageEditCompany } from '../imports/api/testcafe/TestCafe';
+import { ButtonSubmit, NavListCompany, PageEditCompany, ElementName, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone, ElementFax, ElementEmail, ElementLogoURL }
+  from '../imports/api/testcafe/TestCafe';
 
 class AddCompanyPage {
   constructor() {
@@ -17,21 +18,36 @@ class AddCompanyPage {
   }
 
   async addCompany(testController, company) {
-    await testController.typeText('#company-form-name', company.name);
-    await testController.typeText('#company-form-mail-address', company.address.address);
-    await testController.typeText('#company-form-mail-address2', company.address.address2);
-    await testController.typeText('#company-form-mail-city', company.address.city);
-    const selectState = Selector('#company-form-mail-state');
+    const nameElement = `#${ElementName}`;
+    const addressElement = `#${ElementAddress}`;
+    const address2Element = `#${ElementAddress2}`;
+    const cityElement = `#${ElementCity}`;
+    const stateElement = `#${ElementState}`;
+    const zipElement = `#${ElementZip}`;
+    const countryElement = `#${ElementCountry}`;
+    const phoneElement = `#${ElementPhone}`;
+    const faxElement = `#${ElementFax}`;
+    const emailElement = `#${ElementEmail}`;
+    const logoURLElement = `#${ElementLogoURL}`;
+    const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
+
+    await testController.typeText(nameElement, company.name);
+    await testController.typeText(addressElement, company.address.address);
+    await testController.typeText(address2Element, company.address.address2);
+    await testController.typeText(cityElement, company.address.city);
+    const selectState = Selector(stateElement);
     await testController.click(selectState);
-    await testController.click(selectState.find('option[value="AL"]'));
-    await testController.typeText('#company-form-mail-zip', company.address.zip);
-    await testController.typeText('#company-form-phone', company.phone);
-    await testController.typeText('#company-form-fax', company.fax);
-    await testController.typeText('#company-form-email', company.email);
-    await testController.typeText('#company-form-logo', company.logoURL);
-    await testController.typeText('#company-form-id', company._id);
-    await testController.click('#company-form-submit input.btn.btn-primary');
-    await testController.pressKey('space');
+    await testController.click(selectState.find(`option[value="${company.address.state}"]`));
+    await testController.typeText(zipElement, company.address.zip);
+    const selectCountry = Selector(countryElement);
+    await testController.click(selectCountry);
+    await testController.click(selectCountry.find(`option[value="${company.address.country}"]`));
+    await testController.typeText(phoneElement, company.phone);
+    await testController.typeText(faxElement, company.fax);
+    await testController.typeText(emailElement, company.email);
+    await testController.typeText(logoURLElement, company.logoURL);
+    await testController.click(submitButton);
+    await testController.click('button.swal-button--confirm');
   }
 }
 

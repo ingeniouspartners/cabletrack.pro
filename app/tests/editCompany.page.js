@@ -1,5 +1,10 @@
 import { Selector } from 'testcafe';
-import { NavListCompany, PageEditCompany } from '../imports/api/testcafe/TestCafe';
+import {
+  ButtonSubmit,
+  ElementName,
+  NavListCompany,
+  PageEditCompany,
+} from '../imports/api/testcafe/TestCafe';
 
 class EditCompanyPage {
   constructor() {
@@ -17,9 +22,12 @@ class EditCompanyPage {
   }
 
   async editCompany(testController, company) {
-    await testController.typeText('#company-form-name', company.name, { replace: true });
-    await testController.click('#company-form-submit input.btn.btn-primary');
-    await testController.pressKey('space');
+    const nameElement = `#${ElementName}`;
+    const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
+
+    await testController.typeText(nameElement, company.name, { replace: true });
+    await testController.click(submitButton);
+    await testController.click('button.swal-button--confirm');
   }
 }
 

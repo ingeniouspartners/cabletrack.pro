@@ -82,9 +82,20 @@ const ElementConductors = 'conductors';
 const ElementVoltageCable = 'voltageCable';
 const ElementVoltageTest = 'voltageTest';
 const ElementNotes = 'notes';
+const ElementAddress = 'address';
+const ElementAddress2 = 'address2';
+const ElementCity = 'city';
+const ElementState = 'state';
+const ElementZip = 'zip';
+const ElementCountry = 'country';
+const ElementPhone = 'phone';
+const ElementFax = 'fax';
+const ElementEmail = 'email';
+const ElementLogoURL = 'logoURL';
 
 export { ElementName, ElementCompanyID, ElementProjectID, ElementDescription, ElementCostCode, ElementRefDrawingNo, ElementRefDrawingRev, ElementSystem, ElementBuilding, ElementZone, ElementOrigination, ElementTermination,
-  ElementLengthPlanned, ElementClassification, ElementCableType, ElementConductors, ElementVoltageCable, ElementVoltageTest, ElementNotes };
+  ElementLengthPlanned, ElementClassification, ElementCableType, ElementConductors, ElementVoltageCable, ElementVoltageTest, ElementNotes, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone,
+  ElementFax, ElementEmail, ElementLogoURL };
 
 const ButtonSubmit = 'submit';
 
