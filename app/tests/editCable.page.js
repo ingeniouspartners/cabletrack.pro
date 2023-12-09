@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavListCable, PageEditCable } from '../imports/api/testcafe/TestCafe';
+import { NavListCable, PageEditCable, ElementName, ButtonSubmit } from '../imports/api/testcafe/TestCafe';
 
 class EditCablePage {
   constructor() {
@@ -17,8 +17,10 @@ class EditCablePage {
   }
 
   async editCable(testController, cable) {
-    await testController.typeText('#cable-form-name', cable.name, { replace: true });
-    await testController.click('#cable-form-submit input.btn.btn-primary');
+    const nameElement = `#${ElementName}`;
+    const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
+    await testController.typeText(nameElement, cable.name, { replace: true });
+    await testController.click(submitButton);
     await testController.click('button.swal-button--confirm');
   }
 }
