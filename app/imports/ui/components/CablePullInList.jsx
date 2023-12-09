@@ -6,10 +6,11 @@ import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CablePullInListItem from './CablePullInListItem';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCableID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
+import { PageListCablePullIn } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the CablePullIn documents. Use <CableItem> to render each row. */
 const CablePullInList = ({ pullins, companyID, projectID, cableID }) => (
-  <Table striped bordered hover>
+  <Table id={PageListCablePullIn} striped bordered hover>
     <thead>
       <tr>
         <th colSpan="8"><h2>List Cable PullIn</h2></th>
