@@ -6,7 +6,7 @@ import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CablePullInListItem from './CablePullInListItem';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCableID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
-import { PageListCablePullIn } from '../../api/testcafe/TestCafe';
+import { NavAddCablePullIn, PageListCablePullIn } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the CablePullIn documents. Use <CableItem> to render each row. */
 const CablePullInList = ({ pullins, companyID, projectID, cableID }) => (
@@ -14,7 +14,7 @@ const CablePullInList = ({ pullins, companyID, projectID, cableID }) => (
     <thead>
       <tr>
         <th colSpan="8"><h2>List Cable PullIn</h2></th>
-        <th><Link aria-label="add" to={CombinePath(PathAddCablePullIn, { [ParamCompanyID]: companyID, [ParamProjectID]: projectID, [ParamCableID]: cableID })}><FileEarmarkPlusFill /></Link></th>
+        <th><Link id={NavAddCablePullIn} aria-label="add" to={CombinePath(PathAddCablePullIn, { [ParamCompanyID]: companyID, [ParamProjectID]: projectID, [ParamCableID]: cableID })}><FileEarmarkPlusFill /></Link></th>
       </tr>
       <tr>
         <td>Installed By</td>

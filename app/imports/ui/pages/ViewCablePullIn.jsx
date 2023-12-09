@@ -16,9 +16,9 @@ const ViewCablePullIn = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Cable documents.
-    const pullInSub = Meteor.subscribe(CablePullIns.adminPublicationName);
-    const cableSub = Meteor.subscribe(Cables.adminPublicationName);
-    const projectSub = Meteor.subscribe(Projects.adminPublicationName);
+    const pullInSub = Meteor.subscribe(CablePullIns.userPublicationName);
+    const cableSub = Meteor.subscribe(Cables.userPublicationName);
+    const projectSub = Meteor.subscribe(Projects.userPublicationName);
     // Determine if the subscription is ready
     const rdy = pullInSub.ready() && cableSub.ready() && projectSub.ready();
     // Get the Cable documents

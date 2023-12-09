@@ -4,9 +4,9 @@ import { viewProjectPage } from './viewProject.page';
 import { listCablePage } from './listCable.page';
 import { viewCablePage } from './viewCable.page';
 import { listCablePullInPage } from './listCablePullIn.page';
-// import { viewCablePullInPage } from './viewCablePullIn.page';
-// import { addCablePullInPage } from './addCablePullIn.page';
-// import { editCablePullInPage } from './editCablePullIn.page';
+import { viewCablePullInPage } from './viewCablePullIn.page';
+import { addCablePullInPage } from './addCablePullIn.page';
+import { editCablePullInPage } from './editCablePullIn.page';
 import { navBar } from './navbar.component';
 
 /* global fixture:false, test:false */
@@ -36,11 +36,31 @@ test('Test that Cable PullIn List works', async (testController) => {
   await listCablePullInPage.hasCablePullIn(testController, 0);
 });
 
+test('Test that Cable PullIn Add works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoListProjectPage(testController);
+  await listProjectPage.isDisplayed(testController);
+  await listProjectPage.hasProject(testController);
+  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.isDisplayed(testController);
+  await viewProjectPage.gotoListCablePage(testController);
+  await listCablePage.isDisplayed(testController);
+  await listCablePage.hasCable(testController, 0);
+  await listCablePage.gotoViewCablePage(testController);
+  await viewCablePage.isDisplayed(testController);
+  await viewCablePage.gotoListCablePullInPage(testController);
+  await listCablePullInPage.isDisplayed(testController);
+  await listCablePullInPage.gotoAddCablePullInPage(testController);
+  await addCablePullInPage.isDisplayed(testController);
+  // await addCablePullInPage.addCablePullIn(testController, pullIn);
+});
+
 test('Test that Cable PullIn View works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-/*
   await navBar.gotoListProjectPage(testController);
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.hasProject(testController);
@@ -56,29 +76,26 @@ test('Test that Cable PullIn View works', async (testController) => {
   await listCablePullInPage.hasCablePullIn(testController, 0);
   await listCablePullInPage.gotoViewCablePullInPage(testController);
   await viewCablePullInPage.isDisplayed(testController);
-*/
-});
-
-test('Test that Cable PullIn Add works', async (testController) => {
-  await navBar.ensureLogout(testController);
-  await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
-/*
-  await navBar.gotoListCompanyPage(testController);
-  await listCompanyPage.isDisplayed(testController);
-  await listCompanyPage.gotoAddCompanyPage(testController);
-  await addCompanyPage.isDisplayed(testController);
-*/
 });
 
 test('Test that Cable PullIn Edit works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-/*
-  await navBar.gotoListCompanyPage(testController);
-  await listCompanyPage.isDisplayed(testController);
-  await listCompanyPage.gotoEditCompanyPage(testController);
-  await editCompanyPage.isDisplayed(testController);
-*/
+  await navBar.gotoListProjectPage(testController);
+  await listProjectPage.isDisplayed(testController);
+  await listProjectPage.hasProject(testController);
+  await listProjectPage.gotoViewProjectPage(testController);
+  await viewProjectPage.isDisplayed(testController);
+  await viewProjectPage.gotoListCablePage(testController);
+  await listCablePage.isDisplayed(testController);
+  await listCablePage.hasCable(testController, 0);
+  await listCablePage.gotoViewCablePage(testController);
+  await viewCablePage.isDisplayed(testController);
+  await viewCablePage.gotoListCablePullInPage(testController);
+  await listCablePullInPage.isDisplayed(testController);
+  await listCablePullInPage.hasCablePullIn(testController, 0);
+  await listCablePullInPage.gotoEditCablePullInPage(testController);
+  await editCablePullInPage.isDisplayed(testController);
+  // await editCablePullInPage.editCablePullIn(testController, pullIn);
 });

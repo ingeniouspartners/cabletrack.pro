@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CombinePath, PathViewCablePullIn, PathEditCablePullIn, ParamCablePullInID, ParamCompanyID, ParamProjectID, ParamCableID } from '../../api/navigation/Navigation';
+import { NavViewCablePullIn, NavEditCablePullIn } from '../../api/testcafe/TestCafe';
 
 /** Renders a single row in the List Cables table. See pages/ListCables.jsx. */
 const CablePullInListItem = ({ pullin }) => (
@@ -19,10 +20,14 @@ const CablePullInListItem = ({ pullin }) => (
     <td>{pullin.tuggerCalibrationID}</td>
     <td>{pullin.maxPullingTension}</td>
     <td>
-      <Link aria-label="view" to={CombinePath(PathViewCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}><FileEarmarkFill /></Link>
+      <Link id={NavViewCablePullIn} aria-label="view" to={CombinePath(PathViewCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}>
+        <FileEarmarkFill />
+      </Link>
     </td>
     <td>
-      <Link aria-label="edit" to={CombinePath(PathEditCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}><PencilFill /></Link>
+      <Link id={NavEditCablePullIn} aria-label="edit" to={CombinePath(PathEditCablePullIn, { [ParamCompanyID]: pullin.companyID, [ParamProjectID]: pullin.projectID, [ParamCableID]: pullin.cableID, [ParamCablePullInID]: pullin._id })}>
+        <PencilFill />
+      </Link>
     </td>
   </tr>
 );
