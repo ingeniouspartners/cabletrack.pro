@@ -1,5 +1,4 @@
 import { Selector } from 'testcafe';
-import { NavEditCompany } from '../imports/api/testcafe/TestCafe';
 
 class ViewCompanyPage {
   constructor() {

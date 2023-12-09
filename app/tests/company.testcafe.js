@@ -23,14 +23,14 @@ const company =
       city: 'The City',
       state: 'NY',
       zip: '12345',
-      country: 'US'
+      country: 'US',
     },
     phone: '123-456-7890',
     fax: '123-456-7890',
     email: 'something@something.com',
     logoURL: 'something.com',
     _id: 'IDK123',
-  }
+  };
 
 const editcompany = {
   name: 'Edit Company',
@@ -75,7 +75,7 @@ test('Test that Company Edit works', async (testController) => {
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);
   await editCompanyPage.editCompany(testController, editcompany);
-  //await navBar.gotoCompaniesPage(testController); Confused because of Companies versus company list
+  // await navBar.gotoCompaniesPage(testController); Confused because of Companies versus company list
   await listCompanyPage.gotoViewCompanyPage(testController);
   await viewCompanyPage.checkView(testController, editcompany);
 });

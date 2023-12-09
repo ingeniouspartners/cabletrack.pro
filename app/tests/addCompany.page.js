@@ -1,6 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavListCompany, NavListProject, PageEditCompany } from '../imports/api/testcafe/TestCafe';
-import * as testController from 'react-dom/test-utils';
+import { NavListCompany, PageEditCompany } from '../imports/api/testcafe/TestCafe';
 
 class AddCompanyPage {
   constructor() {
@@ -16,6 +15,7 @@ class AddCompanyPage {
   async gotoListProjectPage(testController) {
     await testController.click(`#${NavListCompany}`);
   }
+
   async addCompany(testController, company) {
     await testController.typeText('#company-form-name', company.name);
     await testController.typeText('#company-form-mail-address', company.address.address);

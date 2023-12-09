@@ -15,6 +15,7 @@ class EditCompanyPage {
   async gotoProjectPage(testController) {
     await testController.click(`#${NavListCompany}`);
   }
+
   async editCompany(testController, company) {
     await testController.typeText('#company-form-name', company.name, { replace: true });
     await testController.click('#company-form-submit input.btn.btn-primary');
