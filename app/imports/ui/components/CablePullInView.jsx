@@ -26,7 +26,7 @@ CablePullInViewTugger.propTypes = {
 };
 
 const CablePullInView = ({ cablePullIn, cable, project }) => {
-  const dateInstalled = cablePullIn.dateInstalled.toISOString().substring(0, 10);
+  const dateInstalled = cablePullIn.dateInstalled.toDateString();
   const editPath = CombinePath(PathEditCablePullIn, cablePullIn);
   return (
     <Card id={PageViewCablePullIn}>

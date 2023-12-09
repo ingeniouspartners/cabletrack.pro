@@ -21,7 +21,8 @@ class ViewCablePage {
   }
 
   async gotoListCablePullInPage(testController) {
-    await testController.click(`#${NavListCablePullIn}`);
+    const navLink = Selector(`#${NavListCablePullIn}`);
+    await testController.click(navLink);
   }
 
   async checkView(testController, cable) {

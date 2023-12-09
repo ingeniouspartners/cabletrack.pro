@@ -13,11 +13,13 @@ class ViewCablePullInPage {
   }
 
   async gotoEditCablePullInPage(testController) {
-    await testController.click(`#${NavEditCablePullIn}`);
+    const navLink = Selector(`#${NavEditCablePullIn}`);
+    await testController.click(navLink);
   }
 
   async gotoListCablePullInPage(testController) {
-    await testController.click(`#${NavListCablePullIn}`);
+    const navLink = Selector(`#${NavListCablePullIn}`);
+    await testController.click(navLink);
   }
 }
 

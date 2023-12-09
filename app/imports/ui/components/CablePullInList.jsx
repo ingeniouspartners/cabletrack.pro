@@ -1,5 +1,4 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
@@ -18,7 +17,7 @@ const CablePullInList = ({ pullins, companyID, projectID, cableID }) => {
       <thead>
         <tr>
           <th colSpan="8"><h2>List Cable PullIn</h2></th>
-          <th><GuardedNavLink id={NavAddCablePullIn} user={Meteor.user()} roles={[RoleAddCablePullIn]} aria-label="add" to={addPath}><FileEarmarkPlusFill /></GuardedNavLink></th>
+          <th><GuardedNavLink id={NavAddCablePullIn} roles={[RoleAddCablePullIn]} aria-label="add" to={addPath}><FileEarmarkPlusFill /></GuardedNavLink></th>
         </tr>
         <tr>
           <td>Installed By</td>
