@@ -66,11 +66,7 @@ class NavBar {
     await testController.click('#list-project-nav');
   }
 
-  async gotoCablesPage(testController) {
-    await testController.click('#list-cable-nav');
-  }
-
-  async gotoCablePage(testController) {
+  async gotoViewCablePage(testController) {
     await testController.click('#view-cable-nav');
   }
 

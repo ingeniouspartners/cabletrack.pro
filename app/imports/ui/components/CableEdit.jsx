@@ -79,24 +79,24 @@ const CableEdit = ({ cable }) => {
           <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField name="name" />
-          <TextField name="description" />
-          <TextField name="costCode" />
-          <TextField name="refDrawingNo" />
-          <TextField name="refDrawingRev" />
-          <TextField name="system" />
-          <TextField name="building" />
-          <TextField name="zone" />
-          <TextField name="origination" />
-          <TextField name="termination" />
-          <NumField name="lengthPlanned" />
-          <SelectField name="classification" />
-          <TextField name="cableType" />
-          <TextField name="conductors" />
-          <TextField name="voltageCable" />
-          <TextField name="voltageTest" />
-          <TextField name="notes" />
-          <SubmitField value="Submit" />
+          <TextField id="cable-form-name" name="name" />
+          <TextField id="cable-form-description" name="description" />
+          <TextField id="cable-form-costCode" name="costCode" />
+          <TextField id="cable-form-refDrawingNo" name="refDrawingNo" />
+          <TextField id="cable-form-refDrawingRev" name="refDrawingRev" />
+          <TextField id="cable-form-system" name="system" />
+          <TextField id="cable-form-building" name="building" />
+          <TextField id="cable-form-zone" name="zone" />
+          <TextField id="cable-form-origination" name="origination" />
+          <TextField id="cable-form-termination" name="termination" />
+          <NumField id="cable-form-lengthPlanned" name="lengthPlanned" />
+          <SelectField id="cable-form-classification" name="classification" />
+          <TextField id="cable-form-cableType" name="cableType" />
+          <TextField id="cable-form-conductors" name="conductors" />
+          <TextField id="cable-form-voltageCable" name="voltageCable" />
+          <TextField id="cable-form-voltageTest" name="voltageTest" />
+          <TextField id="cable-form-notes" name="notes" />
+          <SubmitField id="cable-form-submit" value="Submit" />
           <ErrorsField />
           <HiddenField name="companyID" />
           <HiddenField name="projectID" />
