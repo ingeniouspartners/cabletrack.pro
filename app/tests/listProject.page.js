@@ -24,9 +24,9 @@ class ListProjectPage {
     await testController.click(`#${NavEditProject}`);
   }
 
-  async hasProject(testController) {
+  async hasProject(testController, cnt) {
     const projectCount = Selector('tr').count;
-    await testController.expect(projectCount).gte(1);
+    await testController.expect(projectCount).gte(cnt);
   }
 }
 

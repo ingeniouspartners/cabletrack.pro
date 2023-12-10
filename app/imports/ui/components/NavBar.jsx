@@ -44,7 +44,7 @@ const NavBar = () => {
             <Nav className="me-auto justify-content-start">
               {company ? (
                 <>
-                  <GuardedNavLink id={NavViewCompany} user={user} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
+                  <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
                     Company
                   </GuardedNavLink>
                   <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>

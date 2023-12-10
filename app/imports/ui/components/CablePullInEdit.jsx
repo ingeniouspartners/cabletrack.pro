@@ -1,10 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, BoolField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, BoolField, LongTextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CablePullIns } from '../../api/cable/CablePullIns';
+import { ButtonSubmit, PageEditCablePullIn, FieldPersonInstalled, FieldLengthInstalled, FieldPulledHand, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldDateInstalled, FieldTugger, FieldNotes } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(CablePullIns.formSchema);
 
@@ -23,20 +24,21 @@ const CablePullInEdit = ({ pullin }) => {
     }
   };
   return (
-    <AutoForm schema={bridge} onSubmit={data => submit(data)} model={pullin}>
+    <AutoForm id={PageEditCablePullIn} schema={bridge} onSubmit={data => submit(data)} model={pullin}>
       <Card>
         <Card.Header>
           <Card.Title>{pullin && pullin._id ? 'Edit' : 'Add'} CablePullIn</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField name="personInstalled" />
-          <DateField name="dateInstalled" />
-          <TextField name="lengthInstalled" />
-          <BoolField name="pulledHand" />
-          <TextField name="tugger" />
-          <TextField name="tuggerCalibrationID" />
-          <TextField name="maxPullingTension" />
-          <SubmitField value="Submit" />
+          <TextField id={FieldPersonInstalled} name="personInstalled" />
+          <DateField id={FieldDateInstalled} name="dateInstalled" />
+          <TextField id={FieldLengthInstalled} name="lengthInstalled" />
+          <BoolField id={FieldPulledHand} name="pulledHand" />
+          <TextField id={FieldTugger} name="tugger" />
+          <TextField id={FieldTuggerCalibrationID} name="tuggerCalibrationID" />
+          <TextField id={FieldMaxPullingTension} name="maxPullingTension" />
+          <LongTextField id={FieldNotes} name="notes" />
+          <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
           <HiddenField name="_id" />
           <HiddenField name="cableID" />

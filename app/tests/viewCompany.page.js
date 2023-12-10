@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { ElementName } from '../imports/api/testcafe/TestCafe';
+import { FieldName } from '../imports/api/testcafe/TestCafe';
 
 class ViewCompanyPage {
   constructor() {
@@ -17,7 +17,7 @@ class ViewCompanyPage {
   }
 
   async checkView(testController, company) {
-    const nameField = Selector(`#${ElementName}`);
+    const nameField = Selector(`#${FieldName}`);
     const edit = nameField.innerText;
     await testController.expect(edit).eql(company.name);
   }

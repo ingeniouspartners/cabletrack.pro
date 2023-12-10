@@ -25,8 +25,8 @@ class ListCablePage {
   }
 
   async hasCable(testController, cnt) {
-    const projectCount = Selector('tr').count;
-    await testController.expect(projectCount).gte(cnt);
+    const cableCount = Selector('tr').count;
+    await testController.expect(cableCount).gte(cnt);
   }
 }
 

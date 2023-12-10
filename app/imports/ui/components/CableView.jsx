@@ -2,14 +2,15 @@ import React from 'react';
 import { Card, Table } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
-import { CombinePath, PathEditCable, ParamCompanyID, ParamProjectID, ParamCableID, PathListCable } from '../../api/navigation/Navigation';
+import { CombinePath, PathEditCable, ParamCompanyID, ParamProjectID, ParamCableID, PathListCable, PathListCablePullIn } from '../../api/navigation/Navigation';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
-import { NavEditCable, NavListCable, PageViewCable } from '../../api/testcafe/TestCafe';
+import { NavEditCable, NavListCable, NavListCablePullIn, PageViewCable } from '../../api/testcafe/TestCafe';
 
 /* Renders the Cable document. */
 const CableView = ({ cable }) => {
   const listPath = CombinePath(PathListCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID });
   const editPath = CombinePath(PathEditCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID, [ParamCableID]: cable._id });
+  const pullInPath = CombinePath(PathListCablePullIn, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID, [ParamCableID]: cable._id });
   return (
     <div id={PageViewCable}>
       <Card>
@@ -38,6 +39,7 @@ const CableView = ({ cable }) => {
           <Card.Text>{cable.notes}</Card.Text>
           <Card.Footer>
             <Link id={NavEditCable} to={editPath}><PencilFill /></Link>
+            <Link id={NavListCablePullIn} to={pullInPath}>Pull Ins</Link>
             <Link id={NavListCable} className="p-3" to={listPath}>Back to Cables</Link>
           </Card.Footer>
         </Card.Body>

@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavEditCable, PageViewCable } from '../imports/api/testcafe/TestCafe';
+import { NavEditCable, NavListCable, NavListCablePullIn, PageViewCable } from '../imports/api/testcafe/TestCafe';
 
 class ViewCablePage {
   constructor() {
@@ -14,6 +14,14 @@ class ViewCablePage {
 
   async gotoEditCablePage(testController) {
     await testController.click(`#${NavEditCable}`);
+  }
+
+  async gotoListCablePage(testController) {
+    await testController.click(`#${NavListCable}`);
+  }
+
+  async gotoListCablePullInPage(testController) {
+    await testController.click(`#${NavListCablePullIn}`);
   }
 
   async checkView(testController, cable) {
