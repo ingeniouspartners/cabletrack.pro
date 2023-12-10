@@ -1,6 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 
 const idSchema = { type: String, max: 20, required: true };
+const idSchemaOptional = { type: String, max: 20, optional: true };
 
 const addressSchema = new SimpleSchema(
   {
@@ -109,7 +110,7 @@ const DBSchemaCablePullIn = new SimpleSchema(
     companyID: idSchema,
     projectID: idSchema,
     cableID: idSchema,
-    personInstalled: idSchema,
+    personInstalled: idSchemaOptional,
     dateInstalled: { type: Date, required: true, defaultValue: new Date() },
     lengthInstalled: { type: { type: Number, optional: true }, required: true },
     pulledHand: { type: Boolean, defaultValue: false, required: true },
@@ -128,7 +129,7 @@ const DBSchemaCableTerminate = new SimpleSchema(
     companyID: idSchema,
     projectID: idSchema,
     cableID: idSchema,
-    personTerminated: idSchema,
+    personTerminated: idSchemaOptional,
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
@@ -142,7 +143,7 @@ const DBSchemaCableTestContinuity = new SimpleSchema(
     companyID: idSchema,
     projectID: idSchema,
     cableID: idSchema,
-    personTested: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
@@ -156,7 +157,7 @@ const DBSchemaCableTestMegger = new SimpleSchema(
     companyID: idSchema,
     projectID: idSchema,
     cableID: idSchema,
-    personTested: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     meggerInstrument: { type: String, max: 30 },
     meggerCalibrationID: { type: String, max: 30 },
@@ -177,7 +178,7 @@ const DBSchemaCableTestVLF = new SimpleSchema(
     companyID: idSchema,
     projectID: idSchema,
     cableID: idSchema,
-    personTested: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     vLFInstrument: { type: String, max: 30 },
     vLFCalibrationID: { type: String, max: 30 },
