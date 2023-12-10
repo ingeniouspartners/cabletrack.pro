@@ -1,5 +1,4 @@
 import { Selector } from 'testcafe';
-import { NavListCable } from '../imports/api/testcafe/TestCafe';
 
 class ViewProjectPage {
   constructor() {
@@ -19,6 +18,7 @@ class ViewProjectPage {
   async gotoListCablePage(testController) {
     await testController.click('#list-cable-nav');
   }
+
   async checkView(testController, project) {
     const edit = Selector('h1').innerText;
     await testController.expect(edit).eql(project.name);
