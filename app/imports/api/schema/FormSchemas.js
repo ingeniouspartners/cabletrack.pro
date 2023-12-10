@@ -1,6 +1,9 @@
 import SimpleSchema from 'simpl-schema';
 import PropTypes from 'prop-types';
 
+const requiredIDSchema = { type: String, max: 20, required: true };
+const optionalIDSchema = { type: String, max: 20, optional: true };
+
 const stateArray = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
   'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'YT', 'NU'];
 
@@ -62,22 +65,6 @@ const measurementTimedSchema = new SimpleSchema({
   value: { type: Number, optional: true },
 });
 
-const FormSchemaOwnedBy = new SimpleSchema(
-  {
-    ownerID: { type: String, max: 20, required: true },
-    ownedID: { type: String, max: 20, required: true },
-  },
-  { requiredByDefault: false },
-);
-
-const FormSchemaUsedBy = new SimpleSchema(
-  {
-    userID: { type: String, max: 20, required: true },
-    usedID: { type: String, max: 20, required: true },
-  },
-  { requiredByDefault: false },
-);
-
 // Possible email form in here too?
 const FormSchemaCompany = new SimpleSchema(
   {
@@ -87,14 +74,14 @@ const FormSchemaCompany = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     logoURL: { type: String, max: 256, regEx: /^https?:\/\//, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaProject = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: false },
+    companyID: requiredIDSchema,
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
     name: { type: String, max: 60, required: true },
     contract: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/ },
@@ -105,15 +92,15 @@ const FormSchemaProject = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaCable = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
     name: { type: String, max: 60, required: true },
     description: { type: String, max: 1000, optional: true },
     costCode: { type: String, max: 10, regEx: /^(\w([\w\\.]{0,9}|[\w-]{0,9}))$/ },
@@ -127,29 +114,29 @@ const FormSchemaCable = new SimpleSchema(
     lengthPlanned: { type: Number, optional: true },
     classification: { type: String, allowedValues: ['Power', 'Control', 'Telecom', 'Fiber', 'Other'], defaultValue: 'Power' },
     cableType: { type: String, max: 20 },
-    conductors: { type: String, max: 30 },
-    voltageCable: { type: String, max: 30 },
-    voltageTest: { type: String, max: 15 },
+    conductors: { type: Number },
+    voltageCable: { type: Number },
+    voltageTest: { type: Number },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaCablePullIn = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personInstalled: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
+    cableID: requiredIDSchema,
+    personInstalled: requiredIDSchema,
     dateInstalled: { type: Date, required: true, defaultValue: new Date() },
-    lengthInstalled: { type: { type: Number, optional: true }, required: true },
+    lengthInstalled: { type: Number, optional: true, required: true },
     pulledHand: { type: Boolean, defaultValue: false, required: true },
     tugger: String,
     tuggerCalibrationID: String,
-    maxPullingTension: { type: Number, optional: true },
-    notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    maxPullingTension: Number,
+    notes: { type: String },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
@@ -157,38 +144,38 @@ const FormSchemaCablePullIn = new SimpleSchema(
 // Just in case not clear, things are required by default.
 const FormSchemaCableTerminate = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTerminated: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
+    cableID: requiredIDSchema,
+    personTerminated: requiredIDSchema,
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaCableTestContinuity = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
+    cableID: requiredIDSchema,
+    personTested: requiredIDSchema,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaCableTestMegger = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
+    cableID: requiredIDSchema,
+    personTested: requiredIDSchema,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     meggerInstrument: { type: String, max: 30 },
     meggerCalibrationID: { type: String, max: 30 },
@@ -199,17 +186,17 @@ const FormSchemaCableTestMegger = new SimpleSchema(
     B_Grd: measurementTimedSchema,
     C_Grd: measurementTimedSchema,
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
 
 const FormSchemaCableTestVLF = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: requiredIDSchema,
+    projectID: requiredIDSchema,
+    cableID: requiredIDSchema,
+    personTested: requiredIDSchema,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     vLFInstrument: { type: String, max: 30 },
     vLFCalibrationID: { type: String, max: 30 },
@@ -221,7 +208,7 @@ const FormSchemaCableTestVLF = new SimpleSchema(
     systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: optionalIDSchema,
   },
   { requiredByDefault: false },
 );
@@ -229,7 +216,7 @@ const FormSchemaCableTestVLF = new SimpleSchema(
 const FormSchemaUserProfile = new SimpleSchema(
   {
     // Ensuring every user has an email address, should be in server-side code
-    username: { type: String, max: 20, required: true },
+    username: requiredIDSchema,
     emails: { type: Array },
     'emails.$': { type: emailSchema },
     createdAt: { type: Date },
@@ -245,6 +232,6 @@ const FormSchemaUserProfile = new SimpleSchema(
   { requiredByDefault: false },
 );
 
-export { stateArray, countryArray, FormSchemaOwnedBy, FormSchemaUsedBy, FormSchemaCompany, FormSchemaProject, FormSchemaCable, FormSchemaCablePullIn, FormSchemaCableTerminate, FormSchemaCableTestContinuity, FormSchemaCableTestMegger,
+export { stateArray, countryArray, FormSchemaCompany, FormSchemaProject, FormSchemaCable, FormSchemaCablePullIn, FormSchemaCableTerminate, FormSchemaCableTestContinuity, FormSchemaCableTestMegger,
   FormSchemaCableTestVLF, FormSchemaUserProfile };
 export { formatAddress, formatEmails };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { FileEarmarkFill, PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
@@ -15,12 +14,12 @@ const CompanyListItem = ({ company }) => (
     <td><Link aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>{company.name}</Link></td>
     <td>{formatAddress(company.address)}</td>
     <td>
-      <GuardedNavLink id={NavViewCompany} user={Meteor.user()} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>
+      <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} aria-label="view" to={CombinePath(PathViewCompany, { [ParamCompanyID]: company._id })}>
         <FileEarmarkFill />
       </GuardedNavLink>
     </td>
     <td>
-      <GuardedNavLink id={NavEditCompany} user={Meteor.user()} roles={[RoleEditCompanyAll, RoleEditCompanyOwned]} aria-label="edit" to={CombinePath(PathEditCompany, { [ParamCompanyID]: company._id })}>
+      <GuardedNavLink id={NavEditCompany} roles={[RoleEditCompanyAll, RoleEditCompanyOwned]} aria-label="edit" to={CombinePath(PathEditCompany, { [ParamCompanyID]: company._id })}>
         <PencilFill />
       </GuardedNavLink>
     </td>

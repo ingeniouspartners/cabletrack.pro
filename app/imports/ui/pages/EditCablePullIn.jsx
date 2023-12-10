@@ -15,14 +15,14 @@ const EditCablePullIn = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Cable documents.
-    const subscription = Meteor.subscribe(CablePullIns.adminPublicationName);
+    const subscription = Meteor.subscribe(CablePullIns.userPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Cable documents
     let pullInItem;
     if (location.pathname.endsWith('/add')) {
-      pullInItem = { companyID: companyID, projectID: projectID, cableID: cableID, personInstalled: Meteor.userId(), dateInstalled: Date.now(), lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '', maxPullingTension: '',
-        notes: '', _id: '' };
+      pullInItem = { companyID: companyID, projectID: projectID, cableID: cableID, personInstalled: Meteor.userId(), dateInstalled: (new Date()), lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '',
+        maxPullingTension: '', notes: '', _id: '' };
     } else {
       pullInItem = CablePullIns.collection.findOne(pullinID);
     }

@@ -47,7 +47,7 @@ test('Test that ProjectList works', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoListProjectPage(testController);
   await listProjectPage.isDisplayed(testController);
-  await listProjectPage.hasProject(testController); // test if the project is added
+  await listProjectPage.hasProject(testController, 1); // test if the project is added
 });
 
 test('Test that ProjectView works', async (testController) => {
@@ -55,7 +55,7 @@ test('Test that ProjectView works', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoListProjectPage(testController);
   await listProjectPage.isDisplayed(testController);
-  await listProjectPage.hasProject(testController); // test if the project is added
+  await listProjectPage.hasProject(testController, 1); // test if the project is added
   await listProjectPage.gotoViewProjectPage(testController); // test view project
   await viewProjectPage.isDisplayed(testController);
 });
@@ -65,7 +65,7 @@ test('Test that ProjectEdit works', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoListProjectPage(testController);
   await listProjectPage.isDisplayed(testController);
-  await listProjectPage.hasProject(testController); // test if the project is added
+  await listProjectPage.hasProject(testController, 1); // test if the project is added
   await listProjectPage.gotoEditProjectPage(testController); // test edit project
   await editProjectPage.isDisplayed(testController);
   await editProjectPage.editProject(testController, editproject);
@@ -83,5 +83,5 @@ test('Test that ProjectAdd works', async (testController) => {
   await addProjectPage.isDisplayed(testController);
   await addProjectPage.addProject(testController, project); // test add project
   await navBar.gotoListProjectPage(testController);
-  await listProjectPage.hasProject(testController); // test if the project is added
+  await listProjectPage.hasProject(testController, 1); // test if the project is added
 });

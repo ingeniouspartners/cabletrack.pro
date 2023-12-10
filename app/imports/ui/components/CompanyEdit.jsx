@@ -6,7 +6,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { Companies } from '../../api/company/Companies';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
-import { ElementName, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone, ElementFax, ElementEmail, ElementLogoURL, ButtonSubmit } from '../../api/testcafe/TestCafe';
+import { FieldName, FieldAddress, FieldAddress2, FieldCity, FieldState, FieldZip, FieldCountry, FieldPhone, FieldFax, FieldEmail, FieldLogoURL, ButtonSubmit } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Companies.formSchema);
 
@@ -31,17 +31,17 @@ const CompanyEdit = ({ company }) => {
           <Card.Title>{company && company._id ? 'Edit' : 'Add'} Company</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField id={ElementName} name="name" />
-          <TextField id={ElementAddress} name="address.address" />
-          <TextField id={ElementAddress2} name="address.address2" />
-          <TextField id={ElementCity} name="address.city" />
-          <SelectField id={ElementState} name="address.state" allowedValues={stateArray} />
-          <TextField id={ElementZip} name="address.zip" />
-          <SelectField id={ElementCountry} name="address.country" defaultValue="US" allowedValues={countryArray} />
-          <TextField id={ElementPhone} name="phone" />
-          <TextField id={ElementFax} name="fax" />
-          <TextField id={ElementEmail} name="email" />
-          <TextField id={ElementLogoURL} name="logoURL" />
+          <TextField id={FieldName} name="name" />
+          <TextField id={FieldAddress} name="address.address" />
+          <TextField id={FieldAddress2} name="address.address2" />
+          <TextField id={FieldCity} name="address.city" />
+          <SelectField id={FieldState} name="address.state" allowedValues={stateArray} />
+          <TextField id={FieldZip} name="address.zip" />
+          <SelectField id={FieldCountry} name="address.country" defaultValue="US" allowedValues={countryArray} />
+          <TextField id={FieldPhone} name="phone" />
+          <TextField id={FieldFax} name="fax" />
+          <TextField id={FieldEmail} name="email" />
+          <TextField id={FieldLogoURL} name="logoURL" />
           <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
           <HiddenField name="_id" />
