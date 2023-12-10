@@ -17,18 +17,18 @@ class ListCablePullInPage {
     await testController.expect(projectCount).gte(count);
   }
 
-  async gotoAddCablePullInPage(testController) {
-    const navLink = Selector(`#${NavAddCablePullIn}`);
-    await testController.click(navLink);
+  async gotoAddCablePullInPage(t) {
+    const navLink = `#${NavAddCablePullIn}`;
+    await t.click(navLink);
   }
 
   async gotoEditCablePullInPage(testController) {
-    const navLink = Selector(`#${NavEditCablePullIn}`);
+    const navLink = `#${NavEditCablePullIn}`;
     await testController.click(navLink);
   }
 
   async gotoViewCablePullInPage(testController) {
-    const navLink = Selector(`#${NavViewCablePullIn}`);
+    const navLink = `#${NavViewCablePullIn}`;
     await testController.click(navLink);
   }
 }

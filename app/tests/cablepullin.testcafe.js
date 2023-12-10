@@ -14,6 +14,21 @@ import { navBar } from './navbar.component';
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'elec@foo.com', password: 'changeme' };
 
+const pullInAdd = {
+  lengthInstalled: 100,
+  pulledHand: true,
+  notes: 'This is a note.',
+};
+
+const pullInEdit = {
+  lengthInstalled: 100,
+  pulledHand: false,
+  tugger: 'Tugger 1',
+  tuggerCalibrationID: 'Calibration 1',
+  maxPullingTension: 45,
+  notes: 'This is a note.',
+};
+
 fixture('PullIn: cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
@@ -39,9 +54,9 @@ test('PullIn List works', async (t) => {
   });
 
 test('PullIn Add works', async (t) => {
-  // await listCablePullInPage.gotoAddCablePullInPage(t);
-  // await addCablePullInPage.isDisplayed(t);
-  // await addCablePullInPage.addCablePullIn(t, pullIn);
+  await listCablePullInPage.gotoAddCablePullInPage(t);
+  await addCablePullInPage.isDisplayed(t);
+  await addCablePullInPage.addPullIn(t, pullInAdd);
 })
   .before(async t => {
     await navBar.ensureLogout(t);
@@ -88,7 +103,7 @@ test('PullIn Edit works', async (t) => {
   await listCablePullInPage.hasCablePullIn(t, 1);
   await listCablePullInPage.gotoEditCablePullInPage(t);
   await editCablePullInPage.isDisplayed(t);
-  // await editCablePullInPage.editCablePullIn(t, pullIn);
+  await editCablePullInPage.editPullIn(t, pullInEdit);
 })
   .before(async t => {
     await navBar.ensureLogout(t);

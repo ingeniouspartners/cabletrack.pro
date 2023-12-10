@@ -92,10 +92,17 @@ const FieldPhone = 'phone';
 const FieldFax = 'fax';
 const FieldEmail = 'email';
 const FieldLogoURL = 'logoURL';
+const FieldLengthInstalled = 'lengthInstalled';
+const FieldPulledHand = 'pulledHand';
+const FieldTugger = 'tugger';
+const FieldTuggerCalibrationID = 'tuggerCalibrationID';
+const FieldMaxPullingTension = 'maxPullingTension';
+const FieldPersonInstalled = 'personInstalled';
+const FieldDateInstalled = 'dateInstalled';
 
 export { FieldName, FieldCompanyID, FieldProjectID, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
   FieldLengthPlanned, FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldAddress, FieldAddress2, FieldCity, FieldState, FieldZip, FieldCountry, FieldPhone,
-  FieldFax, FieldEmail, FieldLogoURL };
+  FieldFax, FieldEmail, FieldLogoURL, FieldLengthInstalled, FieldPulledHand, FieldTugger, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldPersonInstalled, FieldDateInstalled };
 
 const ButtonSubmit = 'submit';
 

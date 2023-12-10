@@ -21,8 +21,8 @@ const EditCablePullIn = () => {
     // Get the Cable documents
     let pullInItem;
     if (location.pathname.endsWith('/add')) {
-      pullInItem = { companyID: companyID, projectID: projectID, cableID: cableID, personInstalled: Meteor.userId(), dateInstalled: Date.now(), lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '', maxPullingTension: '',
-        notes: '', _id: '' };
+      pullInItem = { companyID: companyID, projectID: projectID, cableID: cableID, personInstalled: Meteor.userId(), dateInstalled: (new Date()), lengthInstalled: '', pulledHand: '', tugger: '', tuggerCalibrationID: '',
+        maxPullingTension: '', notes: '', _id: '' };
     } else {
       pullInItem = CablePullIns.collection.findOne(pullinID);
     }

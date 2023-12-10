@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CablePullInListItem from './CablePullInListItem';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCableID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
 import { NavAddCablePullIn, PageListCablePullIn } from '../../api/testcafe/TestCafe';
-import GuardedNavLink from './GuardedNavLink';
-import { RoleAddCablePullIn } from '../../api/role/Roles';
+// import GuardedNavLink from './GuardedNavLink';
+// import { RoleAddCablePullIn } from '../../api/role/Roles';
 
 /* Renders a table containing all of the CablePullIn documents. Use <CableItem> to render each row. */
 const CablePullInList = ({ pullins, companyID, projectID, cableID }) => {
@@ -17,7 +18,11 @@ const CablePullInList = ({ pullins, companyID, projectID, cableID }) => {
       <thead>
         <tr>
           <th colSpan="8"><h2>List Cable PullIn</h2></th>
-          <th><GuardedNavLink id={NavAddCablePullIn} roles={[RoleAddCablePullIn]} aria-label="add" to={addPath}><FileEarmarkPlusFill /></GuardedNavLink></th>
+          <th>
+            <Link id={NavAddCablePullIn} aria-label="add" to={addPath}>
+              <FileEarmarkPlusFill />
+            </Link>
+          </th>
         </tr>
         <tr>
           <td>Installed By</td>
