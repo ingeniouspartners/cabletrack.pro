@@ -22,7 +22,7 @@ test('Test that Cable PullIn List works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   /*
-    await navBar.gotoProjectsPage(testController);
+    await navBar.gotoListProjectPage(testController);
     await listProjectPage.isDisplayed(testController);
     await listProjectPage.hasProject(testController);
     await listProjectPage.gotoViewProjectPage(testController);
@@ -43,7 +43,7 @@ test('Test that Cable PullIn View works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
 /*
-  await navBar.gotoProjectsPage(testController);
+  await navBar.gotoListProjectPage(testController);
   await listProjectPage.isDisplayed(testController);
   await listProjectPage.hasProject(testController);
   await listProjectPage.gotoViewProjectPage(testController);
@@ -66,7 +66,7 @@ test('Test that Company Add works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
 /*
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoAddCompanyPage(testController);
   await addCompanyPage.isDisplayed(testController);
@@ -78,7 +78,7 @@ test('Test that Company Edit works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
 /*
-  await navBar.gotoCompaniesPage(testController);
+  await navBar.gotoListCompanyPage(testController);
   await listCompanyPage.isDisplayed(testController);
   await listCompanyPage.gotoEditCompanyPage(testController);
   await editCompanyPage.isDisplayed(testController);

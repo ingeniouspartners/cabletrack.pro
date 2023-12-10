@@ -50,15 +50,53 @@ const NavDeleteCable = 'delete-cable-nav';
 export { PageListCable, PageViewCable, PageEditCable, PageDeleteCable };
 export { NavListCable, NavViewCable, NavEditCable, NavAddCable, NavDeleteCable };
 
-const PageListCablePullIn = 'list-cablepullin-page';
-const NavListCablePullIn = 'list-cablepullin-nav';
-const PageViewCablePullIn = 'view-cablepullin-page';
-const NavViewCablePullIn = 'view-cablepullin-nav';
-const PageEditCablePullIn = 'edit-cablepullin-page';
-const NavEditCablePullIn = 'edit-cablepullin-nav';
-const NavAddCablePullIn = 'add-cablepullin-nav';
-const PageDeleteCablePullIn = 'delete-cablepullin-page';
-const NavDeleteCablePullIn = 'delete-cablepullin-nav';
+const PageListCablePullIn = 'list-pullIn-page';
+const NavListCablePullIn = 'list-pullIn-nav';
+const PageViewCablePullIn = 'view-pullIn-page';
+const NavViewCablePullIn = 'view-pullIn-nav';
+const PageEditCablePullIn = 'edit-pullIn-page';
+const NavEditCablePullIn = 'edit-pullIn-nav';
+const NavAddCablePullIn = 'add-pullIn-nav';
+const PageDeleteCablePullIn = 'delete-pullIn-page';
+const NavDeleteCablePullIn = 'delete-pullIn-nav';
 
 export { PageListCablePullIn, PageViewCablePullIn, PageEditCablePullIn, PageDeleteCablePullIn };
 export { NavListCablePullIn, NavViewCablePullIn, NavEditCablePullIn, NavAddCablePullIn, NavDeleteCablePullIn };
+
+const ElementName = 'name';
+const ElementCompanyID = 'companyID';
+const ElementProjectID = 'projectID';
+const ElementDescription = 'description';
+const ElementCostCode = 'costCode';
+const ElementRefDrawingNo = 'refDrawingNo';
+const ElementRefDrawingRev = 'refDrawingRev';
+const ElementSystem = 'system';
+const ElementBuilding = 'building';
+const ElementZone = 'zone';
+const ElementOrigination = 'origination';
+const ElementTermination = 'termination';
+const ElementLengthPlanned = 'lengthPlanned';
+const ElementClassification = 'classification';
+const ElementCableType = 'cableType';
+const ElementConductors = 'conductors';
+const ElementVoltageCable = 'voltageCable';
+const ElementVoltageTest = 'voltageTest';
+const ElementNotes = 'notes';
+const ElementAddress = 'address';
+const ElementAddress2 = 'address2';
+const ElementCity = 'city';
+const ElementState = 'state';
+const ElementZip = 'zip';
+const ElementCountry = 'country';
+const ElementPhone = 'phone';
+const ElementFax = 'fax';
+const ElementEmail = 'email';
+const ElementLogoURL = 'logoURL';
+
+export { ElementName, ElementCompanyID, ElementProjectID, ElementDescription, ElementCostCode, ElementRefDrawingNo, ElementRefDrawingRev, ElementSystem, ElementBuilding, ElementZone, ElementOrigination, ElementTermination,
+  ElementLengthPlanned, ElementClassification, ElementCableType, ElementConductors, ElementVoltageCable, ElementVoltageTest, ElementNotes, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone,
+  ElementFax, ElementEmail, ElementLogoURL };
+
+const ButtonSubmit = 'submit';
+
+export { ButtonSubmit };

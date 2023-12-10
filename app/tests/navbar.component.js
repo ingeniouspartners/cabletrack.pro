@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavViewUser } from '../imports/api/testcafe/TestCafe';
+import { NavListCompany, NavListProject, NavViewCompany, NavViewUser } from '../imports/api/testcafe/TestCafe';
 
 class NavBar {
 
@@ -54,20 +54,19 @@ class NavBar {
     await testController.click('#login-dropdown-sign-up');
   }
 
-  async gotoCompaniesPage(testController) {
-    await testController.click('#list-company-nav');
+  async gotoListCompanyPage(testController) {
+    const id = `#${NavListCompany}`;
+    await testController.click(id);
   }
 
-  async gotoCompanyPage(testController) {
-    await testController.click('#view-company-nav');
+  async gotoViewCompanyPage(testController) {
+    const id = `#${NavViewCompany}`;
+    await testController.click(id);
   }
 
-  async gotoProjectsPage(testController) {
-    await testController.click('#list-project-nav');
-  }
-
-  async gotoViewCablePage(testController) {
-    await testController.click('#view-cable-nav');
+  async gotoListProjectPage(testController) {
+    const id = `#${NavListProject}`;
+    await testController.click(id);
   }
 
   async gotoProfilePage(testController) {

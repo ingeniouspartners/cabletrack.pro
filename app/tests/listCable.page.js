@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavAddCable, NavEditCable, NavViewCable, PageListCable } from '../imports/api/testcafe/TestCafe';
+import { PageListCable } from '../imports/api/testcafe/TestCafe';
 
 class ListCablePage {
   constructor() {
@@ -13,20 +13,20 @@ class ListCablePage {
   }
 
   async gotoViewCablePage(testController) {
-    await testController.click(`#${NavViewCable}`);
+    await testController.click('#view-cable-nav');
   }
 
   async gotoAddCablePage(testController) {
-    await testController.click(`#${NavAddCable}`);
+    await testController.click('#add-cable-nav');
   }
 
   async gotoEditCablePage(testController) {
-    await testController.click(`#${NavEditCable}`);
+    await testController.click('#edit-cable-nav');
   }
 
-  async hasCable(testController) {
+  async hasCable(testController, cnt) {
     const projectCount = Selector('tr').count;
-    await testController.expect(projectCount).gte(1);
+    await testController.expect(projectCount).gte(cnt);
   }
 }
 

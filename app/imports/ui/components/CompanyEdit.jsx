@@ -5,7 +5,8 @@ import { AutoForm, ErrorsField, HiddenField, SelectField, SubmitField, TextField
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { Companies } from '../../api/company/Companies';
-import { stateArray } from '../../api/schema/FormSchemas';
+import { countryArray, stateArray } from '../../api/schema/FormSchemas';
+import { ElementName, ElementAddress, ElementAddress2, ElementCity, ElementState, ElementZip, ElementCountry, ElementPhone, ElementFax, ElementEmail, ElementLogoURL, ButtonSubmit } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Companies.formSchema);
 
@@ -30,18 +31,18 @@ const CompanyEdit = ({ company }) => {
           <Card.Title>{company && company._id ? 'Edit' : 'Add'} Company</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField name="name" />
-          <TextField name="address.address" />
-          <TextField name="address.address2" />
-          <TextField name="address.city" />
-          <SelectField name="address.state" allowedValues={stateArray} />
-          <TextField name="address.zip" />
-          <SelectField name="address.country" defaultValue="US" allowedValues={['US', 'CA']} />
-          <TextField name="phone" />
-          <TextField name="fax" />
-          <TextField name="email" />
-          <TextField name="logoURL" />
-          <SubmitField value="Submit" />
+          <TextField id={ElementName} name="name" />
+          <TextField id={ElementAddress} name="address.address" />
+          <TextField id={ElementAddress2} name="address.address2" />
+          <TextField id={ElementCity} name="address.city" />
+          <SelectField id={ElementState} name="address.state" allowedValues={stateArray} />
+          <TextField id={ElementZip} name="address.zip" />
+          <SelectField id={ElementCountry} name="address.country" defaultValue="US" allowedValues={countryArray} />
+          <TextField id={ElementPhone} name="phone" />
+          <TextField id={ElementFax} name="fax" />
+          <TextField id={ElementEmail} name="email" />
+          <TextField id={ElementLogoURL} name="logoURL" />
+          <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
           <HiddenField name="_id" />
         </Card.Body>

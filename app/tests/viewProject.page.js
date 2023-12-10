@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavEditProject, NavListCable } from '../imports/api/testcafe/TestCafe';
+import { NavListCable } from '../imports/api/testcafe/TestCafe';
 
 class ViewProjectPage {
   constructor() {
@@ -13,7 +13,11 @@ class ViewProjectPage {
   }
 
   async gotoEditProjectPage(testController) {
-    await testController.click(`#${NavEditProject}`);
+    await testController.click('#edit-project-nav');
+  }
+
+  async gotoListCablePage(testController) { // TODO Look into cleaning these two methods up
+    await testController.click('#list-cable-nav');
   }
 
   async gotoListCablesPage(testController) {
