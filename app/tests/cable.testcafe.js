@@ -1,11 +1,11 @@
 import { signinPage } from './signin.page';
+import { listProjectPage } from './listProject.page';
+import { viewProjectPage } from './viewProject.page';
 import { listCablePage } from './listCable.page';
 import { viewCablePage } from './viewCable.page';
 import { addCablePage } from './addCable.page';
 import { editCablePage } from './editCable.page';
 import { navBar } from './navbar.component';
-import { listProjectPage } from './listProject.page';
-import { viewProjectPage } from './viewProject.page';
 
 /* global fixture:false, test:false */
 
@@ -96,5 +96,5 @@ test('Test that Cable Add works', async (testController) => {
   await listCablePage.isDisplayed(testController);
   await listCablePage.gotoAddCablePage(testController); // test view project
   await addCablePage.isDisplayed(testController);
-  await addCablePage.addCable(testController, cable);
+  await addCablePage.addCable(testController, cable); // test add cable
 });
