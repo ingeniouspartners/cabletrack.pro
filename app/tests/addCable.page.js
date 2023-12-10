@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 import { ButtonSubmit, FieldName, NavListProject, PageEditCable, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
-  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, // FieldLengthPlanned,
+  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldLengthPlanned,
 } from '../imports/api/testcafe/TestCafe';
 
 class AddCablePage {
@@ -29,7 +29,7 @@ class AddCablePage {
     const zoneField = `#${FieldZone}`;
     const originationField = `#${FieldOrigination}`;
     const terminationField = `#${FieldTermination}`;
-    // const lengthPlannedField = `#${FieldLengthPlanned}`;
+    const lengthPlannedField = `#${FieldLengthPlanned}`;
     const classificationField = `#${FieldClassification}`;
     const cableTypeField = `#${FieldCableType}`;
     const conductorsField = `#${FieldConductors}`;
@@ -48,14 +48,14 @@ class AddCablePage {
     await testController.typeText(zoneField, cable.zone);
     await testController.typeText(originationField, cable.origination);
     await testController.typeText(terminationField, cable.termination);
-    // await testController.typeText(lengthPlannedField, cable.lengthPlanned, { replace: true });
+    await testController.typeText(lengthPlannedField, cable.lengthPlanned.toString(), { replace: true });
     const selectClassification = Selector(classificationField);
     await testController.click(selectClassification);
     await testController.click(selectClassification.find(`option[value="${cable.classification}"]`));
     await testController.typeText(cableTypeField, cable.cableType);
-    await testController.typeText(conductorsField, cable.conductors);
-    await testController.typeText(voltageCableField, cable.voltageCable);
-    await testController.typeText(voltageTestField, cable.voltageTest);
+    await testController.typeText(conductorsField, cable.conductors.toString(), { replace: true });
+    await testController.typeText(voltageCableField, cable.voltageCable.toString(), { replace: true });
+    await testController.typeText(voltageTestField, cable.voltageTest.toString(), { replace: true });
     await testController.typeText(notesField, cable.notes);
     await testController.click(submitButton);
     await testController.click('button.swal-button--confirm');

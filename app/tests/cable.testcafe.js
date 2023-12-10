@@ -30,11 +30,12 @@ const cable =
       lengthPlanned: 100,
       classification: 'Power',
       cableType: 'Single',
-      conductors: 'Copper',
-      voltageCable: '120V',
-      voltageTest: '120V',
+      conductors: '1',
+      voltageCable: '120',
+      voltageTest: '120',
       notes: 'This is a note.',
     };
+
 const editcable = {
   name: 'Edit Cable',
 };
