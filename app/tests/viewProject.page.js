@@ -16,14 +16,9 @@ class ViewProjectPage {
     await testController.click('#edit-project-nav');
   }
 
-  async gotoListCablePage(testController) { // TODO Look into cleaning these two methods up
+  async gotoListCablePage(testController) {
     await testController.click('#list-cable-nav');
   }
-
-  async gotoListCablesPage(testController) {
-    await testController.click(`#${NavListCable}`);
-  }
-
   async checkView(testController, project) {
     const edit = Selector('h1').innerText;
     await testController.expect(edit).eql(project.name);
