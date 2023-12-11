@@ -1,9 +1,10 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Image } from 'react-bootstrap';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 
 const CompanyBrand = ({ company }) => {
-  if (company) {
+  if (company && Meteor.user() && Meteor.user().username !== 'admin@foo.com') {
     if (company.logoURL) {
       return (<Image className="company-logo" src={company.logoURL} alt={company.name} />);
     }

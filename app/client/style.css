@@ -114,9 +114,9 @@ footer #copyright {
     width: 25vw;
   }
 
-  #navbar .company-logo {
-    width: 25vw;
-  }
+  /*#navbar .company-logo {*/
+  /*  width: 25vw;*/
+  /*}*/
 
   /*End Navbar*/
 
@@ -151,9 +151,9 @@ footer #copyright {
     width: 50vw;
   }
 
-  #navbar .company-logo {
-    width: 50vw;
-  }
+  /*#navbar .company-logo {*/
+  /*  width: 50vw;*/
+  /*}*/
 
   /*Navbar End*/
 

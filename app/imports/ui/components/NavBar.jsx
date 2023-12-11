@@ -34,14 +34,14 @@ const NavBar = () => {
 
   return (
     ready ? (
-      <Navbar id="navbar" className="text-white" expand="lg">
+      <Navbar id="navbar" className="text-white justify-content-start" expand="lg">
         <Container>
           <Navbar.Brand as={NavLink} to={PathHome}>
             <CompanyBrand company={company} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto justify-content-start">
+            <Nav className="me-auto ms-auto">
               {company ? (
                 <>
                   <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
