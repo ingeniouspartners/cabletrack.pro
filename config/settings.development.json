@@ -35,7 +35,7 @@
   ],
   "defaultCompanies": [
     {
-      "name": "Foo Company",
+      "name": "Foo Electrical",
       "address": {
         "address": "123 Main St",
         "city": "Cityville",
@@ -56,11 +56,11 @@
   ],
   "defaultProjects": [
     {
-      "company": "Foo Company",
-      "code": "TEST",
-      "name": "Foo Project",
-      "contract": "ABC-123",
-      "bidNumber": "BID456",
+      "company": "Foo Electrical",
+      "code": "10456",
+      "name": "Project 10456",
+      "contract": "10456",
+      "bidNumber": "123456789",
       "mailAddress": {
         "address": "123 Main St",
         "city": "Cityville",
@@ -75,15 +75,149 @@
         "zip": "54321",
         "country": "US"
       },
-      "jobPhone": "123-456-7890",
-      "jobFax": "123-456-7891",
-      "jobEmail": "example@example.com",
-      "notes": "This is an example project.",
+      "jobPhone": "808-123-4567",
+      "jobFax": "808-123-4567",
+      "jobEmail": "10456@foo.com",
+      "notes": "",
       "ownerNames": [
         "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
         "pm@foo.com",
-        "admin@foo.com",
         "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Electrical",
+      "code": "10457",
+      "name": "Project 10457",
+      "contract": "10457",
+      "bidNumber": "123456912",
+      "mailAddress": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "808-123-4568",
+      "jobFax": "808-123-4568",
+      "jobEmail": "10457@foo.com",
+      "notes": "",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Electrical",
+      "code": "10458",
+      "name": "Project 10458",
+      "contract": "10458",
+      "bidNumber": "123457035",
+      "mailAddress": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "808-123-4569",
+      "jobFax": "808-123-4569",
+      "jobEmail": "10458@foo.com",
+      "notes": "",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Electrical",
+      "code": "10459",
+      "name": "Project 10459",
+      "contract": "10459",
+      "bidNumber": "123457158",
+      "mailAddress": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "808-123-4570",
+      "jobFax": "808-123-4570",
+      "jobEmail": "10459@foo.com",
+      "notes": "",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Electrical",
+      "code": "10460",
+      "name": "Project 10460",
+      "contract": "10460",
+      "bidNumber": "123457281",
+      "mailAddress": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "808-123-4571",
+      "jobFax": "808-123-4571",
+      "jobEmail": "10460@foo.com",
+      "notes": "",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
       ],
       "userNames": [
         "ceo@foo.com",
@@ -91,11 +225,11 @@
         "elec@foo.com"
       ]
     }
-    ],
+  ],
   "defaultCables": [
     {
-      "company": "Foo Company",
-      "project": "Foo Project",
+      "company": "Foo Electrical",
+      "project": "Project 10456",
       "name": "Cable 1",
       "ownerNames": [
         "ceo@foo.com",
@@ -108,8 +242,8 @@
       ]
     },
     {
-      "company": "Foo Company",
-      "project": "Foo Project",
+      "company": "Foo Electrical",
+      "project": "Project 10456",
       "name": "Cable 2",
       "ownerNames": [
         "ceo@foo.com",
@@ -122,8 +256,8 @@
       ]
     },
     {
-      "company": "Foo Company",
-      "project": "Foo Project",
+      "company": "Foo Electrical",
+      "project": "Project 10456",
       "name": "Cable 3",
       "ownerNames": [
         "ceo@foo.com",
@@ -138,17 +272,17 @@
   ],
   "defaultCablePullIns": [
     {
-      "company": "Foo Company",
-      "project": "Foo Project",
+      "company": "Foo Electrical",
+      "project": "Project 10456",
       "cable": "Cable 1",
       "installerName": "elec@foo.com",
       "lengthInstalled": 120,
       "pulledHand": true
     },
     {
-      "company": "Foo Company",
-      "project": "Foo Project",
-      "cable": "Cable 2",
+      "company": "Foo Electrical",
+      "project": "Project 10456",
+      "cable": "Cable 1",
       "installerName": "elec@foo.com",
       "lengthInstalled": 100,
       "pulledHand": false,
