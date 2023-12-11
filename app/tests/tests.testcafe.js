@@ -1,6 +1,5 @@
 import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
-import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
 import { signupPage } from './signup.page';
 
@@ -21,7 +20,7 @@ test('Test that signin and signout work', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
   await navBar.logout(testController);
-  await signoutPage.isDisplayed(testController);
+  await landingPage.isDisplayed(testController);
 });
 
 /** Create a random string of a specific length */

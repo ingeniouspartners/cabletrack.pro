@@ -1,16 +1,18 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Col, Container } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
+import PageWrapper from '../components/PageWrapper';
+import { PageNotFound } from '../../api/testcafe/TestCafe';
 
 /* After the user clicks the "SignOut" link in the NavBar, log them out and display this page. */
 const SignOut = () => {
   Meteor.logout();
+  const ready = true;
   return (
-    <Container id="signout-page">
-      <Col xs={4} className="text-center">
-        <h2>Signed Out</h2>
-      </Col>
-    </Container>
+    <PageWrapper id={PageNotFound} ready={ready}>
+      <h2>Not Found</h2>
+      <Navigate to="/" />
+    </PageWrapper>
   );
 };
 
