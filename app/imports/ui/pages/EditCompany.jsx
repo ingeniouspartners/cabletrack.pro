@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Row } from 'react-bootstrap';
 import { useParams, useLocation } from 'react-router';
 import { Companies } from '../../api/company/Companies';
 import CompanyEdit from '../components/CompanyEdit';
@@ -32,9 +31,7 @@ const EditCompany = () => {
   }, [companyID, location]);
   return (
     <PageWrapper ready={ready}>
-      <Row className="justify-content-center">
-        <CompanyEdit company={company} />
-      </Row>
+      <CompanyEdit company={company} />
     </PageWrapper>
   );
 };

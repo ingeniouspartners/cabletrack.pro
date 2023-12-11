@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { Projects } from '../../api/project/Projects';
 import ProjectView from '../components/ProjectView';
 import PageWrapper from '../components/PageWrapper';
+import { PageViewProject } from '../../api/testcafe/TestCafe';
 
 /* Renders the EditStuff page for editing a single document. */
 const ViewProject = () => {
@@ -26,7 +27,7 @@ const ViewProject = () => {
   }, [projectID, companyID]);
 
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageViewProject} ready={ready}>
       <ProjectView project={project} />
     </PageWrapper>
   );

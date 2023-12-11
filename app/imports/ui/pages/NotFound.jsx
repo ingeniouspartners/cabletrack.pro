@@ -1,15 +1,15 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import PageWrapper from '../components/PageWrapper';
+import { PageNotFound } from '../../api/testcafe/TestCafe';
 
 /** Render a Not Found page if the user enters a URL that is non-existent in the routing. */
-const NotFound = () => (
-  <Container className="py-3">
-    <Row className="justify-content-center">
-      <Col xs={4} className="text-center">
-        <h2>Not Found</h2>
-      </Col>
-    </Row>
-  </Container>
-);
+const NotFound = () => {
+  const ready = true;
+  return (
+    <PageWrapper id={PageNotFound} ready={ready}>
+      <h2>Not Found</h2>
+    </PageWrapper>
+  );
+};
 
 export default NotFound;

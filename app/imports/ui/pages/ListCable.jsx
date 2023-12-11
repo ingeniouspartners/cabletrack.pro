@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { Cables } from '../../api/cable/Cables';
 import CableList from '../components/CableList';
 import PageWrapper from '../components/PageWrapper';
+import { PageListCable } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all the Cable documents. Use <CableList> to render the table. */
 const ListCable = () => {
@@ -25,7 +26,7 @@ const ListCable = () => {
     };
   }, [companyID, projectID]);
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageListCable} ready={ready}>
       <CableList companyID={companyID} projectID={projectID} cables={cables} />
     </PageWrapper>
   );

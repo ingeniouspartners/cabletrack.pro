@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import CablePullInEdit from '../components/CablePullInEdit';
 import PageWrapper from '../components/PageWrapper';
-import { NavEditCablePullIn } from '../../api/testcafe/TestCafe';
+import { PageEditCablePullIn } from '../../api/testcafe/TestCafe';
 
 const EditCablePullIn = () => {
   const { pullinID, cableID, projectID, companyID } = useParams();
@@ -33,7 +33,7 @@ const EditCablePullIn = () => {
   }, [pullinID, cableID, projectID, companyID]);
 
   return (
-    <PageWrapper id={NavEditCablePullIn} ready={ready}>
+    <PageWrapper id={PageEditCablePullIn} ready={ready}>
       <CablePullInEdit pullin={pullIn} />
     </PageWrapper>
   );

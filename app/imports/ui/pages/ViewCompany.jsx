@@ -2,10 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import CompanyView from '../components/CompanyView';
 import PageWrapper from '../components/PageWrapper';
+import { PageViewCompany } from '../../api/testcafe/TestCafe';
 
 /* Please replace the guts of this page with the right code. */
 const ViewCompany = () => {
@@ -24,10 +24,8 @@ const ViewCompany = () => {
     };
   }, [companyID]);
   return (
-    <PageWrapper ready={ready} id="view-company-page">
-      <Row className="justify-content-center">
-        <CompanyView company={doc} />
-      </Row>
+    <PageWrapper id={PageViewCompany} ready={ready}>
+      <CompanyView company={doc} />
     </PageWrapper>
   );
 };

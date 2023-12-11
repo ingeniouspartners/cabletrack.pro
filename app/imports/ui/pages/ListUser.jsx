@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import { Companies } from '../../api/company/Companies';
 import UserList from '../components/UserList';
 import PageWrapper from '../components/PageWrapper';
-import { PageViewUser } from '../../api/testcafe/TestCafe';
+import { PageListUser } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const ListUser = () => {
@@ -32,7 +32,7 @@ const ListUser = () => {
     };
   }, []);
   return (
-    <PageWrapper id={PageViewUser} ready={ready}>
+    <PageWrapper id={PageListUser} ready={ready}>
       <UserList users={users} company={company} />
     </PageWrapper>
   );

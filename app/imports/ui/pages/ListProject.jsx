@@ -6,6 +6,7 @@ import { Projects } from '../../api/project/Projects';
 import ProjectList from '../components/ProjectList';
 import PageWrapper from '../components/PageWrapper';
 import { Companies } from '../../api/company/Companies';
+import { PageListProject } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ListProject = () => {
@@ -29,7 +30,7 @@ const ListProject = () => {
   }, []);
 
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageListProject} ready={ready}>
       <ProjectList projects={projects} company={company} />
     </PageWrapper>
   );

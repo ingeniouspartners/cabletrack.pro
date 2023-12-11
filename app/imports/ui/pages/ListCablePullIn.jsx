@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import CablePullInList from '../components/CablePullInList';
 import PageWrapper from '../components/PageWrapper';
+import { PageEditCablePullIn } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const ListCablePullIn = () => {
@@ -26,7 +27,7 @@ const ListCablePullIn = () => {
   }, []);
 
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageEditCablePullIn} ready={ready}>
       <CablePullInList pullins={pullins} companyID={companyID} projectID={projectID} cableID={cableID} />
     </PageWrapper>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import CompanyList from '../components/CompanyList';
 import { PageListCompany } from '../../api/testcafe/TestCafe';
@@ -26,9 +25,7 @@ const ListCompany = () => {
   }, []);
   return (
     <PageWrapper ready={ready} id={PageListCompany}>
-      <Row className="justify-content-center">
-        <CompanyList companies={companies} />
-      </Row>
+      <CompanyList companies={companies} />
     </PageWrapper>
   );
 };

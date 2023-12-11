@@ -1,3 +1,8 @@
+const PageNotAuthorized = 'not-authorized-page';
+const PageNotFound = 'not-found-page';
+
+export { PageNotAuthorized, PageNotFound };
+
 const PageListUser = 'list-user-page';
 const NavListUser = 'list-user-nav';
 const PageViewUser = 'view-user-page';

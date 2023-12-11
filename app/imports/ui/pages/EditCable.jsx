@@ -2,10 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useLocation, useParams } from 'react-router';
-import { Col, Row } from 'react-bootstrap';
 import PageWrapper from '../components/PageWrapper';
 import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
+import { PageEditCable } from '../../api/testcafe/TestCafe';
 
 /* Renders the EditStuff page for editing a single document. */
 const EditCable = () => {
@@ -33,14 +33,8 @@ const EditCable = () => {
     };
   }, [cableID, location]);
   return (
-    <PageWrapper ready={ready}>
-      <Row className="justify-content-center">
-        <Col xs={5}>
-          <div className="edit-cable-page">
-            <CableEdit cable={cable} />
-          </div>
-        </Col>
-      </Row>
+    <PageWrapper id={PageEditCable} ready={ready}>
+      <CableEdit cable={cable} />
     </PageWrapper>
   );
 };

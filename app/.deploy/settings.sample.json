@@ -1,18 +1,164 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    {
+      "username": "admin@foo.com",
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "roles": [
+        "GlobalAdmin"
+      ]
+    },
+    {
+      "username": "ceo@foo.com",
+      "email": "ceo@foo.com",
+      "password": "changeme",
+      "roles": [
+        "CompanyOwner"
+      ]
+    },
+    {
+      "username": "pm@foo.com",
+      "email": "pm@foo.com",
+      "password": "changeme",
+      "roles": [
+        "ProjectOwner"
+      ]
+    },
+    {
+      "username": "elec@foo.com",
+      "email": "elec@foo.com",
+      "password": "changeme",
+      "roles": [
+        "Electrician"
+      ]
+    }
   ],
-
-  "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  "defaultCompanies": [
+    {
+      "name": "Foo Company",
+      "address": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "phone": "123-456-7890",
+      "fax": "123-456-7891",
+      "email": "info@foo.com",
+      "logoURL": "https://www.creativefabrica.com/wp-content/uploads/2018/08/Bussiness-swoosh-generic-company-logo-by-Mansel-Brist-2.jpg",
+      "ownerNames": [
+        "ceo@foo.com",
+        "admin@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    }
   ],
-
-  "monti": {
-    "appId": "changeme",
-    "appSecret": "changeme"
-  }
+  "defaultProjects": [
+    {
+      "company": "Foo Company",
+      "code": "TEST",
+      "name": "Foo Project",
+      "contract": "ABC-123",
+      "bidNumber": "BID456",
+      "mailAddress": {
+        "address": "123 Main St",
+        "city": "Cityville",
+        "state": "CA",
+        "zip": "12345",
+        "country": "US"
+      },
+      "shipAddress": {
+        "address": "456 Shipping St",
+        "city": "Shippingtown",
+        "state": "CA",
+        "zip": "54321",
+        "country": "US"
+      },
+      "jobPhone": "123-456-7890",
+      "jobFax": "123-456-7891",
+      "jobEmail": "example@example.com",
+      "notes": "This is an example project.",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "admin@foo.com",
+        "elec@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    }
+  ],
+  "defaultCables": [
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 1",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 2",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "name": "Cable 3",
+      "ownerNames": [
+        "ceo@foo.com",
+        "pm@foo.com"
+      ],
+      "userNames": [
+        "ceo@foo.com",
+        "pm@foo.com",
+        "elec@foo.com"
+      ]
+    }
+  ],
+  "defaultCablePullIns": [
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "cable": "Cable 1",
+      "installerName": "elec@foo.com",
+      "lengthInstalled": 120,
+      "pulledHand": true
+    },
+    {
+      "company": "Foo Company",
+      "project": "Foo Project",
+      "cable": "Cable 2",
+      "installerName": "elec@foo.com",
+      "lengthInstalled": 100,
+      "pulledHand": false,
+      "tugger": "Tugger 1",
+      "calibrationId": "XYZ3425",
+      "maxPullingTension": 10.5
+    }
+  ]
 }

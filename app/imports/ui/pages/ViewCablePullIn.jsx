@@ -7,6 +7,7 @@ import { Cables } from '../../api/cable/Cables';
 import { CablePullIns } from '../../api/cable/CablePullIns';
 import CablePullInView from '../components/CablePullInView';
 import PageWrapper from '../components/PageWrapper';
+import { PageViewCablePullIn } from '../../api/testcafe/TestCafe';
 
 /* Renders a form containing the Cable PullIn. */
 const ViewCablePullIn = () => {
@@ -34,7 +35,7 @@ const ViewCablePullIn = () => {
   }, [projectID, cableID, pullinID]);
 
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageViewCablePullIn} ready={ready}>
       <CablePullInView cablePullIn={pullin} cable={cable} project={project} />
     </PageWrapper>
   );

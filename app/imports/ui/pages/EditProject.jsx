@@ -6,6 +6,7 @@ import { Projects } from '../../api/project/Projects';
 import { Companies } from '../../api/company/Companies';
 import ProjectEdit from '../components/ProjectEdit';
 import PageWrapper from '../components/PageWrapper';
+import { PageEditProject } from '../../api/testcafe/TestCafe';
 
 /* Renders the EditProject page for editing or adding a single project. */
 const EditProject = () => {
@@ -34,7 +35,7 @@ const EditProject = () => {
   }, [projectID, companyID]);
 
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageEditProject} ready={ready}>
       <ProjectEdit project={project} />
     </PageWrapper>
   );
