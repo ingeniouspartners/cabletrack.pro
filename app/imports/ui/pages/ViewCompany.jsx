@@ -2,10 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
 import CompanyView from '../components/CompanyView';
-import LoadingSpinner from '../components/LoadingSpinner';
+import PageWrapper from '../components/PageWrapper';
 
 /* Please replace the guts of this page with the right code. */
 const ViewCompany = () => {
@@ -23,15 +23,13 @@ const ViewCompany = () => {
       ready: rdy,
     };
   }, [companyID]);
-  return (ready ? (
-    <Container id="view-company-page" className="py-3">
+  return (
+    <PageWrapper ready={ready} id="view-company-page">
       <Row className="justify-content-center">
-        <Col xs={10}>
-          <CompanyView company={doc} />
-        </Col>
+        <CompanyView company={doc} />
       </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+    </PageWrapper>
+  );
 };
 
 export default ViewCompany;

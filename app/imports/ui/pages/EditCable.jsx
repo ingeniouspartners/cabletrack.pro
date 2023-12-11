@@ -2,10 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useLocation, useParams } from 'react-router';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import PageWrapper from '../components/PageWrapper';
 import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Renders the EditStuff page for editing a single document. */
 const EditCable = () => {
@@ -32,8 +32,8 @@ const EditCable = () => {
       ready: rdy,
     };
   }, [cableID, location]);
-  return ready ? (
-    <Container className="py-3">
+  return (
+    <PageWrapper ready={ready}>
       <Row className="justify-content-center">
         <Col xs={5}>
           <div className="edit-cable-page">
@@ -41,9 +41,8 @@ const EditCable = () => {
           </div>
         </Col>
       </Row>
-    </Container>
-  ) : <LoadingSpinner />;
-
+    </PageWrapper>
+  );
 };
 
 export default EditCable;

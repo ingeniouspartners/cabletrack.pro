@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const GuardedNavLink = ({ id, roles, to, children }) => {
   const user = Meteor.user();
   const allowed = user && roles.some((role) => Roles.userIsInRole(user, role));
-  return allowed ? <NavLink id={id} as={NavLink} to={to}>{children}</NavLink> : '';
+  return allowed ? <NavLink className="p-3" id={id} as={NavLink} to={to}>{children}</NavLink> : '';
 };
 
 GuardedNavLink.propTypes = {
