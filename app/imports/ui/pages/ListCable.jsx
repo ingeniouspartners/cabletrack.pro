@@ -2,7 +2,6 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import { Col, Row } from 'react-bootstrap';
 import { Cables } from '../../api/cable/Cables';
 import CableList from '../components/CableList';
 import PageWrapper from '../components/PageWrapper';
@@ -27,11 +26,7 @@ const ListCable = () => {
   }, [companyID, projectID]);
   return (
     <PageWrapper ready={ready}>
-      <Row className="justify-content-center">
-        <Col xs={5}>
-          <CableList cables={cables} companyID={companyID} projectID={projectID} />
-        </Col>
-      </Row>
+      <CableList companyID={companyID} projectID={projectID} cables={cables} />
     </PageWrapper>
   );
 };

@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
@@ -17,7 +16,7 @@ const CompanyList = ({ companies }) => (
       <tr>
         <th colSpan="3"><h2>List Company</h2></th>
         <th>
-          <GuardedNavLink id={NavAddCompany} user={Meteor.user()} roles={[RoleAddCompany]} aria-label="add" to={CombinePath(PathAddCompany, {})}>
+          <GuardedNavLink id={NavAddCompany} roles={[RoleAddCompany]} aria-label="add" to={CombinePath(PathAddCompany, {})}>
             <FileEarmarkPlusFill />
           </GuardedNavLink>
         </th>

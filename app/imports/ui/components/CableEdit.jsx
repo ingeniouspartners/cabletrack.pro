@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
 import { ParamCompanyID, ParamProjectID, PathListCable, CombinePath } from '../../api/navigation/Navigation';
-import { NavListCable, PageEditCable } from '../../api/testcafe/TestCafe';
+import { NavListCable, PageEditCable, FieldName, FieldProjectID, FieldCompanyID, FieldBuilding, FieldCableType, FieldClassification, FieldConductors, FieldCostCode, FieldDescription, FieldLengthPlanned, FieldNotes,
+  FieldOrigination, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldTermination, FieldVoltageCable, FieldVoltageTest, FieldZone, ButtonSubmit } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 /* Renders the EditStuff page for editing a single document. */
@@ -79,27 +80,27 @@ const CableEdit = ({ cable }) => {
           <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField name="name" />
-          <TextField name="description" />
-          <TextField name="costCode" />
-          <TextField name="refDrawingNo" />
-          <TextField name="refDrawingRev" />
-          <TextField name="system" />
-          <TextField name="building" />
-          <TextField name="zone" />
-          <TextField name="origination" />
-          <TextField name="termination" />
-          <NumField name="lengthPlanned" />
-          <SelectField name="classification" />
-          <TextField name="cableType" />
-          <TextField name="conductors" />
-          <TextField name="voltageCable" />
-          <TextField name="voltageTest" />
-          <TextField name="notes" />
-          <SubmitField value="Submit" />
+          <TextField id={FieldName} name="name" />
+          <TextField id={FieldDescription} name="description" />
+          <TextField id={FieldCostCode} name="costCode" />
+          <TextField id={FieldRefDrawingNo} name="refDrawingNo" />
+          <TextField id={FieldRefDrawingRev} name="refDrawingRev" />
+          <TextField id={FieldSystem} name="system" />
+          <TextField id={FieldBuilding} name="building" />
+          <TextField id={FieldZone} name="zone" />
+          <TextField id={FieldOrigination} name="origination" />
+          <TextField id={FieldTermination} name="termination" />
+          <NumField id={FieldLengthPlanned} name="lengthPlanned" />
+          <SelectField id={FieldClassification} name="classification" />
+          <TextField id={FieldCableType} name="cableType" />
+          <TextField id={FieldConductors} name="conductors" />
+          <TextField id={FieldVoltageCable} name="voltageCable" />
+          <TextField id={FieldVoltageTest} name="voltageTest" />
+          <TextField id={FieldNotes} name="notes" />
+          <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
-          <HiddenField name="companyID" />
-          <HiddenField name="projectID" />
+          <HiddenField id={FieldCompanyID} name="companyID" />
+          <HiddenField id={FieldProjectID} name="projectID" />
           <HiddenField name="_id" />
         </Card.Body>
         <Link id={NavListCable} className="p-3" to={listPath}>Back to Cables</Link>

@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { DBSchemaOwnedBy } from '../schema/DBSchemas';
-import { FormSchemaOwnedBy } from '../schema/FormSchemas';
 
 /**
  * The OwnedBysCollection. It encapsulates state and variable values for projects.
@@ -12,7 +11,6 @@ class OwnedBysCollection {
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
-    this.formSchema = FormSchemaOwnedBy;
     this.dbSchema = DBSchemaOwnedBy;
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.dbSchema);

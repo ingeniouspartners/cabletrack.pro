@@ -1,5 +1,8 @@
 import SimpleSchema from 'simpl-schema';
 
+const idSchema = { type: String, max: 20, required: true };
+const idSchemaOptional = { type: String, max: 20, optional: true };
+
 const addressSchema = new SimpleSchema(
   {
     address: { type: String, max: 60 },
@@ -30,16 +33,16 @@ const measurementTimedSchema = new SimpleSchema(
 
 const DBSchemaOwnedBy = new SimpleSchema(
   {
-    ownerID: { type: String, max: 20, required: true },
-    ownedID: { type: String, max: 20, required: true },
+    ownerID: idSchema,
+    ownedID: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaUsedBy = new SimpleSchema(
   {
-    userID: { type: String, max: 20, required: true },
-    usedID: { type: String, max: 20, required: true },
+    userID: idSchema,
+    usedID: idSchema,
   },
   { requiredByDefault: false },
 );
@@ -53,14 +56,14 @@ const DBSchemaCompany = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     email: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     logoURL: { type: String, max: 256, regEx: /^https?:\/\//, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaProject = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
+    companyID: idSchema,
     code: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/, required: true },
     name: { type: String, max: 60, required: true },
     contract: { type: String, max: 20, regEx: /^(\w([\w\\.]{0,19}|[\w-]{0,19}))$/ },
@@ -71,15 +74,15 @@ const DBSchemaProject = new SimpleSchema(
     jobFax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     jobEmail: { type: String, regEx: /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/ },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaCable = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
     name: { type: String, max: 60, required: true },
     description: { type: String, max: 1000, optional: true },
     costCode: { type: String, max: 10, regEx: /^(\w([\w\\.]{0,9}|[\w-]{0,9}))$/ },
@@ -93,21 +96,21 @@ const DBSchemaCable = new SimpleSchema(
     lengthPlanned: { type: Number, optional: true },
     classification: { type: String, allowedValues: ['Power', 'Control', 'Telecom', 'Fiber', 'Other'], defaultValue: 'Power' },
     cableType: { type: String, max: 20 },
-    conductors: { type: String, max: 30 },
-    voltageCable: { type: String, max: 30 },
-    voltageTest: { type: String, max: 15 },
+    conductors: { type: Number },
+    voltageCable: { type: Number },
+    voltageTest: { type: Number },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaCablePullIn = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personInstalled: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
+    cableID: idSchema,
+    personInstalled: idSchemaOptional,
     dateInstalled: { type: Date, required: true, defaultValue: new Date() },
     lengthInstalled: { type: { type: Number, optional: true }, required: true },
     pulledHand: { type: Boolean, defaultValue: false, required: true },
@@ -115,7 +118,7 @@ const DBSchemaCablePullIn = new SimpleSchema(
     tuggerCalibrationID: String,
     maxPullingTension: { type: Number, optional: true },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
@@ -123,38 +126,38 @@ const DBSchemaCablePullIn = new SimpleSchema(
 // Just in case not clear, things are required by default.
 const DBSchemaCableTerminate = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTerminated: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
+    cableID: idSchema,
+    personTerminated: idSchemaOptional,
     dateTerminated: { type: Date, required: true, defaultValue: new Date() },
     location: { type: String, max: 30, optional: true },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaCableTestContinuity = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
+    cableID: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     resistance: { type: Number, optional: true },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaCableTestMegger = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
+    cableID: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     meggerInstrument: { type: String, max: 30 },
     meggerCalibrationID: { type: String, max: 30 },
@@ -165,17 +168,17 @@ const DBSchemaCableTestMegger = new SimpleSchema(
     B_Grd: measurementTimedSchema,
     C_Grd: measurementTimedSchema,
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
 
 const DBSchemaCableTestVLF = new SimpleSchema(
   {
-    companyID: { type: String, max: 20, required: true },
-    projectID: { type: String, max: 20, required: true },
-    cableID: { type: String, max: 20, required: true },
-    personTested: { type: String, max: 20, required: true },
+    companyID: idSchema,
+    projectID: idSchema,
+    cableID: idSchema,
+    personTested: idSchemaOptional,
     dateTested: { type: Date, required: true, defaultValue: new Date() },
     vLFInstrument: { type: String, max: 30 },
     vLFCalibrationID: { type: String, max: 30 },
@@ -187,7 +190,7 @@ const DBSchemaCableTestVLF = new SimpleSchema(
     systemConnection: { type: String, allowedValues: ['Single', 'Multi'] },
     grounded: { type: Boolean, defaultValue: false },
     notes: { type: String, optional: true },
-    _id: { type: String, max: 20, optional: true },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );
@@ -195,7 +198,7 @@ const DBSchemaCableTestVLF = new SimpleSchema(
 const DBSchemaUserProfile = new SimpleSchema(
   {
     // Ensuring every user has an email address, should be in server-side code
-    username: { type: String, max: 20, required: true },
+    username: idSchema,
     emails: { type: Array },
     'emails.$': { type: emailSchema },
     createdAt: { type: Date },
@@ -207,7 +210,7 @@ const DBSchemaUserProfile = new SimpleSchema(
     fax: { type: String, max: 12, regEx: /^(\d{3}-)?\d{3}-\d{4}$/ },
     picture: { type: String, max: 256, regEx: /^https?:\/\// },
     companyID: { type: String, max: 20 },
-    _id: { type: String, max: 20 },
+    _id: idSchema,
   },
   { requiredByDefault: false },
 );

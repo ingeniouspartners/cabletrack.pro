@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { FieldName } from '../imports/api/testcafe/TestCafe';
 
 class ViewCompanyPage {
   constructor() {
@@ -13,6 +14,12 @@ class ViewCompanyPage {
 
   async gotoListProjectPage(testController) {
     await testController.click('#list-project-page');
+  }
+
+  async checkView(testController, company) {
+    const nameField = Selector(`#${FieldName}`);
+    const edit = nameField.innerText;
+    await testController.expect(edit).eql(company.name);
   }
 }
 

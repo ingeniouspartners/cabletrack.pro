@@ -1,5 +1,7 @@
 import { Selector } from 'testcafe';
-import { NavListProject, PageEditCable } from '../imports/api/testcafe/TestCafe';
+import { ButtonSubmit, FieldName, NavListProject, PageEditCable, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
+  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldLengthPlanned,
+} from '../imports/api/testcafe/TestCafe';
 
 class AddCablePage {
   constructor() {
@@ -17,24 +19,45 @@ class AddCablePage {
   }
 
   async addCable(testController, cable) {
-    await testController.typeText('#cable-form-name', cable.name);
-    await testController.typeText('#cable-form-description', cable.description);
-    await testController.typeText('#cable-form-costCode', cable.costCode);
-    await testController.typeText('#cable-form-refDrawingNo', cable.refDrawingNo);
-    await testController.typeText('#cable-form-refDrawingRev', cable.refDrawingRev);
-    await testController.typeText('#cable-form-system', cable.system);
-    await testController.typeText('#cable-form-building', cable.building);
-    await testController.typeText('#cable-form-zone', cable.zone);
-    await testController.typeText('#cable-form-origination', cable.origination);
-    await testController.typeText('#cable-form-termination', cable.termination);
-    await testController.typeText('#cable-form-lengthPlanned', cable.lengthPlanned);
-    await testController.typeText('#cable-form-classification', cable.classification);
-    await testController.typeText('#cable-form-cableType', cable.cableType);
-    await testController.typeText('#cable-form-conductors', cable.conductors);
-    await testController.typeText('#cable-form-voltageCable', cable.voltageCable);
-    await testController.typeText('#cable-form-voltageTest', cable.voltageTest);
-    await testController.typeText('#cable-form-notes', cable.notes);
-    await testController.click('#cable-form-submit input.btn.btn-primary');
+    const nameField = `#${FieldName}`;
+    const descriptionField = `#${FieldDescription}`;
+    const costCodeField = `#${FieldCostCode}`;
+    const refDrawingNoField = `#${FieldRefDrawingNo}`;
+    const refDrawingRevField = `#${FieldRefDrawingRev}`;
+    const systemField = `#${FieldSystem}`;
+    const buildingField = `#${FieldBuilding}`;
+    const zoneField = `#${FieldZone}`;
+    const originationField = `#${FieldOrigination}`;
+    const terminationField = `#${FieldTermination}`;
+    const lengthPlannedField = `#${FieldLengthPlanned}`;
+    const classificationField = `#${FieldClassification}`;
+    const cableTypeField = `#${FieldCableType}`;
+    const conductorsField = `#${FieldConductors}`;
+    const voltageCableField = `#${FieldVoltageCable}`;
+    const voltageTestField = `#${FieldVoltageTest}`;
+    const notesField = `#${FieldNotes}`;
+    const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
+
+    await testController.typeText(nameField, cable.name);
+    await testController.typeText(descriptionField, cable.description);
+    await testController.typeText(costCodeField, cable.costCode);
+    await testController.typeText(refDrawingNoField, cable.refDrawingNo);
+    await testController.typeText(refDrawingRevField, cable.refDrawingRev);
+    await testController.typeText(systemField, cable.system);
+    await testController.typeText(buildingField, cable.building);
+    await testController.typeText(zoneField, cable.zone);
+    await testController.typeText(originationField, cable.origination);
+    await testController.typeText(terminationField, cable.termination);
+    await testController.typeText(lengthPlannedField, cable.lengthPlanned.toString(), { replace: true });
+    const selectClassification = Selector(classificationField);
+    await testController.click(selectClassification);
+    await testController.click(selectClassification.find(`option[value="${cable.classification}"]`));
+    await testController.typeText(cableTypeField, cable.cableType);
+    await testController.typeText(conductorsField, cable.conductors.toString(), { replace: true });
+    await testController.typeText(voltageCableField, cable.voltageCable.toString(), { replace: true });
+    await testController.typeText(voltageTestField, cable.voltageTest.toString(), { replace: true });
+    await testController.typeText(notesField, cable.notes);
+    await testController.click(submitButton);
     await testController.click('button.swal-button--confirm');
   }
 }
