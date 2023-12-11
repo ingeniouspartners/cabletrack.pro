@@ -108,7 +108,8 @@ Signs the user out of the application and redirects them to the Home page.
 
 ### Add/Edit Company
 
-Add or Edit the Company. This would include fields for Company Name, Logo URL, Address, City, State, ZIP, Country, and associated Users. If the Company ID is not provided, a new instance is created with a template model, otherwise the model is filled from the Company collection using <code>findOne()</code>.
+Add or Edit the Company. This would include fields for Company Name, Logo URL, Address, City, State, ZIP, Country, and associated Users. If the Company ID is not provided, a new instance is created with a template model, otherwise the model is filled
+from the Company collection using <code>findOne()</code>.
 
 <img src="img/website/add-company.png" alt="add/edit company">
 
@@ -144,14 +145,16 @@ The view of a project. It provides information about a project in a form of a ta
 
 ### Add/Edit Project
 
-Add or Edit the Project. This would include fields for Project Code, Name, associated Users. If the Project ID is not provided, a new instance is created with a template model, otherwise the model is filled filled out from the Project collection using <code>findOne()</code>.
+Add or Edit the Project. This would include fields for Project Code, Name, associated Users. If the Project ID is not provided, a new instance is created with a template model, otherwise the model is filled filled out from the Project collection
+using <code>findOne()</code>.
 
 <img src="img/website/add-edit-project.png" alt="add/edit project">
 
 [//]: # (### Add/Edit Cable)
 
 [//]: # ()
-[//]: # (Add or Edit the Cable. This would include fields for Cable Code, Name, Type, Phase Code, etc. If the Cable ID is not provided, a new instance is created with a template model, otherwise the model is fille out from the Cable collection using <code>findOne&#40;&#41;</code>.)
+[//]: # (Add or Edit the Cable. This would include fields for Cable Code, Name, Type, Phase Code, etc. If the Cable ID is not provided, a new instance is created with a template model, otherwise the model is fille out from the Cable collection using
+ <code>findOne&#40;&#41;</code>.)
 
 [//]: # ()
 [//]: # (<img src="img/mockups/add-edit-cable.png" alt="add/edit cable">)
