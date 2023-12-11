@@ -14,6 +14,28 @@ const credentials2 = { username: 'ceo@foo.com', password: 'changeme' };
 fixture('company: cabletrack.pro localhost test with default db')
   .page('http://localhost:3000');
 
+const company =
+  {
+    name: 'A Test Company',
+    address: {
+      address: 'Address 123',
+      address2: 'Address 456',
+      city: 'The City',
+      state: 'NY',
+      zip: '12345',
+      country: 'US',
+    },
+    phone: '123-456-7890',
+    fax: '123-456-7890',
+    email: 'something@something.com',
+    logoURL: 'https://something.com',
+    _id: 'IDK123',
+  };
+
+const editcompany = {
+  name: 'Edit Company',
+};
+
 test('Test that Company List works', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials1.username, credentials1.password);

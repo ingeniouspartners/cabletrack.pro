@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { useParams, useLocation } from 'react-router';
 import { Companies } from '../../api/company/Companies';
 import CompanyEdit from '../components/CompanyEdit';
-import LoadingSpinner from '../components/LoadingSpinner';
+import PageWrapper from '../components/PageWrapper';
 
 /* Please replace the guts of this page with the right code. */
 const EditCompany = () => {
@@ -30,14 +30,12 @@ const EditCompany = () => {
       ready: rdy,
     };
   }, [companyID, location]);
-  return (ready ? (
-    <Container className="py-3">
+  return (
+    <PageWrapper ready={ready}>
       <Row className="justify-content-center">
-        <Col xs={10}>
-          <CompanyEdit company={company} />
-        </Col>
+        <CompanyEdit company={company} />
       </Row>
-    </Container>
-  ) : <LoadingSpinner />);
+    </PageWrapper>
+  );
 };
 export default EditCompany;

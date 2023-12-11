@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Companies } from '../../api/company/Companies';
-import LoadingSpinner from '../components/LoadingSpinner';
 import CompanyList from '../components/CompanyList';
 import { PageListCompany } from '../../api/testcafe/TestCafe';
+import PageWrapper from '../components/PageWrapper';
 
 /* Renders a table containing all of the Company documents. Use <CompanyItem> to render each row. */
 const ListCompany = () => {
@@ -24,17 +24,13 @@ const ListCompany = () => {
       ready: rdy,
     };
   }, []);
-  return (ready ? (
-    <div id={PageListCompany}>
-      <Container className="py-3" fluid>
-        <Row className="justify-content-center">
-          <Col md={7}>
-            <CompanyList companies={companies} />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  ) : <LoadingSpinner />);
+  return (
+    <PageWrapper ready={ready} id={PageListCompany}>
+      <Row className="justify-content-center">
+        <CompanyList companies={companies} />
+      </Row>
+    </PageWrapper>
+  );
 };
 
 export default ListCompany;

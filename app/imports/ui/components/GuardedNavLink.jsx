@@ -1,12 +1,11 @@
 import { Roles } from 'meteor/alanning:roles';
-import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const GuardedNavLink = ({ id, user, roles, to, children }) => {
   const allowed = user && roles.some((role) => Roles.userIsInRole(user, role));
-  return allowed ? <Nav.Link id={id} as={NavLink} to={to}>{children}</Nav.Link> : '';
+  return allowed ? <NavLink className="p-3" id={id} as={NavLink} to={to}>{children}</NavLink> : '';
 };
 
 GuardedNavLink.propTypes = {
