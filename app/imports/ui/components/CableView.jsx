@@ -4,7 +4,7 @@ import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { CombinePath, PathEditCable, ParamCompanyID, ParamProjectID, ParamCableID, PathListCable, PathListCablePullIn } from '../../api/navigation/Navigation';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
-import { NavEditCable, NavListCable, NavListCablePullIn, PageViewCable } from '../../api/testcafe/TestCafe';
+import { NavEditCable, NavListCable, NavListCablePullIn } from '../../api/testcafe/TestCafe';
 
 /* Renders the Cable document. */
 const CableView = ({ cable }) => {
@@ -12,7 +12,7 @@ const CableView = ({ cable }) => {
   const editPath = CombinePath(PathEditCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID, [ParamCableID]: cable._id });
   const pullInPath = CombinePath(PathListCablePullIn, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID, [ParamCableID]: cable._id });
   return (
-    <div id={PageViewCable}>
+    <div>
       <Card>
         <Card.Header as="h5">Cable</Card.Header>
         <Card.Body>

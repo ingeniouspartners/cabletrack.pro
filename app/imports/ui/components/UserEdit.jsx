@@ -20,8 +20,8 @@ const UserEdit = ({ user }) => {
 
   let fRef = null;
   return (
-    <Container id="add-project-page" className="py-3">
-      <Row id="edit-project-page" className="justify-content-center">
+    <Container className="py-3">
+      <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Edit User</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={user}>

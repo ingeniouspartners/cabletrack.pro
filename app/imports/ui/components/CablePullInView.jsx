@@ -4,7 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
 import { CombinePath, PathEditCablePullIn } from '../../api/navigation/Navigation';
 import { PropTypeCable, PropTypeCablePullIn, PropTypeProject } from '../../api/propTypes/PropTypes';
-import { PageViewCablePullIn, NavEditCablePullIn } from '../../api/testcafe/TestCafe';
+import { NavEditCablePullIn } from '../../api/testcafe/TestCafe';
 
 const CablePullInViewTugger = ({ cablePullIn }) => {
   if (cablePullIn.pulledHand) {
@@ -29,7 +29,7 @@ const CablePullInView = ({ cablePullIn, cable, project }) => {
   const dateInstalled = cablePullIn.dateInstalled.toDateString();
   const editPath = CombinePath(PathEditCablePullIn, cablePullIn);
   return (
-    <Card id={PageViewCablePullIn}>
+    <Card>
       <Card.Header as="h5">Cable Pull In</Card.Header>
       <Card.Body>
         <Card.Title>{cable.name}</Card.Title>

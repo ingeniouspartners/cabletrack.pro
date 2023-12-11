@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
 import { ParamCompanyID, ParamProjectID, PathListCable, CombinePath } from '../../api/navigation/Navigation';
-import { NavListCable, PageEditCable, FieldName, FieldProjectID, FieldCompanyID, FieldBuilding, FieldCableType, FieldClassification, FieldConductors, FieldCostCode, FieldDescription, FieldLengthPlanned, FieldNotes,
+import { NavListCable, FieldName, FieldProjectID, FieldCompanyID, FieldBuilding, FieldCableType, FieldClassification, FieldConductors, FieldCostCode, FieldDescription, FieldLengthPlanned, FieldNotes,
   FieldOrigination, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldTermination, FieldVoltageCable, FieldVoltageTest, FieldZone, ButtonSubmit } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Cables.formSchema);
@@ -74,7 +74,7 @@ const CableEdit = ({ cable }) => {
     }
   };
   return (
-    <AutoForm id={PageEditCable} schema={bridge} onSubmit={data => submit(data)} model={cable}>
+    <AutoForm schema={bridge} onSubmit={data => submit(data)} model={cable}>
       <Card>
         <Card.Header>
           <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>

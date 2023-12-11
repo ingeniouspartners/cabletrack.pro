@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 import ProjectListItem from './ProjectListItem';
 import { CombinePath, ParamCompanyID, PathAddProject } from '../../api/navigation/Navigation';
 import { PropTypeCompany, PropTypeProject } from '../../api/propTypes/PropTypes';
-import { NavAddProject, PageListProject } from '../../api/testcafe/TestCafe';
+import { NavAddProject } from '../../api/testcafe/TestCafe';
 
 const ProjectList = ({ projects, company }) => {
   const add = CombinePath(PathAddProject, { [ParamCompanyID]: company._id });
   return (
-    <Container id={PageListProject}>
+    <Container>
       <Table striped bordered hover>
         <thead>
           <tr>

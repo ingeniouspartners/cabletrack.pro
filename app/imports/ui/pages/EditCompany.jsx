@@ -5,6 +5,7 @@ import { useParams, useLocation } from 'react-router';
 import { Companies } from '../../api/company/Companies';
 import CompanyEdit from '../components/CompanyEdit';
 import PageWrapper from '../components/PageWrapper';
+import { PageEditCompany } from '../../api/testcafe/TestCafe';
 
 /* Please replace the guts of this page with the right code. */
 const EditCompany = () => {
@@ -30,7 +31,7 @@ const EditCompany = () => {
     };
   }, [companyID, location]);
   return (
-    <PageWrapper ready={ready}>
+    <PageWrapper id={PageEditCompany} ready={ready}>
       <CompanyEdit company={company} />
     </PageWrapper>
   );

@@ -6,7 +6,7 @@ import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CablePullInListItem from './CablePullInListItem';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCableID, ParamCompanyID, ParamProjectID, PathAddCablePullIn } from '../../api/navigation/Navigation';
-import { NavAddCablePullIn, PageListCablePullIn } from '../../api/testcafe/TestCafe';
+import { NavAddCablePullIn } from '../../api/testcafe/TestCafe';
 // import GuardedNavLink from './GuardedNavLink';
 // import { RoleAddCablePullIn } from '../../api/role/Roles';
 
@@ -14,7 +14,7 @@ import { NavAddCablePullIn, PageListCablePullIn } from '../../api/testcafe/TestC
 const CablePullInList = ({ pullins, companyID, projectID, cableID }) => {
   const addPath = CombinePath(PathAddCablePullIn, { [ParamCompanyID]: companyID, [ParamProjectID]: projectID, [ParamCableID]: cableID });
   return (
-    <Table id={PageListCablePullIn} striped bordered hover>
+    <Table striped bordered hover>
       <thead>
         <tr>
           <th colSpan="8"><h2>List Cable PullIn</h2></th>

@@ -6,11 +6,11 @@ import { FileEarmarkPlusFill } from 'react-bootstrap-icons';
 import CableListItem from './CableListItem';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCompanyID, ParamProjectID, PathAddCable } from '../../api/navigation/Navigation';
-import { NavAddCable, PageListCable } from '../../api/testcafe/TestCafe';
+import { NavAddCable } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing all of the Cable documents. Use <CableItem> to render each row. */
 const CableList = ({ cables, companyID, projectID }) => (
-  <Table id={PageListCable} striped bordered hover>
+  <Table striped bordered hover>
     <thead>
       <tr>
         <th colSpan="2"><h2>List Cable</h2></th>

@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { PageViewUser, PageEditUser } from '../imports/api/testcafe/TestCafe';
+import { PageViewUser, NavEditUser } from '../imports/api/testcafe/TestCafe';
 
 class ViewUserPage {
   constructor() {
@@ -13,7 +13,7 @@ class ViewUserPage {
   }
 
   async gotoEditUserPage(testController) {
-    await testController.click(`#${PageEditUser}`);
+    await testController.click(`#${NavEditUser}`);
   }
 }
 

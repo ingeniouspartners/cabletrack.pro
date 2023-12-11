@@ -4,7 +4,7 @@ import { PencilFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PathEditProject, PathListCable, CombinePath, ParamCompanyID, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
-import { PageViewProject, NavEditProject, NavListCable } from '../../api/testcafe/TestCafe';
+import { NavEditProject, NavListCable } from '../../api/testcafe/TestCafe';
 import { formatAddress } from '../../api/schema/FormSchemas';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
@@ -13,7 +13,7 @@ const ProjectView = ({ project }) => {
   const cablesPath = CombinePath(PathListCable, { [ParamCompanyID]: project.companyID, [ParamProjectID]: project._id });
   return (
     <Container className="py-3">
-      <Card id={PageViewProject}>
+      <Card>
         <Card.Header>
           <Row className="justify-content-center">
             <Col>

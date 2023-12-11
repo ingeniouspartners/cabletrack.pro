@@ -5,7 +5,7 @@ import { PencilFill } from 'react-bootstrap-icons';
 import { PropTypeCompany } from '../../api/propTypes/PropTypes';
 import { CombinePath, ParamCompanyID, PathListProject, PathListUser, PathEditCompany } from '../../api/navigation/Navigation';
 import { formatAddress } from '../../api/schema/FormSchemas';
-import { FieldName } from '../../api/testcafe/TestCafe';
+import { FieldName, NavListProject, NavListUser } from '../../api/testcafe/TestCafe';
 
 /* Renders a table containing one of the Cable documents. Use <CableItem> to render each row. */
 const CompanyView = ({ company }) => {
@@ -25,10 +25,10 @@ const CompanyView = ({ company }) => {
         <Card.Text>{company.email}</Card.Text>
       </Card.Body>
       <Card.Footer>
-        <Link id="list-project-page" to={projPath}>
+        <Link id={NavListProject} to={projPath}>
           Projects
         </Link>&nbsp;
-        <Link id="list-user-page" to={userPath}>
+        <Link id={NavListUser} to={userPath}>
           Users
         </Link>
       </Card.Footer>

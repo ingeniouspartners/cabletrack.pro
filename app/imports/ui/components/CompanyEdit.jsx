@@ -26,8 +26,8 @@ const CompanyEdit = ({ company }) => {
   };
   return (
     <AutoForm schema={bridge} onSubmit={data => submit(data)} model={company}>
-      <Card id="add-company-page">
-        <Card.Header id="edit-company-page">
+      <Card>
+        <Card.Header>
           <Card.Title>{company && company._id ? 'Edit' : 'Add'} Company</Card.Title>
         </Card.Header>
         <Card.Body>

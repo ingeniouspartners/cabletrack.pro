@@ -8,7 +8,7 @@ import { Projects } from '../../api/project/Projects';
 import { ParamCompanyID, PathListProject, CombinePath, PathViewProject, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
-import { NavListProject, PageEditProject } from '../../api/testcafe/TestCafe';
+import { NavListProject } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 
@@ -62,7 +62,7 @@ const ProjectEdit = ({ project }) => {
   };
   let fRef = null;
   return (
-    <AutoForm id={PageEditProject} ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
+    <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)} model={project}>
       <Card>
         <Card.Header>
           <Row>

@@ -5,7 +5,7 @@ import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, 
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import { ButtonSubmit, PageEditCablePullIn, FieldPersonInstalled, FieldLengthInstalled, FieldPulledHand, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldDateInstalled, FieldTugger, FieldNotes } from '../../api/testcafe/TestCafe';
+import { ButtonSubmit, FieldPersonInstalled, FieldLengthInstalled, FieldPulledHand, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldDateInstalled, FieldTugger, FieldNotes } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(CablePullIns.formSchema);
 
@@ -24,7 +24,7 @@ const CablePullInEdit = ({ pullin }) => {
     }
   };
   return (
-    <AutoForm id={PageEditCablePullIn} schema={bridge} onSubmit={data => submit(data)} model={pullin}>
+    <AutoForm schema={bridge} onSubmit={data => submit(data)} model={pullin}>
       <Card>
         <Card.Header>
           <Card.Title>{pullin && pullin._id ? 'Edit' : 'Add'} CablePullIn</Card.Title>
