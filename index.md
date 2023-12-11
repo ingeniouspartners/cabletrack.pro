@@ -183,29 +183,31 @@ using <code>findOne()</code>.
 
 First, [install Meteor](https://www.meteor.com/install).
 
-Second, go to [CableTrack PRO Repository](https://github.com/ingeniouspartners/cabletrack.pro), and click the "Code" button. Select the "Download ZIP" option at the bottom of the menu.
+Second, go to [CableTrack PRO Repository](https://github.com/ingeniouspartners/cabletrack.pro), and click the "Code" button. Select the "Download ZIP" option at the bottom of the menu and save the file to your system.
 
 ### Installing
 
-Third, go to your newly created repository, and click the "Clone or download" button to download your new GitHub repo to your local file system.  Using [GitHub Desktop](https://desktop.github.com/) is a great choice if you use MacOS or Windows.
+Extract the contents of the ZIP file into a directory where you want the project to live. This will create a directory called "cabletrack.pro"; you can rename this directory if you like. Do not use spaces in the directory name or in the path to this
+directory. If you do, you will get errors when you try to run the application. For example, "cabletrack.pro" is fine, but "cabletrack pro" will not work.
 
-Fourth, cd into the app/ directory of your local copy of the repo, and install third party libraries with:
+Open a terminal window (Mac) or a command window (Windows), change to the directory containing the project, and install the libraries and frameworks:
 
-```
+```bash
+$ cd <path-to-directory-containing-project>/app
 $ meteor npm install
 ```
 
-## Running the system
+### Running
 
-Once the libraries are installed, you can run the application by invoking the "start" script in the [package.json file](https://github.com/ics-software-engineering/meteor-application-template-react/blob/master/app/package.json):
+Once the libraries are installed, you can run the application by invoking the "start" script in the [package.json file](https://github.com/ingeniouspartners/cabletrack.pro/blob/master/app/package.json):
 
-```
+```bash
 $ meteor npm run start
 ```
 
 The first time you run the app, it will create some default users and data. Here is the output:
 
-```
+```bash
  meteor npm run start 
 
 > meteor-application-template-react@ start /Users/carletonmoore/GitHub/ICS314/meteor-application-template-react/app
@@ -217,14 +219,7 @@ The first time you run the app, it will create some default users and data. Here
 => Started HMR server.                        
 => Started MongoDB.                           
 I20220529-12:09:18.384(-10)? Creating the default user(s)
-I20220529-12:09:18.389(-10)?   Creating user admin@foo.com.
-I20220529-12:09:18.453(-10)?   Creating user john@foo.com.
-I20220529-12:09:18.515(-10)? Creating default data.
-I20220529-12:09:18.515(-10)?   Adding: Basket (john@foo.com)
-I20220529-12:09:18.599(-10)?   Adding: Bicycle (john@foo.com)
-I20220529-12:09:18.600(-10)?   Adding: Banana (admin@foo.com)
-I20220529-12:09:18.601(-10)?   Adding: Boogie Board (admin@foo.com)
-I20220529-12:09:18.773(-10)? Monti APM: completed instrumenting the app
+...
 => Started your app.
 
 => App running at: http://localhost:3000/
@@ -232,7 +227,8 @@ I20220529-12:09:18.773(-10)? Monti APM: completed instrumenting the app
 
 Periodically, you might see `Error starting Mongo (2 tries left): Cannot run replSetReconfig because the node is currently updating its configuration` after the `=> Started HMR server.`. It doesn't seem to be a problem since the MongoDB does start.
 
-### Viewing the running app
+### Viewing
 
-If all goes well, the template application will appear at [http://localhost:3000](http://localhost:3000).  You can login using the credentials in [settings.development.json](https://github.com/ics-software-engineering/meteor-application-template-react/blob/main/config/settings.development.json), or else register a new account.
+If all goes well, the CableTrack PRO application will appear at [http://localhost:3000](http://localhost:3000).  You can login using the credentials in
+[settings.development.json](https://github.com/ingeniouspartners/cabletrack.pro//blob/main/config/settings.development.json).
 
