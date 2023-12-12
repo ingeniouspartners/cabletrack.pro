@@ -161,21 +161,9 @@ using <code>findOne()</code>.
 
 ## Community Feedback
 
-[//]: # (### Feedback 1)
-
-[//]: # ()
-[//]: # (Feedback 1)
-
-[//]: # ()
-[//]: # (<img src="img/mockups/feedback-1.png" alt="feedback 1">)
-
-[//]: # (### Feedback 2)
-
-[//]: # ()
-[//]: # (Feedback 2)
-
-[//]: # ()
-[//]: # (<img src="img/mockups/feedback-2.png" alt="feedback 2">)
+### Feedback 1
+*It looks good. I think it has everything that’s needed for record keeping and documentation for most of the projects that we do.*
+D. Young, General Foreman, American Electric Company, LLC
 
 ## Developer Guide
 
