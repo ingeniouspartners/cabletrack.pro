@@ -45,15 +45,15 @@ const NavBar = () => {
               {company ? (
                 <>
                   <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
-                    Company
+                    <span className="px-2">Company</span>
                   </GuardedNavLink>
                   <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>
-                    Projects
+                    <span className="px-2">Projects</span>
                   </GuardedNavLink>
                 </>
               ) : ''}
-              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}>Companies</GuardedNavLink>
-              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}>Users</GuardedNavLink>
+              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}><span className="px-2">Companies</span></GuardedNavLink>
+              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}><span className="px-2">Users</span></GuardedNavLink>
             </Nav>
             <Nav className="justify-content-end">
               {!user ? (

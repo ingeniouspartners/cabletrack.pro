@@ -7,11 +7,16 @@ import { Cables } from '../../api/cable/Cables';
 import CableEdit from '../components/CableEdit';
 import { PageEditCable } from '../../api/testcafe/TestCafe';
 
-/* Renders the EditStuff page for editing a single document. */
+/**
+ * Render the Page for adding or editing a single cable.
+ * @returns {Element}
+ * @constructor
+ */
 const EditCable = () => {
   // Get the cableID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { cableID, companyID, projectID } = useParams();
   const location = useLocation();
+
   // console.log('CableEdit', cableId);
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { cable, ready } = useTracker(() => {

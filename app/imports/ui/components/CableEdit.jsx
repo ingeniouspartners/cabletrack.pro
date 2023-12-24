@@ -1,19 +1,43 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField, HiddenField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, LongTextField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Link } from 'react-router-dom';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
-import { ParamCompanyID, ParamProjectID, PathListCable, CombinePath } from '../../api/navigation/Navigation';
-import { NavListCable, FieldName, FieldProjectID, FieldCompanyID, FieldBuilding, FieldCableType, FieldClassification, FieldConductors, FieldCostCode, FieldDescription, FieldLengthPlanned, FieldNotes,
-  FieldOrigination, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldTermination, FieldVoltageCable, FieldVoltageTest, FieldZone, ButtonSubmit } from '../../api/testcafe/TestCafe';
+import { CombinePath, ParamCompanyID, ParamProjectID, PathListCable } from '../../api/navigation/Navigation';
+import {
+  ButtonSubmit,
+  FieldBuilding,
+  FieldCableID,
+  FieldCableType,
+  FieldClassification,
+  FieldCompanyID,
+  FieldConductors,
+  FieldCostCode,
+  FieldDescription,
+  FieldLengthPlanned,
+  FieldName,
+  FieldNotes,
+  FieldOrigination,
+  FieldProjectID,
+  FieldRefDrawingNo,
+  FieldRefDrawingRev,
+  FieldSystem,
+  FieldTermination,
+  FieldVoltageCable,
+  FieldVoltageTest,
+  FieldZone,
+  NavListCable,
+} from '../../api/testcafe/TestCafe';
+import GuardedNavLink from './GuardedNavLink';
+import { RoleListCableAll, RoleListCableOwned, RoleListCableUsed } from '../../api/role/Roles';
 
 const bridge = new SimpleSchema2Bridge(Cables.formSchema);
 /* Renders the EditStuff page for editing a single document. */
 const CableEdit = ({ cable }) => {
   const listPath = CombinePath(PathListCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID });
+
   const submit = (data) => {
     // eslint-disable-next-line max-len
     const { _id, companyID, projectID, name, description, costCode, refDrawingNo, refDrawingRev, system, building, zone, origination, termination, lengthPlanned, classification, cableType, conductors, voltageCable, voltageTest, notes }
@@ -43,7 +67,7 @@ const CableEdit = ({ cable }) => {
         },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success')));
+        swal('Success', 'Cable updated successfully', 'success')));
     } else {
       Cables.collection.insert(
         {
@@ -69,7 +93,7 @@ const CableEdit = ({ cable }) => {
         },
         (error) => (error ?
           swal('Error', error.message, 'error') :
-          swal('Success', 'Item added successfully', 'success')),
+          swal('Success', 'Cable added successfully', 'success')),
       );
     }
   };
@@ -96,14 +120,16 @@ const CableEdit = ({ cable }) => {
           <TextField id={FieldConductors} name="conductors" />
           <TextField id={FieldVoltageCable} name="voltageCable" />
           <TextField id={FieldVoltageTest} name="voltageTest" />
-          <TextField id={FieldNotes} name="notes" />
+          <LongTextField id={FieldNotes} name="notes" />
           <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
           <HiddenField id={FieldCompanyID} name="companyID" />
           <HiddenField id={FieldProjectID} name="projectID" />
-          <HiddenField name="_id" />
+          <HiddenField id={FieldCableID} name="_id" />
         </Card.Body>
-        <Link id={NavListCable} className="p-3" to={listPath}>Back to Cables</Link>
+        <Card.Footer>
+          <GuardedNavLink roles={[RoleListCableAll, RoleListCableOwned, RoleListCableUsed]} id={NavListCable} to={listPath}><span className="px-2">Cables</span></GuardedNavLink>
+        </Card.Footer>
       </Card>
     </AutoForm>
   );

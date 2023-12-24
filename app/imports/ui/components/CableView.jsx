@@ -1,10 +1,11 @@
 import React from 'react';
-import { Card, Table } from 'react-bootstrap';
+import { Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { PencilFill } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
 import { CombinePath, PathEditCable, ParamCompanyID, ParamProjectID, ParamCableID, PathListCable, PathListCablePullIn } from '../../api/navigation/Navigation';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
+import { RoleEditCableAll, RoleEditCableOwned, RoleEditCableUsed, RoleListCableAll, RoleListCableOwned, RoleListCablePullInAll, RoleListCablePullInOwned, RoleListCablePullInUsed, RoleListCableUsed } from '../../api/role/Roles';
 import { NavEditCable, NavListCable, NavListCablePullIn } from '../../api/testcafe/TestCafe';
+import GuardedNavLink from './GuardedNavLink';
 
 /* Renders the Cable document. */
 const CableView = ({ cable }) => {
@@ -14,35 +15,57 @@ const CableView = ({ cable }) => {
   return (
     <div>
       <Card>
-        <Card.Header as="h5">Cable</Card.Header>
-        <Card.Body>
-          <Card.Title>{cable.name}</Card.Title>
-          <Table>
-            <tbody>
-              <tr><td className="strong">Description:</td><td>{cable.description}</td></tr>
-              <tr><td className="strong">Cost Code:</td><td>{cable.costCode}</td></tr>
-              <tr><td className="strong">Ref Drawing No:</td><td>{cable.refDrawingNo}</td></tr>
-              <tr><td className="strong">Ref Drawing Rev:</td><td>{cable.refDrawingRev}</td></tr>
-              <tr><td className="strong">System:</td><td>{cable.system}</td></tr>
-              <tr><td className="strong">Building:</td><td>{cable.building}</td></tr>
-              <tr><td className="strong">Zone:</td><td>{cable.zone}</td></tr>
-              <tr><td className="strong">Origination:</td><td>{cable.origination}</td></tr>
-              <tr><td className="strong">Termination:</td><td>{cable.termination}</td></tr>
-              <tr><td className="strong">Length Planned:</td><td>{cable.lengthPlanned}</td></tr>
-              <tr><td className="strong">Classification:</td><td>{cable.classification}</td></tr>
-              <tr><td className="strong">Cable Type:</td><td>{cable.cableType}</td></tr>
-              <tr><td className="strong">Conductors:</td><td>{cable.conductors}</td></tr>
-              <tr><td className="strong">Voltage Cable:</td><td>{cable.voltageCable}</td></tr>
-              <tr><td className="strong">Voltage Test:</td><td>{cable.voltageTest}</td></tr>
-            </tbody>
-          </Table>
-          <Card.Text>{cable.notes}</Card.Text>
-          <Card.Footer>
-            <Link id={NavEditCable} to={editPath}><PencilFill /></Link>
-            <Link id={NavListCablePullIn} to={pullInPath}>Pull Ins</Link>
-            <Link id={NavListCable} className="p-3" to={listPath}>Back to Cables</Link>
-          </Card.Footer>
-        </Card.Body>
+        <Card.Header>
+          <Row className="justify-content-center">
+            <Col>
+              <Row>
+                <Col className="py-1"><h1>{cable.name}</h1><br /><p>{cable.description}</p></Col>
+                <Col md={1} className="py-3"><GuardedNavLink roles={[RoleEditCableAll, RoleEditCableOwned, RoleEditCableUsed]} id={NavEditCable} aria-label="Edit" to={editPath}><PencilFill aria-label="Edit" /></GuardedNavLink></Col>
+              </Row>
+            </Col>
+          </Row>
+        </Card.Header>
+        <ListGroup>
+          <Container>
+            <Row className="mt-2">
+              <h3><strong>Details</strong></h3>
+            </Row>
+            <Row>
+              <Col className="mb-2">
+                <p className="mb-2">Cost Code: {cable.costCode}</p>
+                <p className="mb-2">Ref Drawing No: {cable.refDrawingNo}</p>
+                <p className="mb-2">Ref Drawing Rev: {cable.refDrawingRev}</p>
+                <p className="mb-2">System: {cable.system}</p>
+                <p className="mb-2">Building: {cable.building}</p>
+                <p className="mb-2">Zone: {cable.zone}</p>
+                <p className="mb-2">Origination: {cable.origination}</p>
+                <p className="mb-2">Termination: {cable.termination}</p>
+              </Col>
+              <Col className="mb-2">
+                <p className="mb-2">Length Planned: {cable.lengthPlanned}</p>
+                <p className="mb-2">Classification: {cable.classification}</p>
+                <p className="mb-2">Cable Type: {cable.cableType}</p>
+                <p className="mb-2">Conductors: {cable.conductors}</p>
+                <p className="mb-2">Voltage Cable: {cable.voltageCable}</p>
+                <p className="mb-2">Voltage Test: {cable.voltageTest}</p>
+              </Col>
+            </Row>
+          </Container>
+        </ListGroup>
+        <Container>
+          <Row className="py-2">
+            <h4>Notes:</h4>
+            <p>{cable.notes}</p>
+          </Row>
+        </Container>
+        <Card.Footer>
+          <Row className="justify-content-center">
+            <Col className="text-center">
+              <GuardedNavLink roles={[RoleListCableAll, RoleListCableOwned, RoleListCableUsed]} id={NavListCable} to={listPath}><span className="px-2">Cables</span></GuardedNavLink>
+              <GuardedNavLink roles={[RoleListCablePullInAll, RoleListCablePullInOwned, RoleListCablePullInUsed]} id={NavListCablePullIn} to={pullInPath}><span className="px-2">Pull Ins</span></GuardedNavLink>
+            </Col>
+          </Row>
+        </Card.Footer>
       </Card>
     </div>
   );

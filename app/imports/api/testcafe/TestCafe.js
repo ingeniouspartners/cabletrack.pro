@@ -71,6 +71,7 @@ export { NavListCablePullIn, NavViewCablePullIn, NavEditCablePullIn, NavAddCable
 const FieldName = 'name';
 const FieldCompanyID = 'companyID';
 const FieldProjectID = 'projectID';
+const FieldCableID = 'cableID';
 const FieldDescription = 'description';
 const FieldCostCode = 'costCode';
 const FieldRefDrawingNo = 'refDrawingNo';
@@ -105,10 +106,47 @@ const FieldMaxPullingTension = 'maxPullingTension';
 const FieldPersonInstalled = 'personInstalled';
 const FieldDateInstalled = 'dateInstalled';
 
-export { FieldName, FieldCompanyID, FieldProjectID, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
-  FieldLengthPlanned, FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldAddress, FieldAddress2, FieldCity, FieldState, FieldZip, FieldCountry, FieldPhone,
-  FieldFax, FieldEmail, FieldLogoURL, FieldLengthInstalled, FieldPulledHand, FieldTugger, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldPersonInstalled, FieldDateInstalled };
+export {
+  FieldName,
+  FieldCompanyID,
+  FieldProjectID,
+  FieldCableID,
+  FieldDescription,
+  FieldCostCode,
+  FieldRefDrawingNo,
+  FieldRefDrawingRev,
+  FieldSystem,
+  FieldBuilding,
+  FieldZone,
+  FieldOrigination,
+  FieldTermination,
+  FieldLengthPlanned,
+  FieldClassification,
+  FieldCableType,
+  FieldConductors,
+  FieldVoltageCable,
+  FieldVoltageTest,
+  FieldNotes,
+  FieldAddress,
+  FieldAddress2,
+  FieldCity,
+  FieldState,
+  FieldZip,
+  FieldCountry,
+  FieldPhone,
+  FieldFax,
+  FieldEmail,
+  FieldLogoURL,
+  FieldLengthInstalled,
+  FieldPulledHand,
+  FieldTugger,
+  FieldTuggerCalibrationID,
+  FieldMaxPullingTension,
+  FieldPersonInstalled,
+  FieldDateInstalled,
+};
 
 const ButtonSubmit = 'submit';
+const ButtonCancel = 'cancel';
 
-export { ButtonSubmit };
+export { ButtonSubmit, ButtonCancel };
