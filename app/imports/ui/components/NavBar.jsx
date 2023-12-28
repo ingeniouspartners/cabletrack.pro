@@ -34,6 +34,7 @@ const NavBar = () => {
 
   const companyPath = CombinePath(PathViewCompany, { companyID: (company ? company._id : '') });
   const projectsPath = CombinePath(PathListProject, { companyID: (company ? company._id : '') });
+  const userPath = CombinePath(PathViewUser, { [ParamUserID]: (user ? user._id : '') });
 
   return (
     ready ? (
@@ -47,41 +48,25 @@ const NavBar = () => {
             <Nav className="me-auto ms-auto">
               {company ? (
                 <>
-                  <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={companyPath}>
-                    <span className="px-2">Company</span>
-                  </GuardedNavLink>
-                  <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={projectsPath}>
-                    <span className="px-2">Projects</span>
-                  </GuardedNavLink>
+                  <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={companyPath} className="px-2">Company</GuardedNavLink>
+                  <GuardedNavLink id={NavListProject} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={projectsPath} className="px-2">Projects</GuardedNavLink>
                 </>
               ) : ''}
-              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}>
-                <span className="px-2">Companies</span>
-              </GuardedNavLink>
-              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}>
-                <span className="px-2">Users</span>
-              </GuardedNavLink>
+              <GuardedNavLink id={NavListCompany} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany} className="px-2">Companies</GuardedNavLink>
+              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser} className="px-2">Users</GuardedNavLink>
             </Nav>
             <Nav className="justify-content-end">
               {!user ? (
                 <NavDropdown id="login-dropdown" title="Login">
-                  <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to={PathSignIn}>
-                    <PersonFill /> Sign in
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to={PathSignUp}>
-                    <PersonPlusFill /> Sign up
-                  </NavDropdown.Item>
+                  <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to={PathSignIn}><PersonFill />&nbsp;Sign&nbsp;In</NavDropdown.Item>
+                  <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to={PathSignUp}><PersonPlusFill />&nbsp;Sign&nbsp;Up</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 <NavDropdown id="navbar-current-user" title={user.username}>
                   { !user ? '' : (
-                    <NavDropdown.Item id={NavViewUser} as={NavLink} to={CombinePath(PathViewUser, { [ParamUserID]: user._id })}>
-                      <PersonFill /> Profile
-                    </NavDropdown.Item>
+                    <NavDropdown.Item id={NavViewUser} as={NavLink} to={userPath}><PersonFill />&nbsp;Profile</NavDropdown.Item>
                   )}
-                  <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}>
-                    <PersonDashFill /> Sign out
-                  </NavDropdown.Item>
+                  <NavDropdown.Item id="navbar-sign-out" as={NavLink} to={PathSignOut}><PersonDashFill />&nbsp;Sign&nbsp;Out</NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>

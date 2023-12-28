@@ -5,7 +5,19 @@ import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, 
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CablePullIns } from '../../api/cable/CablePullIns';
-import { ButtonSubmit, FieldPersonInstalled, FieldLengthInstalled, FieldPulledHand, FieldTuggerCalibrationID, FieldMaxPullingTension, FieldDateInstalled, FieldTugger, FieldNotes } from '../../api/testcafe/TestCafe';
+import {
+  ButtonSubmit,
+  FieldPersonInstalled,
+  FieldLengthInstalled,
+  FieldPulledHand,
+  FieldTuggerCalibrationID,
+  FieldMaxPullingTension,
+  FieldDateInstalled,
+  FieldTugger,
+  FieldNotes,
+  FieldCableID,
+  FieldCompanyID
+} from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(CablePullIns.formSchema);
 
@@ -16,18 +28,18 @@ const CablePullInEdit = ({ pullin }) => {
     if (_id) {
       CablePullIns.collection.update(_id, { $set: { personInstalled, dateInstalled, lengthInstalled, pulledHand, tugger, tuggerCalibrationID, maxPullingTension } }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'CablePullIn updated successfully', 'success')));
+        swal('Success', 'CablePullIn updated successfully', 'success').then(() => window.history.back())));
     } else {
       CablePullIns.collection.insert({ personInstalled, dateInstalled, lengthInstalled, pulledHand, tugger, tuggerCalibrationID, maxPullingTension, companyID, projectID, cableID }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'CablePullIn added successfully', 'success')));
+        swal('Success', 'CablePullIn added successfully', 'success').then(() => window.history.back())));
     }
   };
   return (
     <AutoForm schema={bridge} onSubmit={data => submit(data)} model={pullin}>
       <Card>
         <Card.Header>
-          <Card.Title>{pullin && pullin._id ? 'Edit' : 'Add'} CablePullIn</Card.Title>
+          <Card.Title>{pullin && pullin._id ? 'Edit' : 'Add'} Pull In</Card.Title>
         </Card.Header>
         <Card.Body>
           <TextField id={FieldPersonInstalled} name="personInstalled" />
@@ -38,13 +50,15 @@ const CablePullInEdit = ({ pullin }) => {
           <TextField id={FieldTuggerCalibrationID} name="tuggerCalibrationID" />
           <TextField id={FieldMaxPullingTension} name="maxPullingTension" />
           <LongTextField id={FieldNotes} name="notes" />
-          <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
-          <HiddenField name="_id" />
-          <HiddenField name="cableID" />
-          <HiddenField name="projectID" />
-          <HiddenField name="companyID" />
         </Card.Body>
+        <Card.Footer>
+          <SubmitField id={ButtonSubmit} value="Submit" />
+          <HiddenField id={FieldPullInID} name="_id" />
+          <HiddenField id={FieldCableID} name="cableID" />
+          <HiddenField id={FieldProjectID} name="projectID" />
+          <HiddenField id={FieldCompanyID} name="companyID" />
+        </Card.Footer>
       </Card>
     </AutoForm>
   );

@@ -72,6 +72,7 @@ const FieldName = 'name';
 const FieldCompanyID = 'companyID';
 const FieldProjectID = 'projectID';
 const FieldCableID = 'cableID';
+const FieldPullInID = 'pullInID';
 const FieldDescription = 'description';
 const FieldCostCode = 'costCode';
 const FieldRefDrawingNo = 'refDrawingNo';
@@ -94,6 +95,12 @@ const FieldCity = 'city';
 const FieldState = 'state';
 const FieldZip = 'zip';
 const FieldCountry = 'country';
+const FieldShipAddress = 'shipAddress';
+const FieldShipAddress2 = 'shipAddress2';
+const FieldShipCity = 'shipCity';
+const FieldShipState = 'shipState';
+const FieldShipZip = 'shipZip';
+const FieldShipCountry = 'shipCountry';
 const FieldPhone = 'phone';
 const FieldFax = 'fax';
 const FieldEmail = 'email';
@@ -111,6 +118,7 @@ export {
   FieldCompanyID,
   FieldProjectID,
   FieldCableID,
+  FieldPullInID,
   FieldDescription,
   FieldCostCode,
   FieldRefDrawingNo,
@@ -133,6 +141,12 @@ export {
   FieldState,
   FieldZip,
   FieldCountry,
+  FieldShipAddress,
+  FieldShipAddress2,
+  FieldShipCity,
+  FieldShipState,
+  FieldShipZip,
+  FieldShipCountry,
   FieldPhone,
   FieldFax,
   FieldEmail,

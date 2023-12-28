@@ -1,6 +1,6 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, LongTextField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
@@ -67,7 +67,7 @@ const CableEdit = ({ cable }) => {
         },
       }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Cable updated successfully', 'success')));
+        swal('Success', 'Cable updated successfully', 'success').then(() => window.history.back())));
     } else {
       Cables.collection.insert(
         {
@@ -93,7 +93,7 @@ const CableEdit = ({ cable }) => {
         },
         (error) => (error ?
           swal('Error', error.message, 'error') :
-          swal('Success', 'Cable added successfully', 'success')),
+          swal('Success', 'Cable added successfully', 'success').then(() => window.history.back())),
       );
     }
   };
@@ -104,31 +104,48 @@ const CableEdit = ({ cable }) => {
           <Card.Title>{cable && cable._id ? 'Edit' : 'Add'} Cable</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField id={FieldName} name="name" />
-          <TextField id={FieldDescription} name="description" />
-          <TextField id={FieldCostCode} name="costCode" />
-          <TextField id={FieldRefDrawingNo} name="refDrawingNo" />
-          <TextField id={FieldRefDrawingRev} name="refDrawingRev" />
-          <TextField id={FieldSystem} name="system" />
-          <TextField id={FieldBuilding} name="building" />
-          <TextField id={FieldZone} name="zone" />
-          <TextField id={FieldOrigination} name="origination" />
-          <TextField id={FieldTermination} name="termination" />
-          <NumField id={FieldLengthPlanned} name="lengthPlanned" />
-          <SelectField id={FieldClassification} name="classification" />
-          <TextField id={FieldCableType} name="cableType" />
-          <TextField id={FieldConductors} name="conductors" />
-          <TextField id={FieldVoltageCable} name="voltageCable" />
-          <TextField id={FieldVoltageTest} name="voltageTest" />
+          <Row>
+            <Col><TextField id={FieldName} name="name" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldDescription} name="description" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldCostCode} name="costCode" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldRefDrawingNo} name="refDrawingNo" /></Col>
+            <Col><TextField id={FieldRefDrawingRev} name="refDrawingRev" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldSystem} name="system" /></Col>
+            <Col><TextField id={FieldBuilding} name="building" /></Col>
+            <Col><TextField id={FieldZone} name="zone" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldOrigination} name="origination" /></Col>
+            <Col><TextField id={FieldTermination} name="termination" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldLengthPlanned} name="lengthPlanned" /></Col>
+            <Col><SelectField id={FieldClassification} name="classification" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldCableType} name="cableType" /></Col>
+            <Col><TextField id={FieldConductors} name="conductors" /></Col>
+          </Row>
+          <Row>
+            <Col><TextField id={FieldVoltageCable} name="voltageCable" /></Col>
+            <Col><TextField id={FieldVoltageTest} name="voltageTest" /></Col>
+          </Row>
           <LongTextField id={FieldNotes} name="notes" />
-          <SubmitField id={ButtonSubmit} value="Submit" />
           <ErrorsField />
+        </Card.Body>
+        <Card.Footer>
+          <SubmitField id={ButtonSubmit} value="Submit" />
           <HiddenField id={FieldCompanyID} name="companyID" />
           <HiddenField id={FieldProjectID} name="projectID" />
           <HiddenField id={FieldCableID} name="_id" />
-        </Card.Body>
-        <Card.Footer>
-          <GuardedNavLink roles={[RoleListCableAll, RoleListCableOwned, RoleListCableUsed]} id={NavListCable} to={listPath}><span className="px-2">Cables</span></GuardedNavLink>
         </Card.Footer>
       </Card>
     </AutoForm>

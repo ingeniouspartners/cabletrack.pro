@@ -15,7 +15,7 @@ const UserEdit = ({ user }) => {
     Meteor.users.update(user._id, { $set: { username, firstName, lastName, address, phone, fax, picture },
     }, (error) => (error ?
       swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+      swal('Success', 'Item updated successfully', 'success').then(() => window.history.back())));
   };
 
   let fRef = null;
