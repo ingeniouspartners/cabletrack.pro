@@ -5,7 +5,6 @@ import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField,
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCable } from '../../api/propTypes/PropTypes';
 import { Cables } from '../../api/cable/Cables';
-import { CombinePath, ParamCompanyID, ParamProjectID, PathListCable } from '../../api/navigation/Navigation';
 import {
   ButtonSubmit,
   FieldBuilding,
@@ -28,15 +27,17 @@ import {
   FieldVoltageCable,
   FieldVoltageTest,
   FieldZone,
-  NavListCable,
 } from '../../api/testcafe/TestCafe';
-import GuardedNavLink from './GuardedNavLink';
-import { RoleListCableAll, RoleListCableOwned, RoleListCableUsed } from '../../api/role/Roles';
 
 const bridge = new SimpleSchema2Bridge(Cables.formSchema);
-/* Renders the EditStuff page for editing a single document. */
+
+/**
+ * Renders the page for adding or editing a single cable.
+ * @param cable
+ * @returns {Element}
+ * @constructor
+ */
 const CableEdit = ({ cable }) => {
-  const listPath = CombinePath(PathListCable, { [ParamCompanyID]: cable.companyID, [ParamProjectID]: cable.projectID });
 
   const submit = (data) => {
     // eslint-disable-next-line max-len
@@ -127,7 +128,7 @@ const CableEdit = ({ cable }) => {
             <Col><TextField id={FieldTermination} name="termination" /></Col>
           </Row>
           <Row>
-            <Col><TextField id={FieldLengthPlanned} name="lengthPlanned" /></Col>
+            <Col><NumField id={FieldLengthPlanned} name="lengthPlanned" /></Col>
             <Col><SelectField id={FieldClassification} name="classification" /></Col>
           </Row>
           <Row>

@@ -1,14 +1,13 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Card, Col, Row, Button } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Link } from 'react-router-dom';
 import { Projects } from '../../api/project/Projects';
-import { ParamCompanyID, PathListProject, CombinePath, PathViewProject, ParamProjectID } from '../../api/navigation/Navigation';
 import { PropTypeProject } from '../../api/propTypes/PropTypes';
 import { countryArray, stateArray } from '../../api/schema/FormSchemas';
-import { ButtonSubmit, FieldAddress2, FieldCompanyID, FieldCountry, FieldName, FieldProjectID, FieldShipAddress, FieldShipAddress2, FieldShipCity, FieldShipZip, NavListProject } from '../../api/testcafe/TestCafe';
+import { FieldName, FieldAddress, FieldAddress2, FieldCity, FieldState, FieldZip, FieldCountry, FieldPhone, FieldFax, FieldEmail, FieldNotes, FieldContract, FieldBidNumber, FieldShipAddress, FieldShipAddress2, FieldShipCity, FieldShipState,
+  FieldShipZip, FieldShipCountry, FieldCode, ButtonSubmit, FieldCompanyID, FieldProjectID } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(Projects.formSchema);
 

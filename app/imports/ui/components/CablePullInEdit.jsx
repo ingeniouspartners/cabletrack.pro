@@ -16,7 +16,9 @@ import {
   FieldTugger,
   FieldNotes,
   FieldCableID,
-  FieldCompanyID
+  FieldCompanyID,
+  FieldProjectID,
+  FieldPullInID,
 } from '../../api/testcafe/TestCafe';
 
 const bridge = new SimpleSchema2Bridge(CablePullIns.formSchema);

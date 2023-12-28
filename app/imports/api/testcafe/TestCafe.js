@@ -74,6 +74,9 @@ const FieldProjectID = 'projectID';
 const FieldCableID = 'cableID';
 const FieldPullInID = 'pullInID';
 const FieldDescription = 'description';
+const FieldCode = 'code';
+const FieldContract = 'contract';
+const FieldBidNumber = 'bidNumber';
 const FieldCostCode = 'costCode';
 const FieldRefDrawingNo = 'refDrawingNo';
 const FieldRefDrawingRev = 'refDrawingRev';
@@ -138,6 +141,9 @@ export {
   FieldAddress,
   FieldAddress2,
   FieldCity,
+  FieldCode,
+  FieldContract,
+  FieldBidNumber,
   FieldState,
   FieldZip,
   FieldCountry,
