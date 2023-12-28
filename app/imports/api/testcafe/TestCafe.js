@@ -148,5 +148,7 @@ export {
 
 const ButtonSubmit = 'submit';
 const ButtonCancel = 'cancel';
+const IconSuccess = 'div.swal-icon--success';
+const ButtonConfirm = 'button.swal-button--confirm';
 
-export { ButtonSubmit, ButtonCancel };
+export { ButtonSubmit, ButtonCancel, ButtonConfirm, IconSuccess };

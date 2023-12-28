@@ -8,6 +8,10 @@ class NavBar {
     const loggedInUser = await Selector('#navbar-current-user').exists;
     if (loggedInUser) {
       await testController.click('#navbar-current-user');
+      const visible = await Selector('#basic-navbar-nav').visible;
+      if (!visible) {
+        await testController.click('#basic-navbar-toggle');
+      }
       await testController.click('#navbar-sign-out');
     }
   }
@@ -16,7 +20,7 @@ class NavBar {
     await this.ensureLogout(testController);
     const visible = await Selector('#basic-navbar-nav').visible;
     if (!visible) {
-      await testController.click('button.navbar-toggler');
+      await testController.click('#basic-navbar-toggle');
     }
     await testController.click('#login-dropdown');
     await testController.click('#login-dropdown-sign-in');
@@ -26,7 +30,7 @@ class NavBar {
   async isLoggedIn(testController, username) {
     const visible = await Selector('#basic-navbar-nav').visible;
     if (!visible) {
-      await testController.click('button.navbar-toggler');
+      await testController.click('#basic-navbar-toggle');
     }
     const loggedInUser = Selector('#navbar-current-user').innerText;
     await testController.expect(loggedInUser).eql(username);
@@ -36,7 +40,7 @@ class NavBar {
   async logout(testController) {
     const visible = await Selector('#basic-navbar-nav').visible;
     if (!visible) {
-      await testController.click('button.navbar-toggler');
+      await testController.click('#basic-navbar-toggle');
     }
     await testController.expect(Selector('#navbar-current-user').exists).ok();
     await testController.click('#navbar-current-user');
@@ -48,7 +52,7 @@ class NavBar {
     await this.ensureLogout(testController);
     const visible = await Selector('#basic-navbar-nav').visible;
     if (!visible) {
-      await testController.click('button.navbar-toggler');
+      await testController.click('#basic-navbar-toggle');
     }
     await testController.click('#login-dropdown');
     await testController.click('#login-dropdown-sign-up');
@@ -72,7 +76,7 @@ class NavBar {
   async gotoProfilePage(testController) {
     const visible = await Selector('#basic-navbar-nav').visible;
     if (!visible) {
-      await testController.click('button.navbar-toggler');
+      await testController.click('#basic-navbar-toggle');
     }
     const visible2 = await Selector(`#${NavViewUser}`).visible;
     if (!visible2) {

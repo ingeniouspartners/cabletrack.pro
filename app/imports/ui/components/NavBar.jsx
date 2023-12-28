@@ -32,6 +32,9 @@ const NavBar = () => {
     };
   }, []);
 
+  const companyPath = CombinePath(PathViewCompany, { companyID: (company ? company._id : '') });
+  const projectsPath = CombinePath(PathListProject, { companyID: (company ? company._id : '') });
+
   return (
     ready ? (
       <Navbar id="navbar" className="text-white justify-content-start" expand="lg">
@@ -39,21 +42,25 @@ const NavBar = () => {
           <Navbar.Brand as={NavLink} to={PathHome}>
             <CompanyBrand company={company} />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle id="basic-navbar-toggle" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ms-auto">
               {company ? (
                 <>
-                  <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={CombinePath(PathViewCompany, { companyID: (company ? company._id : '') })}>
+                  <GuardedNavLink id={NavViewCompany} roles={[RoleViewCompanyAll, RoleViewCompanyOwned, RoleViewCompanyUsed]} to={companyPath}>
                     <span className="px-2">Company</span>
                   </GuardedNavLink>
-                  <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={CombinePath(PathListProject, { companyID: (company ? company._id : '') })}>
+                  <GuardedNavLink id={NavListProject} user={user} roles={[RoleListProjectAll, RoleListProjectOwned, RoleListProjectUsed]} to={projectsPath}>
                     <span className="px-2">Projects</span>
                   </GuardedNavLink>
                 </>
               ) : ''}
-              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}><span className="px-2">Companies</span></GuardedNavLink>
-              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}><span className="px-2">Users</span></GuardedNavLink>
+              <GuardedNavLink id={NavListCompany} user={user} roles={[RoleListCompanyAll, RoleListCompanyOwned]} to={PathListCompany}>
+                <span className="px-2">Companies</span>
+              </GuardedNavLink>
+              <GuardedNavLink id={NavListUser} user={user} roles={[RoleListUserAll, RoleListUserOwned]} to={PathListUser}>
+                <span className="px-2">Users</span>
+              </GuardedNavLink>
             </Nav>
             <Nav className="justify-content-end">
               {!user ? (

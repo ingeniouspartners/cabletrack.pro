@@ -1,6 +1,7 @@
 import { Selector } from 'testcafe';
-import { ButtonSubmit, FieldName, NavListProject, PageEditCable, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
-  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldLengthPlanned,
+import {
+  ButtonSubmit, FieldName, NavListProject, PageEditCable, FieldDescription, FieldCostCode, FieldRefDrawingNo, FieldRefDrawingRev, FieldSystem, FieldBuilding, FieldZone, FieldOrigination, FieldTermination,
+  FieldClassification, FieldCableType, FieldConductors, FieldVoltageCable, FieldVoltageTest, FieldNotes, FieldLengthPlanned, IconSuccess, ButtonConfirm,
 } from '../imports/api/testcafe/TestCafe';
 
 class AddCablePage {
@@ -58,7 +59,8 @@ class AddCablePage {
     await testController.typeText(voltageTestField, cable.voltageTest.toString(), { replace: true });
     await testController.typeText(notesField, cable.notes);
     await testController.click(submitButton);
-    await testController.click('button.swal-button--confirm');
+    await testController.expect(Selector(IconSuccess).exists).ok();
+    await testController.click(ButtonConfirm);
   }
 }
 

@@ -10,8 +10,10 @@ const SignOut = () => {
   const ready = true;
   return (
     <PageWrapper id={PageNotFound} ready={ready}>
-      <h2>Not Found</h2>
-      <Navigate to="/" />
+      <>
+        <h2>Not Found</h2>
+        <Navigate to="/" />
+      </>
     </PageWrapper>
   );
 };

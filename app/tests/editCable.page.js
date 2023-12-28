@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavListCable, PageEditCable, FieldName, ButtonSubmit } from '../imports/api/testcafe/TestCafe';
+import { NavListCable, PageEditCable, FieldName, ButtonSubmit, IconSuccess, ButtonConfirm } from '../imports/api/testcafe/TestCafe';
 
 class EditCablePage {
   constructor() {
@@ -21,7 +21,8 @@ class EditCablePage {
     const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
     await testController.typeText(nameField, cable.name, { replace: true });
     await testController.click(submitButton);
-    await testController.click('button.swal-button--confirm');
+    await testController.expect(Selector(IconSuccess).exists).ok();
+    await testController.click(ButtonConfirm);
   }
 }
 
