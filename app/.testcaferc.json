@@ -1,5 +1,5 @@
 {
   "hostname": "localhost",
   "quarantineMode": true,
-  "retryTestPages": false
+  "retryTestPages": true
 }
