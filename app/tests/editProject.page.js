@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { NavListProject, PageEditProject } from '../imports/api/testcafe/TestCafe';
+import { ButtonConfirm, IconSuccess, NavListProject, PageEditProject, FieldName, ButtonSubmit } from '../imports/api/testcafe/TestCafe';
 
 class EditProjectPage {
   constructor() {
@@ -17,9 +17,13 @@ class EditProjectPage {
   }
 
   async editProject(testController, project) {
-    await testController.typeText('#project-form-name', project.name, { replace: true });
-    await testController.click('#project-form-submit input.btn.btn-primary');
-    await testController.click('button.swal-button--confirm');
+    const nameField = `#${FieldName}`;
+    const submitButton = `#${ButtonSubmit} input.btn.btn-primary`;
+
+    await testController.typeText(nameField, project.name, { replace: true });
+    await testController.click(submitButton);
+    await testController.expect(Selector(IconSuccess).exists).ok();
+    await testController.click(ButtonConfirm);
   }
 }
 
