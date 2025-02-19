@@ -1,7 +1,7 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, BoolField, LongTextField } from 'uniforms-bootstrap5';
+import { ValidatedForm, ErrorsField, HiddenField, SubmitField, TextField, DateField, BoolField, LongTextField, SelectField, NumField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { PropTypeCablePullIn } from '../../api/propTypes/PropTypes';
 import { CablePullIns } from '../../api/cable/CablePullIns';
@@ -20,11 +20,26 @@ import {
   FieldProjectID,
   FieldPullInID,
 } from '../../api/testcafe/TestCafe';
+import { useTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { RoleElectrician } from '../../api/role/Roles';
 
 const bridge = new SimpleSchema2Bridge(CablePullIns.formSchema);
 
 /* Renders the EditStuff page for editing a single document. */
 const CablePullInEdit = ({ pullin }) => {
+  const { companyElectricians } = useTracker(() => {
+    // Note that this subscription will get cleaned up
+    // when your component is unmounted or deps change.
+    // Get access to Company Electricians documents.
+    const companyElectriciansList = Meteor.users.find({ roles: RoleElectrician }).fetch();
+    // Get the Cable documents
+    return {
+      companyElectricians: companyElectriciansList.map((electrician) => ({ label: electrician.username, value: electrician._id })),
+    };
+  }, [pullin]);
+
+
   const submit = (data) => {
     const { _id, personInstalled, dateInstalled, lengthInstalled, pulledHand, tugger, tuggerCalibrationID, maxPullingTension, companyID, projectID, cableID } = data;
     if (_id) {
@@ -38,15 +53,15 @@ const CablePullInEdit = ({ pullin }) => {
     }
   };
   return (
-    <AutoForm schema={bridge} onSubmit={data => submit(data)} model={pullin}>
+    <ValidatedForm schema={bridge} onSubmit={data => submit(data)} model={pullin}>
       <Card>
         <Card.Header>
           <Card.Title>{pullin && pullin._id ? 'Edit' : 'Add'} Pull In</Card.Title>
         </Card.Header>
         <Card.Body>
-          <TextField id={FieldPersonInstalled} name="personInstalled" />
+          <SelectField id={FieldPersonInstalled} name="personInstalled" options={companyElectricians} />
           <DateField id={FieldDateInstalled} name="dateInstalled" />
-          <TextField id={FieldLengthInstalled} name="lengthInstalled" />
+          <NumField id={FieldLengthInstalled} name="lengthInstalled" />
           <BoolField id={FieldPulledHand} name="pulledHand" />
           <TextField id={FieldTugger} name="tugger" />
           <TextField id={FieldTuggerCalibrationID} name="tuggerCalibrationID" />
@@ -62,7 +77,7 @@ const CablePullInEdit = ({ pullin }) => {
           <HiddenField id={FieldCompanyID} name="companyID" />
         </Card.Footer>
       </Card>
-    </AutoForm>
+    </ValidatedForm>
   );
 };
 
