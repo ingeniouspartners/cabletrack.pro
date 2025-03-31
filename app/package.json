@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.11",
     "react-router": "^6.14.1",
-    "react-router-dom": "^6.14.1",
+    "react-router-dom": "^6.21.2",
     "simpl-schema": "^3.4.1",
     "sweetalert": "^2.1.2",
     "uniforms": "^3.10.2",
